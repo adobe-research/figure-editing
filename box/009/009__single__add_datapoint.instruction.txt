@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Streaming' service type with values min=5, q1=15, median=25, q3=35, max=45.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Internet; value=12.5]

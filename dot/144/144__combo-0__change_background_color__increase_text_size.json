@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing individual points for Abalone categories along an axis.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Male",
+          "Value": 0.45
+        },
+        {
+          "Category": "Female",
+          "Value": 0.55
+        },
+        {
+          "Category": "Infant",
+          "Value": 0.3
+        },
+        {
+          "Category": "Male",
+          "Value": 0.5
+        },
+        {
+          "Category": "Female",
+          "Value": 0.6
+        },
+        {
+          "Category": "Infant",
+          "Value": 0.35
+        },
+        {
+          "Category": "Male",
+          "Value": 0.48
+        },
+        {
+          "Category": "Female",
+          "Value": 0.58
+        },
+        {
+          "Category": "Infant",
+          "Value": 0.32
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "steelblue"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "fill": {
+            "value": "lightblue"
+          },
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

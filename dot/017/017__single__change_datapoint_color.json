@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing item categories and their respective prices.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "category": "Electronics",
+          "value": 120
+        },
+        {
+          "category": "Clothing",
+          "value": 45
+        },
+        {
+          "category": "Toys",
+          "value": 30
+        },
+        {
+          "category": "Furniture",
+          "value": 200
+        },
+        {
+          "category": "Books",
+          "value": 15
+        },
+        {
+          "category": "Beauty",
+          "value": 60
+        },
+        {
+          "category": "Sports",
+          "value": 80
+        },
+        {
+          "category": "Automotive",
+          "value": 150
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

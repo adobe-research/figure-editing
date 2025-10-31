@@ -1,0 +1,2 @@
+Add a new datapoint with 'Churn' as 'Yes' and 'MonthlyCharges' as 65.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=65.0]

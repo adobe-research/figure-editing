@@ -1,0 +1,2 @@
+Add a new datapoint with Severity 'Very Low' and Count 80 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Critical; value=150.0]

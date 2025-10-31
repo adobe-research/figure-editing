@@ -1,0 +1,2 @@
+Add a new datapoint for the country 'Australia' with a PISA score of 495.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Australia; value=500.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for the job 'Artist' with a success rate of 65 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Artist; value=57.5]

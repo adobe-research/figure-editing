@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Anime' with a value of 30 to the chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Anime; value=27.5]

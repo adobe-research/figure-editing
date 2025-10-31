@@ -1,0 +1,4 @@
+Change the color of the 'Inflation Rate' datapoint to orange, increase the text size of axis labels to 12, and add a title 'Economic Indicators Overview' with size 16.
+[#OP1 op=change_datapoint_color; target_category=Inflation Rate; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=GDP Growth Rate; new_color=#ff7f0e]
+[#OP3 op=add_title; title_text=Edited Chart]

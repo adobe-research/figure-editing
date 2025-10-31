@@ -1,0 +1,2 @@
+Add a new datapoint for the commodity 'Barley' with min=130, q1=180, median=230, q3=280, and max=330.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Barley; value=115.0]

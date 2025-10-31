@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing IMDb ratings for different genres in Netflix Movies and TV Shows.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Genre": "Comedy",
+          "IMDb_Rating": 7.2
+        },
+        {
+          "Genre": "Drama",
+          "IMDb_Rating": 8.5
+        },
+        {
+          "Genre": "Thriller",
+          "IMDb_Rating": 7.9
+        },
+        {
+          "Genre": "Documentary",
+          "IMDb_Rating": 8.3
+        },
+        {
+          "Genre": "Action",
+          "IMDb_Rating": 6.8
+        },
+        {
+          "Genre": "Romance",
+          "IMDb_Rating": 7.4
+        },
+        {
+          "Genre": "Horror",
+          "IMDb_Rating": 6.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Genre"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "IMDb_Rating"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Genre",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "IMDb Rating",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "IMDb_Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

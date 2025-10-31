@@ -1,0 +1,2 @@
+Remove the datapoint for the state of Illinois.
+[#OP1 op=remove_datapoint; category=New York]

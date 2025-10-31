@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing survival status by passenger class from the Titanic dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Pclass": "1st Class",
+          "Survived": 1
+        },
+        {
+          "Pclass": "2nd Class",
+          "Survived": 0
+        },
+        {
+          "Pclass": "3rd Class",
+          "Survived": 1
+        },
+        {
+          "Pclass": "1st Class",
+          "Survived": 0
+        },
+        {
+          "Pclass": "2nd Class",
+          "Survived": 1
+        },
+        {
+          "Pclass": "3rd Class",
+          "Survived": 0
+        },
+        {
+          "Pclass": "1st Class",
+          "Survived": 1
+        },
+        {
+          "Pclass": "3rd Class",
+          "Survived": 0
+        },
+        {
+          "Pclass": "2nd Class",
+          "Survived": 1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "Pclass"
+      },
+      "range": "width",
+      "padding": 0.5
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": [
+        0,
+        1
+      ],
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Passenger Class"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Survived",
+      "tickCount": 2
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Pclass",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Survived"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

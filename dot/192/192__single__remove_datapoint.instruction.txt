@@ -1,0 +1,2 @@
+Remove the datapoint with Cuisine 'Indian' and Rating 4.1.
+[#OP1 op=remove_datapoint; category=Mexican]

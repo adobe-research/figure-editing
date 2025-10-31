@@ -1,0 +1,2 @@
+Remove the datapoint for the category '65 and over' with a value of 8.
+[#OP1 op=remove_datapoint; category=45-64]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Harry Kane' with 27 goals.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cristiano Ronaldo; value=28.0]

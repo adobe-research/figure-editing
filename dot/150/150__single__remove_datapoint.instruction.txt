@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'ERL' and Value 0.33.
+[#OP1 op=remove_datapoint; category=MIT]

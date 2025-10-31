@@ -1,0 +1,2 @@
+Add a new datapoint for the job 'Clerk' with min=120, q1=220, median=320, q3=420, and max=520.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Clerk; value=135.0]

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot displaying values for marketing campaigns by job type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Job": "Management",
+          "SuccessRate": 75
+        },
+        {
+          "Job": "Technician",
+          "SuccessRate": 60
+        },
+        {
+          "Job": "Entrepreneur",
+          "SuccessRate": 55
+        },
+        {
+          "Job": "Blue-collar",
+          "SuccessRate": 40
+        },
+        {
+          "Job": "Housemaid",
+          "SuccessRate": 35
+        },
+        {
+          "Job": "Retired",
+          "SuccessRate": 80
+        },
+        {
+          "Job": "Self-employed",
+          "SuccessRate": 50
+        },
+        {
+          "Job": "Unemployed",
+          "SuccessRate": 45
+        },
+        {
+          "Job": "Student",
+          "SuccessRate": 85
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Job"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "SuccessRate"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Job Type",
+      "labelAngle": -45,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Success Rate (%)",
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Job"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "SuccessRate"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

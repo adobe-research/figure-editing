@@ -1,0 +1,2 @@
+Add a new datapoint for a 'Senior Citizen' with a monthly charge of 110.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Non-Senior Citizen; value=77.6]

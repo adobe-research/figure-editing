@@ -1,0 +1,2 @@
+Remove the datapoint where Position is 'Defender' and Rating is 79.
+[#OP1 op=remove_datapoint; category=Forward]

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "category": "Bananas",
+          "value": 120
+        },
+        {
+          "category": "Apples",
+          "value": 150
+        },
+        {
+          "category": "Oranges",
+          "value": 90
+        },
+        {
+          "category": "Grapes",
+          "value": 110
+        },
+        {
+          "category": "Berries",
+          "value": 130
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Apples"
+      ],
+      "range": [
+        "red"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Category",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "field": "category",
+            "scale": "color"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

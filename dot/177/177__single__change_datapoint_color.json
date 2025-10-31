@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing the number of orders for various product categories.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "category": "Beverages",
+          "value": 150
+        },
+        {
+          "category": "Snacks",
+          "value": 200
+        },
+        {
+          "category": "Produce",
+          "value": 320
+        },
+        {
+          "category": "Frozen Foods",
+          "value": 180
+        },
+        {
+          "category": "Dairy",
+          "value": 250
+        },
+        {
+          "category": "Bakery",
+          "value": 90
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "value"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Product Categories"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Orders"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "y",
+            "field": "value"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "#ff6347"
+          },
+          "shape": {
+            "value": "circle"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "y",
+            "field": "value"
+          }
+        }
+      }
+    }
+  ]
+}

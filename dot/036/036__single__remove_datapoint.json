@@ -1,0 +1,93 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing the count of service requests by borough.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Borough": "Manhattan",
+          "Requests": 120
+        },
+        {
+          "Borough": "Brooklyn",
+          "Requests": 95
+        },
+        {
+          "Borough": "Queens",
+          "Requests": 110
+        },
+        {
+          "Borough": "Bronx",
+          "Requests": 85
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Borough"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Requests"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Borough"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Requests"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Borough"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Requests"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

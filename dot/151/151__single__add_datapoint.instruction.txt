@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Government Spending' and Value 3.9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Business Investment; value=3.55]

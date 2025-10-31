@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Marathon Men' event.
+[#OP1 op=remove_datapoint; category=100m Men]

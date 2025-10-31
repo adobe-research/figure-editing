@@ -1,0 +1,2 @@
+Add a new datapoint with TransactionType 'Clothing Store' and Amount 75.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Clothing Store; value=75.0]

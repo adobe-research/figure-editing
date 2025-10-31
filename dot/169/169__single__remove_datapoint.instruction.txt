@@ -1,0 +1,2 @@
+Remove the datapoint for 'Italy' with a score of 470.
+[#OP1 op=remove_datapoint; category=France]

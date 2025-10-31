@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing IMDb ratings for different Netflix genres.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Genre": "Adventure",
+          "IMDb_Rating": 8.2
+        },
+        {
+          "Genre": "Crime",
+          "IMDb_Rating": 7.9
+        },
+        {
+          "Genre": "Fantasy",
+          "IMDb_Rating": 8.5
+        },
+        {
+          "Genre": "Mystery",
+          "IMDb_Rating": 7.6
+        },
+        {
+          "Genre": "Sci-Fi",
+          "IMDb_Rating": 8.7
+        },
+        {
+          "Genre": "Biography",
+          "IMDb_Rating": 8.1
+        },
+        {
+          "Genre": "History",
+          "IMDb_Rating": 7.8
+        },
+        {
+          "Genre": "War",
+          "IMDb_Rating": 8.3
+        },
+        {
+          "Genre": "Music",
+          "IMDb_Rating": 7.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Sci-Fi"
+      ],
+      "range": [
+        "green"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Genre"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "IMDb Rating",
+      "grid": true
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "IMDb_Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "field": "Genre",
+            "scale": "color"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

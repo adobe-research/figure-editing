@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing the severity of accidents across different states.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "State": "California",
+          "Severity": 3
+        },
+        {
+          "State": "Texas",
+          "Severity": 2
+        },
+        {
+          "State": "Florida",
+          "Severity": 4
+        },
+        {
+          "State": "New York",
+          "Severity": 1
+        },
+        {
+          "State": "Illinois",
+          "Severity": 3
+        },
+        {
+          "State": "Pennsylvania",
+          "Severity": 2
+        },
+        {
+          "State": "Ohio",
+          "Severity": 4
+        },
+        {
+          "State": "Georgia",
+          "Severity": 1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "State"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Severity"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "State"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Severity"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "State"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Severity"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

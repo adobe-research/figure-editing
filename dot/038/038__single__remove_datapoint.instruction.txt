@@ -1,0 +1,2 @@
+Remove the datapoint with Bike_Type 'Dockless' and Trip_Duration_Minutes 22.
+[#OP1 op=remove_datapoint; category=Standard]

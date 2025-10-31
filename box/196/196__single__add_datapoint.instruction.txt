@@ -1,0 +1,2 @@
+Add a new datapoint for the 'summary' dataset with Diagnosis 'Intermediate' and values min=8.0, q1=12.0, median=16.0, q3=20.0, max=24.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Benign; value=8.0]

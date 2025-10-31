@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing sales of video games by genre.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Genre": "Shooter",
+          "Global_Sales": 15.6
+        },
+        {
+          "Genre": "Platform",
+          "Global_Sales": 12.4
+        },
+        {
+          "Genre": "RPG",
+          "Global_Sales": 9.8
+        },
+        {
+          "Genre": "Sports",
+          "Global_Sales": 10.5
+        },
+        {
+          "Genre": "Racing",
+          "Global_Sales": 7.3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Genre"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Global_Sales"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Genre"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Global Sales (in millions)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre",
+            "offset": {
+              "signal": "random() * 10 - 5"
+            }
+          },
+          "y": {
+            "scale": "y",
+            "field": "Global_Sales"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

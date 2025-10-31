@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for different categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "United States",
+          "GDP_Per_Capita": 65000
+        },
+        {
+          "Country": "China",
+          "GDP_Per_Capita": 10000
+        },
+        {
+          "Country": "India",
+          "GDP_Per_Capita": 2500
+        },
+        {
+          "Country": "Germany",
+          "GDP_Per_Capita": 50000
+        },
+        {
+          "Country": "Brazil",
+          "GDP_Per_Capita": 9000
+        },
+        {
+          "Country": "South Africa",
+          "GDP_Per_Capita": 6000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "GDP_Per_Capita"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "GDP Per Capita (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "GDP_Per_Capita"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

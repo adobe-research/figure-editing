@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories in the UCI: Bank Marketing Dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Job": "Admin.",
+          "Balance": 1500
+        },
+        {
+          "Job": "Technician",
+          "Balance": 1200
+        },
+        {
+          "Job": "Blue-collar",
+          "Balance": 800
+        },
+        {
+          "Job": "Entrepreneur",
+          "Balance": 2000
+        },
+        {
+          "Job": "Retired",
+          "Balance": 2500
+        },
+        {
+          "Job": "Student",
+          "Balance": 300
+        },
+        {
+          "Job": "Housemaid",
+          "Balance": 700
+        },
+        {
+          "Job": "Unemployed",
+          "Balance": 400
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Job"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Balance"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Job",
+      "labelAngle": -45,
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Balance",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Job"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Balance"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

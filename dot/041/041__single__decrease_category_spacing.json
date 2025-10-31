@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories as individual points.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "United States",
+          "GDP_per_Capita": 63000
+        },
+        {
+          "Country": "China",
+          "GDP_per_Capita": 10400
+        },
+        {
+          "Country": "India",
+          "GDP_per_Capita": 2100
+        },
+        {
+          "Country": "Germany",
+          "GDP_per_Capita": 48000
+        },
+        {
+          "Country": "Brazil",
+          "GDP_per_Capita": 8700
+        },
+        {
+          "Country": "South Africa",
+          "GDP_per_Capita": 6000
+        },
+        {
+          "Country": "Japan",
+          "GDP_per_Capita": 42000
+        },
+        {
+          "Country": "Russia",
+          "GDP_per_Capita": 11500
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width",
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "GDP_per_Capita"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "GDP per Capita (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "GDP_per_Capita"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "tooltip": {
+            "signal": "datum.Country + ': $' + datum.GDP_per_Capita"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Store C' with a demand of 90.
+[#OP1 op=remove_datapoint; category=Store E]

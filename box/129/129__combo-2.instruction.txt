@@ -1,0 +1,4 @@
+Change the background color, add a title, and increase the text size for axis labels and ticks.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=16]

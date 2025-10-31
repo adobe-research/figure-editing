@@ -1,0 +1,3 @@
+Change the color of the 'Shooter' datapoint to '#FF5733' and add a title 'Video Game Sales by Genre' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Shooter; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

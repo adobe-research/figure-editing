@@ -1,0 +1,2 @@
+Remove the datapoint for 'Netherlands' with 2 goals.
+[#OP1 op=remove_datapoint; category=France]

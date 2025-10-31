@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Two year' customer type.
+[#OP1 op=remove_datapoint; category=Month-to-month]

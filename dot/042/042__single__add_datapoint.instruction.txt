@@ -1,0 +1,2 @@
+Add a new datapoint for 'Device H' with a value of 140.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Device A; value=115.0]

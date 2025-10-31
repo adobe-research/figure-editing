@@ -1,0 +1,2 @@
+Add a new datapoint for 'Wholesale' with min=220, q1=520, median=770, q3=1020, and max=1520.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Corporate; value=235.0]

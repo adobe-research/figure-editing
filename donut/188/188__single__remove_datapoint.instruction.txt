@@ -1,0 +1,2 @@
+Remove the datapoint for 'Promotion 3' from the donut chart.
+[#OP1 op=remove_datapoint; category=Promotion 5]

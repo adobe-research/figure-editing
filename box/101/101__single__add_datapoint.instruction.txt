@@ -1,0 +1,2 @@
+Add a new datapoint for Group 'D' with min=7.0, q1=9.0, median=11.0, q3=13.0, and max=15.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=8.5]

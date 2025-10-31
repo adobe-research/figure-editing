@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'High Cholesterol'.
+[#OP1 op=remove_datapoint; category=Obesity]

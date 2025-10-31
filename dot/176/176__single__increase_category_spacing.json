@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing customer tenure values for payment methods.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "PaymentMethod": "Electronic Check",
+          "Tenure": 12
+        },
+        {
+          "PaymentMethod": "Mailed Check",
+          "Tenure": 24
+        },
+        {
+          "PaymentMethod": "Bank Transfer",
+          "Tenure": 36
+        },
+        {
+          "PaymentMethod": "Credit Card",
+          "Tenure": 48
+        },
+        {
+          "PaymentMethod": "Electronic Check",
+          "Tenure": 6
+        },
+        {
+          "PaymentMethod": "Mailed Check",
+          "Tenure": 18
+        },
+        {
+          "PaymentMethod": "Bank Transfer",
+          "Tenure": 30
+        },
+        {
+          "PaymentMethod": "Credit Card",
+          "Tenure": 42
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "PaymentMethod"
+      },
+      "range": {
+        "step": 90
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Tenure"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Payment Method"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Tenure (Months)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "PaymentMethod"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Tenure"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

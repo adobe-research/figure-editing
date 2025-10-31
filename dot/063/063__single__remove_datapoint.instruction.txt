@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Seed Type B' and Value 13.84.
+[#OP1 op=remove_datapoint; category=Seed Type B]

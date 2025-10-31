@@ -1,0 +1,2 @@
+Increase the spacing between categories on the x-axis by adjusting the paddingInner property of the xscale to 0.5.
+[#OP1 op=increase_category_spacing; scale=auto; new_padding=0.20]

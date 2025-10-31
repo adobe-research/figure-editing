@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Inflation Rate' and Value 4.2.
+[#OP1 op=remove_datapoint; category=Unemployment Rate]

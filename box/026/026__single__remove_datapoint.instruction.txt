@@ -1,0 +1,2 @@
+Remove the datapoint for the country 'China' from the box plot.
+[#OP1 op=remove_datapoint; category=USA]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the job 'student'.
+[#OP1 op=remove_datapoint; category=unemployed]

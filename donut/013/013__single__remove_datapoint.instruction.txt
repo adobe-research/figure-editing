@@ -1,0 +1,2 @@
+Remove the datapoint for the category 'Beauty Products' with a value of 40.
+[#OP1 op=remove_datapoint; category=Books]

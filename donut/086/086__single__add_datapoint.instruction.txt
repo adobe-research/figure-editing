@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Undecided' and value 20 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No Opinion; value=27.5]

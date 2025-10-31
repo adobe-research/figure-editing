@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'StrokeRisk' value 'High'.
+[#OP1 op=remove_datapoint; category=Medium]

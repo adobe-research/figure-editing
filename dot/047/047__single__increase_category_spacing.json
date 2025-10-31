@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing transaction amounts for different transaction types.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "TransactionType": "Online Purchase",
+          "Amount": 120.5
+        },
+        {
+          "TransactionType": "Grocery Store",
+          "Amount": 45.3
+        },
+        {
+          "TransactionType": "Gas Station",
+          "Amount": 60.0
+        },
+        {
+          "TransactionType": "Restaurant",
+          "Amount": 80.2
+        },
+        {
+          "TransactionType": "Online Purchase",
+          "Amount": 200.0
+        },
+        {
+          "TransactionType": "Grocery Store",
+          "Amount": 35.7
+        },
+        {
+          "TransactionType": "Gas Station",
+          "Amount": 50.0
+        },
+        {
+          "TransactionType": "Restaurant",
+          "Amount": 100.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "TransactionType"
+      },
+      "range": "width",
+      "padding": 0.6
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Amount"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Type"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Amount ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "TransactionType"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Amount"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

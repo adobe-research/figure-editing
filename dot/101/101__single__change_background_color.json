@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing the toxicity levels across different comment categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Toxic",
+          "ToxicityLevel": 0.85
+        },
+        {
+          "Category": "Severe Toxic",
+          "ToxicityLevel": 0.92
+        },
+        {
+          "Category": "Obscene",
+          "ToxicityLevel": 0.78
+        },
+        {
+          "Category": "Threat",
+          "ToxicityLevel": 0.65
+        },
+        {
+          "Category": "Insult",
+          "ToxicityLevel": 0.88
+        },
+        {
+          "Category": "Identity Hate",
+          "ToxicityLevel": 0.72
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "ToxicityLevel"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Comment Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Toxicity Level"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "ToxicityLevel"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

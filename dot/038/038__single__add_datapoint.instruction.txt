@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Electric' bike type with a trip duration of 30 minutes.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Dockless; value=16.5]

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing Yelp review ratings by category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "reviews",
+      "values": [
+        {
+          "Category": "Restaurants",
+          "AverageRating": 4.2
+        },
+        {
+          "Category": "Shopping",
+          "AverageRating": 3.8
+        },
+        {
+          "Category": "Health & Medical",
+          "AverageRating": 4.0
+        },
+        {
+          "Category": "Home Services",
+          "AverageRating": 3.5
+        },
+        {
+          "Category": "Beauty & Spas",
+          "AverageRating": 4.3
+        },
+        {
+          "Category": "Automotive",
+          "AverageRating": 3.9
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "reviews",
+        "field": "Category"
+      },
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "reviews",
+        "field": "AverageRating"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Category",
+      "labelAngle": -45
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "reviews"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "AverageRating"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint where 'CustomerType' is 'Non-Senior Citizen' and 'MonthlyCharges' is 60.1.
+[#OP1 op=remove_datapoint; category=Senior Citizen]

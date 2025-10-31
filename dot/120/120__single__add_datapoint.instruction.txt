@@ -1,0 +1,2 @@
+Add a new datapoint for 'Uptown Station' with a trip duration of 22 minutes.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central Station; value=20.0]

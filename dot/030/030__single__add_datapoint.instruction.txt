@@ -1,0 +1,2 @@
+Add a new datapoint with 'Neighborhood Group' as 'Manhattan' and 'Price' as 175.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bronx; value=110.0]

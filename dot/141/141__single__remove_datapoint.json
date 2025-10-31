@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing values for wine categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Category": "Alcohol",
+          "Value": 13.2
+        },
+        {
+          "Category": "Malic Acid",
+          "Value": 1.78
+        },
+        {
+          "Category": "Ash",
+          "Value": 2.43
+        },
+        {
+          "Category": "Alcalinity of Ash",
+          "Value": 15.6
+        },
+        {
+          "Category": "Magnesium",
+          "Value": 100
+        },
+        {
+          "Category": "Total Phenols",
+          "Value": 2.8
+        },
+        {
+          "Category": "Flavanoids",
+          "Value": 3.06
+        },
+        {
+          "Category": "Nonflavanoid Phenols",
+          "Value": 0.28
+        },
+        {
+          "Category": "Proanthocyanins",
+          "Value": 2.29
+        },
+        {
+          "Category": "Color Intensity",
+          "Value": 5.64
+        },
+        {
+          "Category": "Hue",
+          "Value": 1.04
+        },
+        {
+          "Category": "OD280/OD315 of Diluted Wines",
+          "Value": 3.92
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Wine Attributes"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

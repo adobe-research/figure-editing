@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing temperature anomalies for different years.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Year": 1880,
+          "TemperatureAnomaly": -0.12
+        },
+        {
+          "Year": 1900,
+          "TemperatureAnomaly": -0.08
+        },
+        {
+          "Year": 1920,
+          "TemperatureAnomaly": 0.05
+        },
+        {
+          "Year": 1940,
+          "TemperatureAnomaly": 0.12
+        },
+        {
+          "Year": 1960,
+          "TemperatureAnomaly": 0.03
+        },
+        {
+          "Year": 1980,
+          "TemperatureAnomaly": 0.15
+        },
+        {
+          "Year": 2000,
+          "TemperatureAnomaly": 0.33
+        },
+        {
+          "Year": 2020,
+          "TemperatureAnomaly": 0.98
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1880,
+        1900,
+        1920,
+        1940,
+        1960,
+        1980,
+        2000,
+        2020
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "TemperatureAnomaly"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Year"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "TemperatureAnomaly"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "crimson"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

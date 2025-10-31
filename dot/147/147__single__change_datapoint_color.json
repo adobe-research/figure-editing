@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories in the UCI Bank Marketing Dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "job": "admin.",
+          "balance": 1500
+        },
+        {
+          "job": "technician",
+          "balance": 1200
+        },
+        {
+          "job": "blue-collar",
+          "balance": 800
+        },
+        {
+          "job": "management",
+          "balance": 2000
+        },
+        {
+          "job": "retired",
+          "balance": 3000
+        },
+        {
+          "job": "services",
+          "balance": 1000
+        },
+        {
+          "job": "student",
+          "balance": 500
+        },
+        {
+          "job": "unemployed",
+          "balance": 700
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "job"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "balance"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Job"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Balance"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "job"
+          },
+          "y": {
+            "scale": "y",
+            "field": "balance"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#ff6347"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

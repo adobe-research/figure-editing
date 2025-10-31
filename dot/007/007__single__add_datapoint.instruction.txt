@@ -1,0 +1,2 @@
+Add a new datapoint with Subject 'History' and Score 76 to the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=History; value=84.5]

@@ -1,0 +1,2 @@
+Remove the datapoint with Subject 'History' and Score 90.
+[#OP1 op=remove_datapoint; category=History]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Third Class' from the chart.
+[#OP1 op=remove_datapoint; category=Second Class]

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing student grades by subject.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Subject": "Math",
+          "Grade": 85
+        },
+        {
+          "Subject": "Math",
+          "Grade": 90
+        },
+        {
+          "Subject": "Math",
+          "Grade": 78
+        },
+        {
+          "Subject": "Science",
+          "Grade": 92
+        },
+        {
+          "Subject": "Science",
+          "Grade": 88
+        },
+        {
+          "Subject": "Science",
+          "Grade": 84
+        },
+        {
+          "Subject": "History",
+          "Grade": 75
+        },
+        {
+          "Subject": "History",
+          "Grade": 80
+        },
+        {
+          "Subject": "History",
+          "Grade": 70
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Subject"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Grade"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Subject"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Grade",
+      "grid": true
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Subject"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Grade"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

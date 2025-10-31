@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Ash' attribute from the chart.
+[#OP1 op=remove_datapoint; category=Malic Acid]

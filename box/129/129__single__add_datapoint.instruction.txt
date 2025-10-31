@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Toys' with min=2, q1=3, median=5, q3=6, and max=9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Books; value=1.5]

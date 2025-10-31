@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'Obesity Class III' with a value of 42.1.
+[#OP1 op=remove_datapoint; category=Obesity Class I]

@@ -1,0 +1,2 @@
+Add a title 'Distribution of Online Activities' to the donut chart.
+[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Loan_Status' with value 'Deferred' and corresponding five-number summary values.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Approved; value=70.0]

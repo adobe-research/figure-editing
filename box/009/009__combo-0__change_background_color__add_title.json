@@ -1,0 +1,226 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Box plot with precomputed five-number summaries for Telco Customer Churn.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    },
+    "background": "lightgray"
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "summary",
+      "values": [
+        {
+          "ServiceType": "Internet",
+          "min": 20,
+          "q1": 35,
+          "median": 50,
+          "q3": 65,
+          "max": 80
+        },
+        {
+          "ServiceType": "Phone",
+          "min": 15,
+          "q1": 25,
+          "median": 40,
+          "q3": 55,
+          "max": 70
+        },
+        {
+          "ServiceType": "TV",
+          "min": 10,
+          "q1": 20,
+          "median": 30,
+          "q3": 45,
+          "max": 60
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "summary",
+        "field": "ServiceType"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": [
+        10,
+        80
+      ],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "summary",
+          "name": "service",
+          "groupby": "ServiceType"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "ServiceType",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "from": {
+            "data": "service"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 1
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "min"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "max"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "service"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "steelblue"
+              },
+              "cornerRadius": {
+                "value": 4
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "service"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "aliceblue"
+              },
+              "width": {
+                "value": 2
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              }
+            }
+          },
+          "clip": true
+        }
+      ]
+    }
+  ],
+  "background": "#fff5e6"
+}

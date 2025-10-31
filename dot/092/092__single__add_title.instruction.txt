@@ -1,0 +1,2 @@
+Add a title 'Student Scores by Subject' to the chart.
+[#OP1 op=add_title; title_text=Edited Chart]

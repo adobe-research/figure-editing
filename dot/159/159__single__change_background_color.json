@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing carbon emissions by sector.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Sector": "Energy",
+          "Emissions": 33.1
+        },
+        {
+          "Sector": "Industry",
+          "Emissions": 24.5
+        },
+        {
+          "Sector": "Transportation",
+          "Emissions": 14.2
+        },
+        {
+          "Sector": "Agriculture",
+          "Emissions": 18.3
+        },
+        {
+          "Sector": "Residential",
+          "Emissions": 6.8
+        },
+        {
+          "Sector": "Waste",
+          "Emissions": 3.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Sector"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Emissions"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Sector"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Emissions (GtCO2)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Sector"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Emissions"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

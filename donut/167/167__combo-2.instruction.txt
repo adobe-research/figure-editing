@@ -1,0 +1,4 @@
+Change the color of the 'Mathematics' datapoint to '#ff5733', add a title 'OECD PISA Scores Distribution', and increase the text size of the legend title to 14.
+[#OP1 op=change_datapoint_color; target_category=Reading; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=change_datapoint_color; target_category=Mathematics; new_color=#ff7f0e]

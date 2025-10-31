@@ -1,0 +1,2 @@
+Reduce the spacing between categories on the x-axis.
+[#OP1 op=decrease_category_spacing; scale=auto; new_padding=0.00]

@@ -1,0 +1,2 @@
+Add a new datapoint with PaymentMethod 'Cash' and Tenure 15 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bank Transfer; value=24.0]

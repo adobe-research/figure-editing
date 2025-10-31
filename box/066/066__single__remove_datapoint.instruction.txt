@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Two year' contract from the summary data.
+[#OP1 op=remove_datapoint; category=One year]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'England' with Year 1966 and Wins 6.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Argentina; value=2002.0]

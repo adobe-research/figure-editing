@@ -1,0 +1,2 @@
+Add a new datapoint for 'Unarmed Assault' with 1500 incidents at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Armed Assault; value=1350.0]

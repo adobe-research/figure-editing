@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing video game sales by genre.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Genre": "Shooter",
+          "Global_Sales": 50.2
+        },
+        {
+          "Genre": "Sports",
+          "Global_Sales": 45.3
+        },
+        {
+          "Genre": "RPG",
+          "Global_Sales": 30.8
+        },
+        {
+          "Genre": "Platform",
+          "Global_Sales": 25.4
+        },
+        {
+          "Genre": "Racing",
+          "Global_Sales": 20.1
+        },
+        {
+          "Genre": "Simulation",
+          "Global_Sales": 18.6
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Genre"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Global_Sales"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Genre"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Global Sales (in millions)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Global_Sales"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

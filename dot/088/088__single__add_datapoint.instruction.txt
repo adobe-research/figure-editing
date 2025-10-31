@@ -1,0 +1,2 @@
+Add a new datapoint for the state 'Washington' with a population of 7705281.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=California; value=13002700.0]

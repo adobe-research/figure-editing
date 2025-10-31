@@ -1,0 +1,2 @@
+Add a new datapoint for the variety 'Sangiovese' with min=11.5, q1=12.3, median=12.8, q3=13.5, and max=14.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Barolo; value=11.1]

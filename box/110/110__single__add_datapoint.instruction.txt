@@ -1,0 +1,2 @@
+Add a new datapoint for the 'PlayerPosition' category 'Point Guard' with values min=3, q1=6, median=9, q3=12, max=17.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Center; value=4.5]

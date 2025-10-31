@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing survival status for different passenger classes.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "PassengerClass": "First",
+          "SurvivalRate": 62
+        },
+        {
+          "PassengerClass": "Second",
+          "SurvivalRate": 47
+        },
+        {
+          "PassengerClass": "Third",
+          "SurvivalRate": 24
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "PassengerClass"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "SurvivalRate"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Passenger Class"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Survival Rate (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "PassengerClass"
+          },
+          "y": {
+            "scale": "y",
+            "field": "SurvivalRate"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "tooltip": {
+            "signal": "datum.PassengerClass + ': ' + datum.SurvivalRate + '%'"
+          }
+        }
+      }
+    }
+  ]
+}

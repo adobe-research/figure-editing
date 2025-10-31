@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Credit Score' and Value 700 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age; value=18.5]

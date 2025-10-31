@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Freelance' workclass with min 22000, q1 32000, median 42000, q3 52000, and max 75000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Freelance; value=19000.0]

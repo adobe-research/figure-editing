@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Box plot with precomputed five-number summaries.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    }
+  ],
+  "data": [
+    {
+      "name": "summary",
+      "values": [
+        {
+          "DeviceType": "Mobile",
+          "min": 1,
+          "q1": 3,
+          "median": 5,
+          "q3": 7,
+          "max": 10
+        },
+        {
+          "DeviceType": "Desktop",
+          "min": 1,
+          "q1": 5,
+          "median": 8,
+          "q3": 10,
+          "max": 15
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "summary",
+        "field": "DeviceType"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": [
+        1,
+        15
+      ],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "summary",
+          "name": "devices",
+          "groupby": "DeviceType"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "DeviceType",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "rule",
+          "from": {
+            "data": "devices"
+          },
+          "encode": {
+            "enter": {
+              "stroke": {
+                "value": "black"
+              },
+              "y": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "min"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "max"
+              },
+              "y": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "devices"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "steelblue"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "devices"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              }
+            }
+          },
+          "clip": true
+        }
+      ]
+    }
+  ]
+}

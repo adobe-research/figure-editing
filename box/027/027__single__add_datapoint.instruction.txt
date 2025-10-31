@@ -1,0 +1,2 @@
+Add a new datapoint for 'Smartwatch' with min=0, q1=2, median=4, q3=6, and max=8.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Desktop; value=1.0]

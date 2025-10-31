@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing sepal width for different iris species.",
+  "width": 300,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "species": "setosa",
+          "sepal_width": 3.5
+        },
+        {
+          "species": "setosa",
+          "sepal_width": 3.0
+        },
+        {
+          "species": "setosa",
+          "sepal_width": 3.2
+        },
+        {
+          "species": "versicolor",
+          "sepal_width": 2.8
+        },
+        {
+          "species": "versicolor",
+          "sepal_width": 2.7
+        },
+        {
+          "species": "versicolor",
+          "sepal_width": 3.0
+        },
+        {
+          "species": "virginica",
+          "sepal_width": 3.1
+        },
+        {
+          "species": "virginica",
+          "sepal_width": 2.9
+        },
+        {
+          "species": "virginica",
+          "sepal_width": 3.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "setosa",
+        "versicolor",
+        "virginica"
+      ],
+      "range": [
+        "green",
+        "steelblue",
+        "steelblue"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Species",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Sepal Width (cm)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "species"
+          },
+          "y": {
+            "scale": "y",
+            "field": "sepal_width"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "field": "species",
+            "scale": "color"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

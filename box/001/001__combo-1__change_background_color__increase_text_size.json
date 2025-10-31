@@ -1,0 +1,228 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Box plot with precomputed five-number summaries for Iris dataset.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    },
+    "background": "lightgray",
+    "axis": {
+      "labelFontSize": 14
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    }
+  ],
+  "data": [
+    {
+      "name": "summary",
+      "values": [
+        {
+          "Species": "Setosa",
+          "min": 4.3,
+          "q1": 4.8,
+          "median": 5.0,
+          "q3": 5.2,
+          "max": 5.8
+        },
+        {
+          "Species": "Versicolor",
+          "min": 4.9,
+          "q1": 5.6,
+          "median": 5.9,
+          "q3": 6.3,
+          "max": 7.0
+        },
+        {
+          "Species": "Virginica",
+          "min": 4.9,
+          "q1": 6.2,
+          "median": 6.5,
+          "q3": 6.9,
+          "max": 7.9
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "summary",
+        "field": "Species"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": [
+        4.3,
+        7.9
+      ],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1,
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1,
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "summary",
+          "name": "species",
+          "groupby": "Species"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Species",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "from": {
+            "data": "species"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 1
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "min"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "max"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "species"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "steelblue"
+              },
+              "cornerRadius": {
+                "value": 4
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "species"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "aliceblue"
+              },
+              "width": {
+                "value": 2
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              }
+            }
+          },
+          "clip": true
+        }
+      ]
+    }
+  ],
+  "background": "#fff5e6"
+}

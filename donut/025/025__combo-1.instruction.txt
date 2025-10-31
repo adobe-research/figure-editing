@@ -1,0 +1,3 @@
+Change the color of the 'Pharmacy' datapoint to '#FF5733' and add a title 'Sales Distribution by Store Type' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Supermarket; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]

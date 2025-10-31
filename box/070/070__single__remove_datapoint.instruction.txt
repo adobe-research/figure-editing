@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Type C' from the chart.
+[#OP1 op=remove_datapoint; category=Type A]

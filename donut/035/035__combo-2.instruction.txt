@@ -1,0 +1,4 @@
+Change the color of the 'Freedom' datapoint to '#ff5733', add a title 'Happiness Factors Distribution', and increase the text size of the legend to 14.
+[#OP1 op=change_datapoint_color; target_category=Perceptions of Corruption; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=change_datapoint_color; target_category=Healthy Life Expectancy; new_color=#ff7f0e]

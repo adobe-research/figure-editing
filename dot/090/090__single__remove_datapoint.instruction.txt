@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'Podcasts'.
+[#OP1 op=remove_datapoint; category=Live Events]

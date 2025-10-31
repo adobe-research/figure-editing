@@ -1,0 +1,2 @@
+Add a new datapoint for 'PassengerClass' with values for min, q1, median, q3, and max.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Crew; value=9.0]

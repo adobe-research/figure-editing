@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing individual points for abalone categories and their corresponding values.",
+  "width": 400,
+  "height": 200,
+  "padding": 10,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Infant",
+          "Value": 0.2
+        },
+        {
+          "Category": "Juvenile",
+          "Value": 0.5
+        },
+        {
+          "Category": "Young Adult",
+          "Value": 0.8
+        },
+        {
+          "Category": "Adult",
+          "Value": 1.2
+        },
+        {
+          "Category": "Senior",
+          "Value": 1.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Composure' and Value 83.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Composure; value=86.0]

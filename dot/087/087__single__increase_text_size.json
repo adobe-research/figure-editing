@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing OECD PISA Scores for different countries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Japan",
+          "Score": 529
+        },
+        {
+          "Country": "Finland",
+          "Score": 520
+        },
+        {
+          "Country": "South Korea",
+          "Score": 526
+        },
+        {
+          "Country": "United States",
+          "Score": 487
+        },
+        {
+          "Country": "Germany",
+          "Score": 500
+        },
+        {
+          "Country": "Canada",
+          "Score": 512
+        },
+        {
+          "Country": "Australia",
+          "Score": 503
+        },
+        {
+          "Country": "France",
+          "Score": 495
+        },
+        {
+          "Country": "Italy",
+          "Score": 485
+        },
+        {
+          "Country": "Mexico",
+          "Score": 416
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Score"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "PISA Score",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

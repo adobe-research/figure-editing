@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the date '2023-06-01' with stock price 375.0.
+[#OP1 op=remove_datapoint; category=2023-02-01]

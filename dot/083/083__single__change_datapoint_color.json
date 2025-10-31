@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing individual player statistics.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Player": "Babe Ruth",
+          "HomeRuns": 60
+        },
+        {
+          "Player": "Hank Aaron",
+          "HomeRuns": 45
+        },
+        {
+          "Player": "Barry Bonds",
+          "HomeRuns": 73
+        },
+        {
+          "Player": "Willie Mays",
+          "HomeRuns": 52
+        },
+        {
+          "Player": "Ken Griffey Jr.",
+          "HomeRuns": 56
+        },
+        {
+          "Player": "Albert Pujols",
+          "HomeRuns": 42
+        },
+        {
+          "Player": "Mickey Mantle",
+          "HomeRuns": 54
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Player"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "HomeRuns"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Player"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Home Runs"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Player"
+          },
+          "y": {
+            "scale": "y",
+            "field": "HomeRuns"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

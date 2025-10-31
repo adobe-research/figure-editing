@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Hostage Taking (Kidnapping)'.
+[#OP1 op=remove_datapoint; category=Bombing/Explosion]

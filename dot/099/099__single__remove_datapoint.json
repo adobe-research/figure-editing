@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Electronics",
+          "Price": 120
+        },
+        {
+          "Category": "Fashion",
+          "Price": 45
+        },
+        {
+          "Category": "Home",
+          "Price": 80
+        },
+        {
+          "Category": "Toys",
+          "Price": 25
+        },
+        {
+          "Category": "Beauty",
+          "Price": 60
+        },
+        {
+          "Category": "Automotive",
+          "Price": 200
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Price"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Price"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

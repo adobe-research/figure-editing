@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories as individual points along an axis.",
+  "width": 300,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Category": "Chest Pain Type 1",
+          "Value": 120
+        },
+        {
+          "Category": "Chest Pain Type 2",
+          "Value": 140
+        },
+        {
+          "Category": "Chest Pain Type 3",
+          "Value": 160
+        },
+        {
+          "Category": "Chest Pain Type 4",
+          "Value": 130
+        },
+        {
+          "Category": "Chest Pain Type 1",
+          "Value": 110
+        },
+        {
+          "Category": "Chest Pain Type 2",
+          "Value": 150
+        },
+        {
+          "Category": "Chest Pain Type 3",
+          "Value": 155
+        },
+        {
+          "Category": "Chest Pain Type 4",
+          "Value": 125
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "Category"
+      },
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Chest Pain Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

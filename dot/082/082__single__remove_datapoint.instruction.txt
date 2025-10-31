@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Steals Per Game' with a value of 2.3.
+[#OP1 op=remove_datapoint; category=Points Per Game]

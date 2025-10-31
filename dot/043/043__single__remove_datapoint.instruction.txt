@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'ATM Withdrawal' with a value of 100.
+[#OP1 op=remove_datapoint; category=Online Purchase]

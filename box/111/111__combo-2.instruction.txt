@@ -1,0 +1,4 @@
+Change the color of the 'steelblue' box to 'darkorange', add a title 'Player Performance Summary', and increase the text size of axis labels to 12.
+[#OP1 op=increase_text_size; axis_label_size=14]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=14]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Excellent Credit' with min=400, q1=550, median=700, q3=850, and max=1000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Excellent Credit; value=250.0]

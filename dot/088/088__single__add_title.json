@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing population distribution by state.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "State": "California",
+          "Population": 39538223
+        },
+        {
+          "State": "Texas",
+          "Population": 29145505
+        },
+        {
+          "State": "Florida",
+          "Population": 21538187
+        },
+        {
+          "State": "New York",
+          "Population": 20201249
+        },
+        {
+          "State": "Pennsylvania",
+          "Population": 13002700
+        },
+        {
+          "State": "Illinois",
+          "Population": 12812508
+        },
+        {
+          "State": "Ohio",
+          "Population": 11799448
+        },
+        {
+          "State": "Georgia",
+          "Population": 10711908
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "State"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Population"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "State",
+      "labelAngle": -45
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Population"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "State"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Population"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  }
+}

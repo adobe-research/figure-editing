@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Self-Employed' and value 46000.
+[#OP1 op=remove_datapoint; category=Self-Employed]

@@ -1,0 +1,4 @@
+Change the color of the 'Supermarket Type 1' datapoint, add a title to the chart, and increase the text size of the legend title.
+[#OP1 op=change_datapoint_color; target_category=Supermarket Type 1; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=change_datapoint_color; target_category=Supermarket Type 1; new_color=#ff7f0e]

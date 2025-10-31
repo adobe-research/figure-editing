@@ -1,0 +1,2 @@
+Add a new datapoint for the month of July with a stock price of 550.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=510.0]

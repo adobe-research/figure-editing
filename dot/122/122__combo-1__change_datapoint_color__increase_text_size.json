@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for attack types in the Global Terrorism Database.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "AttackType": "Bombing/Explosion",
+          "Incidents": 2400
+        },
+        {
+          "AttackType": "Armed Assault",
+          "Incidents": 1800
+        },
+        {
+          "AttackType": "Assassination",
+          "Incidents": 1200
+        },
+        {
+          "AttackType": "Hostage Taking (Kidnapping)",
+          "Incidents": 600
+        },
+        {
+          "AttackType": "Facility/Infrastructure Attack",
+          "Incidents": 900
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "AttackType"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Incidents"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Attack Type",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Incidents",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "AttackType"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Incidents"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "scale": "xscale",
+            "field": "AttackType",
+            "value": "red"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

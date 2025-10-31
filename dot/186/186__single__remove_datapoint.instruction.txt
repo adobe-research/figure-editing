@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Category C' with a transaction amount of 950.
+[#OP1 op=remove_datapoint; category=Category A]

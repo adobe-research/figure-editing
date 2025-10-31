@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Blood Pressure' and Value 95 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=BMI; value=82.5]

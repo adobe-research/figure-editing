@@ -1,0 +1,2 @@
+Add a new datapoint for 'Type 4' with min=11.8, q1=12.3, median=12.9, q3=13.4, and max=14.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Type 1; value=11.9]

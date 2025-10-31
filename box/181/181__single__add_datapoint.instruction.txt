@@ -1,0 +1,2 @@
+Add a new datapoint for 'Sparkling' wine type with min=7, q1=9, median=10, q3=11, and max=12.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Red; value=8.5]

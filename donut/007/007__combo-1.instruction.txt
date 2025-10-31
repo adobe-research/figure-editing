@@ -1,0 +1,3 @@
+Change the color of the 'Books' category to a new color and add a title to the chart.
+[#OP1 op=change_datapoint_color; target_category=Electronics; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Population Growth' with min -1.0, q1 0.2, median 0.8, q3 1.5, and max 2.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=GDP Growth; value=-0.75]

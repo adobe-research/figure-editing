@@ -1,0 +1,2 @@
+Add a new datapoint for the position 'Sixth Man' with min=3, q1=6, median=9, q3=13, and max=19.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Center; value=3.5]

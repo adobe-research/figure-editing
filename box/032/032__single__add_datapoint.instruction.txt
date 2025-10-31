@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Weight' category with min=50, q1=70, median=85, q3=100, and max=150.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age; value=72.0]

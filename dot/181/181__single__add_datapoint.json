@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing the distribution of review scores for different genres.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "genre": "Action",
+          "score": 8.1
+        },
+        {
+          "genre": "Comedy",
+          "score": 7.4
+        },
+        {
+          "genre": "Drama",
+          "score": 8.7
+        },
+        {
+          "genre": "Horror",
+          "score": 6.2
+        },
+        {
+          "genre": "Romance",
+          "score": 7.9
+        },
+        {
+          "genre": "Action",
+          "score": 7.5
+        },
+        {
+          "genre": "Comedy",
+          "score": 6.8
+        },
+        {
+          "genre": "Drama",
+          "score": 9.0
+        },
+        {
+          "genre": "Horror",
+          "score": 5.9
+        },
+        {
+          "genre": "Romance",
+          "score": 8.2
+        },
+        {
+          "genre": "Sci-Fi",
+          "score": 8.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "source",
+        "field": "genre"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "source",
+        "field": "score"
+      },
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Genre"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Review Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "score"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

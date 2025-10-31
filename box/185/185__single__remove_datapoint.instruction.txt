@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'WineType' Type C.
+[#OP1 op=remove_datapoint; category=Type A]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Books & Media' and value 45.
+[#OP1 op=remove_datapoint; category=Sports Gear]

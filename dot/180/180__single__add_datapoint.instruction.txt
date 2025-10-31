@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Entertainment' with an average rating of 4.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Automotive; value=4.0]

@@ -1,0 +1,2 @@
+Remove the datapoint with Pickup_Location 'Queens' and Trip_Duration 750.
+[#OP1 op=remove_datapoint; category=Staten Island]

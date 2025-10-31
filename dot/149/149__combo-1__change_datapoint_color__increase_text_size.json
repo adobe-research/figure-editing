@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing forest fire occurrences by month.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Month": "January",
+          "FireCount": 12
+        },
+        {
+          "Month": "February",
+          "FireCount": 15
+        },
+        {
+          "Month": "March",
+          "FireCount": 8
+        },
+        {
+          "Month": "April",
+          "FireCount": 20
+        },
+        {
+          "Month": "May",
+          "FireCount": 25
+        },
+        {
+          "Month": "June",
+          "FireCount": 30
+        },
+        {
+          "Month": "July",
+          "FireCount": 45
+        },
+        {
+          "Month": "August",
+          "FireCount": 50
+        },
+        {
+          "Month": "September",
+          "FireCount": 35
+        },
+        {
+          "Month": "October",
+          "FireCount": 22
+        },
+        {
+          "Month": "November",
+          "FireCount": 18
+        },
+        {
+          "Month": "December",
+          "FireCount": 10
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Month"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "FireCount"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Month",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Fires",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Month"
+          },
+          "y": {
+            "scale": "y",
+            "field": "FireCount"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "blue"
+          },
+          "stroke": {
+            "value": "#000000"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

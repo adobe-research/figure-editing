@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing unemployment rates for different industries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Industry": "Construction",
+          "UnemploymentRate": 7.5
+        },
+        {
+          "Industry": "Manufacturing",
+          "UnemploymentRate": 5.2
+        },
+        {
+          "Industry": "Retail Trade",
+          "UnemploymentRate": 6.8
+        },
+        {
+          "Industry": "Transportation",
+          "UnemploymentRate": 5.9
+        },
+        {
+          "Industry": "Information",
+          "UnemploymentRate": 4.1
+        },
+        {
+          "Industry": "Financial Activities",
+          "UnemploymentRate": 3.2
+        },
+        {
+          "Industry": "Professional Services",
+          "UnemploymentRate": 4.5
+        },
+        {
+          "Industry": "Education and Health",
+          "UnemploymentRate": 3.8
+        },
+        {
+          "Industry": "Leisure and Hospitality",
+          "UnemploymentRate": 8.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Industry"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "UnemploymentRate"
+      },
+      "range": "height",
+      "zero": true,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Industry",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Unemployment Rate (%)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Industry"
+          },
+          "y": {
+            "scale": "y",
+            "field": "UnemploymentRate"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

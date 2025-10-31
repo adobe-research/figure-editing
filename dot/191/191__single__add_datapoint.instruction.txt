@@ -1,0 +1,2 @@
+Add a new datapoint with Severity 'Critical' and Count 5000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Critical; value=3200.0]

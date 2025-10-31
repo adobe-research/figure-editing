@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Fibers' and Value 15.3 to the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Fibers; value=15.3]

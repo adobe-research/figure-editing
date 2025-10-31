@@ -1,0 +1,2 @@
+Add a new datapoint for the sport 'Rowing' with values min=15.0, q1=16.0, median=16.5, q3=17.0, max=18.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Athletics; value=18.25]

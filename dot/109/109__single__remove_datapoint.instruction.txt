@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'French' cuisine.
+[#OP1 op=remove_datapoint; category=Mexican]

@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Customer Feedback' and Value 5.5 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age of Insured; value=4.85]

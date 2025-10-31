@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'C' and Value 8.
+[#OP1 op=remove_datapoint; category=B]

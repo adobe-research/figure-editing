@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing individual points for categories from the UCI: Adult dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "category": "Private",
+          "value": 35000
+        },
+        {
+          "category": "Self-Employed",
+          "value": 45000
+        },
+        {
+          "category": "Government",
+          "value": 40000
+        },
+        {
+          "category": "Private",
+          "value": 37000
+        },
+        {
+          "category": "Self-Employed",
+          "value": 48000
+        },
+        {
+          "category": "Government",
+          "value": 42000
+        },
+        {
+          "category": "Private",
+          "value": 36000
+        },
+        {
+          "category": "Self-Employed",
+          "value": 46000
+        },
+        {
+          "category": "Government",
+          "value": 41000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.5
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Employment Type"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Annual Income (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

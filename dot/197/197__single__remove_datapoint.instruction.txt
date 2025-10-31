@@ -1,0 +1,2 @@
+Remove the datapoint with StoreType 'D' and Sales 7100.
+[#OP1 op=remove_datapoint; category=D]

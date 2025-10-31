@@ -1,0 +1,2 @@
+Add a new datapoint for the sport 'Archery' with 12 medals.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Archery; value=22.0]

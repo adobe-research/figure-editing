@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing World Happiness Scores by country.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Finland",
+          "Happiness_Score": 7.8
+        },
+        {
+          "Country": "Denmark",
+          "Happiness_Score": 7.6
+        },
+        {
+          "Country": "Switzerland",
+          "Happiness_Score": 7.5
+        },
+        {
+          "Country": "Iceland",
+          "Happiness_Score": 7.4
+        },
+        {
+          "Country": "Netherlands",
+          "Happiness_Score": 7.3
+        },
+        {
+          "Country": "Norway",
+          "Happiness_Score": 7.3
+        },
+        {
+          "Country": "Sweden",
+          "Happiness_Score": 7.2
+        },
+        {
+          "Country": "New Zealand",
+          "Happiness_Score": 7.1
+        },
+        {
+          "Country": "Austria",
+          "Happiness_Score": 7.0
+        },
+        {
+          "Country": "Australia",
+          "Happiness_Score": 7.0
+        },
+        {
+          "Country": "Canada",
+          "Happiness_Score": 7.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        7.0,
+        7.8
+      ],
+      "nice": true,
+      "range": "width",
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "height",
+      "padding": 0.2
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Happiness Score"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Country"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Happiness_Score"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Country"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "#4682b4"
+          }
+        }
+      }
+    }
+  ]
+}

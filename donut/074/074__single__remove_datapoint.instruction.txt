@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'Under 16'.
+[#OP1 op=remove_datapoint; category=Not in Labor Force]

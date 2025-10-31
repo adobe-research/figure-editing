@@ -1,0 +1,2 @@
+Add a new datapoint for 'High School' with min=15000, q1=25000, median=35000, q3=45000, and max=60000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bachelors; value=22500.0]

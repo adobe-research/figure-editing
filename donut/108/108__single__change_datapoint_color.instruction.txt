@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color scheme.
+[#OP1 op=change_datapoint_color; target_category=East Asia; new_color=#ff7f0e]

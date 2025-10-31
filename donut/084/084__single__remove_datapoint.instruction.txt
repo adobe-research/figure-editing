@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Beverages' and value 60.
+[#OP1 op=remove_datapoint; category=Dairy & Eggs]

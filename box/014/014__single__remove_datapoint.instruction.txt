@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the '3rd' class from the dataset.
+[#OP1 op=remove_datapoint; category=1st]

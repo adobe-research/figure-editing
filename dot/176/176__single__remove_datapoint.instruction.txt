@@ -1,0 +1,2 @@
+Remove the datapoint with PaymentMethod 'Credit Card' and Tenure 42.
+[#OP1 op=remove_datapoint; category=Mailed Check]

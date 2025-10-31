@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Support for Policy C' with a value of 55.
+[#OP1 op=remove_datapoint; category=Support for Policy B]

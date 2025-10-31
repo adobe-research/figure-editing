@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Brazil' with a GDP per capita of 9000.
+[#OP1 op=remove_datapoint; category=South Africa]

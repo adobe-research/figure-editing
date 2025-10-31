@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Podcast Listening' and value 15.
+[#OP1 op=remove_datapoint; category=Streaming Services]

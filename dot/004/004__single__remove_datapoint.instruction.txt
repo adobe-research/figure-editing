@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Mining' and Value 32000.
+[#OP1 op=remove_datapoint; category=Construction]

@@ -1,0 +1,3 @@
+Change the color of the 'Documentaries' category to '#FF5733' and add a title 'Netflix Content Distribution'.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=add_title; title_text=Edited Chart]

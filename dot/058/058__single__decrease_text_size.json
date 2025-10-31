@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing sepal length for different iris species.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "iris",
+      "values": [
+        {
+          "species": "setosa",
+          "sepalLength": 5.1
+        },
+        {
+          "species": "setosa",
+          "sepalLength": 4.9
+        },
+        {
+          "species": "setosa",
+          "sepalLength": 5.4
+        },
+        {
+          "species": "versicolor",
+          "sepalLength": 6.5
+        },
+        {
+          "species": "versicolor",
+          "sepalLength": 6.7
+        },
+        {
+          "species": "versicolor",
+          "sepalLength": 6.3
+        },
+        {
+          "species": "virginica",
+          "sepalLength": 7.6
+        },
+        {
+          "species": "virginica",
+          "sepalLength": 7.9
+        },
+        {
+          "species": "virginica",
+          "sepalLength": 7.4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "iris",
+        "field": "species"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "iris",
+        "field": "sepalLength"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Species",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Sepal Length (cm)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "iris"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "species"
+          },
+          "y": {
+            "scale": "y",
+            "field": "sepalLength"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "steelblue"
+          },
+          "fill": {
+            "value": "lightblue"
+          },
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

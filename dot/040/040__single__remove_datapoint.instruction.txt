@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Hijacking' with a count of 30.
+[#OP1 op=remove_datapoint; category=Bombing/Explosion]

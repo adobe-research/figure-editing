@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Tablet' from the summary dataset.
+[#OP1 op=remove_datapoint; category=Mobile]

@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Dispute' transaction type with min=40, q1=180, median=350, q3=550, and max=900.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Chargeback; value=35.0]

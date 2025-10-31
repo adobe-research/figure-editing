@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories from the Kaggle: Bank Marketing dataset.",
+  "width": 400,
+  "height": 200,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "campaign_type": "Email",
+          "response_rate": 25
+        },
+        {
+          "campaign_type": "Phone",
+          "response_rate": 45
+        },
+        {
+          "campaign_type": "Direct Mail",
+          "response_rate": 30
+        },
+        {
+          "campaign_type": "Online",
+          "response_rate": 50
+        },
+        {
+          "campaign_type": "Event",
+          "response_rate": 20
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "campaign_type"
+      },
+      "range": "width",
+      "padding": 0.6
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "response_rate"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Campaign Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Response Rate (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "campaign_type"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "response_rate"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "campaign_type"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "response_rate"
+          },
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing mortality rates for different causes.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Cause": "Cardiovascular Diseases",
+          "MortalityRate": 120.5
+        },
+        {
+          "Cause": "Respiratory Diseases",
+          "MortalityRate": 85.3
+        },
+        {
+          "Cause": "Cancers",
+          "MortalityRate": 98.7
+        },
+        {
+          "Cause": "Infectious Diseases",
+          "MortalityRate": 45.2
+        },
+        {
+          "Cause": "Diabetes",
+          "MortalityRate": 30.1
+        },
+        {
+          "Cause": "Liver Diseases",
+          "MortalityRate": 22.8
+        },
+        {
+          "Cause": "Kidney Diseases",
+          "MortalityRate": 18.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Cause"
+      },
+      "range": {
+        "step": 60
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "MortalityRate"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Cause of Death"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Mortality Rate (per 100,000)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Cause"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MortalityRate"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

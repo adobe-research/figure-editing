@@ -1,0 +1,2 @@
+Remove the datapoint with TransactionType 'Gas Station' and Amount 60.0.
+[#OP1 op=remove_datapoint; category=Grocery Store]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Average Price' with a value of 135 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Average Price; value=130.0]

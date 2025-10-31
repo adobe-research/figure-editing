@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing player performance metrics in European soccer.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Player": "Lionel Messi",
+          "Goals": 30
+        },
+        {
+          "Player": "Cristiano Ronaldo",
+          "Goals": 28
+        },
+        {
+          "Player": "Robert Lewandowski",
+          "Goals": 35
+        },
+        {
+          "Player": "Karim Benzema",
+          "Goals": 25
+        },
+        {
+          "Player": "Erling Haaland",
+          "Goals": 29
+        },
+        {
+          "Player": "Kylian Mbappé",
+          "Goals": 26
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Player"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Goals"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Player"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Goals Scored"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Player"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Goals"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

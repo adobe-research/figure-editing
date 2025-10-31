@@ -1,0 +1,2 @@
+Remove the datapoint where Position is 'SF' and PointsPerGame is 19.9.
+[#OP1 op=remove_datapoint; category=SF]

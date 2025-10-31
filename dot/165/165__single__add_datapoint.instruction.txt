@@ -1,0 +1,2 @@
+Add a new datapoint for 'Shohei Ohtani' with a batting average of 0.285 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Babe Ruth; value=0.325]

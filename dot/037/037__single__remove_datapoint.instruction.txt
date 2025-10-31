@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Homicide' with a count of 15.
+[#OP1 op=remove_datapoint; category=Robbery]

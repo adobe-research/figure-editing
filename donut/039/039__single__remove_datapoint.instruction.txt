@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Quick Bites' category.
+[#OP1 op=remove_datapoint; category=Fine Dining]

@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Insult' with min=3, q1=7, median=12, q3=17, and max=22.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Insult; value=1.5]

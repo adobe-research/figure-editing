@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Medium Risk' category from the chart.
+[#OP1 op=remove_datapoint; category=Low Risk]

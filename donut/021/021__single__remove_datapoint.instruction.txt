@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Bakery' and value 100 from the chart.
+[#OP1 op=remove_datapoint; category=Fruits]

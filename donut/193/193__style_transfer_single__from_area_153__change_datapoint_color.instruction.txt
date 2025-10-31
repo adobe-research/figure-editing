@@ -1,0 +1,2 @@
+Match the datapoint color #d62728 used in the reference chart.
+[#OP1 op=change_datapoint_color; target_category=Bakery; new_color=#d62728]

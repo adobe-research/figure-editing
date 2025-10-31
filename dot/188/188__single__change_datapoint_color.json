@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing happiness scores for different countries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Finland",
+          "Happiness_Score": 7.8
+        },
+        {
+          "Country": "Denmark",
+          "Happiness_Score": 7.6
+        },
+        {
+          "Country": "Switzerland",
+          "Happiness_Score": 7.5
+        },
+        {
+          "Country": "Iceland",
+          "Happiness_Score": 7.4
+        },
+        {
+          "Country": "Netherlands",
+          "Happiness_Score": 7.3
+        },
+        {
+          "Country": "Norway",
+          "Happiness_Score": 7.3
+        },
+        {
+          "Country": "Sweden",
+          "Happiness_Score": 7.2
+        },
+        {
+          "Country": "New Zealand",
+          "Happiness_Score": 7.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Happiness_Score"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Happiness Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Happiness_Score"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#ff7f0e"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

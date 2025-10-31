@@ -1,0 +1,3 @@
+Change the color of the datapoints to orange and increase the spacing between categories on the x-axis to 0.7.
+[#OP1 op=change_datapoint_color; target_category=Bombing/Explosion; new_color=#ff7f0e]
+[#OP2 op=increase_category_spacing; scale=auto; new_padding=0.80]

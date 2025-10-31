@@ -1,0 +1,3 @@
+Change the color of the 'Science' datapoint to '#FF5733' and add a title 'OECD PISA Scores by Subject' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Mathematics; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]

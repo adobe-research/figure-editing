@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Child' group with min=1.0, q1=1.5, median=2.0, q3=2.5, and max=3.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Child; value=1.25]

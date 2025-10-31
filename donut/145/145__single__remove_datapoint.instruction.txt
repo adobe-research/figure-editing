@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Generosity' and Value 10.
+[#OP1 op=remove_datapoint; category=Freedom]

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing individual values for categories.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "No Claims Discount",
+          "Value": 3.2
+        },
+        {
+          "Category": "Vehicle Age",
+          "Value": 5.0
+        },
+        {
+          "Category": "Policy Sales Channel",
+          "Value": 4.5
+        },
+        {
+          "Category": "Annual Premium",
+          "Value": 6.8
+        },
+        {
+          "Category": "Region Code",
+          "Value": 7.2
+        },
+        {
+          "Category": "Policy Type",
+          "Value": 2.9
+        },
+        {
+          "Category": "Vehicle Damage",
+          "Value": 4.7
+        },
+        {
+          "Category": "Age of Insured",
+          "Value": 6.0
+        },
+        {
+          "Category": "Driving License",
+          "Value": 3.8
+        },
+        {
+          "Category": "Customer Feedback",
+          "Value": 5.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category",
+      "labelAngle": -45
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Increase the text size of the axis labels.
+[#OP1 op=increase_text_size; axis_label_size=12]

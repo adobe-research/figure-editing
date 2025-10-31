@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing student performance scores by subject.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Subject": "Math",
+          "Score": 78
+        },
+        {
+          "Subject": "Reading",
+          "Score": 85
+        },
+        {
+          "Subject": "Science",
+          "Score": 90
+        },
+        {
+          "Subject": "Math",
+          "Score": 88
+        },
+        {
+          "Subject": "Reading",
+          "Score": 92
+        },
+        {
+          "Subject": "Science",
+          "Score": 84
+        },
+        {
+          "Subject": "Math",
+          "Score": 74
+        },
+        {
+          "Subject": "Reading",
+          "Score": 80
+        },
+        {
+          "Subject": "Science",
+          "Score": 89
+        },
+        {
+          "Subject": "History",
+          "Score": 76
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Subject"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Score"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Subject"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Subject"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "#000"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Subject"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          }
+        }
+      }
+    }
+  ]
+}

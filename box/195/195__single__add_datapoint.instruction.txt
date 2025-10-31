@@ -1,0 +1,2 @@
+Add a new datapoint for 'Transaction Type D' with min=40, q1=140, median=240, q3=340, and max=440.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Transaction Type A; value=45.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Goalkeeper' position with min=30, q1=45, median=55, q3=65, and max=75.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=42.5]

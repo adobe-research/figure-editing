@@ -1,0 +1,4 @@
+Change the color of the 'Electronics' category to '#FF5733', add a title 'Store Sales Distribution', and increase the text size of axis labels to 14.
+[#OP1 op=increase_text_size; axis_label_size=16]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=16]

@@ -1,0 +1,2 @@
+Add a new datapoint for the group 'Mexican' with min=9.5, q1=10.0, median=10.5, q3=11.0, and max=11.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Canadian; value=11.15]

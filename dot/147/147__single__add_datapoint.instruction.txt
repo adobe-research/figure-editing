@@ -1,0 +1,2 @@
+Add a new datapoint for the job 'entrepreneur' with a balance of 2500.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=admin.; value=1200.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Net Exports' with min=800, q1=1200, median=1600, q3=2000, and max=2400.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Consumer Spending; value=900.0]

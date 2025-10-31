@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color, '#ff7f0e'.
+[#OP1 op=change_datapoint_color; target_category=Electricity; new_color=#2ca02c]

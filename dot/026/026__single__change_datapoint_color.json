@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing the number of accidents by severity level.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "accidents",
+      "values": [
+        {
+          "Severity": "Low",
+          "Count": 120
+        },
+        {
+          "Severity": "Medium",
+          "Count": 450
+        },
+        {
+          "Severity": "High",
+          "Count": 300
+        },
+        {
+          "Severity": "Critical",
+          "Count": 150
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "accidents",
+        "field": "Severity"
+      },
+      "range": "width",
+      "padding": 0.3
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "accidents",
+        "field": "Count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Severity Level"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Number of Accidents"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "accidents"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Severity"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Count"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

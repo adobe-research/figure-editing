@@ -1,0 +1,2 @@
+Add a new datapoint for 'Singapore' with a score of 540.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Australia; value=503.0]

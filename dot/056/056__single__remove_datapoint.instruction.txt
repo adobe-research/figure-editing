@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Boxing' with 15 medals.
+[#OP1 op=remove_datapoint; category=Wrestling]

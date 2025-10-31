@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing Airbnb listings and their prices by neighborhood group.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Neighborhood Group": "Manhattan",
+          "Price": 150
+        },
+        {
+          "Neighborhood Group": "Brooklyn",
+          "Price": 80
+        },
+        {
+          "Neighborhood Group": "Queens",
+          "Price": 100
+        },
+        {
+          "Neighborhood Group": "Bronx",
+          "Price": 70
+        },
+        {
+          "Neighborhood Group": "Staten Island",
+          "Price": 120
+        },
+        {
+          "Neighborhood Group": "Manhattan",
+          "Price": 200
+        },
+        {
+          "Neighborhood Group": "Brooklyn",
+          "Price": 95
+        },
+        {
+          "Neighborhood Group": "Queens",
+          "Price": 110
+        },
+        {
+          "Neighborhood Group": "Staten Island",
+          "Price": 130
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Neighborhood Group"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Price"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Neighborhood Group"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Neighborhood Group"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Price"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

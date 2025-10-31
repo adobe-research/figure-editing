@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Environment' with a value of 6.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Business; value=9.0]

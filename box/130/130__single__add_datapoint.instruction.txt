@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Horror' genre with min=1.2, q1=3.2, median=5.2, q3=7.2, and max=9.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Action; value=1.35]

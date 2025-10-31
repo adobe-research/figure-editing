@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot of seed categories and their corresponding values.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Seed Type A",
+          "Value": 15.26
+        },
+        {
+          "Category": "Seed Type A",
+          "Value": 14.88
+        },
+        {
+          "Category": "Seed Type B",
+          "Value": 14.29
+        },
+        {
+          "Category": "Seed Type B",
+          "Value": 13.84
+        },
+        {
+          "Category": "Seed Type C",
+          "Value": 16.14
+        },
+        {
+          "Category": "Seed Type C",
+          "Value": 14.38
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Seed Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 100
+          },
+          "stroke": {
+            "value": "orange"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

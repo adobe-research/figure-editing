@@ -1,0 +1,2 @@
+Change the color of the 'Open Price' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Low Price; new_color=#2ca02c]

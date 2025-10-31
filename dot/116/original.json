@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing sales values for different store departments.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Department": "Electronics",
+          "Sales": 15000
+        },
+        {
+          "Department": "Clothing",
+          "Sales": 12000
+        },
+        {
+          "Department": "Grocery",
+          "Sales": 18000
+        },
+        {
+          "Department": "Furniture",
+          "Sales": 9000
+        },
+        {
+          "Department": "Pharmacy",
+          "Sales": 11000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Department"
+      },
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Sales"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Department"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Sales (in USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Department"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Sales"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      }
+    }
+  ]
+}

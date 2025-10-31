@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color, green (#32CD32).
+[#OP1 op=change_datapoint_color; target_category=Reading; new_color=#ff7f0e]

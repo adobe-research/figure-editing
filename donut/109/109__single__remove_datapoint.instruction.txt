@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Puzzle' and value 10.
+[#OP1 op=remove_datapoint; category=Adventure]

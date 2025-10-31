@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Fitness' with a review count of 500.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Beauty & Spas; value=600.0]

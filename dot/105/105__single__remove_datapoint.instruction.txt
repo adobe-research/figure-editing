@@ -1,0 +1,2 @@
+Remove the datapoint for 'Australia' with a Happiness Score of 7.0.
+[#OP1 op=remove_datapoint; category=Iceland]

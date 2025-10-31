@@ -1,0 +1,4 @@
+Change the color of the 'Fruits' category to '#FF5733', add a title 'Instacart Category Distribution' with size 20, and increase the text size of axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=Snacks; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=12]

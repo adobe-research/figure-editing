@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Pace' and Value 92.
+[#OP1 op=remove_datapoint; category=Physical]

@@ -1,0 +1,2 @@
+Remove the datapoint for the group '35-44' from the chart.
+[#OP1 op=remove_datapoint; category=25-34]

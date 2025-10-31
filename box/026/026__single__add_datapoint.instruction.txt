@@ -1,0 +1,2 @@
+Add a new datapoint for the country 'Germany' with min=1800, q1=2800, median=3800, q3=4800, and max=5800.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=China; value=1650.0]

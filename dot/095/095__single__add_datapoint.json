@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing trip durations for different pickup locations.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Pickup_Location": "Manhattan",
+          "Trip_Duration": 900
+        },
+        {
+          "Pickup_Location": "Brooklyn",
+          "Trip_Duration": 1200
+        },
+        {
+          "Pickup_Location": "Queens",
+          "Trip_Duration": 750
+        },
+        {
+          "Pickup_Location": "Bronx",
+          "Trip_Duration": 1100
+        },
+        {
+          "Pickup_Location": "Staten Island",
+          "Trip_Duration": 1300
+        },
+        {
+          "Pickup_Location": "Manhattan",
+          "Trip_Duration": 850
+        },
+        {
+          "Pickup_Location": "Brooklyn",
+          "Trip_Duration": 950
+        },
+        {
+          "Pickup_Location": "Queens",
+          "Trip_Duration": 700
+        },
+        {
+          "Pickup_Location": "Bronx",
+          "Trip_Duration": 1050
+        },
+        {
+          "Pickup_Location": "Staten Island",
+          "Trip_Duration": 1400
+        },
+        {
+          "Pickup_Location": "Harlem",
+          "Trip_Duration": 1000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Pickup_Location"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trip_Duration"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Pickup Location"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (seconds)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Pickup_Location"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trip_Duration"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing energy consumption by category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Electricity",
+          "Consumption": 1200
+        },
+        {
+          "Category": "Natural Gas",
+          "Consumption": 800
+        },
+        {
+          "Category": "Coal",
+          "Consumption": 950
+        },
+        {
+          "Category": "Hydropower",
+          "Consumption": 400
+        },
+        {
+          "Category": "Solar",
+          "Consumption": 250
+        },
+        {
+          "Category": "Wind",
+          "Consumption": 300
+        },
+        {
+          "Category": "Nuclear",
+          "Consumption": 1100
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Consumption"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Energy Source"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Energy Consumption (in TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category",
+            "offset": {
+              "signal": "random() * 10 - 5"
+            }
+          },
+          "y": {
+            "scale": "y",
+            "field": "Consumption"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

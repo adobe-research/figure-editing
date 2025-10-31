@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Diabetes' with a mortality rate of 45.1.
+[#OP1 op=remove_datapoint; category=Respiratory diseases]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Pickup_Location' as 'Harlem' with 'Trip_Duration' of 1000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bronx; value=1000.0]

@@ -1,0 +1,2 @@
+Change the color of the datapoint for the category '$50,000 - $74,999' to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=$25,000 - $49,999; new_color=#9467bd]

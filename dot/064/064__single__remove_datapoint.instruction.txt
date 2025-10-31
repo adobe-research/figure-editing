@@ -1,0 +1,2 @@
+Remove the datapoint with Subject 'History' and Grade 70.
+[#OP1 op=remove_datapoint; category=Math]

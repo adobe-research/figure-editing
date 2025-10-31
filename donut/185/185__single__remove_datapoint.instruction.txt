@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Frozen' department.
+[#OP1 op=remove_datapoint; category=Beverages]

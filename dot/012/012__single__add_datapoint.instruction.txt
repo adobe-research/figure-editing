@@ -1,0 +1,2 @@
+Add a new datapoint with Class 'Second' and Survived value 1.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=First; value=1.0]

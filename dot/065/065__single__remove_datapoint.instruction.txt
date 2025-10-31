@@ -1,0 +1,2 @@
+Remove the datapoint for the month of 'March' with a burned_area of 0.0.
+[#OP1 op=remove_datapoint; category=April]

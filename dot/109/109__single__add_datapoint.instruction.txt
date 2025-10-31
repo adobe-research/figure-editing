@@ -1,0 +1,2 @@
+Add a new datapoint for 'Korean' cuisine with an average cost of 1800.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Chinese; value=1400.0]

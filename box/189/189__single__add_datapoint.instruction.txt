@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Teens' group with min=4.0, q1=5.5, median=7.0, q3=8.0, and max=9.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Adults; value=3.9]

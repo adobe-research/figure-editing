@@ -1,0 +1,2 @@
+Add a new datapoint for 'Graffiti' with min=0, q1=2, median=5, q3=8, and max=12.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Blocked Driveway; value=1.0]

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing temperature anomalies for different years.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Year": 1880,
+          "Temperature_Anomaly": -0.12
+        },
+        {
+          "Year": 1900,
+          "Temperature_Anomaly": -0.07
+        },
+        {
+          "Year": 1920,
+          "Temperature_Anomaly": 0.02
+        },
+        {
+          "Year": 1940,
+          "Temperature_Anomaly": 0.12
+        },
+        {
+          "Year": 1960,
+          "Temperature_Anomaly": 0.03
+        },
+        {
+          "Year": 1980,
+          "Temperature_Anomaly": 0.15
+        },
+        {
+          "Year": 2000,
+          "Temperature_Anomaly": 0.42
+        },
+        {
+          "Year": 2020,
+          "Temperature_Anomaly": 0.98
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1880,
+        1900,
+        1920,
+        1940,
+        1960,
+        1980,
+        2000,
+        2020
+      ],
+      "range": "width",
+      "padding": 0.9
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Temperature_Anomaly"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Year",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Temperature Anomaly (°C)",
+      "grid": true
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Temperature_Anomaly"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

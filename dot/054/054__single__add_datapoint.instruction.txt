@@ -1,0 +1,2 @@
+Add a new datapoint for 'Portugal' with 3 goals.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Argentina; value=3.0]

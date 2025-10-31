@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing ratings of restaurants in different cuisines.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Cuisine": "Italian",
+          "Rating": 4.5
+        },
+        {
+          "Cuisine": "Italian",
+          "Rating": 4.2
+        },
+        {
+          "Cuisine": "Italian",
+          "Rating": 3.8
+        },
+        {
+          "Cuisine": "Chinese",
+          "Rating": 4.7
+        },
+        {
+          "Cuisine": "Chinese",
+          "Rating": 4.1
+        },
+        {
+          "Cuisine": "Chinese",
+          "Rating": 3.9
+        },
+        {
+          "Cuisine": "Mexican",
+          "Rating": 4.6
+        },
+        {
+          "Cuisine": "Mexican",
+          "Rating": 4.3
+        },
+        {
+          "Cuisine": "Mexican",
+          "Rating": 4.0
+        },
+        {
+          "Cuisine": "Indian",
+          "Rating": 4.8
+        },
+        {
+          "Cuisine": "Indian",
+          "Rating": 4.4
+        },
+        {
+          "Cuisine": "Indian",
+          "Rating": 4.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "Cuisine"
+      },
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Rating"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Cuisine"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Cuisine"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

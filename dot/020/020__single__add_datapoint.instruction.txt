@@ -1,0 +1,2 @@
+Add a new datapoint for 'Convertible' with a claim frequency of 0.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Convertible; value=0.12]

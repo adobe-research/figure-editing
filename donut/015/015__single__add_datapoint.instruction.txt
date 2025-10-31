@@ -1,0 +1,2 @@
+Add a new datapoint representing the category 'Prefer not to say' with a value of 5 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=$100,000 and above; value=17.5]

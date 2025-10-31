@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Infant' and Value 0.32.
+[#OP1 op=remove_datapoint; category=Infant]

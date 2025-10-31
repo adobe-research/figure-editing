@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Latin America & Caribbean' region.
+[#OP1 op=remove_datapoint; category=East Asia & Pacific]

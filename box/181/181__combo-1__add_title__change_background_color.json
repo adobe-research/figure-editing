@@ -1,0 +1,223 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Box plot with precomputed five-number summaries for UCI Wine dataset.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    }
+  ],
+  "data": [
+    {
+      "name": "summary",
+      "values": [
+        {
+          "WineType": "Red",
+          "min": 10,
+          "q1": 12,
+          "median": 13,
+          "q3": 14,
+          "max": 15
+        },
+        {
+          "WineType": "White",
+          "min": 9,
+          "q1": 11,
+          "median": 12,
+          "q3": 13,
+          "max": 14
+        },
+        {
+          "WineType": "Rose",
+          "min": 8,
+          "q1": 10,
+          "median": 11,
+          "q3": 12,
+          "max": 13
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "summary",
+        "field": "WineType"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": [
+        8,
+        15
+      ],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "summary",
+          "name": "wineType",
+          "groupby": "WineType"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "WineType",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "rule",
+          "from": {
+            "data": "wineType"
+          },
+          "encode": {
+            "enter": {
+              "stroke": {
+                "value": "black"
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "y": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "min"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "max"
+              },
+              "y": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "wineType"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "steelblue"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "wineType"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "aliceblue"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "value": 2
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "width": {
+                "value": 2
+              }
+            }
+          },
+          "clip": true
+        }
+      ]
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "background": "#fff5e6"
+}

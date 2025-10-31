@@ -1,0 +1,3 @@
+Change the color of the 'Under 18' category to '#ff5733' and add a title 'Population by Age Group' with size 20.
+[#OP1 op=change_datapoint_color; target_category=65 and over; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]

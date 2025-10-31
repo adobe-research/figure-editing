@@ -1,0 +1,2 @@
+Add a new datapoint for 'Interest Rate' with min -2, q1 1, median 3, q3 5, and max 8.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=GDP Growth; value=-1.5]

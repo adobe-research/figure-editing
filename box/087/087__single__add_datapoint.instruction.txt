@@ -1,0 +1,2 @@
+Add a new datapoint for 'Mobile Payment' with min=40, q1=180, median=320, q3=460, max=580.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Card Payment; value=45.0]

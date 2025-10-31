@@ -1,0 +1,2 @@
+Add a new datapoint for the region 'East Asia' with min=3, q1=7, median=15, q3=30, and max=70.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East Asia; value=1.5]

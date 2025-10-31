@@ -1,0 +1,2 @@
+Add a new datapoint for the 'summary' dataset with PlayerPosition 'Wing' and values min=4, q1=6, median=10, q3=14, max=23.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Center; value=2.5]

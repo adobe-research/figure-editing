@@ -1,0 +1,2 @@
+Remove the datapoint for the player 'Barry Bonds' from the chart.
+[#OP1 op=remove_datapoint; category=Hank Aaron]

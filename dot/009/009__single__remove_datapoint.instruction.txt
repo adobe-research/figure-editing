@@ -1,0 +1,2 @@
+Remove the datapoint where 'Churn' is 'No' and 'MonthlyCharges' is 45.0.
+[#OP1 op=remove_datapoint; category=Yes]

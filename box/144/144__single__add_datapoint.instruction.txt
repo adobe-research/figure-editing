@@ -1,0 +1,2 @@
+Add a new datapoint for Loan_Status 'Deferred' with min 1300, q1 2300, median 3300, q3 4300, and max 5300.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Approved; value=1150.0]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'High Credit' group.
+[#OP1 op=remove_datapoint; category=Medium Credit]

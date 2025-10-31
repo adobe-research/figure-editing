@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories in the Olympic dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Sport": "Swimming",
+          "Medals": 32
+        },
+        {
+          "Sport": "Athletics",
+          "Medals": 28
+        },
+        {
+          "Sport": "Gymnastics",
+          "Medals": 20
+        },
+        {
+          "Sport": "Fencing",
+          "Medals": 15
+        },
+        {
+          "Sport": "Rowing",
+          "Medals": 10
+        },
+        {
+          "Sport": "Wrestling",
+          "Medals": 12
+        },
+        {
+          "Sport": "Cycling",
+          "Medals": 18
+        },
+        {
+          "Sport": "Shooting",
+          "Medals": 8
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Sport"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Medals"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Sport"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Medals"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Sport"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Medals"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

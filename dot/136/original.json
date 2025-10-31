@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing match results by year for different countries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Brazil",
+          "Year": 2002,
+          "Wins": 7
+        },
+        {
+          "Country": "Germany",
+          "Year": 2014,
+          "Wins": 7
+        },
+        {
+          "Country": "Italy",
+          "Year": 2006,
+          "Wins": 6
+        },
+        {
+          "Country": "France",
+          "Year": 1998,
+          "Wins": 6
+        },
+        {
+          "Country": "Argentina",
+          "Year": 1986,
+          "Wins": 6
+        },
+        {
+          "Country": "Spain",
+          "Year": 2010,
+          "Wins": 6
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Wins"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Wins"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Wins"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "tooltip": {
+            "signal": "datum.Country + ', Year: ' + datum.Year + ', Wins: ' + datum.Wins"
+          }
+        }
+      }
+    }
+  ]
+}

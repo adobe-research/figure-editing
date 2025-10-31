@@ -1,0 +1,2 @@
+Add a new datapoint with Property_Area as 'Urban' and LoanAmount as 210.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Rural; value=155.0]

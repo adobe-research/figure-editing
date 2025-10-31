@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Q3 2022' from the chart.
+[#OP1 op=remove_datapoint; category=Q4 2022]

@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2050 with a temperature anomaly of 1.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=1980.0]

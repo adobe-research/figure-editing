@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing points for categories and their values.",
+  "width": 400,
+  "height": 300,
+  "padding": 10,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Points Per Game",
+          "Value": 30.1
+        },
+        {
+          "Category": "Assists Per Game",
+          "Value": 8.5
+        },
+        {
+          "Category": "Rebounds Per Game",
+          "Value": 10.2
+        },
+        {
+          "Category": "Steals Per Game",
+          "Value": 2.3
+        },
+        {
+          "Category": "Blocks Per Game",
+          "Value": 1.7
+        },
+        {
+          "Category": "Turnovers Per Game",
+          "Value": 3.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category",
+      "labelAngle": -45
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "tooltip": {
+            "signal": "datum.Category + ': ' + datum.Value"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for the group 'Metabolism' with min=0.2, q1=0.3, median=0.4, q3=0.5, and max=0.7.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cellular; value=0.125]

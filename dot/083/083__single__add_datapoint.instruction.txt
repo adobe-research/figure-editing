@@ -1,0 +1,2 @@
+Add a new datapoint for Player 'Shohei Ohtani' with 46 Home Runs.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Albert Pujols; value=53.0]

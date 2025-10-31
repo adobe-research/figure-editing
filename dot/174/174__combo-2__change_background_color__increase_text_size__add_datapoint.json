@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing scores of students across different subjects.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Subject": "Math",
+          "Score": 85
+        },
+        {
+          "Subject": "Math",
+          "Score": 78
+        },
+        {
+          "Subject": "Math",
+          "Score": 92
+        },
+        {
+          "Subject": "Science",
+          "Score": 88
+        },
+        {
+          "Subject": "Science",
+          "Score": 74
+        },
+        {
+          "Subject": "Science",
+          "Score": 95
+        },
+        {
+          "Subject": "English",
+          "Score": 80
+        },
+        {
+          "Subject": "English",
+          "Score": 85
+        },
+        {
+          "Subject": "English",
+          "Score": 78
+        },
+        {
+          "Subject": "History",
+          "Score": 90
+        },
+        {
+          "Subject": "History",
+          "Score": 85
+        },
+        {
+          "Subject": "History",
+          "Score": 88
+        },
+        {
+          "Subject": "Art",
+          "Score": 82
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Subject"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Score"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Subject",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Score",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Subject"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

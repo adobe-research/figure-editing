@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing trip durations for different bike stations.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Station": "Downtown Station",
+          "Trip_Duration": 15
+        },
+        {
+          "Station": "East Side Station",
+          "Trip_Duration": 25
+        },
+        {
+          "Station": "North Side Station",
+          "Trip_Duration": 10
+        },
+        {
+          "Station": "South Side Station",
+          "Trip_Duration": 20
+        },
+        {
+          "Station": "West Side Station",
+          "Trip_Duration": 30
+        },
+        {
+          "Station": "Central Station",
+          "Trip_Duration": 18
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Station"
+      },
+      "range": "width",
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trip_Duration"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Bike Station"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (minutes)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Station"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trip_Duration"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Neurological diseases' with a mortality rate of 120.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cancers; value=87.2]

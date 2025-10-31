@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color.
+[#OP1 op=change_datapoint_color; target_category=Severe Toxic; new_color=#2ca02c]

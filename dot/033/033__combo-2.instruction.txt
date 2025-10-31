@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Item B', increase the text size of axis labels to 14, and add a new datapoint for 'Item F' with a value of 130 at the end.
+[#OP1 op=change_datapoint_color; target_category=Item F; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_datapoint; position=end; category=New 1; value=140.0]

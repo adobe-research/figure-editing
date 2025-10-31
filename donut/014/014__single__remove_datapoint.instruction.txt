@@ -1,0 +1,2 @@
+Remove the datapoint for the subject 'Science' with a score of 493.
+[#OP1 op=remove_datapoint; category=Mathematics]

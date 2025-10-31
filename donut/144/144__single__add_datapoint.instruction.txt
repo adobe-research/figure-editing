@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Occasional Smokers' and value 10 to the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Former Smokers; value=25.0]

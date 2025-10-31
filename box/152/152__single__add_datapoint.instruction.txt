@@ -1,0 +1,2 @@
+Add a new datapoint for the team 'Sevilla' with min=55, q1=70, median=85, q3=95, and max=120.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Atletico Madrid; value=47.5]

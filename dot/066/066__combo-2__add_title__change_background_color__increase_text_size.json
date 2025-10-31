@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing values for categories in the UCI: Heart Disease Dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Category": "Chest Pain Type A",
+          "Value": 120
+        },
+        {
+          "Category": "Chest Pain Type B",
+          "Value": 130
+        },
+        {
+          "Category": "Chest Pain Type C",
+          "Value": 110
+        },
+        {
+          "Category": "Chest Pain Type D",
+          "Value": 140
+        },
+        {
+          "Category": "Resting ECG Normal",
+          "Value": 150
+        },
+        {
+          "Category": "Resting ECG Abnormal",
+          "Value": 160
+        },
+        {
+          "Category": "Exercise Induced Angina",
+          "Value": 100
+        },
+        {
+          "Category": "No Exercise Angina",
+          "Value": 170
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "Category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "Value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Category",
+      "labelAngle": -45,
+      "labelOverlap": true,
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 14
+    }
+  }
+}

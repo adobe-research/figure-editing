@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing Netflix stock prices for different months.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Month": "January",
+          "StockPrice": 500
+        },
+        {
+          "Month": "February",
+          "StockPrice": 520
+        },
+        {
+          "Month": "March",
+          "StockPrice": 480
+        },
+        {
+          "Month": "April",
+          "StockPrice": 510
+        },
+        {
+          "Month": "May",
+          "StockPrice": 530
+        },
+        {
+          "Month": "June",
+          "StockPrice": 490
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Month"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "StockPrice"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Month",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Stock Price (USD)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "StockPrice"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing transaction amounts for different categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "transactions",
+      "values": [
+        {
+          "Category": "Electronics",
+          "Amount": 250.75
+        },
+        {
+          "Category": "Clothing",
+          "Amount": 89.99
+        },
+        {
+          "Category": "Groceries",
+          "Amount": 45.3
+        },
+        {
+          "Category": "Travel",
+          "Amount": 1200.0
+        },
+        {
+          "Category": "Utilities",
+          "Amount": 150.0
+        },
+        {
+          "Category": "Dining",
+          "Amount": 78.5
+        },
+        {
+          "Category": "Health",
+          "Amount": 300.0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "transactions",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "transactions",
+        "field": "Amount"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Transaction Amount ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "transactions"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Amount"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

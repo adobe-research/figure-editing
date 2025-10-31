@@ -1,0 +1,2 @@
+Add a new datapoint for the class 'Excellent' with min=0.6, q1=0.8, median=1.0, q3=1.2, and max=1.4.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Acc; value=0.4]

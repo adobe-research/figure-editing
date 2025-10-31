@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Very High Income' and Value 70000.
+[#OP1 op=remove_datapoint; category=Low Income]

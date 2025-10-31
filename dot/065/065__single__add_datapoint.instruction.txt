@@ -1,0 +1,2 @@
+Add a new datapoint for the month 'November' with a burned area of 4.5 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=1.2]

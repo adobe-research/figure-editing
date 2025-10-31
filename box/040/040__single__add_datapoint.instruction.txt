@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Performance' category with min=0.25, q1=0.5, median=0.7, q3=0.85, and max=0.95.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Comfort; value=0.2]

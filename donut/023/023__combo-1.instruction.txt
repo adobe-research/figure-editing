@@ -1,0 +1,3 @@
+Change the color of the 'Streaming Services' datapoint to '#ff5733' and add a title 'Digital Activity Distribution' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Online Shopping; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

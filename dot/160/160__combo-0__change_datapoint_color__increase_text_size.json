@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing temperature anomalies for different years.",
+  "width": 400,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Year": 1880,
+          "Temperature_Anomaly": -0.12
+        },
+        {
+          "Year": 1900,
+          "Temperature_Anomaly": -0.1
+        },
+        {
+          "Year": 1950,
+          "Temperature_Anomaly": 0.05
+        },
+        {
+          "Year": 1980,
+          "Temperature_Anomaly": 0.28
+        },
+        {
+          "Year": 2000,
+          "Temperature_Anomaly": 0.52
+        },
+        {
+          "Year": 2020,
+          "Temperature_Anomaly": 0.98
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1880,
+        1900,
+        1950,
+        1980,
+        2000,
+        2020
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Temperature_Anomaly"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Temperature Anomaly (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Temperature_Anomaly"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "red"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

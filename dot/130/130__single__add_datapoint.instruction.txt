@@ -1,0 +1,2 @@
+Add a new datapoint with AgeGroup '80-89' and Cholesterol 300 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=30-39; value=250.0]

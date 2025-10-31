@@ -1,0 +1,2 @@
+Remove the datapoint for 'France' with Year 1998 and Wins 6.
+[#OP1 op=remove_datapoint; category=Italy]

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing points for NBA player statistics by position.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Position": "PG",
+          "PointsPerGame": 25.3
+        },
+        {
+          "Position": "SG",
+          "PointsPerGame": 22.7
+        },
+        {
+          "Position": "SF",
+          "PointsPerGame": 20.5
+        },
+        {
+          "Position": "PF",
+          "PointsPerGame": 18.3
+        },
+        {
+          "Position": "C",
+          "PointsPerGame": 15.8
+        },
+        {
+          "Position": "PG",
+          "PointsPerGame": 24.1
+        },
+        {
+          "Position": "SG",
+          "PointsPerGame": 23.4
+        },
+        {
+          "Position": "SF",
+          "PointsPerGame": 19.9
+        },
+        {
+          "Position": "PF",
+          "PointsPerGame": 17.6
+        },
+        {
+          "Position": "C",
+          "PointsPerGame": 16.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "PointsPerGame"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Position"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Points Per Game"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Position"
+          },
+          "y": {
+            "scale": "y",
+            "field": "PointsPerGame"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      }
+    }
+  ]
+}

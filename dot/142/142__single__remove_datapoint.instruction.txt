@@ -1,0 +1,2 @@
+Remove the datapoint where Education is 'Doctorate' and HoursPerWeek is 60.
+[#OP1 op=remove_datapoint; category=Some College]

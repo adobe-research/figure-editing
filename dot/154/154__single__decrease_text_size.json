@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing individual values for categories from NHANES Survey Data.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Blood Pressure",
+          "Value": 120
+        },
+        {
+          "Category": "Blood Pressure",
+          "Value": 130
+        },
+        {
+          "Category": "Blood Pressure",
+          "Value": 125
+        },
+        {
+          "Category": "Cholesterol",
+          "Value": 200
+        },
+        {
+          "Category": "Cholesterol",
+          "Value": 190
+        },
+        {
+          "Category": "Cholesterol",
+          "Value": 210
+        },
+        {
+          "Category": "BMI",
+          "Value": 25
+        },
+        {
+          "Category": "BMI",
+          "Value": 30
+        },
+        {
+          "Category": "BMI",
+          "Value": 28
+        },
+        {
+          "Category": "Glucose",
+          "Value": 90
+        },
+        {
+          "Category": "Glucose",
+          "Value": 100
+        },
+        {
+          "Category": "Glucose",
+          "Value": 95
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

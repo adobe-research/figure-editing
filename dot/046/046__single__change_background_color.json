@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing loan amounts for different property types.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Property_Type": "Urban",
+          "Loan_Amount": 120000
+        },
+        {
+          "Property_Type": "Rural",
+          "Loan_Amount": 85000
+        },
+        {
+          "Property_Type": "Semi-Urban",
+          "Loan_Amount": 95000
+        },
+        {
+          "Property_Type": "Urban",
+          "Loan_Amount": 135000
+        },
+        {
+          "Property_Type": "Rural",
+          "Loan_Amount": 78000
+        },
+        {
+          "Property_Type": "Semi-Urban",
+          "Loan_Amount": 102000
+        },
+        {
+          "Property_Type": "Urban",
+          "Loan_Amount": 110000
+        },
+        {
+          "Property_Type": "Rural",
+          "Loan_Amount": 92000
+        },
+        {
+          "Property_Type": "Semi-Urban",
+          "Loan_Amount": 98000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Property_Type"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Loan_Amount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Property Type"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Loan Amount (in USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Property_Type"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Loan_Amount"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

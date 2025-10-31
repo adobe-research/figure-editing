@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Pre-Diabetes' group.
+[#OP1 op=remove_datapoint; category=No Diabetes]

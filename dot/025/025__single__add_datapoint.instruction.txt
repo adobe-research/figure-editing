@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'NH3' and Value 8.7 to the chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CO; value=12.1]

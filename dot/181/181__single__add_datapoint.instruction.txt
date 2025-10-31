@@ -1,0 +1,2 @@
+Add a new datapoint with genre 'Sci-Fi' and score 8.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Action; value=7.9]

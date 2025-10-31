@@ -1,0 +1,2 @@
+Add a new datapoint for 'Doctorate' with min=40000, q1=50000, median=60000, q3=70000, and max=80000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bachelor's; value=25000.0]

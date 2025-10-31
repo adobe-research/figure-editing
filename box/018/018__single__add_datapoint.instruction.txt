@@ -1,0 +1,2 @@
+Add a new datapoint for 'Question Type D' with min=25, q1=35, median=45, q3=55, and max=65.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Question Type A; value=17.5]

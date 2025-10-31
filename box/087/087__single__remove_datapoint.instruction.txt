@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Wire Transfer' from the chart.
+[#OP1 op=remove_datapoint; category=Online Purchase]

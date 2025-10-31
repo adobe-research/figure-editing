@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Canadian' group.
+[#OP1 op=remove_datapoint; category=Rosa]

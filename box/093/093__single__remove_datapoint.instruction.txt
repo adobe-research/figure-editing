@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Severe Stroke' condition.
+[#OP1 op=remove_datapoint; category=Minor Stroke]

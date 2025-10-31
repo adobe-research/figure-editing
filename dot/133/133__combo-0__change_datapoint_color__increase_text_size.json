@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing stroke prediction categories and corresponding values.",
+  "width": 400,
+  "height": 200,
+  "padding": 10,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Category": "Hypertension",
+          "Value": 120
+        },
+        {
+          "Category": "Heart Disease",
+          "Value": 85
+        },
+        {
+          "Category": "Smoking Status",
+          "Value": 70
+        },
+        {
+          "Category": "Physical Activity",
+          "Value": 95
+        },
+        {
+          "Category": "Diet Quality",
+          "Value": 110
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Category",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Value",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "#4682b4"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "fill": [
+            {
+              "test": "datum.Category === 'Hypertension'",
+              "value": "#ff6347"
+            },
+            {
+              "value": "#4682b4"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

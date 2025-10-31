@@ -1,0 +1,2 @@
+Add a new datapoint for a fourth class with specified five-number summary values.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=First; value=12.5]

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing transaction categories and their respective values.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "TransactionCategory": "Online Purchase",
+          "TransactionValue": 250
+        },
+        {
+          "TransactionCategory": "ATM Withdrawal",
+          "TransactionValue": 100
+        },
+        {
+          "TransactionCategory": "Bill Payment",
+          "TransactionValue": 300
+        },
+        {
+          "TransactionCategory": "POS Purchase",
+          "TransactionValue": 150
+        },
+        {
+          "TransactionCategory": "Wire Transfer",
+          "TransactionValue": 500
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "TransactionCategory"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "TransactionValue"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "TransactionCategory"
+          },
+          "y": {
+            "scale": "y",
+            "field": "TransactionValue"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

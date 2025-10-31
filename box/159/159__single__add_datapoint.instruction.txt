@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Central' region with min=0.1, q1=0.3, median=0.5, q3=0.7, and max=1.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central; value=0.1]

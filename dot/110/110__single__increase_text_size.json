@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing sales values for different video game genres.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Genre": "Shooter",
+          "Global_Sales": 45.6
+        },
+        {
+          "Genre": "Sports",
+          "Global_Sales": 35.3
+        },
+        {
+          "Genre": "Action",
+          "Global_Sales": 28.1
+        },
+        {
+          "Genre": "Role-Playing",
+          "Global_Sales": 22.5
+        },
+        {
+          "Genre": "Platform",
+          "Global_Sales": 19.7
+        },
+        {
+          "Genre": "Racing",
+          "Global_Sales": 15.2
+        },
+        {
+          "Genre": "Puzzle",
+          "Global_Sales": 12.8
+        },
+        {
+          "Genre": "Simulation",
+          "Global_Sales": 10.3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "Genre"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Global_Sales"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Video Game Genre",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Global Sales (in millions)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Global_Sales"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

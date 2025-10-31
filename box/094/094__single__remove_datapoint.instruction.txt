@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Defender' PlayerPosition from the summary data.
+[#OP1 op=remove_datapoint; category=Forward]

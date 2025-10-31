@@ -1,0 +1,3 @@
+Change the color of the '18-34' category to '#ff5733' and add a title 'Population Distribution by Age'.
+[#OP1 op=change_datapoint_color; target_category=35-54; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

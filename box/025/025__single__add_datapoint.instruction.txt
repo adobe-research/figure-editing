@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Africa' region with min=5, q1=20, median=45, q3=70, and max=95.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=12.5]

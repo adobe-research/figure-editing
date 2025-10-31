@@ -1,0 +1,4 @@
+Add a title to the chart, change the background color to light gray, and change the color of the 'Drugstore' datapoint to '#FF5733'.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=change_background_color; new_bg=#fff5e6]
+[#OP3 op=change_datapoint_color; target_category=Drugstore; new_color=#ff7f0e]

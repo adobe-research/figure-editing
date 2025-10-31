@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Item C' with a value of 90.
+[#OP1 op=remove_datapoint; category=Item D]

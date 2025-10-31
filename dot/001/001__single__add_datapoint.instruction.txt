@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Agriculture' industry with an unemployment rate of 6.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=5.55]

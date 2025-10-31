@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Tools' and Rating 4.0.
+[#OP1 op=remove_datapoint; category=Entertainment]

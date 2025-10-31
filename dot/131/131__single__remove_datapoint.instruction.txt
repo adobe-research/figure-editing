@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Mean Compactness' and Value 0.2776.
+[#OP1 op=remove_datapoint; category=Mean Fractal Dimension]

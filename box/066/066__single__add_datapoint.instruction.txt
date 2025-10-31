@@ -1,0 +1,2 @@
+Add a new datapoint for a 'Three year' contract with min=35, q1=70, median=105, q3=130, and max=160.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Month-to-month; value=27.5]

@@ -1,0 +1,2 @@
+Remove the datapoint with category '$100,000 and above' and value 10.
+[#OP1 op=remove_datapoint; category=$75,000 - $99,999]

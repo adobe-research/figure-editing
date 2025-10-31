@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'GDP Growth' category.
+[#OP1 op=remove_datapoint; category=Unemployment Rate]

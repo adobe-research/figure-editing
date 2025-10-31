@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the job 'Housemaid' with a success rate of 35.
+[#OP1 op=remove_datapoint; category=Management]

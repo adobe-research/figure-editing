@@ -1,0 +1,2 @@
+Add a new datapoint for 'TransactionType' with values min=12, q1=22, median=32, q3=42, max=52 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=In-Store; value=11.0]

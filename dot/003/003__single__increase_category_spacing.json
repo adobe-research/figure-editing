@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing OECD PISA Scores for different countries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Finland",
+          "Score": 529
+        },
+        {
+          "Country": "Canada",
+          "Score": 520
+        },
+        {
+          "Country": "Singapore",
+          "Score": 556
+        },
+        {
+          "Country": "Australia",
+          "Score": 503
+        },
+        {
+          "Country": "South Korea",
+          "Score": 514
+        },
+        {
+          "Country": "Norway",
+          "Score": 499
+        },
+        {
+          "Country": "United Kingdom",
+          "Score": 504
+        },
+        {
+          "Country": "Sweden",
+          "Score": 497
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width",
+      "padding": 0.6
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Score"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "PISA Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "#4682b4"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

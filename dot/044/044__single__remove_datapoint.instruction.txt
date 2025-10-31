@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Other' and Value 20000.
+[#OP1 op=remove_datapoint; category=Business]

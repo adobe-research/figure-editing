@@ -1,0 +1,2 @@
+Add a new datapoint for 'Water Leak' with min=3, q1=12, median=18, q3=28, and max=42.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Heat/Hot Water; value=2.5]

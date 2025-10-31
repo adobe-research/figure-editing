@@ -1,0 +1,2 @@
+Add a title 'Box Plot of UCI Wine Dataset' to the chart.
+[#OP1 op=add_title; title_text=Edited Chart]

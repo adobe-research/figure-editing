@@ -1,0 +1,2 @@
+Remove the datapoint representing the 'Buffet' category with a value of 40.
+[#OP1 op=remove_datapoint; category=Fine Dining]

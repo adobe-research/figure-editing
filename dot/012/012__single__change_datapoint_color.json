@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing survival status for different passenger classes on the Titanic.",
+  "width": 300,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Class": "First",
+          "Survived": 1
+        },
+        {
+          "Class": "First",
+          "Survived": 0
+        },
+        {
+          "Class": "Second",
+          "Survived": 1
+        },
+        {
+          "Class": "Second",
+          "Survived": 0
+        },
+        {
+          "Class": "Third",
+          "Survived": 1
+        },
+        {
+          "Class": "Third",
+          "Survived": 0
+        },
+        {
+          "Class": "Third",
+          "Survived": 1
+        },
+        {
+          "Class": "Second",
+          "Survived": 0
+        },
+        {
+          "Class": "First",
+          "Survived": 1
+        },
+        {
+          "Class": "Third",
+          "Survived": 0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Class"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Survived"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Passenger Class"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Survived (1 = Yes, 0 = No)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Class"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Survived"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

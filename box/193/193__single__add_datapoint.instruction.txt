@@ -1,0 +1,2 @@
+Add a new datapoint for a 'Three year' customer type with min=5, q1=25, median=45, q3=65, and max=85.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Month-to-month; value=12.5]

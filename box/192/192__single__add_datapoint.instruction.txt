@@ -1,0 +1,2 @@
+Add a new datapoint for the position 'Substitute' with min=35, q1=55, median=65, q3=75, and max=85.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=40.0]

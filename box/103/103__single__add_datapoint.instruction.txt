@@ -1,0 +1,2 @@
+Add a new datapoint for the 'summary' dataset with Job='Clerical', min=120, q1=320, median=520, q3=720, max=920.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Clerical; value=135.0]

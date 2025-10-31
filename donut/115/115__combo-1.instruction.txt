@@ -1,0 +1,3 @@
+Change the color of the 'Education' category to '#FF5733' and add a title 'Google Play Store App Categories'.
+[#OP1 op=change_datapoint_color; target_category=Tools; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]
