@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2013 with a consumption of 1350 for the energy type 'Coal'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Coal; value=2011.0]

@@ -1,0 +1,4 @@
+Change the color of the 'Healthcare' datapoint to '#FF5733', add a title 'Job Category Distribution', and increase the text size of axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=Services; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=12]

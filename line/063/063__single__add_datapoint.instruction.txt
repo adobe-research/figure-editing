@@ -1,0 +1,2 @@
+Add a new datapoint for June 6, 2023, with precipitation 4.5 mm and temperature 66°F.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=3.8]

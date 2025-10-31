@@ -1,0 +1,2 @@
+Add a new datapoint for 'Country A' on '2023-01-12' with 2400 cases.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Country A; value=2300.0]

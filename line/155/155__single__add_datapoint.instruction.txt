@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2018 with production 300 and source 'Renewables' at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Coal; value=2016.0]

@@ -1,0 +1,2 @@
+Remove the datapoint for series 'B' with date '2020-03' and value 140.
+[#OP1 op=remove_datapoint; category=2020-03]

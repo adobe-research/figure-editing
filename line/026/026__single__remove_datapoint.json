@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing temperature and humidity over time in Delhi.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01-01",
+          "temperature": 15,
+          "humidity": 65
+        },
+        {
+          "date": "2021-01-02",
+          "temperature": 17,
+          "humidity": 60
+        },
+        {
+          "date": "2021-01-04",
+          "temperature": 18,
+          "humidity": 58
+        },
+        {
+          "date": "2021-01-05",
+          "temperature": 19,
+          "humidity": 55
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    },
+    {
+      "name": "y2",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "humidity"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": [
+        "temperature",
+        "humidity"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature (°C)"
+    },
+    {
+      "orient": "right",
+      "scale": "y2",
+      "title": "Humidity (%)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Metrics",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "temperature"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "steelblue"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y2",
+            "field": "humidity"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "orange"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    }
+  ]
+}

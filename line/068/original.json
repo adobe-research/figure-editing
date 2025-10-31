@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing OECD PISA Scores over years for different subjects.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "scores",
+      "values": [
+        {
+          "year": 2000,
+          "score": 500,
+          "subject": "Reading"
+        },
+        {
+          "year": 2003,
+          "score": 495,
+          "subject": "Reading"
+        },
+        {
+          "year": 2006,
+          "score": 510,
+          "subject": "Reading"
+        },
+        {
+          "year": 2009,
+          "score": 505,
+          "subject": "Reading"
+        },
+        {
+          "year": 2012,
+          "score": 498,
+          "subject": "Reading"
+        },
+        {
+          "year": 2015,
+          "score": 493,
+          "subject": "Reading"
+        },
+        {
+          "year": 2000,
+          "score": 520,
+          "subject": "Math"
+        },
+        {
+          "year": 2003,
+          "score": 515,
+          "subject": "Math"
+        },
+        {
+          "year": 2006,
+          "score": 525,
+          "subject": "Math"
+        },
+        {
+          "year": 2009,
+          "score": 530,
+          "subject": "Math"
+        },
+        {
+          "year": 2012,
+          "score": 518,
+          "subject": "Math"
+        },
+        {
+          "year": 2015,
+          "score": 512,
+          "subject": "Math"
+        },
+        {
+          "year": 2000,
+          "score": 480,
+          "subject": "Science"
+        },
+        {
+          "year": 2003,
+          "score": 485,
+          "subject": "Science"
+        },
+        {
+          "year": 2006,
+          "score": 490,
+          "subject": "Science"
+        },
+        {
+          "year": 2009,
+          "score": 495,
+          "subject": "Science"
+        },
+        {
+          "year": 2012,
+          "score": 488,
+          "subject": "Science"
+        },
+        {
+          "year": 2015,
+          "score": 482,
+          "subject": "Science"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2003,
+        2006,
+        2009,
+        2012,
+        2015
+      ]
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "scores",
+        "field": "score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "scores",
+        "field": "subject"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "PISA Score"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Subject",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "scores",
+          "groupby": "subject"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "score"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "subject"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

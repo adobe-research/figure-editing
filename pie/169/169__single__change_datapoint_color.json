@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of contact methods in a marketing campaign.",
+  "width": 300,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "contact_method": "Email",
+          "count": 1500
+        },
+        {
+          "contact_method": "Phone",
+          "count": 2500
+        },
+        {
+          "contact_method": "SMS",
+          "count": 1000
+        },
+        {
+          "contact_method": "Social Media",
+          "count": 500
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "contact_method"
+      },
+      "range": [
+        "#FF5733",
+        "#1f77b4",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "contact_method"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0.01
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Contact Method",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

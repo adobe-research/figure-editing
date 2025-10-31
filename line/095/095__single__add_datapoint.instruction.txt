@@ -1,0 +1,2 @@
+Add a new datapoint for 'severity' as 'Low' with 'date' as '2020-10' and 'count' as 160.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-06; value=95.0]

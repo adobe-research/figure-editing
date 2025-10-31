@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Severe Disease' and value 54.
+[#OP1 op=remove_datapoint; category=Mild Disease]

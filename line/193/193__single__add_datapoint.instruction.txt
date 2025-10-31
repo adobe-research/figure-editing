@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2019 with source 'Solar' and production value 85.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Hydro; value=2017.0]

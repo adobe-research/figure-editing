@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of different job categories in a marketing dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Management",
+          "value": 120
+        },
+        {
+          "category": "Technician",
+          "value": 80
+        },
+        {
+          "category": "Entrepreneur",
+          "value": 50
+        },
+        {
+          "category": "Blue-collar",
+          "value": 150
+        },
+        {
+          "category": "Retired",
+          "value": 60
+        },
+        {
+          "category": "Student",
+          "value": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#FF5733"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Job Category",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0.01
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ]
+}

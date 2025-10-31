@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing temperature and humidity trends over time in Delhi.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-04-01",
+          "temperature": 35,
+          "humidity": 60
+        },
+        {
+          "date": "2023-04-02",
+          "temperature": 36,
+          "humidity": 58
+        },
+        {
+          "date": "2023-04-03",
+          "temperature": 37,
+          "humidity": 57
+        },
+        {
+          "date": "2023-04-04",
+          "temperature": 38,
+          "humidity": 55
+        },
+        {
+          "date": "2023-04-05",
+          "temperature": 39,
+          "humidity": 53
+        },
+        {
+          "date": "2023-04-06",
+          "temperature": 40,
+          "humidity": 50
+        },
+        {
+          "date": "2023-04-07",
+          "temperature": 41,
+          "humidity": 48
+        },
+        {
+          "date": "2023-04-08",
+          "temperature": 42,
+          "humidity": 46
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    },
+    {
+      "name": "y2",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "humidity"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": [
+        "temperature",
+        "humidity"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature (°C)"
+    },
+    {
+      "orient": "right",
+      "scale": "y2",
+      "title": "Humidity (%)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Metrics",
+      "orient": "top"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "temperature"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "temperature"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y2",
+            "field": "humidity"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "humidity"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    }
+  ]
+}

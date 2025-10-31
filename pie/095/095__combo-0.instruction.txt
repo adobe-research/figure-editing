@@ -1,0 +1,3 @@
+Change the color of the 'Romantic' category to '#FF69B4' and add a title 'Netflix Content Categories' with a size of 18.
+[#OP1 op=change_datapoint_color; target_category=Romantic; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

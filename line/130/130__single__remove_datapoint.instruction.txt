@@ -1,0 +1,2 @@
+Remove the datapoint for the year 1992 with an anomaly of 0.4 in the Northern Hemisphere region.
+[#OP1 op=remove_datapoint; category=Global]

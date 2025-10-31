@@ -1,0 +1,3 @@
+Change the color of the 'Benign' category to '#ff5733' and add a title 'Breast Cancer Diagnosis Distribution' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Benign; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

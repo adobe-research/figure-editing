@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing the proportion of glucose levels in different categories.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Low Glucose",
+          "value": 40
+        },
+        {
+          "category": "Normal Glucose",
+          "value": 80
+        },
+        {
+          "category": "High Glucose",
+          "value": 50
+        },
+        {
+          "category": "Very High Glucose",
+          "value": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": [
+        "#FF5733",
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Glucose Levels",
+      "orient": "right"
+    }
+  ]
+}

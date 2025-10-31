@@ -1,0 +1,2 @@
+Add a new datapoint for the '16-24' age group with a rate of 4.6 for the date '2022-05'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2022-01; value=4.1]

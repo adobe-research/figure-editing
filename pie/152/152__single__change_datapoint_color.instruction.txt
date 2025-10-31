@@ -1,0 +1,2 @@
+Change the color of the 'GDP Growth' datapoint to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Inflation Rate; new_color=#d62728]

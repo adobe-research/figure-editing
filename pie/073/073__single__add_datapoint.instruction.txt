@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Environmental Quality' and value 0.4 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Environmental Quality; value=0.5]

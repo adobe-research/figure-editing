@@ -1,0 +1,2 @@
+Remove the datapoint for Queens with date '2022-02' and average price 105.
+[#OP1 op=remove_datapoint; category=2022-02]

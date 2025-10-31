@@ -1,0 +1,2 @@
+Add a new datapoint for Finland with year 2015 and score 7.1.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Denmark; value=2016.0]

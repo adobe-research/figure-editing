@@ -1,0 +1,2 @@
+Add a new datapoint for January 5, 2023 with a duration of 24 minutes and passenger count of 1.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=22.0]

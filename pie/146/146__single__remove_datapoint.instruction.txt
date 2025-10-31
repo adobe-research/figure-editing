@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Medium Value' and value 300.
+[#OP1 op=remove_datapoint; category=Low Value]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Very Severe Heart Disease' with a value of 20 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Mild Heart Disease; value=50.0]

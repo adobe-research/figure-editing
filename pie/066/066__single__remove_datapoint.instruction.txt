@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Smoking' and value 15 from the pie chart.
+[#OP1 op=remove_datapoint; category=Hypertension]

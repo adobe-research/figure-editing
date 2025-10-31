@@ -1,0 +1,4 @@
+Change the color of the 'Typical Angina' datapoint to '#ff5733', increase the text size of the legend title to 14, and add a title 'Chest Pain Distribution' with size 16.
+[#OP1 op=change_datapoint_color; target_category=Non-Anginal Pain; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Asymptomatic; new_color=#ff7f0e]
+[#OP3 op=add_title; title_text=Edited Chart]

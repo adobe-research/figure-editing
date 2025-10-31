@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Streaming Services' and value 20 to the 'survey_data' dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=News Consumption; value=20.0]

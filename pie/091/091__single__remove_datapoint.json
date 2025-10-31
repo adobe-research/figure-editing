@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Pie chart showing category proportions from the World Happiness Report.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Freedom to Make Choices",
+          "value": 0.8
+        },
+        {
+          "category": "Social Support",
+          "value": 1.2
+        },
+        {
+          "category": "Healthy Life Expectancy",
+          "value": 1.0
+        },
+        {
+          "category": "GDP per Capita",
+          "value": 1.5
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ]
+}

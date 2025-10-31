@@ -1,0 +1,3 @@
+Change the color of the 'Win' datapoint to '#ff5733' and add a title 'Football Match Outcomes' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Draw; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

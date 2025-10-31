@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Perceptions of Corruption' and value 0.1.
+[#OP1 op=remove_datapoint; category=Generosity]

@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2005 with a temperature of 14.7 in the Global region.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Global; value=2002.0]

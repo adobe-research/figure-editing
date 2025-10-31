@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing stock prices over time for multiple companies.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01",
+          "price": 150,
+          "company": "Company A"
+        },
+        {
+          "date": "2023-02",
+          "price": 155,
+          "company": "Company A"
+        },
+        {
+          "date": "2023-03",
+          "price": 160,
+          "company": "Company A"
+        },
+        {
+          "date": "2023-01",
+          "price": 200,
+          "company": "Company B"
+        },
+        {
+          "date": "2023-02",
+          "price": 210,
+          "company": "Company B"
+        },
+        {
+          "date": "2023-03",
+          "price": 220,
+          "company": "Company B"
+        },
+        {
+          "date": "2023-01",
+          "price": 300,
+          "company": "Company C"
+        },
+        {
+          "date": "2023-02",
+          "price": 310,
+          "company": "Company C"
+        },
+        {
+          "date": "2023-03",
+          "price": 320,
+          "company": "Company C"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.9
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "company"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Stock Price"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Company",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "company"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "price"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "company"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Very High Glucose' with a value of 45 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High Glucose; value=75.0]

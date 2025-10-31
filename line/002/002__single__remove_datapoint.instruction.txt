@@ -1,0 +1,2 @@
+Remove the datapoint for 'Gas' in the year 2010.
+[#OP1 op=remove_datapoint; category=Gas]

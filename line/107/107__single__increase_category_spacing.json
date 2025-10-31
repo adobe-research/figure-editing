@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing population trends by state over years using US Census ACS data.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "population": 8000000,
+          "state": "California"
+        },
+        {
+          "year": 2011,
+          "population": 8100000,
+          "state": "California"
+        },
+        {
+          "year": 2012,
+          "population": 8200000,
+          "state": "California"
+        },
+        {
+          "year": 2010,
+          "population": 5000000,
+          "state": "Texas"
+        },
+        {
+          "year": 2011,
+          "population": 5100000,
+          "state": "Texas"
+        },
+        {
+          "year": 2012,
+          "population": 5200000,
+          "state": "Texas"
+        },
+        {
+          "year": 2010,
+          "population": 3000000,
+          "state": "Florida"
+        },
+        {
+          "year": 2011,
+          "population": 3100000,
+          "state": "Florida"
+        },
+        {
+          "year": 2012,
+          "population": 3200000,
+          "state": "Florida"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": [
+        0,
+        900
+      ],
+      "domain": [
+        2010,
+        2011,
+        2012
+      ],
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "population"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "state"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Population"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "State",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "state"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "population"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "state"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

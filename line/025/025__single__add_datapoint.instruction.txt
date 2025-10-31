@@ -1,0 +1,2 @@
+Add a new datapoint for January 15, 2023, with precipitation 6.4 mm and temperature 50°F.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=8.05]

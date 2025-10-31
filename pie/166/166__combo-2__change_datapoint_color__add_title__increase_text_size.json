@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of contact methods in a bank marketing dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "contact_method": "Cellular",
+          "count": 1250
+        },
+        {
+          "contact_method": "Telephone",
+          "count": 800
+        },
+        {
+          "contact_method": "Unknown",
+          "count": 450
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "sort": false
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "contact_method"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#FF5733"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "contact_method"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Contact Method",
+      "orient": "right",
+      "symbolType": "circle",
+      "labelFontSize": 14
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

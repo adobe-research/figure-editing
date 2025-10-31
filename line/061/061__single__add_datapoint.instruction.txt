@@ -1,0 +1,2 @@
+Add a new datapoint for 'Theft' in May 2023 with a count of 1400.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=1100.0]

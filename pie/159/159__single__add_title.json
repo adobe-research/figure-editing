@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of customer contact methods.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16,
+    "font": "Arial"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Email",
+          "value": 1200
+        },
+        {
+          "category": "Phone",
+          "value": 800
+        },
+        {
+          "category": "Direct Mail",
+          "value": 500
+        },
+        {
+          "category": "In-Person",
+          "value": 300
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "radius": {
+            "signal": "width / 4"
+          },
+          "theta": {
+            "field": "startAngle",
+            "mult": 0.5,
+            "signal": "datum.endAngle - datum.startAngle"
+          },
+          "text": {
+            "field": "category"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Contact Method",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

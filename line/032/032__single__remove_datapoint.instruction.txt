@@ -1,0 +1,2 @@
+Remove the datapoint for the '16-24' age group with a rate of 3.5 in April 2022.
+[#OP1 op=remove_datapoint; category=2022-01]

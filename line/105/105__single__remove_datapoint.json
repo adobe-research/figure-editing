@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing demand trends for different categories over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-05",
+          "demand": 120,
+          "category": "A"
+        },
+        {
+          "date": "2021-05",
+          "demand": 85,
+          "category": "B"
+        },
+        {
+          "date": "2021-06",
+          "demand": 150,
+          "category": "A"
+        },
+        {
+          "date": "2021-06",
+          "demand": 95,
+          "category": "B"
+        },
+        {
+          "date": "2021-07",
+          "demand": 160,
+          "category": "A"
+        },
+        {
+          "date": "2021-07",
+          "demand": 110,
+          "category": "B"
+        },
+        {
+          "date": "2021-08",
+          "demand": 140,
+          "category": "A"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "demand"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "category"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

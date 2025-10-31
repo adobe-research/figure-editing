@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020 with region 'Western Europe' and happiness score 7.4.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Sub-Saharan Africa; value=2017.0]

@@ -1,0 +1,2 @@
+Remove the datapoint for 'Supermarket D' from the pie chart.
+[#OP1 op=remove_datapoint; category=Supermarket C]

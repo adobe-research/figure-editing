@@ -1,0 +1,2 @@
+Change the color of the 'Generosity' datapoint to a new color 'pink'.
+[#OP1 op=change_datapoint_color; target_category=Generosity; new_color=#ff7f0e]

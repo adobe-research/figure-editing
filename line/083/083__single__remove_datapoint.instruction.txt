@@ -1,0 +1,2 @@
+Remove the datapoint for Company B with date '2023-02' and price 210.
+[#OP1 op=remove_datapoint; category=2023-02]

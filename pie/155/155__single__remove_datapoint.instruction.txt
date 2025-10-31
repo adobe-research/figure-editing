@@ -1,0 +1,2 @@
+Remove the datapoint with category 'No Response' and value 234.
+[#OP1 op=remove_datapoint; category=Accepted]

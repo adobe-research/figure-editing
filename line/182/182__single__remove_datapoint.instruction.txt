@@ -1,0 +1,2 @@
+Remove the datapoint for the 2018 Reading score of 487.
+[#OP1 op=remove_datapoint; category=Science]

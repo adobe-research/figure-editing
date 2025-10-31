@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing store sales trends over time for different store categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "sales_data",
+      "values": [
+        {
+          "date": "2023-06",
+          "sales": 1200,
+          "store_type": "Supermarket"
+        },
+        {
+          "date": "2023-06",
+          "sales": 800,
+          "store_type": "Convenience Store"
+        },
+        {
+          "date": "2023-07",
+          "sales": 1300,
+          "store_type": "Supermarket"
+        },
+        {
+          "date": "2023-07",
+          "sales": 850,
+          "store_type": "Convenience Store"
+        },
+        {
+          "date": "2023-08",
+          "sales": 1400,
+          "store_type": "Supermarket"
+        },
+        {
+          "date": "2023-08",
+          "sales": 900,
+          "store_type": "Convenience Store"
+        },
+        {
+          "date": "2023-09",
+          "sales": 1500,
+          "store_type": "Supermarket"
+        },
+        {
+          "date": "2023-09",
+          "sales": 950,
+          "store_type": "Convenience Store"
+        },
+        {
+          "date": "2023-10",
+          "sales": 1600,
+          "store_type": "Supermarket"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "sales_data",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "sales_data",
+        "field": "sales"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "sales_data",
+        "field": "store_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Sales ($)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Store Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "sales_data",
+          "groupby": "store_type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "sales"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "store_type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for Finland with a happiness score of 7.3 in the year 2015.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Denmark; value=2016.0]

@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing temperature trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01",
+          "temperature": 32.5,
+          "location": "City A"
+        },
+        {
+          "date": "2020-02",
+          "temperature": 35.2,
+          "location": "City A"
+        },
+        {
+          "date": "2020-03",
+          "temperature": 40.1,
+          "location": "City A"
+        },
+        {
+          "date": "2020-04",
+          "temperature": 45.3,
+          "location": "City A"
+        },
+        {
+          "date": "2020-01",
+          "temperature": 28.7,
+          "location": "City B"
+        },
+        {
+          "date": "2020-02",
+          "temperature": 30.4,
+          "location": "City B"
+        },
+        {
+          "date": "2020-03",
+          "temperature": 34.8,
+          "location": "City B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "location"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature (°F)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Location",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "location"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "temperature"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "location"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

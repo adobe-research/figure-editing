@@ -1,0 +1,2 @@
+Add a new datapoint for passenger_count 1 with month '2021-04' and duration 15.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-01; value=18.95]

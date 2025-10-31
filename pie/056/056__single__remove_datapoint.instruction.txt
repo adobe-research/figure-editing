@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Extra Large' and value 100.
+[#OP1 op=remove_datapoint; category=Medium]

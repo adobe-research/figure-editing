@@ -1,0 +1,2 @@
+Change the color of the 'Bombing/Explosion' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Bombing/Explosion; new_color=#d62728]

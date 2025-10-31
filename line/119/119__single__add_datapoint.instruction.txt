@@ -1,0 +1,2 @@
+Add a new datapoint for the year 1883 with an anomaly of -0.06 in the Southern Hemisphere region.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Global; value=1881.0]

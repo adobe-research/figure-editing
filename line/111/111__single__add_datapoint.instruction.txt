@@ -1,0 +1,2 @@
+Add a new datapoint for the crop 'Corn' with year 2019 and production 170.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Corn; value=2017.0]

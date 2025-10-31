@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Population Trends by State (2010-2012)'.
+[#OP1 op=add_title; title_text=Edited Chart]

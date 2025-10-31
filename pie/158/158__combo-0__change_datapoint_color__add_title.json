@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Pie chart showing proportions of marketing campaign outcomes.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "outcome": "Subscribed",
+          "count": 5123
+        },
+        {
+          "outcome": "Not Subscribed",
+          "count": 36548
+        },
+        {
+          "outcome": "Unknown",
+          "count": 1500
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "outcome"
+      },
+      "range": [
+        "#ff5733",
+        "#1f77b4",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "outcome"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "innerRadius": 0
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Outcome",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Direct Mail' with a value of 500 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Direct Mail; value=600.0]

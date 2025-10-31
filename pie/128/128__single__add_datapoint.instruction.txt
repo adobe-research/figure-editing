@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Mixed Reviews' with a value of 100 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Mixed Reviews; value=175.0]

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing temperature anomalies over time for different regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "temperature",
+      "values": [
+        {
+          "year": 1880,
+          "anomaly": -0.12,
+          "region": "Global"
+        },
+        {
+          "year": 1881,
+          "anomaly": -0.1,
+          "region": "Global"
+        },
+        {
+          "year": 1882,
+          "anomaly": -0.08,
+          "region": "Global"
+        },
+        {
+          "year": 1880,
+          "anomaly": -0.15,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1881,
+          "anomaly": -0.13,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1882,
+          "anomaly": -0.11,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1880,
+          "anomaly": -0.09,
+          "region": "Southern Hemisphere"
+        },
+        {
+          "year": 1881,
+          "anomaly": -0.07,
+          "region": "Southern Hemisphere"
+        },
+        {
+          "year": 1882,
+          "anomaly": -0.05,
+          "region": "Southern Hemisphere"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1880,
+        1881,
+        1882
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "temperature",
+        "field": "anomaly"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "temperature",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "temperature",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "anomaly"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "region"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

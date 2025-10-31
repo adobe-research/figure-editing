@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing CO2 emissions and methane emissions over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "emissions",
+      "values": [
+        {
+          "year": 2000,
+          "emissions": 25.7,
+          "type": "CO2"
+        },
+        {
+          "year": 2001,
+          "emissions": 26.1,
+          "type": "CO2"
+        },
+        {
+          "year": 2002,
+          "emissions": 26.5,
+          "type": "CO2"
+        },
+        {
+          "year": 2003,
+          "emissions": 27.0,
+          "type": "CO2"
+        },
+        {
+          "year": 2004,
+          "emissions": 27.8,
+          "type": "CO2"
+        },
+        {
+          "year": 2000,
+          "emissions": 8.4,
+          "type": "Methane"
+        },
+        {
+          "year": 2001,
+          "emissions": 8.3,
+          "type": "Methane"
+        },
+        {
+          "year": 2002,
+          "emissions": 8.2,
+          "type": "Methane"
+        },
+        {
+          "year": 2003,
+          "emissions": 8.1,
+          "type": "Methane"
+        },
+        {
+          "year": 2004,
+          "emissions": 8.0,
+          "type": "Methane"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ],
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "emissions",
+        "field": "emissions"
+      },
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "emissions",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Emissions (GtCO2e)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Emission Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "emissions",
+          "groupby": "type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "emissions"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing GDP growth over years for multiple countries.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "value": 2.5,
+          "country": "Country A"
+        },
+        {
+          "year": 2011,
+          "value": 3.0,
+          "country": "Country A"
+        },
+        {
+          "year": 2012,
+          "value": 2.8,
+          "country": "Country A"
+        },
+        {
+          "year": 2013,
+          "value": 3.5,
+          "country": "Country A"
+        },
+        {
+          "year": 2010,
+          "value": 1.8,
+          "country": "Country B"
+        },
+        {
+          "year": 2011,
+          "value": 2.1,
+          "country": "Country B"
+        },
+        {
+          "year": 2012,
+          "value": 2.4,
+          "country": "Country B"
+        },
+        {
+          "year": 2013,
+          "value": 2.6,
+          "country": "Country B"
+        },
+        {
+          "year": 2010,
+          "value": 4.0,
+          "country": "Country C"
+        },
+        {
+          "year": 2011,
+          "value": 4.2,
+          "country": "Country C"
+        },
+        {
+          "year": 2012,
+          "value": 3.9,
+          "country": "Country C"
+        },
+        {
+          "year": 2013,
+          "value": 4.5,
+          "country": "Country C"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "GDP Growth (%)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "value"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "country"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

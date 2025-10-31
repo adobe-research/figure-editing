@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Cereals' category with a date of '2020-04' and a price index of 98.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-01; value=98.85]

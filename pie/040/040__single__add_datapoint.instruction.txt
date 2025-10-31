@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Physical Activity' and value 90 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age; value=110.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for April 8, 2023 with temperature 42°C and humidity 46%.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-04-01; value=38.5]

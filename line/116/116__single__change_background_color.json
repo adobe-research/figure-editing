@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing energy consumption trends over years for different sources.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "value": 1200,
+          "source": "Coal"
+        },
+        {
+          "year": 2001,
+          "value": 1300,
+          "source": "Coal"
+        },
+        {
+          "year": 2002,
+          "value": 1250,
+          "source": "Coal"
+        },
+        {
+          "year": 2000,
+          "value": 800,
+          "source": "Oil"
+        },
+        {
+          "year": 2001,
+          "value": 850,
+          "source": "Oil"
+        },
+        {
+          "year": 2002,
+          "value": 870,
+          "source": "Oil"
+        },
+        {
+          "year": 2000,
+          "value": 600,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2001,
+          "value": 620,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2002,
+          "value": 640,
+          "source": "Natural Gas"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (TWh)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Energy Source",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "value"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "source"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

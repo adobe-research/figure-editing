@@ -1,0 +1,2 @@
+Remove the datapoint for Science in the year 2003 with a score of 485.
+[#OP1 op=remove_datapoint; category=Science]

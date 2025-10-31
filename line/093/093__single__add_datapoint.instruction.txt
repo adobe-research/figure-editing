@@ -1,0 +1,2 @@
+Add a new datapoint for the USA on 2020-06-04 with 5600 cases.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Brazil; value=3350.0]

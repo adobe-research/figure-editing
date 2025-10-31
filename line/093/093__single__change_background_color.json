@@ -1,0 +1,173 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing COVID-19 cases over time for multiple countries.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-06-01",
+          "cases": 5000,
+          "country": "USA"
+        },
+        {
+          "date": "2020-06-02",
+          "cases": 5200,
+          "country": "USA"
+        },
+        {
+          "date": "2020-06-03",
+          "cases": 5400,
+          "country": "USA"
+        },
+        {
+          "date": "2020-06-01",
+          "cases": 3000,
+          "country": "India"
+        },
+        {
+          "date": "2020-06-02",
+          "cases": 3200,
+          "country": "India"
+        },
+        {
+          "date": "2020-06-03",
+          "cases": 3500,
+          "country": "India"
+        },
+        {
+          "date": "2020-06-01",
+          "cases": 2000,
+          "country": "Brazil"
+        },
+        {
+          "date": "2020-06-02",
+          "cases": 2100,
+          "country": "Brazil"
+        },
+        {
+          "date": "2020-06-03",
+          "cases": 2300,
+          "country": "Brazil"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Cases"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "cases"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "country"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              },
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Unemployed' and value 15.
+[#OP1 op=remove_datapoint; category=Employed]

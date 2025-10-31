@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing population trends over years for different regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "population": 500000,
+          "region": "Northeast"
+        },
+        {
+          "year": 2010,
+          "population": 700000,
+          "region": "South"
+        },
+        {
+          "year": 2010,
+          "population": 600000,
+          "region": "Midwest"
+        },
+        {
+          "year": 2010,
+          "population": 800000,
+          "region": "West"
+        },
+        {
+          "year": 2015,
+          "population": 520000,
+          "region": "Northeast"
+        },
+        {
+          "year": 2015,
+          "population": 730000,
+          "region": "South"
+        },
+        {
+          "year": 2015,
+          "population": 620000,
+          "region": "Midwest"
+        },
+        {
+          "year": 2015,
+          "population": 850000,
+          "region": "West"
+        },
+        {
+          "year": 2020,
+          "population": 540000,
+          "region": "Northeast"
+        },
+        {
+          "year": 2020,
+          "population": 760000,
+          "region": "South"
+        },
+        {
+          "year": 2020,
+          "population": 640000,
+          "region": "Midwest"
+        },
+        {
+          "year": 2020,
+          "population": 880000,
+          "region": "West"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "population"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Population",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "population"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "region"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

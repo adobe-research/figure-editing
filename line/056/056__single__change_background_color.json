@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing happiness scores over years for different countries.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "happiness",
+      "values": [
+        {
+          "year": 2015,
+          "country": "Finland",
+          "happiness_score": 7.4
+        },
+        {
+          "year": 2016,
+          "country": "Finland",
+          "happiness_score": 7.5
+        },
+        {
+          "year": 2017,
+          "country": "Finland",
+          "happiness_score": 7.6
+        },
+        {
+          "year": 2015,
+          "country": "Norway",
+          "happiness_score": 7.5
+        },
+        {
+          "year": 2016,
+          "country": "Norway",
+          "happiness_score": 7.6
+        },
+        {
+          "year": 2017,
+          "country": "Norway",
+          "happiness_score": 7.7
+        },
+        {
+          "year": 2015,
+          "country": "Denmark",
+          "happiness_score": 7.4
+        },
+        {
+          "year": 2016,
+          "country": "Denmark",
+          "happiness_score": 7.5
+        },
+        {
+          "year": 2017,
+          "country": "Denmark",
+          "happiness_score": 7.6
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "happiness",
+        "field": "happiness_score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "happiness",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Happiness Score"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "happiness",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "happiness_score"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "country"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

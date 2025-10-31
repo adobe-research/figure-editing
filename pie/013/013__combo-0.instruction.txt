@@ -1,0 +1,3 @@
+Change the color of the 'Questions under review' datapoint to '#FF5733' and add a title 'Quora Question Analysis' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Questions under review; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]

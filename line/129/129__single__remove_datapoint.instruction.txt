@@ -1,0 +1,2 @@
+Remove the datapoint for 'Home Appliances' in '2021-03' with a price of 42.
+[#OP1 op=remove_datapoint; category=2021-02]

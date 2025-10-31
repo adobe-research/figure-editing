@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Perception of Corruption' and value 0.4.
+[#OP1 op=remove_datapoint; category=GDP per Capita]

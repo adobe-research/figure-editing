@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing video game sales by genre.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "genre": "Sports",
+          "sales": 20
+        },
+        {
+          "genre": "Shooter",
+          "sales": 15
+        },
+        {
+          "genre": "Role-Playing",
+          "sales": 25
+        },
+        {
+          "genre": "Simulation",
+          "sales": 10
+        },
+        {
+          "genre": "Fighting",
+          "sales": 5
+        },
+        {
+          "genre": "Platformer",
+          "sales": 25
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "sales"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "genre"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "genre"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Genre",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

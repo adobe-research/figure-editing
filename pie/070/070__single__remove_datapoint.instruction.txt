@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Other Causes' with a value of 7.
+[#OP1 op=remove_datapoint; category=Ischemic Heart Disease]

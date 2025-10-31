@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing sales distribution by store type.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "sales_data",
+      "values": [
+        {
+          "store_type": "Supermarket A",
+          "sales": 450000
+        },
+        {
+          "store_type": "Supermarket B",
+          "sales": 300000
+        },
+        {
+          "store_type": "Supermarket C",
+          "sales": 150000
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "sales",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "A",
+          "value": 30
+        },
+        {
+          "category": "B",
+          "value": 45
+        },
+        {
+          "category": "C",
+          "value": 25
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "sales_data",
+        "field": "store_type"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "sales_data"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "store_type"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Store Type",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with date '2021-07-02' and demand 280.
+[#OP1 op=remove_datapoint; category=2021-07-03]

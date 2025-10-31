@@ -1,0 +1,2 @@
+Remove the datapoint for Reading in the year 2006 with a score of 490.
+[#OP1 op=remove_datapoint; category=Math]

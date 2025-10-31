@@ -1,0 +1,2 @@
+Add a new datapoint for category 'Age 61-80' with a value of 100 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age 0-18; value=100.0]

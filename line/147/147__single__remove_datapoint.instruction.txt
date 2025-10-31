@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Blood Pressure' series in the '60-69' age group.
+[#OP1 op=remove_datapoint; category=20-29]

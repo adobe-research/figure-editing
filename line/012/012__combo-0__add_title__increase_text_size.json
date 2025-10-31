@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing item demand over time for multiple stores.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "demand": 120,
+          "store": "Store A"
+        },
+        {
+          "date": "2023-01-01",
+          "demand": 95,
+          "store": "Store B"
+        },
+        {
+          "date": "2023-01-02",
+          "demand": 130,
+          "store": "Store A"
+        },
+        {
+          "date": "2023-01-02",
+          "demand": 110,
+          "store": "Store B"
+        },
+        {
+          "date": "2023-01-03",
+          "demand": 125,
+          "store": "Store A"
+        },
+        {
+          "date": "2023-01-03",
+          "demand": 105,
+          "store": "Store B"
+        },
+        {
+          "date": "2023-01-04",
+          "demand": 150,
+          "store": "Store A"
+        },
+        {
+          "date": "2023-01-04",
+          "demand": 120,
+          "store": "Store B"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "store"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "labelFontSize": 16,
+      "tickSize": 12,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand",
+      "labelFontSize": 16,
+      "tickSize": 12,
+      "titleFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Store",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "store"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "demand"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "store"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              },
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

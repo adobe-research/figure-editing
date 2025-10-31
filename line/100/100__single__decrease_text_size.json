@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing bike trip counts over time in Austin.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "trips",
+      "values": [
+        {
+          "date": "2021-06-01",
+          "count": 120,
+          "station": "Station A"
+        },
+        {
+          "date": "2021-06-01",
+          "count": 95,
+          "station": "Station B"
+        },
+        {
+          "date": "2021-06-02",
+          "count": 150,
+          "station": "Station A"
+        },
+        {
+          "date": "2021-06-02",
+          "count": 110,
+          "station": "Station B"
+        },
+        {
+          "date": "2021-06-03",
+          "count": 180,
+          "station": "Station A"
+        },
+        {
+          "date": "2021-06-03",
+          "count": 130,
+          "station": "Station B"
+        },
+        {
+          "date": "2021-06-04",
+          "count": 200,
+          "station": "Station A"
+        },
+        {
+          "date": "2021-06-04",
+          "count": 140,
+          "station": "Station B"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "trips",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "trips",
+        "field": "count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "trips",
+        "field": "station"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Trip Count",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Station",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "trips",
+          "groupby": "station"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "count"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "station"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

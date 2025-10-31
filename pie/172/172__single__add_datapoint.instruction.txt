@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Retirement' and value 90 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Insurance; value=75.0]

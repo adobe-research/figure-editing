@@ -1,0 +1,2 @@
+Remove the datapoint for the genre 'Simulation' with sales value 15.
+[#OP1 op=remove_datapoint; category=Sports]

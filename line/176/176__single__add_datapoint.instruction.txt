@@ -1,0 +1,2 @@
+Add a new datapoint for 'Casual' type on '2023-06-05' with 130 trips.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-06-01; value=160.0]

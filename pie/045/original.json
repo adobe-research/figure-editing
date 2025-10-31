@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of Iris flower species.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "signals": [
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.29
+    },
+    {
+      "name": "padAngle",
+      "value": 0
+    },
+    {
+      "name": "innerRadius",
+      "value": 0
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0
+    },
+    {
+      "name": "sort",
+      "value": false
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "species": "Iris-alba",
+          "count": 50
+        },
+        {
+          "species": "Iris-florentina",
+          "count": 40
+        },
+        {
+          "species": "Iris-germanica",
+          "count": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": {
+            "signal": "sort"
+          }
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "species"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Species",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "species"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "FAO Food Price Index trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01",
+          "value": 95.5,
+          "series": "Cereal"
+        },
+        {
+          "date": "2020-02",
+          "value": 96.2,
+          "series": "Cereal"
+        },
+        {
+          "date": "2020-03",
+          "value": 97.1,
+          "series": "Cereal"
+        },
+        {
+          "date": "2020-01",
+          "value": 80.1,
+          "series": "Dairy"
+        },
+        {
+          "date": "2020-02",
+          "value": 81.3,
+          "series": "Dairy"
+        },
+        {
+          "date": "2020-03",
+          "value": 82.5,
+          "series": "Dairy"
+        },
+        {
+          "date": "2020-01",
+          "value": 70.2,
+          "series": "Meat"
+        },
+        {
+          "date": "2020-02",
+          "value": 71.8,
+          "series": "Meat"
+        },
+        {
+          "date": "2020-03",
+          "value": 72.4,
+          "series": "Meat"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": {
+        "step": 20
+      },
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Index Value"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Food Categories",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "value"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "series"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

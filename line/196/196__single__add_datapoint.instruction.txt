@@ -1,0 +1,2 @@
+Add a new data point for Methane emissions in 2005 with a value of 7.9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CO2; value=2002.0]

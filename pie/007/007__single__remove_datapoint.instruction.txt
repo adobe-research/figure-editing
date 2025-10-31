@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Neutral' and value 120.
+[#OP1 op=remove_datapoint; category=Positive]

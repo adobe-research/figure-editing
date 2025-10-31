@@ -1,0 +1,2 @@
+Change the color of the 'Low Value' datapoint to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Medium Value; new_color=#2ca02c]

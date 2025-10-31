@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Happiness Score Trends by Region (2015-2019)'.
+[#OP1 op=add_title; title_text=Edited Chart]

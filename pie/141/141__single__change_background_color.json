@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing sales contribution by store categories.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Urban",
+          "value": 45000
+        },
+        {
+          "category": "Suburban",
+          "value": 30000
+        },
+        {
+          "category": "Rural",
+          "value": 15000
+        },
+        {
+          "category": "Metropolitan",
+          "value": 10000
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0.02
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "value": 5
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Store Category",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

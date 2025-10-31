@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions for Quora Insincere Questions.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Questions flagged as insincere",
+          "value": 4500
+        },
+        {
+          "category": "Questions flagged as sincere",
+          "value": 55000
+        },
+        {
+          "category": "Questions under review",
+          "value": 2000
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Question Categories",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ]
+}

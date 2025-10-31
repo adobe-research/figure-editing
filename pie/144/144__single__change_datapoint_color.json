@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions for air quality levels.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Good",
+          "value": 45
+        },
+        {
+          "category": "Moderate",
+          "value": 30
+        },
+        {
+          "category": "Unhealthy for Sensitive Groups",
+          "value": 15
+        },
+        {
+          "category": "Unhealthy",
+          "value": 5
+        },
+        {
+          "category": "Very Unhealthy",
+          "value": 3
+        },
+        {
+          "category": "Hazardous",
+          "value": 2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": [
+        "#FF5733",
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Air Quality Levels",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      },
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.283185307179586,
+          "sort": false
+        }
+      ]
+    }
+  ]
+}

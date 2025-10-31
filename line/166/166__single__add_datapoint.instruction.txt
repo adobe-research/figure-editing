@@ -1,0 +1,2 @@
+Add a new datapoint for 'May' with a duration of 16.5 for 'Yellow Taxi'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=16.5]

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of customer education levels.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "education": "High School",
+          "count": 150
+        },
+        {
+          "education": "Bachelor's",
+          "count": 200
+        },
+        {
+          "education": "Master's",
+          "count": 100
+        },
+        {
+          "education": "Doctorate",
+          "count": 50
+        },
+        {
+          "education": "Other",
+          "count": 25
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "education"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Education Levels",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "education"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ]
+}

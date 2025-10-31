@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing Bitcoin closing prices over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "price": 16500,
+          "series": "Closing Price"
+        },
+        {
+          "date": "2023-01-02",
+          "price": 16600,
+          "series": "Closing Price"
+        },
+        {
+          "date": "2023-01-03",
+          "price": 16750,
+          "series": "Closing Price"
+        },
+        {
+          "date": "2023-01-04",
+          "price": 17000,
+          "series": "Closing Price"
+        },
+        {
+          "date": "2023-01-05",
+          "price": 17200,
+          "series": "Closing Price"
+        },
+        {
+          "date": "2023-01-01",
+          "price": 16300,
+          "series": "Opening Price"
+        },
+        {
+          "date": "2023-01-02",
+          "price": 16450,
+          "series": "Opening Price"
+        },
+        {
+          "date": "2023-01-03",
+          "price": 16600,
+          "series": "Opening Price"
+        },
+        {
+          "date": "2023-01-04",
+          "price": 16800,
+          "series": "Opening Price"
+        },
+        {
+          "date": "2023-01-05",
+          "price": 17050,
+          "series": "Opening Price"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Price (USD)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "top-right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "price"
+          },
+          "stroke": {
+            "scale": "color",
+            "field": "series"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "strokeOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "strokeOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

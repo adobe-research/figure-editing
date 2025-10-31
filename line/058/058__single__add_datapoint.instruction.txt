@@ -1,0 +1,2 @@
+Add a new datapoint for 'Manhattan' in May 2023 with an average price of 170.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=150.0]

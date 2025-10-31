@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Trust in Government' and value 4.1.
+[#OP1 op=remove_datapoint; category=Happiness Score]

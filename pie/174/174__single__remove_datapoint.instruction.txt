@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Other' with a count of 25.
+[#OP1 op=remove_datapoint; category=High School]

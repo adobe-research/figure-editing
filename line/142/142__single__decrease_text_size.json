@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing airline on-time performance over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01",
+          "on_time": 85,
+          "series": "Airline A"
+        },
+        {
+          "date": "2023-01",
+          "on_time": 78,
+          "series": "Airline B"
+        },
+        {
+          "date": "2023-02",
+          "on_time": 88,
+          "series": "Airline A"
+        },
+        {
+          "date": "2023-02",
+          "on_time": 82,
+          "series": "Airline B"
+        },
+        {
+          "date": "2023-03",
+          "on_time": 90,
+          "series": "Airline A"
+        },
+        {
+          "date": "2023-03",
+          "on_time": 80,
+          "series": "Airline B"
+        },
+        {
+          "date": "2023-04",
+          "on_time": 92,
+          "series": "Airline A"
+        },
+        {
+          "date": "2023-04",
+          "on_time": 84,
+          "series": "Airline B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "on_time"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "On-time Performance (%)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Airline",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "on_time"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "series"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

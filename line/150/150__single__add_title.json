@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing number of routes over time for multiple airlines.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "routes_data",
+      "values": [
+        {
+          "month": "2023-01",
+          "routes": 120,
+          "airline": "Airline X"
+        },
+        {
+          "month": "2023-02",
+          "routes": 130,
+          "airline": "Airline X"
+        },
+        {
+          "month": "2023-03",
+          "routes": 125,
+          "airline": "Airline X"
+        },
+        {
+          "month": "2023-01",
+          "routes": 95,
+          "airline": "Airline Y"
+        },
+        {
+          "month": "2023-02",
+          "routes": 100,
+          "airline": "Airline Y"
+        },
+        {
+          "month": "2023-03",
+          "routes": 110,
+          "airline": "Airline Y"
+        },
+        {
+          "month": "2023-01",
+          "routes": 80,
+          "airline": "Airline Z"
+        },
+        {
+          "month": "2023-02",
+          "routes": 85,
+          "airline": "Airline Z"
+        },
+        {
+          "month": "2023-03",
+          "routes": 90,
+          "airline": "Airline Z"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "routes_data",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "routes_data",
+        "field": "routes"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "routes_data",
+        "field": "airline"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Routes"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Airline",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "routes_data",
+          "groupby": "airline"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "routes"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "airline"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

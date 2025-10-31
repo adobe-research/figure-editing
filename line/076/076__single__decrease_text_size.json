@@ -1,0 +1,165 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing trends over time from Pew Research Center Surveys.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "percentage": 45,
+          "category": "Group A"
+        },
+        {
+          "year": 2016,
+          "percentage": 50,
+          "category": "Group A"
+        },
+        {
+          "year": 2017,
+          "percentage": 55,
+          "category": "Group A"
+        },
+        {
+          "year": 2018,
+          "percentage": 60,
+          "category": "Group A"
+        },
+        {
+          "year": 2015,
+          "percentage": 30,
+          "category": "Group B"
+        },
+        {
+          "year": 2016,
+          "percentage": 35,
+          "category": "Group B"
+        },
+        {
+          "year": 2017,
+          "percentage": 40,
+          "category": "Group B"
+        },
+        {
+          "year": 2018,
+          "percentage": 45,
+          "category": "Group B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "percentage"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Percentage",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "percentage"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "category"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

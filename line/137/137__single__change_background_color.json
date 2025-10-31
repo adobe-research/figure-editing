@@ -1,0 +1,160 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing crime trends over months for different types of crimes in Chicago.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2023-01",
+          "crime_type": "Theft",
+          "count": 1200
+        },
+        {
+          "month": "2023-02",
+          "crime_type": "Theft",
+          "count": 1100
+        },
+        {
+          "month": "2023-03",
+          "crime_type": "Theft",
+          "count": 1300
+        },
+        {
+          "month": "2023-01",
+          "crime_type": "Assault",
+          "count": 800
+        },
+        {
+          "month": "2023-02",
+          "crime_type": "Assault",
+          "count": 850
+        },
+        {
+          "month": "2023-03",
+          "crime_type": "Assault",
+          "count": 900
+        },
+        {
+          "month": "2023-01",
+          "crime_type": "Burglary",
+          "count": 600
+        },
+        {
+          "month": "2023-02",
+          "crime_type": "Burglary",
+          "count": 700
+        },
+        {
+          "month": "2023-03",
+          "crime_type": "Burglary",
+          "count": 650
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "crime_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Crime Count"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Crime Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "crime_type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "count"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "crime_type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

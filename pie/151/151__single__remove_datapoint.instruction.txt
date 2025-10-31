@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Hijacking' category.
+[#OP1 op=remove_datapoint; category=Hostage Taking]

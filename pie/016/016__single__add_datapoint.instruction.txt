@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Very High Risk' and value 500 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High Risk; value=1500.0]

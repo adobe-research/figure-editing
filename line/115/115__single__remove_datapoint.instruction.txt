@@ -1,0 +1,2 @@
+Remove the datapoint for 'Online News Consumption' in the year 2017.
+[#OP1 op=remove_datapoint; category=Online News Consumption]

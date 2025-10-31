@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of air quality categories.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "right": 100,
+    "bottom": 5
+  },
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Good",
+          "value": 45
+        },
+        {
+          "category": "Moderate",
+          "value": 30
+        },
+        {
+          "category": "Unhealthy for Sensitive Groups",
+          "value": 15
+        },
+        {
+          "category": "Unhealthy",
+          "value": 7
+        },
+        {
+          "category": "Very Unhealthy",
+          "value": 3
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.283185307179586
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Air Quality Category",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": 0,
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ]
+}

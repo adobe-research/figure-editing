@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Obesity' and value 25.
+[#OP1 op=remove_datapoint; category=Smoking]

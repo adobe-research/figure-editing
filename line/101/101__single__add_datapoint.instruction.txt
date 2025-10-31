@@ -1,0 +1,2 @@
+Add a new datapoint for May 7, 2021, with a temperature of 70°F and precipitation of 0.05 inches.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=66.0]

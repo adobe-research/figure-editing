@@ -1,0 +1,2 @@
+Remove the datapoint for Neighborhood 'B' in the year 2001 with a price of 185000.
+[#OP1 op=remove_datapoint; category=C]

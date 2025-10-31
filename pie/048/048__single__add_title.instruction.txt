@@ -1,0 +1,2 @@
+Add a title to the pie chart with the text 'Distribution of Work Classes'.
+[#OP1 op=add_title; title_text=Edited Chart]

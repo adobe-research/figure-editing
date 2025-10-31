@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2021, subject 'Math', with a score of 495.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Math; value=2015.0]

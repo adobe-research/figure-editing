@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'Atypical Angina'.
+[#OP1 op=remove_datapoint; category=Typical Angina]

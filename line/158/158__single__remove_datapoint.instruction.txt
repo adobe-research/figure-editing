@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2010 with emissions value 10.5 from the 'Fossil Fuel Usage' series.
+[#OP1 op=remove_datapoint; category=Fossil Fuel Usage]

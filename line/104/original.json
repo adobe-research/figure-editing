@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing monthly average flight delays by airline.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2022-01",
+          "delay": 5.2,
+          "airline": "Airline A"
+        },
+        {
+          "month": "2022-01",
+          "delay": 3.8,
+          "airline": "Airline B"
+        },
+        {
+          "month": "2022-02",
+          "delay": 6.1,
+          "airline": "Airline A"
+        },
+        {
+          "month": "2022-02",
+          "delay": 4.0,
+          "airline": "Airline B"
+        },
+        {
+          "month": "2022-03",
+          "delay": 5.8,
+          "airline": "Airline A"
+        },
+        {
+          "month": "2022-03",
+          "delay": 4.5,
+          "airline": "Airline B"
+        },
+        {
+          "month": "2022-04",
+          "delay": 6.5,
+          "airline": "Airline A"
+        },
+        {
+          "month": "2022-04",
+          "delay": 4.8,
+          "airline": "Airline B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "delay"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "airline"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Average Delay (minutes)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Airlines",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "airline"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "delay"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "airline"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

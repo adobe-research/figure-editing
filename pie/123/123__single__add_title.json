@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions from Pew Research Center Surveys.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "survey_data",
+      "values": [
+        {
+          "category": "Social Media Use",
+          "value": 45
+        },
+        {
+          "category": "News Consumption",
+          "value": 30
+        },
+        {
+          "category": "Political Engagement",
+          "value": 15
+        },
+        {
+          "category": "Online Shopping",
+          "value": 10
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "A",
+          "value": 30
+        },
+        {
+          "category": "B",
+          "value": 45
+        },
+        {
+          "category": "C",
+          "value": 25
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "survey_data",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0.02
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Survey Categories",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart"
+  }
+}

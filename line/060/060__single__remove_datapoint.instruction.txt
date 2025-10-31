@@ -1,0 +1,2 @@
+Remove the datapoint for Store 2 on 2021-04-01 with sales value 210.
+[#OP1 op=remove_datapoint; category=2021-04-01]

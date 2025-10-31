@@ -1,0 +1,2 @@
+Add a new datapoint for the state of California with year 2013 and population 5300000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=California; value=2011.0]

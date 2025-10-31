@@ -1,0 +1,2 @@
+Remove the data point for the South region in March with a temperature of 29.8.
+[#OP1 op=remove_datapoint; category=Apr]

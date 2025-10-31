@@ -1,0 +1,2 @@
+Remove the datapoint with month '2020-04' and category 'Dairy'.
+[#OP1 op=remove_datapoint; category=2020-04]

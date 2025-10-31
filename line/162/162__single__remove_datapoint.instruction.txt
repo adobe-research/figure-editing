@@ -1,0 +1,2 @@
+Remove the datapoint with date '2022-01-02' and price 540.22 from the 'Opening Price' series.
+[#OP1 op=remove_datapoint; category=2022-01-02]

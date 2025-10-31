@@ -1,0 +1,3 @@
+Add a title to the chart and change the color of the 'Horror' category to '#ff5733'.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=add_title; title_text=Edited Chart]

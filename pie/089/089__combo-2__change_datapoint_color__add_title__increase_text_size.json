@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing the proportion of content types on Netflix.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.29
+    },
+    {
+      "name": "padAngle",
+      "value": 0
+    },
+    {
+      "name": "innerRadius",
+      "value": 0
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Movies",
+          "value": 600
+        },
+        {
+          "category": "TV Series",
+          "value": 300
+        },
+        {
+          "category": "Documentaries",
+          "value": 100
+        },
+        {
+          "category": "Kids & Family",
+          "value": 200
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": false
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Content Type",
+      "orient": "right",
+      "symbolType": "circle",
+      "titleFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "tooltip": {
+            "signal": "datum.category + ': ' + datum.value"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

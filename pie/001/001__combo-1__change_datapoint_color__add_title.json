@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Pie chart showing category proportions from the World Happiness Report.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.283185
+    },
+    {
+      "name": "padAngle",
+      "value": 0
+    },
+    {
+      "name": "innerRadius",
+      "value": 0
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Social Support",
+          "value": 0.8
+        },
+        {
+          "category": "GDP per Capita",
+          "value": 1.2
+        },
+        {
+          "category": "Healthy Life Expectancy",
+          "value": 0.9
+        },
+        {
+          "category": "Freedom to Make Life Choices",
+          "value": 0.6
+        },
+        {
+          "category": "Generosity",
+          "value": 0.3
+        },
+        {
+          "category": "Perceptions of Corruption",
+          "value": 0.2
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": false
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#FF5733",
+        "#9467bd"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

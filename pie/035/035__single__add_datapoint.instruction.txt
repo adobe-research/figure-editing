@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Renewable Energy' and value 12 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defense Budget; value=17.5]

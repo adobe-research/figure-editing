@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing the proportion of contact methods used in a bank marketing dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "contact_method": "In-person",
+          "count": 120
+        },
+        {
+          "contact_method": "Email",
+          "count": 300
+        },
+        {
+          "contact_method": "SMS",
+          "count": 150
+        },
+        {
+          "contact_method": "Web Form",
+          "count": 80
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "sort": false
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "contact_method"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "contact_method"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Contact Method",
+      "orient": "right",
+      "symbolType": "circle",
+      "titleFontSize": 14
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

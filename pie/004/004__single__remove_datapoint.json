@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Pie chart showing proportions of restaurant cuisines.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "signals": [
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.29
+    },
+    {
+      "name": "padAngle",
+      "value": 0.02
+    },
+    {
+      "name": "innerRadius",
+      "value": 0
+    },
+    {
+      "name": "cornerRadius",
+      "value": 3
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "North Indian",
+          "value": 40
+        },
+        {
+          "category": "Chinese",
+          "value": 25
+        },
+        {
+          "category": "Italian",
+          "value": 15
+        },
+        {
+          "category": "South Indian",
+          "value": 10
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": false
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Cuisine Type",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ]
+}

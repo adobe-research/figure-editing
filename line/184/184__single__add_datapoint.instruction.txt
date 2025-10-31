@@ -1,0 +1,2 @@
+Add a new datapoint for July 2023 with an unemployment rate of 3.8 and labor force participation of 62.9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=3.6]

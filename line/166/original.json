@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing average trip durations over months for different taxi types.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "duration": 15.2,
+          "type": "Yellow Taxi"
+        },
+        {
+          "month": "January",
+          "duration": 18.5,
+          "type": "Green Taxi"
+        },
+        {
+          "month": "February",
+          "duration": 14.8,
+          "type": "Yellow Taxi"
+        },
+        {
+          "month": "February",
+          "duration": 17.2,
+          "type": "Green Taxi"
+        },
+        {
+          "month": "March",
+          "duration": 16.1,
+          "type": "Yellow Taxi"
+        },
+        {
+          "month": "March",
+          "duration": 19.3,
+          "type": "Green Taxi"
+        },
+        {
+          "month": "April",
+          "duration": 15.7,
+          "type": "Yellow Taxi"
+        },
+        {
+          "month": "April",
+          "duration": 18.0,
+          "type": "Green Taxi"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "duration"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Average Trip Duration (minutes)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Taxi Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "duration"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

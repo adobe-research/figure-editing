@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Simulation' genre.
+[#OP1 op=remove_datapoint; category=Platform]

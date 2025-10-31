@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing bike rentals over time for different user types.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-06-01",
+          "rentals": 120,
+          "user_type": "Casual"
+        },
+        {
+          "date": "2021-06-01",
+          "rentals": 200,
+          "user_type": "Registered"
+        },
+        {
+          "date": "2021-06-02",
+          "rentals": 150,
+          "user_type": "Casual"
+        },
+        {
+          "date": "2021-06-02",
+          "rentals": 220,
+          "user_type": "Registered"
+        },
+        {
+          "date": "2021-06-03",
+          "rentals": 130,
+          "user_type": "Casual"
+        },
+        {
+          "date": "2021-06-03",
+          "rentals": 240,
+          "user_type": "Registered"
+        },
+        {
+          "date": "2021-06-04",
+          "rentals": 160,
+          "user_type": "Casual"
+        },
+        {
+          "date": "2021-06-04",
+          "rentals": 260,
+          "user_type": "Registered"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "rentals"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "user_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "labelAngle": -45,
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Rentals",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "User Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "user_type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "rentals"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "user_type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

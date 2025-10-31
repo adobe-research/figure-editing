@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2001 with GDP growth of 3.8% in the East Asia & Pacific region.
+[#OP1 op=remove_datapoint; category=East Asia & Pacific]

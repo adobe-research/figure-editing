@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color not used in the original spec.
+[#OP1 op=change_datapoint_color; target_category=2022-03; new_color=#ff7f0e]

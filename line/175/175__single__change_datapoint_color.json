@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing crime trends over time in Chicago.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "crime_data",
+      "values": [
+        {
+          "date": "2023-06-01",
+          "crime_count": 120,
+          "crime_type": "Theft"
+        },
+        {
+          "date": "2023-06-01",
+          "crime_count": 80,
+          "crime_type": "Assault"
+        },
+        {
+          "date": "2023-06-02",
+          "crime_count": 100,
+          "crime_type": "Theft"
+        },
+        {
+          "date": "2023-06-02",
+          "crime_count": 90,
+          "crime_type": "Assault"
+        },
+        {
+          "date": "2023-06-03",
+          "crime_count": 130,
+          "crime_type": "Theft"
+        },
+        {
+          "date": "2023-06-03",
+          "crime_count": 85,
+          "crime_type": "Assault"
+        },
+        {
+          "date": "2023-06-04",
+          "crime_count": 140,
+          "crime_type": "Theft"
+        },
+        {
+          "date": "2023-06-04",
+          "crime_count": 95,
+          "crime_type": "Assault"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "crime_data",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "crime_data",
+        "field": "crime_count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#FF5733",
+        "#33FF57"
+      ],
+      "domain": {
+        "data": "crime_data",
+        "field": "crime_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Crime Count"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Crime Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "crime_data",
+          "groupby": "crime_type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "crime_count"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "crime_type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              },
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ]
+}

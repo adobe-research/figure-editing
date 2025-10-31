@@ -1,0 +1,2 @@
+Remove the datapoint with category 'SMS' and value 80.
+[#OP1 op=remove_datapoint; category=Phone Call]

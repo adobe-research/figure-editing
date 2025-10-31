@@ -1,0 +1,188 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing COVID-19 cases over time for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01-22",
+          "cases": 555,
+          "region": "China"
+        },
+        {
+          "date": "2020-01-22",
+          "cases": 1,
+          "region": "US"
+        },
+        {
+          "date": "2020-01-22",
+          "cases": 0,
+          "region": "Italy"
+        },
+        {
+          "date": "2020-01-23",
+          "cases": 654,
+          "region": "China"
+        },
+        {
+          "date": "2020-01-23",
+          "cases": 1,
+          "region": "US"
+        },
+        {
+          "date": "2020-01-23",
+          "cases": 0,
+          "region": "Italy"
+        },
+        {
+          "date": "2020-01-24",
+          "cases": 941,
+          "region": "China"
+        },
+        {
+          "date": "2020-01-24",
+          "cases": 2,
+          "region": "US"
+        },
+        {
+          "date": "2020-01-24",
+          "cases": 0,
+          "region": "Italy"
+        },
+        {
+          "date": "2020-01-25",
+          "cases": 2000,
+          "region": "China"
+        },
+        {
+          "date": "2020-01-25",
+          "cases": 3,
+          "region": "US"
+        },
+        {
+          "date": "2020-01-25",
+          "cases": 0,
+          "region": "Italy"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Confirmed Cases"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "cases"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "region"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              },
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ]
+}

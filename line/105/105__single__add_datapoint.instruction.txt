@@ -1,0 +1,2 @@
+Add a new datapoint with date '2021-09', demand 130, and category 'A' at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-05; value=120.0]

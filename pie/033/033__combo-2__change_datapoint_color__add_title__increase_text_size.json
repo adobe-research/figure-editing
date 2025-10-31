@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of job categories in the Bank Marketing dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "signals": [
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.29
+    },
+    {
+      "name": "padAngle",
+      "value": 0
+    },
+    {
+      "name": "innerRadius",
+      "value": 0
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0
+    },
+    {
+      "name": "sort",
+      "value": false
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Management",
+          "value": 1200
+        },
+        {
+          "category": "Technician",
+          "value": 800
+        },
+        {
+          "category": "Entrepreneur",
+          "value": 500
+        },
+        {
+          "category": "Student",
+          "value": 300
+        },
+        {
+          "category": "Retired",
+          "value": 700
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": {
+            "signal": "sort"
+          }
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category20",
+        "override": {
+          "Student": "#FF5733"
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Job Category",
+      "orient": "right",
+      "symbolType": "circle",
+      "titleFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

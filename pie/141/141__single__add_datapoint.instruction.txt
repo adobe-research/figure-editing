@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Online' sales with a value of 20000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Metropolitan; value=20000.0]

@@ -1,0 +1,2 @@
+Change the background color of the chart to light gray (#f0f0f0).
+[#OP1 op=change_background_color; new_bg=#fff5e6]

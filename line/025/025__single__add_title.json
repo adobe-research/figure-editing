@@ -1,0 +1,202 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing precipitation and temperature over time in Seattle.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "weather",
+      "values": [
+        {
+          "date": "2023-01-08",
+          "precipitation": 12.5,
+          "temperature": 45
+        },
+        {
+          "date": "2023-01-09",
+          "precipitation": 8.3,
+          "temperature": 47
+        },
+        {
+          "date": "2023-01-10",
+          "precipitation": 15.6,
+          "temperature": 43
+        },
+        {
+          "date": "2023-01-11",
+          "precipitation": 10.2,
+          "temperature": 46
+        },
+        {
+          "date": "2023-01-12",
+          "precipitation": 5.1,
+          "temperature": 49
+        },
+        {
+          "date": "2023-01-13",
+          "precipitation": 0.0,
+          "temperature": 51
+        },
+        {
+          "date": "2023-01-14",
+          "precipitation": 7.8,
+          "temperature": 48
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "weather",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "weather",
+        "field": "precipitation"
+      }
+    },
+    {
+      "name": "y2",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "weather",
+        "field": "temperature"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": [
+        "precipitation",
+        "temperature"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Precipitation (mm)"
+    },
+    {
+      "orient": "right",
+      "scale": "y2",
+      "title": "Temperature (°F)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Metric",
+      "orient": "top-left"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "weather"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "precipitation"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "precipitation"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "weather"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y2",
+            "field": "temperature"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "temperature"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    }
+  ]
+}

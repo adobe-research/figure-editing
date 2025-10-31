@@ -1,0 +1,160 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing population trends over time by age group.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "population": 500000,
+          "age_group": "18-25"
+        },
+        {
+          "year": 2011,
+          "population": 520000,
+          "age_group": "18-25"
+        },
+        {
+          "year": 2012,
+          "population": 540000,
+          "age_group": "18-25"
+        },
+        {
+          "year": 2010,
+          "population": 700000,
+          "age_group": "26-35"
+        },
+        {
+          "year": 2011,
+          "population": 730000,
+          "age_group": "26-35"
+        },
+        {
+          "year": 2012,
+          "population": 760000,
+          "age_group": "26-35"
+        },
+        {
+          "year": 2010,
+          "population": 400000,
+          "age_group": "36-45"
+        },
+        {
+          "year": 2011,
+          "population": 420000,
+          "age_group": "36-45"
+        },
+        {
+          "year": 2012,
+          "population": 450000,
+          "age_group": "36-45"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012
+      ],
+      "padding": 0.9
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "population"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "age_group"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Population"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Age Group",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "age_group"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "population"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "age_group"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

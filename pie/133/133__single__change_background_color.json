@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of air quality categories.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Good",
+          "value": 120
+        },
+        {
+          "category": "Moderate",
+          "value": 80
+        },
+        {
+          "category": "Unhealthy for Sensitive Groups",
+          "value": 50
+        },
+        {
+          "category": "Unhealthy",
+          "value": 30
+        },
+        {
+          "category": "Very Unhealthy",
+          "value": 20
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "innerRadius",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100,
+        "step": 1
+      }
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 10,
+        "step": 1
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Air Quality Categories",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

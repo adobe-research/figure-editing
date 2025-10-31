@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Poor' and value 5.
+[#OP1 op=remove_datapoint; category=Good]

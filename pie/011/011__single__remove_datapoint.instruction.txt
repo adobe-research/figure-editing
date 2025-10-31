@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Price' and value 40.
+[#OP1 op=remove_datapoint; category=Food Quality]

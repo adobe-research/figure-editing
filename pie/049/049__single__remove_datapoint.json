@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing the proportions of different iris species.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "data": [
+    {
+      "name": "iris_data",
+      "values": [
+        {
+          "species": "Iris-setosa",
+          "count": 50
+        },
+        {
+          "species": "Iris-virginica",
+          "count": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "startAngle": 0,
+          "endAngle": 6.283185307179586,
+          "sort": false
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "A",
+          "value": 30
+        },
+        {
+          "category": "B",
+          "value": 45
+        },
+        {
+          "category": "C",
+          "value": 25
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "iris_data",
+        "field": "species"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Species",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "iris_data"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "species"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": 0.02,
+          "innerRadius": 0,
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ]
+}

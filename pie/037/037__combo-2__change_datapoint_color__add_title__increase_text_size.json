@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions for Kaggle: Breast Cancer Wisconsin (Diagnostic).",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Benign",
+          "value": 357
+        },
+        {
+          "category": "Malignant",
+          "value": 212
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.283185307179586
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": [
+        "#1f77b4",
+        "#FF5733"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right",
+      "symbolType": "circle",
+      "labelFontSize": 14
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": 0,
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

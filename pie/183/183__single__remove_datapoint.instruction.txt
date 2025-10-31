@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Student' category from the pie chart.
+[#OP1 op=remove_datapoint; category=Entrepreneur]

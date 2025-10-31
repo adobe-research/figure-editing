@@ -1,0 +1,2 @@
+Add a new datapoint for Neighborhood 'A' with Year 2008 and Price 240000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=2006.0]

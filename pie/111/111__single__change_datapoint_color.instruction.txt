@@ -1,0 +1,2 @@
+Change the color of the 'Role-Playing' genre datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Shooter; new_color=#8c564b]

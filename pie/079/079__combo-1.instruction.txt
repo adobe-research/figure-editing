@@ -1,0 +1,3 @@
+Change the color of the 'Freedom' datapoint to '#FF5733' and add a title 'Happiness Factors Distribution' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Generosity; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

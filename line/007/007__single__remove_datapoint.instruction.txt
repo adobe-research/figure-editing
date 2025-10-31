@@ -1,0 +1,2 @@
+Remove the datapoint for Microsoft on 2023-01-02 with a price of 255.
+[#OP1 op=remove_datapoint; category=2023-01-02]

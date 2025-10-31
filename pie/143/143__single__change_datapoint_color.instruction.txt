@@ -1,0 +1,2 @@
+Change the color of the 'Communication' datapoint to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Photography; new_color=#8c564b]

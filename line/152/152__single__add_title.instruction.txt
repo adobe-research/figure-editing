@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Trends in Internet and Social Media Usage (2015-2020)'.
+[#OP1 op=add_title; title_text=Edited Chart]

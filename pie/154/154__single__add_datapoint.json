@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing the distribution of contact methods in the Bank Marketing dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "contact_method": "Cellular",
+          "count": 5000
+        },
+        {
+          "contact_method": "Telephone",
+          "count": 2000
+        },
+        {
+          "contact_method": "Unknown",
+          "count": 1000
+        },
+        {
+          "contact_method": "Email",
+          "count": 3000
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "contact_method"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "contact_method"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Contact Method",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

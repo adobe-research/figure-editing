@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing bike trips over time by user type.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-06-01",
+          "trips": 120,
+          "user_type": "Subscriber"
+        },
+        {
+          "date": "2023-06-01",
+          "trips": 45,
+          "user_type": "Customer"
+        },
+        {
+          "date": "2023-06-02",
+          "trips": 150,
+          "user_type": "Subscriber"
+        },
+        {
+          "date": "2023-06-02",
+          "trips": 60,
+          "user_type": "Customer"
+        },
+        {
+          "date": "2023-06-03",
+          "trips": 200,
+          "user_type": "Subscriber"
+        },
+        {
+          "date": "2023-06-03",
+          "trips": 75,
+          "user_type": "Customer"
+        },
+        {
+          "date": "2023-06-04",
+          "trips": 180,
+          "user_type": "Subscriber"
+        },
+        {
+          "date": "2023-06-04",
+          "trips": 65,
+          "user_type": "Customer"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "trips"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "user_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Trips",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "User Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "user_type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "trips"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "user_type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              },
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

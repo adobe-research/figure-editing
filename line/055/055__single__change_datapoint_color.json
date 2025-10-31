@@ -1,0 +1,195 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing COVID-19 cases and deaths over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01-01",
+          "cases": 100,
+          "deaths": 2
+        },
+        {
+          "date": "2020-02-01",
+          "cases": 500,
+          "deaths": 10
+        },
+        {
+          "date": "2020-03-01",
+          "cases": 3000,
+          "deaths": 50
+        },
+        {
+          "date": "2020-04-01",
+          "cases": 10000,
+          "deaths": 500
+        },
+        {
+          "date": "2020-05-01",
+          "cases": 20000,
+          "deaths": 1000
+        },
+        {
+          "date": "2020-06-01",
+          "cases": 30000,
+          "deaths": 1500
+        },
+        {
+          "date": "2020-07-01",
+          "cases": 40000,
+          "deaths": 2000
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "y_alt",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "deaths"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "blue",
+        "category"
+      ],
+      "domain": [
+        "cases",
+        "deaths"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Cases"
+    },
+    {
+      "orient": "right",
+      "scale": "y_alt",
+      "title": "Deaths"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Metric",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "cases"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "cases"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y_alt",
+            "field": "deaths"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "deaths"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    }
+  ]
+}

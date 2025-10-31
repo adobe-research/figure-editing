@@ -1,0 +1,2 @@
+Add a new datapoint for July 5, 2023, with 1600 cases for the USA.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-07-01; value=950.0]

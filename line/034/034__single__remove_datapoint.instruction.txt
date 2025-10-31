@@ -1,0 +1,2 @@
+Remove the datapoint for 'Meat' category in '2023-03' with index value 118.9.
+[#OP1 op=remove_datapoint; category=2023-02]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Writing' and value 20.
+[#OP1 op=remove_datapoint; category=Math]

@@ -1,0 +1,4 @@
+Change the datapoint color for 'Rosa', add a title to the chart, and increase the text size for axis labels and title.
+[#OP1 op=change_datapoint_color; target_category=Rosa; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=12]

@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2015 with a value of 3.1 for the 'GDP Growth Rate' indicator.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=GDP Growth Rate; value=2012.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'State A' with a date of '2020-05' and a rate of 10.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-01; value=4.0]

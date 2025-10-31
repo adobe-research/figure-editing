@@ -1,0 +1,2 @@
+Remove the datapoint for Country B in the year 2012 with a value of 2.4.
+[#OP1 op=remove_datapoint; category=Country B]

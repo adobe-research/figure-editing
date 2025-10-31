@@ -1,0 +1,2 @@
+Remove the datapoint for Group A in the year 2014 with a percentage of 65.
+[#OP1 op=remove_datapoint; category=Group B]

@@ -1,0 +1,2 @@
+Change the color of the 'Toxic' category datapoint to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Obscene; new_color=#8c564b]

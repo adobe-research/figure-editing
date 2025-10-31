@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing proportions of customer job categories.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "job": "management",
+          "count": 120
+        },
+        {
+          "job": "technician",
+          "count": 80
+        },
+        {
+          "job": "blue-collar",
+          "count": 150
+        },
+        {
+          "job": "admin.",
+          "count": 70
+        },
+        {
+          "job": "retired",
+          "count": 50
+        },
+        {
+          "job": "student",
+          "count": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "job"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "job"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Job Category",
+      "orient": "right"
+    }
+  ]
+}

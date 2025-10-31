@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Social Support",
+          "value": 0.8
+        },
+        {
+          "category": "Freedom to Choose",
+          "value": 0.6
+        },
+        {
+          "category": "Generosity",
+          "value": 0.2
+        },
+        {
+          "category": "Perception of Corruption",
+          "value": 0.1
+        },
+        {
+          "category": "Healthy Life Expectancy",
+          "value": 0.7
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ]
+}

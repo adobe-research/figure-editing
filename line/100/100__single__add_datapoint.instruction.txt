@@ -1,0 +1,2 @@
+Add a new datapoint for 'Station A' on '2021-06-05' with a count of 220.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Station A; value=140.0]

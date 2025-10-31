@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing temperature trends over years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "temperature_data",
+      "values": [
+        {
+          "year": 2000,
+          "temperature": 14.5,
+          "region": "Global"
+        },
+        {
+          "year": 2001,
+          "temperature": 14.6,
+          "region": "Global"
+        },
+        {
+          "year": 2002,
+          "temperature": 14.7,
+          "region": "Global"
+        },
+        {
+          "year": 2003,
+          "temperature": 14.8,
+          "region": "Global"
+        },
+        {
+          "year": 2004,
+          "temperature": 14.6,
+          "region": "Global"
+        },
+        {
+          "year": 2000,
+          "temperature": 15.1,
+          "region": "North America"
+        },
+        {
+          "year": 2001,
+          "temperature": 15.2,
+          "region": "North America"
+        },
+        {
+          "year": 2002,
+          "temperature": 15.3,
+          "region": "North America"
+        },
+        {
+          "year": 2003,
+          "temperature": 15.4,
+          "region": "North America"
+        },
+        {
+          "year": 2004,
+          "temperature": 15.2,
+          "region": "North America"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "temperature_data",
+        "field": "temperature"
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "temperature_data",
+        "field": "region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "temperature_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "temperature"
+          },
+          "stroke": {
+            "scale": "color",
+            "field": "region"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "strokeOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "strokeOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

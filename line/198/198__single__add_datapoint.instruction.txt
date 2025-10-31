@@ -1,0 +1,2 @@
+Add a new datapoint with date '2023-07-04', price 32000, and series 'Close Price'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-07-01; value=31000.0]

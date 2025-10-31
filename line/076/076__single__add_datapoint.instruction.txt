@@ -1,0 +1,2 @@
+Add a new datapoint for Group A at year 2019 with a percentage of 65.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Group A; value=2017.0]

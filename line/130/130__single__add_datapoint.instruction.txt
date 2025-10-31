@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2003 with an anomaly of 0.75 in the Northern Hemisphere region.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Global; value=1991.0]

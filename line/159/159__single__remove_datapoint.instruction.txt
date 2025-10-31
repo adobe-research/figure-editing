@@ -1,0 +1,2 @@
+Remove the datapoint for Amazon with date '2023-01-03' and price 3380.
+[#OP1 op=remove_datapoint; category=2023-01-03]

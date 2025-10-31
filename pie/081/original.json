@@ -1,0 +1,111 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing video game genre proportions.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "genre": "Strategy",
+          "sales": 15
+        },
+        {
+          "genre": "Fighting",
+          "sales": 10
+        },
+        {
+          "genre": "Sports",
+          "sales": 25
+        },
+        {
+          "genre": "Platformer",
+          "sales": 20
+        },
+        {
+          "genre": "Puzzle",
+          "sales": 10
+        },
+        {
+          "genre": "RPG",
+          "sales": 20
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "sales",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "genre"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "genre"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0.01
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Genre",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing OECD PISA scores over years for different subjects.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "data": [
+    {
+      "name": "scores",
+      "values": [
+        {
+          "year": 2000,
+          "score": 500,
+          "subject": "Reading"
+        },
+        {
+          "year": 2003,
+          "score": 495,
+          "subject": "Reading"
+        },
+        {
+          "year": 2006,
+          "score": 492,
+          "subject": "Reading"
+        },
+        {
+          "year": 2009,
+          "score": 501,
+          "subject": "Reading"
+        },
+        {
+          "year": 2012,
+          "score": 498,
+          "subject": "Reading"
+        },
+        {
+          "year": 2015,
+          "score": 493,
+          "subject": "Reading"
+        },
+        {
+          "year": 2018,
+          "score": 487,
+          "subject": "Reading"
+        },
+        {
+          "year": 2000,
+          "score": 498,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2003,
+          "score": 496,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2006,
+          "score": 494,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2009,
+          "score": 497,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2012,
+          "score": 494,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2015,
+          "score": 490,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2018,
+          "score": 483,
+          "subject": "Mathematics"
+        },
+        {
+          "year": 2000,
+          "score": 502,
+          "subject": "Science"
+        },
+        {
+          "year": 2003,
+          "score": 500,
+          "subject": "Science"
+        },
+        {
+          "year": 2006,
+          "score": 498,
+          "subject": "Science"
+        },
+        {
+          "year": 2009,
+          "score": 503,
+          "subject": "Science"
+        },
+        {
+          "year": 2012,
+          "score": 501,
+          "subject": "Science"
+        },
+        {
+          "year": 2015,
+          "score": 496,
+          "subject": "Science"
+        },
+        {
+          "year": 2018,
+          "score": 489,
+          "subject": "Science"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2003,
+        2006,
+        2009,
+        2012,
+        2015,
+        2018
+      ]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "scores",
+        "field": "score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "scores",
+        "field": "subject"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "PISA Score"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Subject",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "scores",
+          "groupby": "subject"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "score"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "subject"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

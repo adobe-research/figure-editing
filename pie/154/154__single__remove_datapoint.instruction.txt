@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Unknown' contact method.
+[#OP1 op=remove_datapoint; category=Cellular]

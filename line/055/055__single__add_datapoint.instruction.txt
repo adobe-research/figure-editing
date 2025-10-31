@@ -1,0 +1,2 @@
+Add a new datapoint for July 15, 2020, with 45000 cases and 2200 deaths.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=15000.0]

@@ -1,0 +1,2 @@
+Change the background color of the pie chart to light gray.
+[#OP1 op=change_background_color; new_bg=#fff5e6]

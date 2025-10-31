@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Never-worked' and value 7 from the pie chart.
+[#OP1 op=remove_datapoint; category=Self-emp-inc]

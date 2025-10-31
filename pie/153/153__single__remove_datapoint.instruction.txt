@@ -1,0 +1,2 @@
+Remove the datapoint with the contact method 'Unknown' from the pie chart.
+[#OP1 op=remove_datapoint; category=Cellular]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Government Spending' and value 17.6.
+[#OP1 op=remove_datapoint; category=Personal Consumption]

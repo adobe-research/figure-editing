@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing accident counts over time by severity.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "accidents",
+      "values": [
+        {
+          "date": "2020-06",
+          "severity": "Low",
+          "count": 120
+        },
+        {
+          "date": "2020-06",
+          "severity": "Medium",
+          "count": 80
+        },
+        {
+          "date": "2020-06",
+          "severity": "High",
+          "count": 40
+        },
+        {
+          "date": "2020-07",
+          "severity": "Low",
+          "count": 150
+        },
+        {
+          "date": "2020-07",
+          "severity": "Medium",
+          "count": 100
+        },
+        {
+          "date": "2020-07",
+          "severity": "High",
+          "count": 50
+        },
+        {
+          "date": "2020-08",
+          "severity": "Low",
+          "count": 130
+        },
+        {
+          "date": "2020-08",
+          "severity": "Medium",
+          "count": 90
+        },
+        {
+          "date": "2020-08",
+          "severity": "High",
+          "count": 45
+        },
+        {
+          "date": "2020-09",
+          "severity": "Low",
+          "count": 140
+        },
+        {
+          "date": "2020-09",
+          "severity": "Medium",
+          "count": 95
+        },
+        {
+          "date": "2020-09",
+          "severity": "High",
+          "count": 48
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "accidents",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "accidents",
+        "field": "count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "accidents",
+        "field": "severity"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Accident Count",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Severity",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "accidents",
+          "groupby": "severity"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "count"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "severity"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

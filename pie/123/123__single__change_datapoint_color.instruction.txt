@@ -1,0 +1,2 @@
+Change the color of the 'Social Media Use' datapoint to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Online Shopping; new_color=#d62728]

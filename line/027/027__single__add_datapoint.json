@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing university rankings over years for multiple institutions.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "data": [
+    {
+      "name": "rankings",
+      "values": [
+        {
+          "year": 2016,
+          "rank": 1,
+          "institution": "University A"
+        },
+        {
+          "year": 2017,
+          "rank": 2,
+          "institution": "University A"
+        },
+        {
+          "year": 2018,
+          "rank": 3,
+          "institution": "University A"
+        },
+        {
+          "year": 2016,
+          "rank": 5,
+          "institution": "University B"
+        },
+        {
+          "year": 2017,
+          "rank": 4,
+          "institution": "University B"
+        },
+        {
+          "year": 2018,
+          "rank": 6,
+          "institution": "University B"
+        },
+        {
+          "year": 2016,
+          "rank": 8,
+          "institution": "University C"
+        },
+        {
+          "year": 2017,
+          "rank": 7,
+          "institution": "University C"
+        },
+        {
+          "year": 2018,
+          "rank": 5,
+          "institution": "University C"
+        },
+        {
+          "year": 2019,
+          "rank": 4,
+          "institution": "University A"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "rankings",
+        "field": "rank"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "rankings",
+        "field": "institution"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Rank"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Institution",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "rankings",
+          "groupby": "institution"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "rank"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "institution"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

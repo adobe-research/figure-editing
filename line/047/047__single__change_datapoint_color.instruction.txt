@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color, 'orange'.
+[#OP1 op=change_datapoint_color; target_category=2023-06-01; new_color=#ff7f0e]

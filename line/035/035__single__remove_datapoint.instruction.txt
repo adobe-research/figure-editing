@@ -1,0 +1,2 @@
+Remove the datapoint for Soybean production in 2018.
+[#OP1 op=remove_datapoint; category=Wheat]

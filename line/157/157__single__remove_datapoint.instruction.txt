@@ -1,0 +1,2 @@
+Remove the datapoint for the Southern Hemisphere region in the year 1881 with a temperature anomaly of 0.02.
+[#OP1 op=remove_datapoint; category=Northern Hemisphere]

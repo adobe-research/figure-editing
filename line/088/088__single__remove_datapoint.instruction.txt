@@ -1,0 +1,2 @@
+Remove the datapoint for 'Item B' on '2023-03-01' with a demand of 130.
+[#OP1 op=remove_datapoint; category=2023-03-01]

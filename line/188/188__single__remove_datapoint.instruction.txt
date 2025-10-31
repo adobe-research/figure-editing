@@ -1,0 +1,2 @@
+Remove the datapoint for Airline B in the year 2011 with 95 passengers.
+[#OP1 op=remove_datapoint; category=Airline B]

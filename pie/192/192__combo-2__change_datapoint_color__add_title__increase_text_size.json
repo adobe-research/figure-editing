@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions for the Stroke Prediction Dataset.",
+  "width": 300,
+  "height": 300,
+  "autosize": "none",
+  "signals": [
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.28318
+    },
+    {
+      "name": "padAngle",
+      "value": 0
+    },
+    {
+      "name": "innerRadius",
+      "value": 0
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0
+    },
+    {
+      "name": "sort",
+      "value": false
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Male",
+          "value": 250
+        },
+        {
+          "category": "Female",
+          "value": 300
+        },
+        {
+          "category": "Other",
+          "value": 50
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": {
+            "signal": "sort"
+          }
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": [
+        "#FF5733",
+        "#1f77b4",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Gender",
+      "orient": "right",
+      "symbolType": "circle",
+      "titleFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

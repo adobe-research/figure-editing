@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Consumer Confidence'.
+[#OP1 op=remove_datapoint; category=GDP Growth]

@@ -1,0 +1,3 @@
+Change the color of the 'Unknown' datapoint to '#FF5733' and add a title 'Bank Marketing Contact Methods'.
+[#OP1 op=change_datapoint_color; target_category=Telephone; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing global temperature anomalies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "temperature_data",
+      "values": [
+        {
+          "year": 1880,
+          "temperature_anomaly": -0.12,
+          "series": "Global"
+        },
+        {
+          "year": 1890,
+          "temperature_anomaly": -0.08,
+          "series": "Global"
+        },
+        {
+          "year": 1900,
+          "temperature_anomaly": -0.09,
+          "series": "Global"
+        },
+        {
+          "year": 1920,
+          "temperature_anomaly": -0.27,
+          "series": "Global"
+        },
+        {
+          "year": 1930,
+          "temperature_anomaly": -0.13,
+          "series": "Global"
+        },
+        {
+          "year": 1940,
+          "temperature_anomaly": 0.07,
+          "series": "Global"
+        },
+        {
+          "year": 1950,
+          "temperature_anomaly": -0.17,
+          "series": "Global"
+        },
+        {
+          "year": 1960,
+          "temperature_anomaly": -0.15,
+          "series": "Global"
+        },
+        {
+          "year": 1970,
+          "temperature_anomaly": -0.07,
+          "series": "Global"
+        },
+        {
+          "year": 1980,
+          "temperature_anomaly": 0.18,
+          "series": "Global"
+        },
+        {
+          "year": 1990,
+          "temperature_anomaly": 0.34,
+          "series": "Global"
+        },
+        {
+          "year": 2000,
+          "temperature_anomaly": 0.48,
+          "series": "Global"
+        },
+        {
+          "year": 2010,
+          "temperature_anomaly": 0.62,
+          "series": "Global"
+        },
+        {
+          "year": 2020,
+          "temperature_anomaly": 0.85,
+          "series": "Global"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1880,
+        1890,
+        1900,
+        1920,
+        1930,
+        1940,
+        1950,
+        1960,
+        1970,
+        1980,
+        1990,
+        2000,
+        2010,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "temperature_data",
+        "field": "temperature_anomaly"
+      },
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "temperature_data",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Series",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "temperature_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "temperature_anomaly"
+          },
+          "stroke": {
+            "scale": "color",
+            "field": "series"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "strokeOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "strokeOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

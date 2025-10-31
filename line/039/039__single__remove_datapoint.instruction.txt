@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2014 with a value of 1.4 and indicator 'Inflation'.
+[#OP1 op=remove_datapoint; category=GDP Growth Rate]

@@ -1,0 +1,4 @@
+Change the color of the 'Arson' datapoint to '#FF5733', add a title 'Forest Fire Causes', and increase the text size of the legend title to 14.
+[#OP1 op=change_datapoint_color; target_category=Miscellaneous; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=change_datapoint_color; target_category=Campfire; new_color=#ff7f0e]

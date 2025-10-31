@@ -1,0 +1,2 @@
+Add a new datapoint with date '2021-01-06', temperature 20, and humidity 53 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-01-01; value=17.5]

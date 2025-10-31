@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing World Happiness Score trends over years for selected countries.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "happiness_score": 7.5,
+          "country": "Norway"
+        },
+        {
+          "year": 2016,
+          "happiness_score": 7.6,
+          "country": "Norway"
+        },
+        {
+          "year": 2017,
+          "happiness_score": 7.7,
+          "country": "Norway"
+        },
+        {
+          "year": 2018,
+          "happiness_score": 7.5,
+          "country": "Norway"
+        },
+        {
+          "year": 2015,
+          "happiness_score": 7.2,
+          "country": "Denmark"
+        },
+        {
+          "year": 2016,
+          "happiness_score": 7.3,
+          "country": "Denmark"
+        },
+        {
+          "year": 2017,
+          "happiness_score": 7.4,
+          "country": "Denmark"
+        },
+        {
+          "year": 2018,
+          "happiness_score": 7.2,
+          "country": "Denmark"
+        },
+        {
+          "year": 2015,
+          "happiness_score": 6.8,
+          "country": "Canada"
+        },
+        {
+          "year": 2016,
+          "happiness_score": 6.9,
+          "country": "Canada"
+        },
+        {
+          "year": 2017,
+          "happiness_score": 7.0,
+          "country": "Canada"
+        },
+        {
+          "year": 2018,
+          "happiness_score": 6.8,
+          "country": "Canada"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "happiness_score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "labelFontSize": 16,
+      "titleFontSize": 16,
+      "tickSize": 10
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Happiness Score",
+      "labelFontSize": 16,
+      "titleFontSize": 16,
+      "tickSize": 10
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "happiness_score"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "country"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

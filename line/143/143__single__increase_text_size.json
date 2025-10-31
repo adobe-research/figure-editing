@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing demand trends over time for different product categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "demand": 120,
+          "category": "Electronics"
+        },
+        {
+          "date": "2023-01-02",
+          "demand": 130,
+          "category": "Electronics"
+        },
+        {
+          "date": "2023-01-03",
+          "demand": 125,
+          "category": "Electronics"
+        },
+        {
+          "date": "2023-01-01",
+          "demand": 80,
+          "category": "Furniture"
+        },
+        {
+          "date": "2023-01-02",
+          "demand": 90,
+          "category": "Furniture"
+        },
+        {
+          "date": "2023-01-03",
+          "demand": 85,
+          "category": "Furniture"
+        },
+        {
+          "date": "2023-01-01",
+          "demand": 100,
+          "category": "Clothing"
+        },
+        {
+          "date": "2023-01-02",
+          "demand": 110,
+          "category": "Clothing"
+        },
+        {
+          "date": "2023-01-03",
+          "demand": 105,
+          "category": "Clothing"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "demand"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "category"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              },
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "COVID-19 daily cases and deaths over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-05-01",
+          "cases": 30000,
+          "deaths": 500
+        },
+        {
+          "date": "2020-05-02",
+          "cases": 32000,
+          "deaths": 550
+        },
+        {
+          "date": "2020-05-03",
+          "cases": 34000,
+          "deaths": 600
+        },
+        {
+          "date": "2020-05-04",
+          "cases": 36000,
+          "deaths": 650
+        },
+        {
+          "date": "2020-05-05",
+          "cases": 38000,
+          "deaths": 700
+        },
+        {
+          "date": "2020-05-06",
+          "cases": 40000,
+          "deaths": 750
+        },
+        {
+          "date": "2020-05-07",
+          "cases": 42000,
+          "deaths": 800
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "y2",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "deaths"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "blue",
+        "red"
+      ],
+      "domain": [
+        "cases",
+        "deaths"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "labelFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Daily Cases",
+      "labelFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "right",
+      "scale": "y2",
+      "title": "Daily Deaths",
+      "labelFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Series",
+      "orient": "top-right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "cases"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "blue"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y2",
+            "field": "deaths"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "red"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

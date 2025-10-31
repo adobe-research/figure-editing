@@ -1,0 +1,2 @@
+Remove the datapoint for 'Blood Pressure' in the year 2001 with value 122.3.
+[#OP1 op=remove_datapoint; category=Blood Pressure]

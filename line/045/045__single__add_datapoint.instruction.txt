@@ -1,0 +1,2 @@
+Add a new datapoint for Amazon on 2023-01-04 with a price of 212.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Amazon; value=211.0]

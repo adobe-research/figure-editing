@@ -1,0 +1,2 @@
+Add a new datapoint for April with a price of 150 for the room type 'Entire home/apt'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=87.5]

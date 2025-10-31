@@ -1,0 +1,2 @@
+Remove the datapoint for Australia in the year 2017 with rank 15.
+[#OP1 op=remove_datapoint; category=United Kingdom]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Strategy' genre.
+[#OP1 op=remove_datapoint; category=Action]

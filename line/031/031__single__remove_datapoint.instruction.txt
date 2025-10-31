@@ -1,0 +1,2 @@
+Remove the datapoint for Florida in the year 2012 with a population of 2200000.
+[#OP1 op=remove_datapoint; category=Florida]

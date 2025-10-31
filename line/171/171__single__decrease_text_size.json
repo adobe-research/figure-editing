@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing average Airbnb prices over months for different room types.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "price": 120,
+          "room_type": "Entire home/apt"
+        },
+        {
+          "month": "January",
+          "price": 80,
+          "room_type": "Private room"
+        },
+        {
+          "month": "January",
+          "price": 50,
+          "room_type": "Shared room"
+        },
+        {
+          "month": "February",
+          "price": 130,
+          "room_type": "Entire home/apt"
+        },
+        {
+          "month": "February",
+          "price": 85,
+          "room_type": "Private room"
+        },
+        {
+          "month": "February",
+          "price": 55,
+          "room_type": "Shared room"
+        },
+        {
+          "month": "March",
+          "price": 140,
+          "room_type": "Entire home/apt"
+        },
+        {
+          "month": "March",
+          "price": 90,
+          "room_type": "Private room"
+        },
+        {
+          "month": "March",
+          "price": 60,
+          "room_type": "Shared room"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "room_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Average Price ($)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Room Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "room_type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "price"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "room_type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

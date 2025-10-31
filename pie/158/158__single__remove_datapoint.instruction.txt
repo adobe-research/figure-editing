@@ -1,0 +1,2 @@
+Remove the datapoint with outcome 'Unknown' and count 1500.
+[#OP1 op=remove_datapoint; category=Not Subscribed]

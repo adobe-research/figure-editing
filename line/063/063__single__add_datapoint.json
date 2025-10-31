@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing precipitation and temperature trends in Seattle over time.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "data": [
+    {
+      "name": "weather",
+      "values": [
+        {
+          "date": "2023-06-01",
+          "precipitation": 5.2,
+          "temperature": 68
+        },
+        {
+          "date": "2023-06-02",
+          "precipitation": 0.0,
+          "temperature": 70
+        },
+        {
+          "date": "2023-06-03",
+          "precipitation": 3.1,
+          "temperature": 65
+        },
+        {
+          "date": "2023-06-04",
+          "precipitation": 0.0,
+          "temperature": 72
+        },
+        {
+          "date": "2023-06-05",
+          "precipitation": 8.7,
+          "temperature": 60
+        },
+        {
+          "date": "2023-06-06",
+          "precipitation": 4.5,
+          "temperature": 66
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "weather",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y_precipitation",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "weather",
+        "field": "precipitation"
+      }
+    },
+    {
+      "name": "y_temperature",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "weather",
+        "field": "temperature"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": [
+        "Precipitation",
+        "Temperature"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y_precipitation",
+      "title": "Precipitation (mm)"
+    },
+    {
+      "orient": "right",
+      "scale": "y_temperature",
+      "title": "Temperature (°F)",
+      "offset": 10
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Metrics",
+      "orient": "top-right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "weather"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y_precipitation",
+            "field": "precipitation"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "Precipitation"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "weather"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y_temperature",
+            "field": "temperature"
+          },
+          "stroke": {
+            "scale": "color",
+            "value": "Temperature"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing average trip duration over months for different passenger counts.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2021-01",
+          "duration": 12.5,
+          "passenger_count": 1
+        },
+        {
+          "month": "2021-02",
+          "duration": 14.3,
+          "passenger_count": 1
+        },
+        {
+          "month": "2021-03",
+          "duration": 13.8,
+          "passenger_count": 1
+        },
+        {
+          "month": "2021-01",
+          "duration": 18.7,
+          "passenger_count": 2
+        },
+        {
+          "month": "2021-02",
+          "duration": 19.2,
+          "passenger_count": 2
+        },
+        {
+          "month": "2021-03",
+          "duration": 20.1,
+          "passenger_count": 2
+        },
+        {
+          "month": "2021-01",
+          "duration": 25.4,
+          "passenger_count": 3
+        },
+        {
+          "month": "2021-02",
+          "duration": 27.6,
+          "passenger_count": 3
+        },
+        {
+          "month": "2021-03",
+          "duration": 26.3,
+          "passenger_count": 3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "duration"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "passenger_count"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Average Trip Duration (minutes)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Passenger Count",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "passenger_count"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "duration"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "passenger_count"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing happiness score trends over years for different regions.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "happiness_data",
+      "values": [
+        {
+          "year": 2015,
+          "region": "Western Europe",
+          "happiness_score": 7.5
+        },
+        {
+          "year": 2015,
+          "region": "Sub-Saharan Africa",
+          "happiness_score": 4.2
+        },
+        {
+          "year": 2016,
+          "region": "Western Europe",
+          "happiness_score": 7.4
+        },
+        {
+          "year": 2016,
+          "region": "Sub-Saharan Africa",
+          "happiness_score": 4.3
+        },
+        {
+          "year": 2017,
+          "region": "Western Europe",
+          "happiness_score": 7.3
+        },
+        {
+          "year": 2017,
+          "region": "Sub-Saharan Africa",
+          "happiness_score": 4.4
+        },
+        {
+          "year": 2018,
+          "region": "Western Europe",
+          "happiness_score": 7.2
+        },
+        {
+          "year": 2018,
+          "region": "Sub-Saharan Africa",
+          "happiness_score": 4.5
+        },
+        {
+          "year": 2019,
+          "region": "Western Europe",
+          "happiness_score": 7.3
+        },
+        {
+          "year": 2019,
+          "region": "Sub-Saharan Africa",
+          "happiness_score": 4.6
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "happiness_data",
+        "field": "happiness_score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "happiness_data",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Happiness Score",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "happiness_data",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "happiness_score"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "region"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

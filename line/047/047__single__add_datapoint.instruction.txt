@@ -1,0 +1,2 @@
+Add a new datapoint for Bitcoin on 2023-06-04 with a price of 28500.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bitcoin; value=27000.0]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Petal Width' and value 20.
+[#OP1 op=remove_datapoint; category=Petal Length]

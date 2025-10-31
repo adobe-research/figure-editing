@@ -1,0 +1,2 @@
+Remove the datapoint for the Southern Hemisphere in the year 1882 with an anomaly of -0.05.
+[#OP1 op=remove_datapoint; category=Southern Hemisphere]

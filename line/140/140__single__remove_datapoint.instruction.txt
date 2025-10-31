@@ -1,0 +1,2 @@
+Remove the datapoint for the date '2023-10-05' with temperature 35 and humidity 58.
+[#OP1 op=remove_datapoint; category=2023-10-01]

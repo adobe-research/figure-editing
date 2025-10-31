@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing category proportions for forest fire causes.",
+  "width": 300,
+  "height": 300,
+  "padding": {
+    "left": 10,
+    "top": 10,
+    "right": 10,
+    "bottom": 10
+  },
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "cause": "Lightning",
+          "count": 45
+        },
+        {
+          "cause": "Campfire",
+          "count": 30
+        },
+        {
+          "cause": "Arson",
+          "count": 20
+        },
+        {
+          "cause": "Debris Burning",
+          "count": 25
+        },
+        {
+          "cause": "Equipment Use",
+          "count": 10
+        },
+        {
+          "cause": "Miscellaneous",
+          "count": 15
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "count",
+          "startAngle": 0,
+          "endAngle": 6.28,
+          "sort": true
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "cause"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Cause of Fire",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "cause"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "value": 0.02
+          },
+          "innerRadius": {
+            "value": 0
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "value": 5
+          }
+        }
+      }
+    }
+  ]
+}

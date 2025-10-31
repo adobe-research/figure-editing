@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing GDP growth rate and inflation over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "value": 3.5,
+          "indicator": "GDP Growth Rate"
+        },
+        {
+          "year": 2010,
+          "value": 1.2,
+          "indicator": "Inflation"
+        },
+        {
+          "year": 2011,
+          "value": 3.8,
+          "indicator": "GDP Growth Rate"
+        },
+        {
+          "year": 2011,
+          "value": 1.5,
+          "indicator": "Inflation"
+        },
+        {
+          "year": 2012,
+          "value": 2.2,
+          "indicator": "GDP Growth Rate"
+        },
+        {
+          "year": 2012,
+          "value": 1.8,
+          "indicator": "Inflation"
+        },
+        {
+          "year": 2013,
+          "value": 2.5,
+          "indicator": "GDP Growth Rate"
+        },
+        {
+          "year": 2013,
+          "value": 1.6,
+          "indicator": "Inflation"
+        },
+        {
+          "year": 2014,
+          "value": 2.9,
+          "indicator": "GDP Growth Rate"
+        },
+        {
+          "year": 2014,
+          "value": 1.4,
+          "indicator": "Inflation"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "indicator"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Indicator",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "indicator"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "value"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "indicator"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

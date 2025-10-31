@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Social Media' with a value of 600 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Direct Mail; value=600.0]

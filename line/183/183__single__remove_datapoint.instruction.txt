@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2012 and age group 36-45.
+[#OP1 op=remove_datapoint; category=18-25]

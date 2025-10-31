@@ -1,0 +1,2 @@
+Add a new datapoint for the age group '70-79' with a value of 29.5 in the 'BMI' series.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=20-29; value=29.5]

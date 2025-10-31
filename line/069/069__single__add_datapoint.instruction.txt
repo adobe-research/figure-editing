@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2025 with a population of 900000 in the 'West' region.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Midwest; value=2015.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Grocery' department with a sales value of 900 on '2021-05-01'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Clothing; value=500.0]

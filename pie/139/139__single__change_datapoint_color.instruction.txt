@@ -1,0 +1,2 @@
+Change the color of the 'Games' category datapoint to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Business; new_color=#8c564b]

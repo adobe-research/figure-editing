@@ -1,0 +1,2 @@
+Add a new datapoint for 'Casual' users on '2023-08-05' with a count of 250.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Casual; value=250.0]

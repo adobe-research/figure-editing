@@ -1,0 +1,2 @@
+Remove the datapoint for the year 1910 with a temperature anomaly of -0.25.
+[#OP1 op=remove_datapoint; category=Global]

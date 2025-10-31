@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Cereals' category with month '2022-04' and index 162.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2022-01; value=126.0]

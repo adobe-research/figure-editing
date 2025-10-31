@@ -1,0 +1,2 @@
+Change the color of the 'Strategy' genre datapoint to a new color '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Strategy; new_color=#8c564b]

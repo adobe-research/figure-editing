@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Energy Production by Source (2015-2017)'.
+[#OP1 op=add_title; title_text=Edited Chart]

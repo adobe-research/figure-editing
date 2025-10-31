@@ -1,0 +1,2 @@
+Add a new datapoint for the company 'Apple' with a date of '2023-05-01' and a price of 170.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01-01; value=260.0]

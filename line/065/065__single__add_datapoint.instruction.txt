@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2021 with rank 2 for the United States.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Australia; value=2019.0]

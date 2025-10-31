@@ -1,0 +1,171 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing average price trends for New York City Airbnb listings over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2022-01",
+          "average_price": 150,
+          "borough": "Manhattan"
+        },
+        {
+          "date": "2022-02",
+          "average_price": 145,
+          "borough": "Manhattan"
+        },
+        {
+          "date": "2022-03",
+          "average_price": 160,
+          "borough": "Manhattan"
+        },
+        {
+          "date": "2022-01",
+          "average_price": 120,
+          "borough": "Brooklyn"
+        },
+        {
+          "date": "2022-02",
+          "average_price": 125,
+          "borough": "Brooklyn"
+        },
+        {
+          "date": "2022-03",
+          "average_price": 130,
+          "borough": "Brooklyn"
+        },
+        {
+          "date": "2022-01",
+          "average_price": 100,
+          "borough": "Queens"
+        },
+        {
+          "date": "2022-02",
+          "average_price": 105,
+          "borough": "Queens"
+        },
+        {
+          "date": "2022-03",
+          "average_price": 110,
+          "borough": "Queens"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "average_price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "borough"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Average Price ($)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Borough",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "borough"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "average_price"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "borough"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "interpolate": {
+                "value": "linear"
+              },
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

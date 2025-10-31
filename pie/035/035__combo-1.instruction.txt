@@ -1,0 +1,3 @@
+Change the color of the 'Education Spending' datapoint to '#ff5733' and add a title 'Budget Allocation by Category' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Infrastructure Investment; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

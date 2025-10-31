@@ -1,0 +1,173 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing bike sharing demand over days and weather conditions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "day": "2023-05-01",
+          "count": 120,
+          "weather": "Clear"
+        },
+        {
+          "day": "2023-05-01",
+          "count": 95,
+          "weather": "Cloudy"
+        },
+        {
+          "day": "2023-05-02",
+          "count": 150,
+          "weather": "Clear"
+        },
+        {
+          "day": "2023-05-02",
+          "count": 110,
+          "weather": "Cloudy"
+        },
+        {
+          "day": "2023-05-03",
+          "count": 130,
+          "weather": "Clear"
+        },
+        {
+          "day": "2023-05-03",
+          "count": 100,
+          "weather": "Cloudy"
+        },
+        {
+          "day": "2023-05-04",
+          "count": 170,
+          "weather": "Clear"
+        },
+        {
+          "day": "2023-05-04",
+          "count": 120,
+          "weather": "Cloudy"
+        },
+        {
+          "day": "2023-05-05",
+          "count": 160,
+          "weather": "Clear"
+        },
+        {
+          "day": "2023-05-05",
+          "count": 130,
+          "weather": "Cloudy"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "day"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "weather"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Day",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Bike Demand",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Weather Condition",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "weather"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "day"
+              },
+              "y": {
+                "scale": "y",
+                "field": "count"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "weather"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

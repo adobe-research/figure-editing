@@ -1,0 +1,2 @@
+Remove the datapoint for 'Home' category on '2023-01-03' with price 32.0.
+[#OP1 op=remove_datapoint; category=2023-01-03]

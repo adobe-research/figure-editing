@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Draw' and value 250.
+[#OP1 op=remove_datapoint; category=Away Win]

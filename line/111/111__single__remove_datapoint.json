@@ -1,0 +1,171 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing crop production trends over years for different crops.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "production": 120,
+          "crop": "Corn"
+        },
+        {
+          "year": 2016,
+          "production": 150,
+          "crop": "Corn"
+        },
+        {
+          "year": 2017,
+          "production": 140,
+          "crop": "Corn"
+        },
+        {
+          "year": 2018,
+          "production": 160,
+          "crop": "Corn"
+        },
+        {
+          "year": 2015,
+          "production": 80,
+          "crop": "Wheat"
+        },
+        {
+          "year": 2016,
+          "production": 90,
+          "crop": "Wheat"
+        },
+        {
+          "year": 2017,
+          "production": 85,
+          "crop": "Wheat"
+        },
+        {
+          "year": 2018,
+          "production": 95,
+          "crop": "Wheat"
+        },
+        {
+          "year": 2015,
+          "production": 60,
+          "crop": "Soybeans"
+        },
+        {
+          "year": 2016,
+          "production": 70,
+          "crop": "Soybeans"
+        },
+        {
+          "year": 2018,
+          "production": 80,
+          "crop": "Soybeans"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "crop"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Production (in millions of tons)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Crop Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "crop"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "production"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "crop"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

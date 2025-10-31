@@ -1,0 +1,3 @@
+Change the color of the 'Healthcare' datapoint to '#FF5733' and add a title 'Category Distribution' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Healthcare; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020 with a percentage of 65 and response 'Agree' at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agree; value=2017.0]

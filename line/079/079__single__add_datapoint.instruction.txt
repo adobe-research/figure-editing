@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2025 with source 'Renewables' and consumption 28.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Coal; value=2015.0]

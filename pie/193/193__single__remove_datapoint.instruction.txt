@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Other Revenue' with a value of 5000.
+[#OP1 op=remove_datapoint; category=Licensing Revenue]

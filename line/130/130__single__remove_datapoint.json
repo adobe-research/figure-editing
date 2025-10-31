@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing global temperature anomalies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "temperature_data",
+      "values": [
+        {
+          "year": 1880,
+          "anomaly": -0.12,
+          "region": "Global"
+        },
+        {
+          "year": 1881,
+          "anomaly": -0.08,
+          "region": "Global"
+        },
+        {
+          "year": 1882,
+          "anomaly": -0.1,
+          "region": "Global"
+        },
+        {
+          "year": 1990,
+          "anomaly": 0.45,
+          "region": "Global"
+        },
+        {
+          "year": 1991,
+          "anomaly": 0.42,
+          "region": "Global"
+        },
+        {
+          "year": 1992,
+          "anomaly": 0.34,
+          "region": "Global"
+        },
+        {
+          "year": 2000,
+          "anomaly": 0.55,
+          "region": "Global"
+        },
+        {
+          "year": 2001,
+          "anomaly": 0.59,
+          "region": "Global"
+        },
+        {
+          "year": 2002,
+          "anomaly": 0.63,
+          "region": "Global"
+        },
+        {
+          "year": 1880,
+          "anomaly": -0.15,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1881,
+          "anomaly": -0.1,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1882,
+          "anomaly": -0.12,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1990,
+          "anomaly": 0.5,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 1991,
+          "anomaly": 0.48,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 2000,
+          "anomaly": 0.6,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 2001,
+          "anomaly": 0.65,
+          "region": "Northern Hemisphere"
+        },
+        {
+          "year": 2002,
+          "anomaly": 0.7,
+          "region": "Northern Hemisphere"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1880,
+        1881,
+        1882,
+        1990,
+        1991,
+        1992,
+        2000,
+        2001,
+        2002
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "temperature_data",
+        "field": "anomaly"
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "temperature_data",
+        "field": "region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "temperature_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "anomaly"
+          },
+          "stroke": {
+            "scale": "color",
+            "field": "region"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    }
+  ]
+}

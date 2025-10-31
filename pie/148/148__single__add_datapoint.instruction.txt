@@ -1,0 +1,2 @@
+Add a new datapoint for 'Supermarket E' with sales of 200000 at the end of the sales_data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Supermarket A; value=200000.0]

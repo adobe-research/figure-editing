@@ -1,0 +1,2 @@
+Remove the datapoint for 'Natural Gas' in the year 2001 with a value of 620.
+[#OP1 op=remove_datapoint; category=Oil]

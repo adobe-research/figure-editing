@@ -1,0 +1,2 @@
+Add a new datapoint with category 'D' and value 40 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=35.0]

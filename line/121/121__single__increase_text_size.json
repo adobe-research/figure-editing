@@ -1,0 +1,164 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing stock prices of multiple S&P 500 companies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "stocks",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "price": 150,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-01-01",
+          "price": 120,
+          "company": "Microsoft"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 160,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 125,
+          "company": "Microsoft"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 170,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 130,
+          "company": "Microsoft"
+        },
+        {
+          "date": "2023-04-01",
+          "price": 180,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-04-01",
+          "price": 135,
+          "company": "Microsoft"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "stocks",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "stocks",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "stocks",
+        "field": "company"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Stock Price ($)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Company",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "from": {
+        "data": "stocks"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "scale": "y",
+            "field": "price"
+          },
+          "stroke": {
+            "scale": "color",
+            "field": "company"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "strokeOpacity": {
+            "value": 1
+          },
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        },
+        "hover": {
+          "strokeOpacity": {
+            "value": 0.5
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

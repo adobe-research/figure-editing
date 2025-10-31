@@ -1,0 +1,2 @@
+Add a new datapoint with date '2022-05-01', price 540, and series 'Open' to the chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Close; value=580.0]

@@ -1,0 +1,2 @@
+Remove the datapoint for Store 2 in week 2023-W03 with sales value 23000.
+[#OP1 op=remove_datapoint; category=2023-W03]

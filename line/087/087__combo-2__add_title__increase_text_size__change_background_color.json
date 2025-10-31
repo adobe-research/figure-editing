@@ -1,0 +1,165 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing COVID-19 cases over time for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-05-01",
+          "cases": 150,
+          "region": "Region A"
+        },
+        {
+          "date": "2020-05-01",
+          "cases": 200,
+          "region": "Region B"
+        },
+        {
+          "date": "2020-05-02",
+          "cases": 180,
+          "region": "Region A"
+        },
+        {
+          "date": "2020-05-02",
+          "cases": 250,
+          "region": "Region B"
+        },
+        {
+          "date": "2020-05-03",
+          "cases": 220,
+          "region": "Region A"
+        },
+        {
+          "date": "2020-05-03",
+          "cases": 300,
+          "region": "Region B"
+        },
+        {
+          "date": "2020-05-04",
+          "cases": 260,
+          "region": "Region A"
+        },
+        {
+          "date": "2020-05-04",
+          "cases": 350,
+          "region": "Region B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "labelFontSize": 14,
+      "tickFontSize": 12,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Cases",
+      "labelFontSize": 14,
+      "tickFontSize": 12,
+      "titleFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "cases"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "region"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

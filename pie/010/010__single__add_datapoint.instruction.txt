@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Mixed' and value 100 to the pie chart data.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Mixed; value=250.0]

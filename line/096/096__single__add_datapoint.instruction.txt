@@ -1,0 +1,2 @@
+Add a new datapoint for Manhattan with date '2022-04' and price 135.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2022-01; value=97.5]

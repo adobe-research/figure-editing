@@ -1,0 +1,2 @@
+Add a new datapoint for 'Casual' user type on '2021-06-05' with 170 rentals.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Casual; value=170.0]

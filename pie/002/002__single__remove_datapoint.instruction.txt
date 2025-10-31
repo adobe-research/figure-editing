@@ -1,0 +1,2 @@
+Remove the datapoint for the genre 'Adventure' with sales value 45.
+[#OP1 op=remove_datapoint; category=Role-Playing]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Graffiti Removal' and value 200.
+[#OP1 op=remove_datapoint; category=Illegal Parking]

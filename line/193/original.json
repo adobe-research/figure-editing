@@ -1,0 +1,174 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing energy production by source over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "energy_data",
+      "values": [
+        {
+          "year": 2015,
+          "source": "Solar",
+          "production": 35
+        },
+        {
+          "year": 2015,
+          "source": "Wind",
+          "production": 50
+        },
+        {
+          "year": 2015,
+          "source": "Hydro",
+          "production": 70
+        },
+        {
+          "year": 2016,
+          "source": "Solar",
+          "production": 45
+        },
+        {
+          "year": 2016,
+          "source": "Wind",
+          "production": 55
+        },
+        {
+          "year": 2016,
+          "source": "Hydro",
+          "production": 65
+        },
+        {
+          "year": 2017,
+          "source": "Solar",
+          "production": 60
+        },
+        {
+          "year": 2017,
+          "source": "Wind",
+          "production": 70
+        },
+        {
+          "year": 2017,
+          "source": "Hydro",
+          "production": 80
+        },
+        {
+          "year": 2018,
+          "source": "Solar",
+          "production": 75
+        },
+        {
+          "year": 2018,
+          "source": "Wind",
+          "production": 85
+        },
+        {
+          "year": 2018,
+          "source": "Hydro",
+          "production": 90
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018
+      ]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "energy_data",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "energy_data",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Production (TWh)"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Energy Source",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "energy_data",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "production"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "source"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

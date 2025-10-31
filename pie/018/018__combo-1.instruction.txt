@@ -1,0 +1,3 @@
+Change the color of the 'High Risk' datapoint to '#FF5733' and add a title 'Santander Risk Analysis' with a size of 20.
+[#OP1 op=change_datapoint_color; target_category=Moderate Risk; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

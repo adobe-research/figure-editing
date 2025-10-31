@@ -1,0 +1,2 @@
+Add a new datapoint for the genre 'Puzzle' with sales value 70 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Action; value=85.0]

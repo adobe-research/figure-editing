@@ -1,0 +1,2 @@
+Remove the data point for Soybeans in the year 2017 with a production value of 120.
+[#OP1 op=remove_datapoint; category=Corn]

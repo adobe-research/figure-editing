@@ -1,0 +1,2 @@
+Add a new datapoint for the year 1883 with a temperature anomaly of -0.15 for the region 'Global'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Global; value=1881.0]

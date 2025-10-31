@@ -1,0 +1,2 @@
+Change the datapoint color to a new color palette using shades of blue and green.
+[#OP1 op=change_datapoint_color; target_category=2023-07-01; new_color=#ff7f0e]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Threat' and value 30.
+[#OP1 op=remove_datapoint; category=Severe Toxic]
