@@ -1,0 +1,2 @@
+Remove the datapoint for 'Mental Disorders' with a mortality rate of 40.
+[#OP1 op=remove_datapoint; category=Diabetes Mellitus]

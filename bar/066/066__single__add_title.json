@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart of seed types and their average area.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "seed_type": "Kama",
+          "avg_area": 15.1
+        },
+        {
+          "seed_type": "Rosa",
+          "avg_area": 14.8
+        },
+        {
+          "seed_type": "Canadian",
+          "avg_area": 15.3
+        },
+        {
+          "seed_type": "Italian",
+          "avg_area": 15.0
+        },
+        {
+          "seed_type": "Mexican",
+          "avg_area": 14.7
+        },
+        {
+          "seed_type": "Indian",
+          "avg_area": 15.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "seed_type"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "avg_area"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Seed Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Area"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "seed_type"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_area"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        }
+      }
+    }
+  ]
+}

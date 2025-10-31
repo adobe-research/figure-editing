@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Second' passenger class.
+[#OP1 op=remove_datapoint; category=Crew]

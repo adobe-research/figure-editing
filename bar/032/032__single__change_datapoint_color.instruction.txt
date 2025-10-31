@@ -1,0 +1,2 @@
+Change the color of the datapoints from 'steelblue' to 'darkorange'.
+[#OP1 op=change_datapoint_color; target_category=Ohio; new_color=#ff7f0e]

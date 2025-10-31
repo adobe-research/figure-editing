@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing house prices over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Year": 2005,
+          "AveragePrice": 210000
+        },
+        {
+          "Year": 2006,
+          "AveragePrice": 220000
+        },
+        {
+          "Year": 2007,
+          "AveragePrice": 230000
+        },
+        {
+          "Year": 2008,
+          "AveragePrice": 200000
+        },
+        {
+          "Year": 2009,
+          "AveragePrice": 190000
+        },
+        {
+          "Year": 2010,
+          "AveragePrice": 195000
+        },
+        {
+          "Year": 2011,
+          "AveragePrice": 205000
+        },
+        {
+          "Year": 2012,
+          "AveragePrice": 215000
+        },
+        {
+          "Year": 2013,
+          "AveragePrice": 225000
+        },
+        {
+          "Year": 2014,
+          "AveragePrice": 235000
+        },
+        {
+          "Year": 2015,
+          "AveragePrice": 245000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "AveragePrice"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Price (USD)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "AveragePrice"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing trends over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01",
+          "series": "A",
+          "value": 120
+        },
+        {
+          "date": "2020-02",
+          "series": "A",
+          "value": 135
+        },
+        {
+          "date": "2020-03",
+          "series": "A",
+          "value": 150
+        },
+        {
+          "date": "2020-01",
+          "series": "B",
+          "value": 80
+        },
+        {
+          "date": "2020-02",
+          "series": "B",
+          "value": 95
+        },
+        {
+          "date": "2020-03",
+          "series": "B",
+          "value": 110
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      },
+      "range": [
+        "steelblue",
+        "orange"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "series"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right"
+    }
+  ]
+}

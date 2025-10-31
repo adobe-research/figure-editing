@@ -1,0 +1,2 @@
+Add a new datapoint for the month '2022-05' with 'casual' rentals as 3000 and 'registered' rentals as 5500.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-11; value=1500.0]

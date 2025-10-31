@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Meat & Seafood' category.
+[#OP1 op=remove_datapoint; category=Produce]

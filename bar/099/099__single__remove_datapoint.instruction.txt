@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Finance' category with an average rating of 4.0.
+[#OP1 op=remove_datapoint; category=Health & Fitness]

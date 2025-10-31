@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing demand predictions over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01",
+          "predicted_demand": 120
+        },
+        {
+          "date": "2023-02",
+          "predicted_demand": 150
+        },
+        {
+          "date": "2023-03",
+          "predicted_demand": 170
+        },
+        {
+          "date": "2023-04",
+          "predicted_demand": 140
+        },
+        {
+          "date": "2023-05",
+          "predicted_demand": 180
+        },
+        {
+          "date": "2023-06",
+          "predicted_demand": 200
+        },
+        {
+          "date": "2023-08",
+          "predicted_demand": 190
+        },
+        {
+          "date": "2023-09",
+          "predicted_demand": 210
+        },
+        {
+          "date": "2023-10",
+          "predicted_demand": 230
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "predicted_demand"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Predicted Demand"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "predicted_demand"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

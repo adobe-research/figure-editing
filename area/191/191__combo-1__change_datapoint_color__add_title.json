@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing cryptocurrency prices over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2022-10-01",
+          "Bitcoin": 19450,
+          "Ethereum": 1325
+        },
+        {
+          "date": "2022-10-02",
+          "Bitcoin": 19500,
+          "Ethereum": 1330
+        },
+        {
+          "date": "2022-10-03",
+          "Bitcoin": 19875,
+          "Ethereum": 1350
+        },
+        {
+          "date": "2022-10-04",
+          "Bitcoin": 20000,
+          "Ethereum": 1375
+        },
+        {
+          "date": "2022-10-05",
+          "Bitcoin": 19750,
+          "Ethereum": 1360
+        },
+        {
+          "date": "2022-10-06",
+          "Bitcoin": 19900,
+          "Ethereum": 1380
+        },
+        {
+          "date": "2022-10-07",
+          "Bitcoin": 20150,
+          "Ethereum": 1400
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "Bitcoin",
+            "Ethereum"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Bitcoin"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "interpolate": {
+            "value": "monotone"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Ethereum"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "green"
+          },
+          "interpolate": {
+            "value": "monotone"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart"
+  }
+}

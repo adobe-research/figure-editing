@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Monthly average temperature in various cities based on Berkeley Earth Temperature dataset.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "city": "New York",
+          "temperature": 12.3
+        },
+        {
+          "city": "Los Angeles",
+          "temperature": 18.7
+        },
+        {
+          "city": "Chicago",
+          "temperature": 10.1
+        },
+        {
+          "city": "Houston",
+          "temperature": 20.5
+        },
+        {
+          "city": "Phoenix",
+          "temperature": 22.8
+        },
+        {
+          "city": "Philadelphia",
+          "temperature": 14.2
+        },
+        {
+          "city": "San Antonio",
+          "temperature": 19.3
+        },
+        {
+          "city": "Dallas",
+          "temperature": 18.9
+        },
+        {
+          "city": "San Diego",
+          "temperature": 17.8
+        },
+        {
+          "city": "San Jose",
+          "temperature": 16.4
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "city"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "City"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "city"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.city",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.temperature",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.temperature"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

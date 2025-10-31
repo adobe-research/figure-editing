@@ -1,0 +1,2 @@
+Remove the datapoint for the platform 'Wii U' with sales value 25.
+[#OP1 op=remove_datapoint; category=Switch]

@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of service requests by type in NYC.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Noise Complaint",
+          "amount": 1200,
+          "fill": "green"
+        },
+        {
+          "category": "Illegal Parking",
+          "amount": 850
+        },
+        {
+          "category": "Street Condition",
+          "amount": 400
+        },
+        {
+          "category": "Graffiti",
+          "amount": 300
+        },
+        {
+          "category": "Rodent",
+          "amount": 700
+        },
+        {
+          "category": "Sanitation Condition",
+          "amount": 950
+        },
+        {
+          "category": "Water Leak",
+          "amount": 600
+        },
+        {
+          "category": "Air Quality",
+          "amount": 500
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "amount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Service Request Type",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Requests",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "amount"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "field": "fill",
+            "default": "steelblue"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['category']==='Graffiti'",
+              "value": "#2ca02c"
+            },
+            {
+              "test": "datum['category']==='Graffiti'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  }
+}

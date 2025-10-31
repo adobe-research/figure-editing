@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Crew' with an amount of 212.
+[#OP1 op=remove_datapoint; category=1st Class]

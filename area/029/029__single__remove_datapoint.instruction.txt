@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2004 in the region 'Sub-Saharan Africa'.
+[#OP1 op=remove_datapoint; category=Sub-Saharan Africa]

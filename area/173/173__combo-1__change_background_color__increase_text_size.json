@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing monthly average temperature anomalies.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "temperature",
+      "values": [
+        {
+          "month": "2020-01",
+          "anomaly": -0.15
+        },
+        {
+          "month": "2020-02",
+          "anomaly": 0.1
+        },
+        {
+          "month": "2020-03",
+          "anomaly": 0.25
+        },
+        {
+          "month": "2020-04",
+          "anomaly": 0.3
+        },
+        {
+          "month": "2020-05",
+          "anomaly": 0.45
+        },
+        {
+          "month": "2020-06",
+          "anomaly": 0.5
+        },
+        {
+          "month": "2020-07",
+          "anomaly": 0.6
+        },
+        {
+          "month": "2020-08",
+          "anomaly": 0.55
+        },
+        {
+          "month": "2020-09",
+          "anomaly": 0.4
+        },
+        {
+          "month": "2020-10",
+          "anomaly": 0.35
+        },
+        {
+          "month": "2020-11",
+          "anomaly": 0.2
+        },
+        {
+          "month": "2020-12",
+          "anomaly": 0.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "temperature",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "temperature",
+        "field": "anomaly"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelAngle": -45,
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature Anomaly (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "temperature"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "anomaly"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightcoral"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

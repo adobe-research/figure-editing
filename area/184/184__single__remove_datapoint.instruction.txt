@@ -1,0 +1,2 @@
+Remove the datapoint with date '2021-01-03' and precipitation value 0.0.
+[#OP1 op=remove_datapoint; category=2021-01-07]

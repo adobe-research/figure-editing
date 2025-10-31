@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the distribution of movies across different genres on Netflix.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "genre": "Drama",
+          "count": 120
+        },
+        {
+          "genre": "Comedy",
+          "count": 95
+        },
+        {
+          "genre": "Action",
+          "count": 80
+        },
+        {
+          "genre": "Documentary",
+          "count": 60
+        },
+        {
+          "genre": "Horror",
+          "count": 45
+        },
+        {
+          "genre": "Romance",
+          "count": 50
+        },
+        {
+          "genre": "Thriller",
+          "count": 70
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "genre"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Genre"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Movies"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "genre"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

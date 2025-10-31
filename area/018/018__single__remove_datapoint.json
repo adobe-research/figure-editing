@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing university rankings over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "rankings",
+      "values": [
+        {
+          "year": 2015,
+          "score": 85,
+          "university": "University A"
+        },
+        {
+          "year": 2016,
+          "score": 88,
+          "university": "University A"
+        },
+        {
+          "year": 2017,
+          "score": 90,
+          "university": "University A"
+        },
+        {
+          "year": 2018,
+          "score": 92,
+          "university": "University A"
+        },
+        {
+          "year": 2019,
+          "score": 94,
+          "university": "University A"
+        },
+        {
+          "year": 2015,
+          "score": 78,
+          "university": "University B"
+        },
+        {
+          "year": 2016,
+          "score": 80,
+          "university": "University B"
+        },
+        {
+          "year": 2018,
+          "score": 85,
+          "university": "University B"
+        },
+        {
+          "year": 2019,
+          "score": 87,
+          "university": "University B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "rankings",
+        "field": "score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "rankings",
+        "field": "university"
+      },
+      "range": [
+        "steelblue",
+        "orange"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "rankings",
+          "name": "series_facet",
+          "groupby": "university"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "score"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "university"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "University",
+      "orient": "right"
+    }
+  ]
+}

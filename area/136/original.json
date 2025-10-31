@@ -1,0 +1,251 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing unemployment rates over months for different years.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "year": 2021,
+          "rate": 6.3
+        },
+        {
+          "month": "Feb",
+          "year": 2021,
+          "rate": 6.2
+        },
+        {
+          "month": "Mar",
+          "year": 2021,
+          "rate": 6.0
+        },
+        {
+          "month": "Apr",
+          "year": 2021,
+          "rate": 5.8
+        },
+        {
+          "month": "May",
+          "year": 2021,
+          "rate": 5.5
+        },
+        {
+          "month": "Jun",
+          "year": 2021,
+          "rate": 5.4
+        },
+        {
+          "month": "Jul",
+          "year": 2021,
+          "rate": 5.2
+        },
+        {
+          "month": "Aug",
+          "year": 2021,
+          "rate": 5.2
+        },
+        {
+          "month": "Sep",
+          "year": 2021,
+          "rate": 5.0
+        },
+        {
+          "month": "Oct",
+          "year": 2021,
+          "rate": 4.8
+        },
+        {
+          "month": "Nov",
+          "year": 2021,
+          "rate": 4.6
+        },
+        {
+          "month": "Dec",
+          "year": 2021,
+          "rate": 4.5
+        },
+        {
+          "month": "Jan",
+          "year": 2022,
+          "rate": 4.4
+        },
+        {
+          "month": "Feb",
+          "year": 2022,
+          "rate": 4.3
+        },
+        {
+          "month": "Mar",
+          "year": 2022,
+          "rate": 4.2
+        },
+        {
+          "month": "Apr",
+          "year": 2022,
+          "rate": 4.1
+        },
+        {
+          "month": "May",
+          "year": 2022,
+          "rate": 4.0
+        },
+        {
+          "month": "Jun",
+          "year": 2022,
+          "rate": 3.9
+        },
+        {
+          "month": "Jul",
+          "year": 2022,
+          "rate": 3.8
+        },
+        {
+          "month": "Aug",
+          "year": 2022,
+          "rate": 3.7
+        },
+        {
+          "month": "Sep",
+          "year": 2022,
+          "rate": 3.7
+        },
+        {
+          "month": "Oct",
+          "year": 2022,
+          "rate": 3.6
+        },
+        {
+          "month": "Nov",
+          "year": 2022,
+          "rate": 3.5
+        },
+        {
+          "month": "Dec",
+          "year": 2022,
+          "rate": 3.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "rate"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "year"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Unemployment Rate (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "rate"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "year"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      },
+      "sort": {
+        "field": "month",
+        "order": "ascending"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing the average teaching scores over years for different world regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": 10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2016,
+          "region": "North America",
+          "teaching_score": 75
+        },
+        {
+          "year": 2017,
+          "region": "North America",
+          "teaching_score": 78
+        },
+        {
+          "year": 2018,
+          "region": "North America",
+          "teaching_score": 80
+        },
+        {
+          "year": 2016,
+          "region": "Europe",
+          "teaching_score": 70
+        },
+        {
+          "year": 2017,
+          "region": "Europe",
+          "teaching_score": 72
+        },
+        {
+          "year": 2018,
+          "region": "Europe",
+          "teaching_score": 74
+        },
+        {
+          "year": 2016,
+          "region": "Asia",
+          "teaching_score": 65
+        },
+        {
+          "year": 2017,
+          "region": "Asia",
+          "teaching_score": 67
+        },
+        {
+          "year": 2018,
+          "region": "Asia",
+          "teaching_score": 69
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['region']=='North America' || datum['region']=='Europe'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2016,
+        2017,
+        2018
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "teaching_score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Teaching Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "teaching_score"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "update": {}
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}

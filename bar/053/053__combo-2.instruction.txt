@@ -1,0 +1,4 @@
+Change the color of the datapoint for pregnancies=2 to green, increase the text size of axis labels to 14, and add a title 'Pregnancy Distribution'.
+[#OP1 op=change_datapoint_color; target_category=5; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=1; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

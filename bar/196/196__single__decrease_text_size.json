@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing average concentrations of pollutants by type.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "pollutant": "CO",
+          "concentration": 2.5
+        },
+        {
+          "pollutant": "NO2",
+          "concentration": 19.8
+        },
+        {
+          "pollutant": "SO2",
+          "concentration": 5.6
+        },
+        {
+          "pollutant": "O3",
+          "concentration": 23.1
+        },
+        {
+          "pollutant": "PM10",
+          "concentration": 42.3
+        },
+        {
+          "pollutant": "PM2.5",
+          "concentration": 35.7
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "pollutant"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "concentration"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Pollutant",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Concentration (µg/m³)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "pollutant"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "concentration"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

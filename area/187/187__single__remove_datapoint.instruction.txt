@@ -1,0 +1,2 @@
+Remove the datapoint for 'Airline B' in the month of 'March'.
+[#OP1 op=remove_datapoint; category=February]

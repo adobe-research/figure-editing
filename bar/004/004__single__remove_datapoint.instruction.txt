@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Leisure and Hospitality' category.
+[#OP1 op=remove_datapoint; category=Manufacturing]

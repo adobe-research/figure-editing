@@ -1,0 +1,2 @@
+Add a new datapoint for the transaction type 'REFUND' with a count of 300 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CASH_IN; value=720.0]

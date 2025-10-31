@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the age group '26-30'.
+[#OP1 op=remove_datapoint; category=1-5]

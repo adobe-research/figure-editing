@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing temperature anomalies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 1880,
+          "temperature_anomaly": -0.12
+        },
+        {
+          "year": 1900,
+          "temperature_anomaly": -0.07
+        },
+        {
+          "year": 1920,
+          "temperature_anomaly": -0.12
+        },
+        {
+          "year": 1940,
+          "temperature_anomaly": 0.09
+        },
+        {
+          "year": 1960,
+          "temperature_anomaly": -0.02
+        },
+        {
+          "year": 1980,
+          "temperature_anomaly": 0.17
+        },
+        {
+          "year": 2000,
+          "temperature_anomaly": 0.39
+        },
+        {
+          "year": 2020,
+          "temperature_anomaly": 0.98
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1880,
+        1900,
+        1920,
+        1940,
+        1960,
+        1980,
+        2000,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "temperature_anomaly"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "format": "d",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature Anomaly (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature_anomaly"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

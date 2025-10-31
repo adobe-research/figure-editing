@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing transaction categories and their average values.",
+  "width": 450,
+  "height": 250,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Category A",
+          "value": 1200
+        },
+        {
+          "category": "Category B",
+          "value": 900
+        },
+        {
+          "category": "Category C",
+          "value": 1500
+        },
+        {
+          "category": "Category D",
+          "value": 700
+        },
+        {
+          "category": "Category E",
+          "value": 1100
+        },
+        {
+          "category": "Category F",
+          "value": 1300
+        },
+        {
+          "category": "Category G",
+          "value": 800
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Transaction Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "#4c78a8"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value",
+            "offset": -5
+          },
+          "text": {
+            "field": "value"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        }
+      }
+    }
+  ]
+}

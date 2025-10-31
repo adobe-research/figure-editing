@@ -1,0 +1,2 @@
+Add a new datapoint for the '16-24' age group with a month of 'Jun' and an unemployment rate of 10.8.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Apr; value=10.8]

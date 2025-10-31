@@ -1,0 +1,2 @@
+Remove the datapoint for the species 'versicolor'.
+[#OP1 op=remove_datapoint; category=setosa]

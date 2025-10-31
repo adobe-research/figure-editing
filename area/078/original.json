@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing Bitcoin's closing price over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-09-01",
+          "close": 48829.0
+        },
+        {
+          "date": "2021-09-02",
+          "close": 49397.0
+        },
+        {
+          "date": "2021-09-03",
+          "close": 50042.0
+        },
+        {
+          "date": "2021-09-04",
+          "close": 49922.0
+        },
+        {
+          "date": "2021-09-05",
+          "close": 51787.0
+        },
+        {
+          "date": "2021-09-06",
+          "close": 52680.0
+        },
+        {
+          "date": "2021-09-07",
+          "close": 46823.0
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "close"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date",
+      "format": "%Y-%m-%d"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Closing Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "close"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

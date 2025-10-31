@@ -1,0 +1,2 @@
+Add a new datapoint for category 'A' with year 2015 and value 65.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=2012.0]

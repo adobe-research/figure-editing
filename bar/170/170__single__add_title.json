@@ -1,0 +1,185 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing population counts by age group.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "age_group": "Under 5",
+          "population": 2000000
+        },
+        {
+          "age_group": "5-9",
+          "population": 1800000
+        },
+        {
+          "age_group": "10-14",
+          "population": 1900000
+        },
+        {
+          "age_group": "15-19",
+          "population": 2100000
+        },
+        {
+          "age_group": "20-24",
+          "population": 2200000
+        },
+        {
+          "age_group": "25-29",
+          "population": 2300000
+        },
+        {
+          "age_group": "30-34",
+          "population": 2400000
+        },
+        {
+          "age_group": "35-39",
+          "population": 2500000
+        },
+        {
+          "age_group": "40-44",
+          "population": 2600000
+        },
+        {
+          "age_group": "45-49",
+          "population": 2700000
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "age_group"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "population"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Age Group"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Population"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "age_group"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "population"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.age_group",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.population",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.population"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

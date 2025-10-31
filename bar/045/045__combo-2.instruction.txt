@@ -1,0 +1,4 @@
+Change the color of the 'High Risk' datapoint to red, increase the text size of axis labels to 14, and add a title 'Credit Risk Analysis'.
+[#OP1 op=change_datapoint_color; target_category=High Risk; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Low Risk; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

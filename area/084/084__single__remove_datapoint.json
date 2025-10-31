@@ -1,0 +1,164 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing trends in survey responses over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "series": "Positive Responses",
+          "value": 45
+        },
+        {
+          "year": 2016,
+          "series": "Positive Responses",
+          "value": 50
+        },
+        {
+          "year": 2017,
+          "series": "Positive Responses",
+          "value": 55
+        },
+        {
+          "year": 2018,
+          "series": "Positive Responses",
+          "value": 60
+        },
+        {
+          "year": 2019,
+          "series": "Positive Responses",
+          "value": 65
+        },
+        {
+          "year": 2015,
+          "series": "Negative Responses",
+          "value": 30
+        },
+        {
+          "year": 2016,
+          "series": "Negative Responses",
+          "value": 25
+        },
+        {
+          "year": 2017,
+          "series": "Negative Responses",
+          "value": 20
+        },
+        {
+          "year": 2018,
+          "series": "Negative Responses",
+          "value": 15
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Responses"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "facet",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "series"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right"
+    }
+  ]
+}

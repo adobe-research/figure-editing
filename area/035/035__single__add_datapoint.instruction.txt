@@ -1,0 +1,2 @@
+Add a new datapoint for Region A with 1500 cases on 2020-05-01.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Region A; value=200.0]

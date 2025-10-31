@@ -1,0 +1,2 @@
+Remove the datapoint with date '2023-09-07' from the climate_data dataset.
+[#OP1 op=remove_datapoint; category=2023-09-01]

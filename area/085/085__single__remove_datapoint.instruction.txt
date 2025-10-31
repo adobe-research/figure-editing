@@ -1,0 +1,2 @@
+Remove the datapoint for Country B in the year 2003 with a GDP growth of 3.2.
+[#OP1 op=remove_datapoint; category=Country B]

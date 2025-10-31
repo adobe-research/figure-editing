@@ -1,0 +1,2 @@
+Remove the datapoint for '2021-03' with a count of 2000 and season 'Spring'.
+[#OP1 op=remove_datapoint; category=2021-05]

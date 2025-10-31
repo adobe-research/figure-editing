@@ -1,0 +1,198 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing the daily new confirmed COVID-19 cases for two countries over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01-22",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-23",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-24",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-25",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-26",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-27",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-28",
+          "country": "Italy",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-22",
+          "country": "Spain",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-23",
+          "country": "Spain",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-24",
+          "country": "Spain",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-25",
+          "country": "Spain",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-26",
+          "country": "Spain",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-27",
+          "country": "Spain",
+          "cases": 0
+        },
+        {
+          "date": "2020-01-28",
+          "country": "Spain",
+          "cases": 0
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "New Confirmed Cases"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "cases"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "country"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ]
+}

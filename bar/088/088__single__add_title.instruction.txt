@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Population Distribution by Age Group'.
+[#OP1 op=add_title; title_text=Edited Chart]

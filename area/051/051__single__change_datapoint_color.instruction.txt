@@ -1,0 +1,2 @@
+Change the color of the datapoints for 'Bitcoin' to '#2ca02c' and 'Ethereum' to '#d62728'.
+[#OP1 op=change_datapoint_color; target_category=2023-01-03; new_color=#9467bd]

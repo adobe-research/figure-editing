@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing monthly precipitation over a year in Seattle.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "weather",
+      "values": [
+        {
+          "month": "January",
+          "precipitation": 150
+        },
+        {
+          "month": "February",
+          "precipitation": 120
+        },
+        {
+          "month": "March",
+          "precipitation": 110
+        },
+        {
+          "month": "April",
+          "precipitation": 90
+        },
+        {
+          "month": "May",
+          "precipitation": 70
+        },
+        {
+          "month": "June",
+          "precipitation": 50
+        },
+        {
+          "month": "July",
+          "precipitation": 20
+        },
+        {
+          "month": "August",
+          "precipitation": 30
+        },
+        {
+          "month": "September",
+          "precipitation": 60
+        },
+        {
+          "month": "October",
+          "precipitation": 100
+        },
+        {
+          "month": "November",
+          "precipitation": 140
+        },
+        {
+          "month": "December",
+          "precipitation": 160
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "weather",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "weather",
+        "field": "precipitation"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelAngle": -45,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Precipitation (mm)",
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "weather"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "precipitation"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

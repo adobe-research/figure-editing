@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing CO2 emissions from different sources over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "emissions",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Coal",
+          "emissions": 25.4
+        },
+        {
+          "year": 2000,
+          "source": "Oil",
+          "emissions": 18.2
+        },
+        {
+          "year": 2000,
+          "source": "Gas",
+          "emissions": 15.7
+        },
+        {
+          "year": 2005,
+          "source": "Coal",
+          "emissions": 28.1
+        },
+        {
+          "year": 2005,
+          "source": "Oil",
+          "emissions": 19.5
+        },
+        {
+          "year": 2005,
+          "source": "Gas",
+          "emissions": 17.3
+        },
+        {
+          "year": 2010,
+          "source": "Coal",
+          "emissions": 30.8
+        },
+        {
+          "year": 2010,
+          "source": "Oil",
+          "emissions": 20.1
+        },
+        {
+          "year": 2010,
+          "source": "Gas",
+          "emissions": 18.9
+        },
+        {
+          "year": 2015,
+          "source": "Coal",
+          "emissions": 32.5
+        },
+        {
+          "year": 2015,
+          "source": "Oil",
+          "emissions": 21.4
+        },
+        {
+          "year": 2015,
+          "source": "Gas",
+          "emissions": 20.7
+        },
+        {
+          "year": 2020,
+          "source": "Coal",
+          "emissions": 29.7
+        },
+        {
+          "year": 2020,
+          "source": "Oil",
+          "emissions": 19.9
+        },
+        {
+          "year": 2020,
+          "source": "Gas",
+          "emissions": 18.5
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Coal' || datum['source']=='Oil'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "emissions",
+        "field": "emissions"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": {
+        "scheme": "category10"
+      },
+      "domain": {
+        "data": "emissions",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "tickCount": 5,
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "CO2 Emissions (Gigatonnes)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "emissions",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "emissions"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

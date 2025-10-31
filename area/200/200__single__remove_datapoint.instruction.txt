@@ -1,0 +1,2 @@
+Remove the datapoint for January 2010 with an average temperature of -2.1°C.
+[#OP1 op=remove_datapoint; category=Sep]

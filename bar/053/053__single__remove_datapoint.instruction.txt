@@ -1,0 +1,2 @@
+Remove the datapoint where pregnancies is '7'.
+[#OP1 op=remove_datapoint; category=1]

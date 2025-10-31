@@ -1,0 +1,2 @@
+Change the color of datapoints representing 'Casual' user type to a new color '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=2022-01-01; new_color=#ff7f0e]

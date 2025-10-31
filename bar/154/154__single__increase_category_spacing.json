@@ -1,0 +1,190 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing the number of forest fires per month.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "fires": 12
+        },
+        {
+          "month": "February",
+          "fires": 18
+        },
+        {
+          "month": "March",
+          "fires": 25
+        },
+        {
+          "month": "April",
+          "fires": 30
+        },
+        {
+          "month": "May",
+          "fires": 40
+        },
+        {
+          "month": "June",
+          "fires": 35
+        },
+        {
+          "month": "July",
+          "fires": 50
+        },
+        {
+          "month": "August",
+          "fires": 60
+        },
+        {
+          "month": "September",
+          "fires": 45
+        },
+        {
+          "month": "October",
+          "fires": 20
+        },
+        {
+          "month": "November",
+          "fires": 15
+        },
+        {
+          "month": "December",
+          "fires": 10
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "fires"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Fires"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "fires"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.month",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.fires",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.fires"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

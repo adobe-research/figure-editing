@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing survey responses over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "positive": 45,
+          "negative": 30
+        },
+        {
+          "year": 2016,
+          "positive": 50,
+          "negative": 35
+        },
+        {
+          "year": 2017,
+          "positive": 55,
+          "negative": 40
+        },
+        {
+          "year": 2018,
+          "positive": 60,
+          "negative": 45
+        },
+        {
+          "year": 2019,
+          "positive": 65,
+          "negative": 50
+        },
+        {
+          "year": 2020,
+          "positive": 70,
+          "negative": 55
+        },
+        {
+          "year": 2021,
+          "positive": 75,
+          "negative": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "negative",
+            "positive"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "yscale_negative",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "negative"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Survey Responses"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "positive"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "green"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale_negative",
+            "field": "negative"
+          },
+          "y2": {
+            "scale": "yscale_negative",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

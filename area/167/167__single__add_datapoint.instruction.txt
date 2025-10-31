@@ -1,0 +1,2 @@
+Add a new datapoint for series 'A' with date '2020-04' and value 165.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-01; value=120.0]

@@ -1,0 +1,205 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy production by source over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "energy_data",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Coal",
+          "production": 1200
+        },
+        {
+          "year": 2000,
+          "source": "Gas",
+          "production": 800
+        },
+        {
+          "year": 2000,
+          "source": "Renewables",
+          "production": 400
+        },
+        {
+          "year": 2005,
+          "source": "Coal",
+          "production": 1300
+        },
+        {
+          "year": 2005,
+          "source": "Gas",
+          "production": 900
+        },
+        {
+          "year": 2005,
+          "source": "Renewables",
+          "production": 600
+        },
+        {
+          "year": 2010,
+          "source": "Coal",
+          "production": 1400
+        },
+        {
+          "year": 2010,
+          "source": "Gas",
+          "production": 1100
+        },
+        {
+          "year": 2010,
+          "source": "Renewables",
+          "production": 800
+        },
+        {
+          "year": 2015,
+          "source": "Coal",
+          "production": 1500
+        },
+        {
+          "year": 2015,
+          "source": "Gas",
+          "production": 1200
+        },
+        {
+          "year": 2015,
+          "source": "Renewables",
+          "production": 1000
+        },
+        {
+          "year": 2020,
+          "source": "Coal",
+          "production": 1600
+        },
+        {
+          "year": 2020,
+          "source": "Gas",
+          "production": 1300
+        },
+        {
+          "year": 2020,
+          "source": "Renewables",
+          "production": 1400
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Coal' || datum['source']=='Gas'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.19999999999999998
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "energy_data",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "energy_data",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Production (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "energy_data",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ]
+}

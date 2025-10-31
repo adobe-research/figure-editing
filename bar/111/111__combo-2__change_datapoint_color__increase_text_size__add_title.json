@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing claim frequencies by vehicle age group.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "vehicle_age": "0-2 years",
+          "claim_frequency": 15
+        },
+        {
+          "vehicle_age": "2-5 years",
+          "claim_frequency": 25
+        },
+        {
+          "vehicle_age": "5-10 years",
+          "claim_frequency": 35
+        },
+        {
+          "vehicle_age": "10-15 years",
+          "claim_frequency": 20
+        },
+        {
+          "vehicle_age": "15+ years",
+          "claim_frequency": 10
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "vehicle_age"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "claim_frequency"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Vehicle Age",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Claim Frequency",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "vehicle_age"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "claim_frequency"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['vehicle_age']==='2-5 years'",
+              "value": "#2ca02c"
+            },
+            {
+              "test": "datum['vehicle_age']==='15+ years'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  }
+}

@@ -1,0 +1,2 @@
+Change the datapoint color for 'University A' to 'purple'.
+[#OP1 op=change_datapoint_color; target_category=University C; new_color=#ff7f0e]

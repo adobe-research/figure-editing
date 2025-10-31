@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2019 in the 'Negative Responses' series.
+[#OP1 op=remove_datapoint; category=Negative Responses]

@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the average hours spent on different leisure activities.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "activity": "Watching TV",
+          "hours": 2.8
+        },
+        {
+          "activity": "Socializing",
+          "hours": 1.5
+        },
+        {
+          "activity": "Exercising",
+          "hours": 0.9
+        },
+        {
+          "activity": "Reading",
+          "hours": 0.6
+        },
+        {
+          "activity": "Hobbies",
+          "hours": 0.8
+        },
+        {
+          "activity": "Gaming",
+          "hours": 1.2
+        },
+        {
+          "activity": "Other",
+          "hours": 0.7
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "activity"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "hours"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Leisure Activities",
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Hours per Day",
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "activity"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "hours"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "activity",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "hours",
+            "offset": -5
+          },
+          "text": {
+            "field": "hours",
+            "format": ".1f"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          },
+          "fontSize": {
+            "value": 14
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

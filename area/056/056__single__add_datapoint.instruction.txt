@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2022 with positive value 70 and negative value 15 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=2018.5]

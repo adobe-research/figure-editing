@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing economic indicators from FRED Economic Data.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "GDP Growth",
+          "value": 2.5
+        },
+        {
+          "category": "Unemployment Rate",
+          "value": 4.1
+        },
+        {
+          "category": "Inflation Rate",
+          "value": 3.2
+        },
+        {
+          "category": "Consumer Spending",
+          "value": 1.8
+        },
+        {
+          "category": "Federal Funds Rate",
+          "value": 0.5
+        },
+        {
+          "category": "Industrial Production",
+          "value": 1.2
+        },
+        {
+          "category": "Housing Starts",
+          "value": 1.5
+        },
+        {
+          "category": "Retail Sales",
+          "value": 3.0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Economic Indicators"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['category']==='Industrial Production'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

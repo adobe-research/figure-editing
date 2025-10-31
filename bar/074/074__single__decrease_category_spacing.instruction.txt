@@ -1,0 +1,2 @@
+Decrease the spacing between categories in the bar chart.
+[#OP1 op=decrease_category_spacing; scale=auto; new_padding=0.00]

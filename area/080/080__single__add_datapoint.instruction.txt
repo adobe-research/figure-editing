@@ -1,0 +1,2 @@
+Add a new datapoint for September 2023 with a value of 3.8 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=3.5]

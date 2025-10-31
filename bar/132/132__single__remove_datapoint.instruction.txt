@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category '61-72 months'.
+[#OP1 op=remove_datapoint; category=25-36 months]

@@ -1,0 +1,2 @@
+Remove the datapoint for 'Harry Kane' with a rating of 89.
+[#OP1 op=remove_datapoint; category=Neymar Jr]

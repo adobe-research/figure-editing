@@ -1,0 +1,2 @@
+Add a new datapoint for November 2021 with casual rentals of 420 and registered rentals of 620.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-01; value=320.0]

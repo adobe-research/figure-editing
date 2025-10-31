@@ -1,0 +1,2 @@
+Remove the datapoint with crime_type 'Arson' and count 30 from the chart.
+[#OP1 op=remove_datapoint; category=Fraud]

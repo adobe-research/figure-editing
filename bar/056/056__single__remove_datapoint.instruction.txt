@@ -1,0 +1,2 @@
+Remove the datapoint for 'Kawhi Leonard' with 26 points.
+[#OP1 op=remove_datapoint; category=Damian Lillard]

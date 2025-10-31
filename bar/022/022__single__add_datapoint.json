@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing the average rating for different business categories based on Yelp reviews.",
+  "width": 400,
+  "height": 250,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Restaurants",
+          "average_rating": 4.2
+        },
+        {
+          "category": "Cafes",
+          "average_rating": 4.0
+        },
+        {
+          "category": "Bars",
+          "average_rating": 3.8
+        },
+        {
+          "category": "Gyms",
+          "average_rating": 4.5
+        },
+        {
+          "category": "Salons",
+          "average_rating": 4.1
+        },
+        {
+          "category": "Hotels",
+          "average_rating": 4.3
+        },
+        {
+          "category": "Retail Stores",
+          "average_rating": 3.9
+        },
+        {
+          "category": "Event Venues",
+          "average_rating": 4.4
+        },
+        {
+          "category": "Parks",
+          "average_rating": 4.7
+        },
+        {
+          "category": "Museums",
+          "average_rating": 4.6
+        },
+        {
+          "category": "Libraries",
+          "average_rating": 4.8
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "average_rating"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Business Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "average_rating"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

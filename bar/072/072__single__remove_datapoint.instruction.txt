@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Maternal Conditions' with a value of 0.3.
+[#OP1 op=remove_datapoint; category=Diabetes]

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing weekly sales trends for different departments over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "sales_data",
+      "values": [
+        {
+          "week": 1,
+          "department": "Electronics",
+          "sales": 15000
+        },
+        {
+          "week": 1,
+          "department": "Clothing",
+          "sales": 12000
+        },
+        {
+          "week": 1,
+          "department": "Grocery",
+          "sales": 18000
+        },
+        {
+          "week": 2,
+          "department": "Electronics",
+          "sales": 16000
+        },
+        {
+          "week": 2,
+          "department": "Clothing",
+          "sales": 12500
+        },
+        {
+          "week": 2,
+          "department": "Grocery",
+          "sales": 19000
+        },
+        {
+          "week": 3,
+          "department": "Electronics",
+          "sales": 17000
+        },
+        {
+          "week": 3,
+          "department": "Clothing",
+          "sales": 13000
+        },
+        {
+          "week": 3,
+          "department": "Grocery",
+          "sales": 20000
+        },
+        {
+          "week": 4,
+          "department": "Electronics",
+          "sales": 18000
+        },
+        {
+          "week": 4,
+          "department": "Clothing",
+          "sales": 13500
+        },
+        {
+          "week": 4,
+          "department": "Grocery",
+          "sales": 21000
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['department']=='Electronics' || datum['department']=='Clothing'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": [
+        0,
+        20
+      ],
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "sales_data",
+        "field": "sales"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "sales_data",
+        "field": "department"
+      },
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Week"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Sales ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "sales_data",
+          "groupby": "department"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "week"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "sales"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "department"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Department",
+      "orient": "right"
+    }
+  ]
+}

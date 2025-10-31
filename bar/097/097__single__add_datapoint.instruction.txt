@@ -1,0 +1,2 @@
+Add a new datapoint for 'French' cuisine with an average cost of 950 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Chinese; value=875.0]

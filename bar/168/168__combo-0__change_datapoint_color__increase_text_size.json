@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing GDP per capita for selected countries.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "United States",
+          "gdp_per_capita": 65394
+        },
+        {
+          "country": "China",
+          "gdp_per_capita": 10418
+        },
+        {
+          "country": "India",
+          "gdp_per_capita": 2256
+        },
+        {
+          "country": "Germany",
+          "gdp_per_capita": 47837
+        },
+        {
+          "country": "Brazil",
+          "gdp_per_capita": 8717
+        },
+        {
+          "country": "South Africa",
+          "gdp_per_capita": 6001
+        },
+        {
+          "country": "Japan",
+          "gdp_per_capita": 39574
+        },
+        {
+          "country": "United Kingdom",
+          "gdp_per_capita": 42354
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "gdp_per_capita"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Country",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "GDP per Capita (USD)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "gdp_per_capita"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['country']==='India'",
+              "value": "#ff7f0e"
+            },
+            {
+              "test": "datum.country === 'India'",
+              "value": "#ff5733"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

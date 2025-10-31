@@ -1,0 +1,2 @@
+Remove the datapoint with the date '2023-06-15' from the chart.
+[#OP1 op=remove_datapoint; category=2023-02-15]

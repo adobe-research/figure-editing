@@ -1,0 +1,2 @@
+Remove the datapoint for the '16-24' age group in the month of 'May'.
+[#OP1 op=remove_datapoint; category=Jan]

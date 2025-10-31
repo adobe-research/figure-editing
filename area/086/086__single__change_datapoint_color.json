@@ -1,0 +1,192 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy production trends by source over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "energy_data",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Coal",
+          "production": 1200
+        },
+        {
+          "year": 2000,
+          "source": "Oil",
+          "production": 900
+        },
+        {
+          "year": 2000,
+          "source": "Natural Gas",
+          "production": 700
+        },
+        {
+          "year": 2005,
+          "source": "Coal",
+          "production": 1300
+        },
+        {
+          "year": 2005,
+          "source": "Oil",
+          "production": 950
+        },
+        {
+          "year": 2005,
+          "source": "Natural Gas",
+          "production": 800
+        },
+        {
+          "year": 2010,
+          "source": "Coal",
+          "production": 1400
+        },
+        {
+          "year": 2010,
+          "source": "Oil",
+          "production": 1000
+        },
+        {
+          "year": 2010,
+          "source": "Natural Gas",
+          "production": 850
+        },
+        {
+          "year": 2015,
+          "source": "Coal",
+          "production": 1350
+        },
+        {
+          "year": 2015,
+          "source": "Oil",
+          "production": 1100
+        },
+        {
+          "year": 2015,
+          "source": "Natural Gas",
+          "production": 900
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Coal' || datum['source']=='Oil'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "energy_data",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#FF5733",
+        "#1f77b4"
+      ],
+      "domain": {
+        "data": "energy_data",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Production (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "energy_data",
+          "name": "series_facet",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ]
+}

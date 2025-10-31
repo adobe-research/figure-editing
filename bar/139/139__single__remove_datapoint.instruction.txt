@@ -1,0 +1,2 @@
+Remove the datapoint for 'Luis Suarez' with a rating of 91.
+[#OP1 op=remove_datapoint; category=Sergio Ramos]

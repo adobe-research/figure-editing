@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing survey responses from Pew Research Center.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Very satisfied",
+          "value": 45
+        },
+        {
+          "category": "Somewhat satisfied",
+          "value": 30
+        },
+        {
+          "category": "Neutral",
+          "value": 15
+        },
+        {
+          "category": "Somewhat dissatisfied",
+          "value": 7
+        },
+        {
+          "category": "Very dissatisfied",
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Survey Response",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Percentage (%)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "#4c78a8"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "#4c78a8"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "#f58518"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

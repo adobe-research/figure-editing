@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Organic Produce' with 750 orders at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bakery Items; value=750.0]

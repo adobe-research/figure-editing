@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Unemployed' category.
+[#OP1 op=remove_datapoint; category=Self-Employed]

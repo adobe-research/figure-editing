@@ -1,0 +1,3 @@
+Change the color of the 'USA' datapoint to blue and increase the text size for axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=Russia; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=UK; new_color=#2ca02c]

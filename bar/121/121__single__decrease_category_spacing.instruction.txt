@@ -1,0 +1,2 @@
+Decrease the spacing between categories in the bar chart by reducing the padding of the xscale to 0.05.
+[#OP1 op=decrease_category_spacing; scale=auto; new_padding=0.00]

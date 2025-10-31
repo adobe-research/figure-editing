@@ -1,0 +1,2 @@
+Add a new datapoint for the activity 'Meditation' with 0.5 hours at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Exercising; value=0.85]

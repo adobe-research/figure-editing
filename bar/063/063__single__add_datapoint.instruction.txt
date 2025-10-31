@@ -1,0 +1,2 @@
+Add a new datapoint for 'No Diploma' with an average of 37 hours worked per week at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Assoc-acdm; value=40.0]

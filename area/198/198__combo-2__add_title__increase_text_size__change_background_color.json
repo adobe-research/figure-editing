@@ -1,0 +1,222 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy production by source over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Coal",
+          "production": 1200
+        },
+        {
+          "year": 2000,
+          "source": "Oil",
+          "production": 950
+        },
+        {
+          "year": 2000,
+          "source": "Gas",
+          "production": 800
+        },
+        {
+          "year": 2005,
+          "source": "Coal",
+          "production": 1300
+        },
+        {
+          "year": 2005,
+          "source": "Oil",
+          "production": 1000
+        },
+        {
+          "year": 2005,
+          "source": "Gas",
+          "production": 850
+        },
+        {
+          "year": 2010,
+          "source": "Coal",
+          "production": 1400
+        },
+        {
+          "year": 2010,
+          "source": "Oil",
+          "production": 1100
+        },
+        {
+          "year": 2010,
+          "source": "Gas",
+          "production": 900
+        },
+        {
+          "year": 2015,
+          "source": "Coal",
+          "production": 1500
+        },
+        {
+          "year": 2015,
+          "source": "Oil",
+          "production": 1200
+        },
+        {
+          "year": 2015,
+          "source": "Gas",
+          "production": 950
+        },
+        {
+          "year": 2020,
+          "source": "Coal",
+          "production": 1600
+        },
+        {
+          "year": 2020,
+          "source": "Oil",
+          "production": 1250
+        },
+        {
+          "year": 2020,
+          "source": "Gas",
+          "production": 1000
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Coal' || datum['source']=='Oil'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "source"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16,
+      "tickSize": 12,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Production (TWh)",
+      "labelFontSize": 16,
+      "tickSize": 12,
+      "titleFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

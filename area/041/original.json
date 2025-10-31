@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing bike rentals over time for different weather conditions.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01-01",
+          "rentals": 120,
+          "weather": "Clear"
+        },
+        {
+          "date": "2021-01-02",
+          "rentals": 80,
+          "weather": "Clear"
+        },
+        {
+          "date": "2021-01-03",
+          "rentals": 100,
+          "weather": "Cloudy"
+        },
+        {
+          "date": "2021-01-04",
+          "rentals": 60,
+          "weather": "Cloudy"
+        },
+        {
+          "date": "2021-01-05",
+          "rentals": 40,
+          "weather": "Rainy"
+        },
+        {
+          "date": "2021-01-06",
+          "rentals": 30,
+          "weather": "Rainy"
+        },
+        {
+          "date": "2021-01-07",
+          "rentals": 150,
+          "weather": "Clear"
+        },
+        {
+          "date": "2021-01-08",
+          "rentals": 90,
+          "weather": "Clear"
+        },
+        {
+          "date": "2021-01-09",
+          "rentals": 70,
+          "weather": "Cloudy"
+        },
+        {
+          "date": "2021-01-10",
+          "rentals": 50,
+          "weather": "Rainy"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum['weather']=='Clear' || datum['weather']=='Cloudy'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "rentals"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "weather"
+      },
+      "range": [
+        "steelblue",
+        "orange",
+        "lightgray"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "format": "%b %d"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "weather"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "rentals"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "weather"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather",
+      "orient": "right"
+    }
+  ]
+}

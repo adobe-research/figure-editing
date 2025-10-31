@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2020 with source 'Oil' and emissions 19.8.
+[#OP1 op=remove_datapoint; category=Oil]

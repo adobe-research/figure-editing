@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing Netflix stock price trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-02",
+          "price": 305.32
+        },
+        {
+          "date": "2023-01-03",
+          "price": 310.45
+        },
+        {
+          "date": "2023-01-04",
+          "price": 315.67
+        },
+        {
+          "date": "2023-01-05",
+          "price": 320.12
+        },
+        {
+          "date": "2023-01-06",
+          "price": 325.78
+        },
+        {
+          "date": "2023-01-09",
+          "price": 330.9
+        },
+        {
+          "date": "2023-01-10",
+          "price": 328.45
+        },
+        {
+          "date": "2023-01-11",
+          "price": 332.67
+        },
+        {
+          "date": "2023-01-12",
+          "price": 338.12
+        },
+        {
+          "date": "2023-01-13",
+          "price": 342.78
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date",
+      "format": "%b %d",
+      "labelAngle": -45
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

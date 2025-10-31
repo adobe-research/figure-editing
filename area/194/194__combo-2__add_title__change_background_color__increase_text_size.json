@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing crop production trends over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "wheat": 500,
+          "corn": 450
+        },
+        {
+          "year": 2016,
+          "wheat": 520,
+          "corn": 470
+        },
+        {
+          "year": 2017,
+          "wheat": 540,
+          "corn": 490
+        },
+        {
+          "year": 2018,
+          "wheat": 560,
+          "corn": 510
+        },
+        {
+          "year": 2019,
+          "wheat": 580,
+          "corn": 530
+        },
+        {
+          "year": 2020,
+          "wheat": 600,
+          "corn": 550
+        },
+        {
+          "year": 2021,
+          "wheat": 620,
+          "corn": 570
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "fields": [
+          {
+            "data": "table",
+            "field": "wheat"
+          },
+          {
+            "data": "table",
+            "field": "corn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": [
+        "wheat",
+        "corn"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Production (in tons)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "key"
+          }
+        },
+        "update": {}
+      },
+      "transform": [
+        {
+          "type": "formula",
+          "as": "key",
+          "expr": "datum.key"
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "wheat",
+            "corn"
+          ]
+        }
+      ],
+      "sort": {
+        "field": "year",
+        "order": "ascending"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Legend",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

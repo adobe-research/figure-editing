@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Gaming' with a rating of 4.9 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Books & Reference; value=4.5]

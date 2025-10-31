@@ -1,0 +1,2 @@
+Change the color of the datapoints for the 'Solar' source to a new color '#e41a1c'.
+[#OP1 op=change_datapoint_color; target_category=2022-01; new_color=#d62728]

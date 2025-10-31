@@ -1,0 +1,2 @@
+Add a new datapoint for 'No Schooling' with an average of 36 hours worked per week.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Associate; value=39.5]

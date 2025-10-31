@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average happiness scores by country.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "Finland",
+          "happiness_score": 7.8
+        },
+        {
+          "country": "Denmark",
+          "happiness_score": 7.6
+        },
+        {
+          "country": "Switzerland",
+          "happiness_score": 7.5
+        },
+        {
+          "country": "Iceland",
+          "happiness_score": 7.4
+        },
+        {
+          "country": "Netherlands",
+          "happiness_score": 7.3
+        },
+        {
+          "country": "Norway",
+          "happiness_score": 7.2
+        },
+        {
+          "country": "Sweden",
+          "happiness_score": 7.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "happiness_score"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Country",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Happiness Score",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "happiness_score"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing cryptocurrency prices over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-06-01",
+          "Bitcoin": 27000,
+          "Ethereum": 1800
+        },
+        {
+          "date": "2023-06-02",
+          "Bitcoin": 27500,
+          "Ethereum": 1850
+        },
+        {
+          "date": "2023-06-03",
+          "Bitcoin": 28000,
+          "Ethereum": 1900
+        },
+        {
+          "date": "2023-06-04",
+          "Bitcoin": 28500,
+          "Ethereum": 1950
+        },
+        {
+          "date": "2023-06-05",
+          "Bitcoin": 29000,
+          "Ethereum": 2000
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "Bitcoin",
+            "Ethereum"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "table"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "Bitcoin"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "value": "gold"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        },
+        {
+          "type": "area",
+          "from": {
+            "data": "table"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "Ethereum"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "value": "purple"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

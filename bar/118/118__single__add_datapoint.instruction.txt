@@ -1,0 +1,2 @@
+Add a new datapoint for 'Store G' with a demand value of 130 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Store A; value=150.0]

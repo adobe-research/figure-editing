@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average Airbnb prices by neighborhood in NYC.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "neighborhood": "Manhattan",
+          "average_price": 150
+        },
+        {
+          "neighborhood": "Brooklyn",
+          "average_price": 120
+        },
+        {
+          "neighborhood": "Queens",
+          "average_price": 90
+        },
+        {
+          "neighborhood": "Bronx",
+          "average_price": 75
+        },
+        {
+          "neighborhood": "Staten Island",
+          "average_price": 80
+        },
+        {
+          "neighborhood": "Harlem",
+          "average_price": 110
+        },
+        {
+          "neighborhood": "Williamsburg",
+          "average_price": 140
+        },
+        {
+          "neighborhood": "Long Island City",
+          "average_price": 130
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "neighborhood"
+      },
+      "range": "width",
+      "padding": 0.25,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "average_price"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Neighborhood"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "neighborhood"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "average_price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "neighborhood",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "average_price",
+            "offset": -2
+          },
+          "text": {
+            "field": "average_price"
+          },
+          "fillOpacity": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

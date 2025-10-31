@@ -1,0 +1,2 @@
+Remove the datapoint with 'attack_type' equal to 'Hijacking'.
+[#OP1 op=remove_datapoint; category=Hostage Taking (Kidnapping)]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Specialty Store' with sales value 32000.
+[#OP1 op=remove_datapoint; category=Supermarket]

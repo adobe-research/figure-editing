@@ -1,0 +1,2 @@
+Decrease the text size for the tooltip values.
+[#OP1 op=decrease_text_size; axis_label_size=8]

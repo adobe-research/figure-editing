@@ -1,0 +1,2 @@
+Add a new datapoint for January 8, 2023, with precipitation 3.5 mm and temperature 7.2°C.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=2.7]

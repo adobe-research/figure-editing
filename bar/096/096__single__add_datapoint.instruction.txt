@@ -1,0 +1,2 @@
+Add a new datapoint for the genre 'Fantasy' with a count of 350 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Action; value=475.0]

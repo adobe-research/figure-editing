@@ -1,0 +1,2 @@
+Add a new datapoint for 'Online Store' with an average sales value of 11000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Discount Store; value=9250.0]

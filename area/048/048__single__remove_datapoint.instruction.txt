@@ -1,0 +1,2 @@
+Remove the datapoint where the month is 'Feb' and the category is 'Furniture'.
+[#OP1 op=remove_datapoint; category=Jan]

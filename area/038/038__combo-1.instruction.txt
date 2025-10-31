@@ -1,0 +1,3 @@
+Change the background color to lightgray and add a title 'Price and Sales Trends Over Time' with size 20.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_title; title_text=Edited Chart]

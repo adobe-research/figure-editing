@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2013 with metric 'Teaching' and score 50.
+[#OP1 op=remove_datapoint; category=Research]

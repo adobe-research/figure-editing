@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing temperature and humidity trends over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "climate_data",
+      "values": [
+        {
+          "date": "2023-09-01",
+          "temperature": 32,
+          "humidity": 70
+        },
+        {
+          "date": "2023-09-02",
+          "temperature": 33,
+          "humidity": 68
+        },
+        {
+          "date": "2023-09-03",
+          "temperature": 34,
+          "humidity": 65
+        },
+        {
+          "date": "2023-09-04",
+          "temperature": 31,
+          "humidity": 72
+        },
+        {
+          "date": "2023-09-05",
+          "temperature": 30,
+          "humidity": 75
+        },
+        {
+          "date": "2023-09-06",
+          "temperature": 29,
+          "humidity": 78
+        },
+        {
+          "date": "2023-09-07",
+          "temperature": 28,
+          "humidity": 80
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "humidity",
+            "temperature"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "climate_data",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale_temperature",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "climate_data",
+        "field": "temperature"
+      },
+      "nice": true
+    },
+    {
+      "name": "yscale_humidity",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "climate_data",
+        "field": "humidity"
+      },
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_temperature",
+      "title": "Temperature (°C)"
+    },
+    {
+      "orient": "right",
+      "scale": "yscale_humidity",
+      "title": "Humidity (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "climate_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale_temperature",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale_temperature",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "fillOpacity": {
+            "value": 0.6
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "climate_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale_humidity",
+            "field": "humidity"
+          },
+          "y2": {
+            "scale": "yscale_humidity",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "fillOpacity": {
+            "value": 0.6
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing FAO Food Price Index trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2019-01",
+          "cereal": 170,
+          "dairy": 190
+        },
+        {
+          "month": "2019-02",
+          "cereal": 172,
+          "dairy": 188
+        },
+        {
+          "month": "2019-03",
+          "cereal": 175,
+          "dairy": 185
+        },
+        {
+          "month": "2019-04",
+          "cereal": 178,
+          "dairy": 183
+        },
+        {
+          "month": "2019-05",
+          "cereal": 180,
+          "dairy": 181
+        },
+        {
+          "month": "2019-06",
+          "cereal": 182,
+          "dairy": 179
+        },
+        {
+          "month": "2019-07",
+          "cereal": 185,
+          "dairy": 177
+        },
+        {
+          "month": "2019-08",
+          "cereal": 187,
+          "dairy": 175
+        },
+        {
+          "month": "2019-09",
+          "cereal": 190,
+          "dairy": 173
+        },
+        {
+          "month": "2019-10",
+          "cereal": 192,
+          "dairy": 171
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "fields": [
+          {
+            "data": "table",
+            "field": "cereal"
+          },
+          {
+            "data": "table",
+            "field": "dairy"
+          }
+        ]
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Price Index",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "field": "key",
+            "type": "ordinal"
+          }
+        },
+        "update": {}
+      },
+      "sort": {
+        "field": "month",
+        "order": "ascending"
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing monthly data trends for two series.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "series": "A",
+          "value": 120
+        },
+        {
+          "month": "Feb",
+          "series": "A",
+          "value": 150
+        },
+        {
+          "month": "Mar",
+          "series": "A",
+          "value": 180
+        },
+        {
+          "month": "Apr",
+          "series": "A",
+          "value": 200
+        },
+        {
+          "month": "May",
+          "series": "A",
+          "value": 220
+        },
+        {
+          "month": "Jun",
+          "series": "A",
+          "value": 240
+        },
+        {
+          "month": "Jan",
+          "series": "B",
+          "value": 100
+        },
+        {
+          "month": "Feb",
+          "series": "B",
+          "value": 130
+        },
+        {
+          "month": "Mar",
+          "series": "B",
+          "value": 160
+        },
+        {
+          "month": "Apr",
+          "series": "B",
+          "value": 190
+        },
+        {
+          "month": "May",
+          "series": "B",
+          "value": 210
+        },
+        {
+          "month": "Jun",
+          "series": "B",
+          "value": 230
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      },
+      "range": [
+        "steelblue",
+        "orange"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "seriesFacet",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "seriesFacet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "series"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right"
+    }
+  ]
+}

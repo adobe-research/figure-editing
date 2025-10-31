@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the pickup hour '04:00'.
+[#OP1 op=remove_datapoint; category=08:00]

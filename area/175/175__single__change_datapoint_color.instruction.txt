@@ -1,0 +1,2 @@
+Change the color of the datapoints for the 'Europe' region to 'purple'.
+[#OP1 op=change_datapoint_color; target_category=2021-01-01; new_color=#ff7f0e]

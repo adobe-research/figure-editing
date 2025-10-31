@@ -1,0 +1,2 @@
+Add a new datapoint with transaction_type 'Gift Card' and frequency 30 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=ATM; value=57.5]

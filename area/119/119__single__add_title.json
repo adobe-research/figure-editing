@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing daily COVID-19 cases over time for multiple countries.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "anchor": "start"
+  },
+  "data": [
+    {
+      "name": "covid_data",
+      "values": [
+        {
+          "date": "2020-03-01",
+          "country": "USA",
+          "cases": 75
+        },
+        {
+          "date": "2020-03-02",
+          "country": "USA",
+          "cases": 90
+        },
+        {
+          "date": "2020-03-03",
+          "country": "USA",
+          "cases": 120
+        },
+        {
+          "date": "2020-03-01",
+          "country": "Italy",
+          "cases": 150
+        },
+        {
+          "date": "2020-03-02",
+          "country": "Italy",
+          "cases": 200
+        },
+        {
+          "date": "2020-03-03",
+          "country": "Italy",
+          "cases": 300
+        },
+        {
+          "date": "2020-03-01",
+          "country": "China",
+          "cases": 800
+        },
+        {
+          "date": "2020-03-02",
+          "country": "China",
+          "cases": 850
+        },
+        {
+          "date": "2020-03-03",
+          "country": "China",
+          "cases": 900
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum['country']=='USA' || datum['country']=='Italy'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "covid_data",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "covid_data",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "covid_data",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Daily Cases"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "covid_data",
+          "name": "series_facet",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "cases"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "country"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ]
+}

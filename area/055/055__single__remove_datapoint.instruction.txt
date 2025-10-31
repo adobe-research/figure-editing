@@ -1,0 +1,2 @@
+Remove the datapoint for year 2013 and category B with value 40.
+[#OP1 op=remove_datapoint; category=B]

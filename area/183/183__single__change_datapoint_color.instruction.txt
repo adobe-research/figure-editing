@@ -1,0 +1,2 @@
+Change the datapoint color for the stores to a new set of colors.
+[#OP1 op=change_datapoint_color; target_category=Store A; new_color=#ff7f0e]

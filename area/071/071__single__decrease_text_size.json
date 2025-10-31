@@ -1,0 +1,171 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing weekly sales trends for multiple stores.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "sales_data",
+      "values": [
+        {
+          "week": 1,
+          "store": "Store A",
+          "sales": 20000
+        },
+        {
+          "week": 2,
+          "store": "Store A",
+          "sales": 25000
+        },
+        {
+          "week": 3,
+          "store": "Store A",
+          "sales": 22000
+        },
+        {
+          "week": 4,
+          "store": "Store A",
+          "sales": 27000
+        },
+        {
+          "week": 1,
+          "store": "Store B",
+          "sales": 18000
+        },
+        {
+          "week": 2,
+          "store": "Store B",
+          "sales": 21000
+        },
+        {
+          "week": 3,
+          "store": "Store B",
+          "sales": 23000
+        },
+        {
+          "week": 4,
+          "store": "Store B",
+          "sales": 24000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "sales_data",
+        "field": "sales"
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "sales_data",
+        "field": "store"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Week",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Sales (in USD)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "sales_data",
+          "name": "series_facet",
+          "groupby": "store"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "week"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "store"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "week",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Store",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

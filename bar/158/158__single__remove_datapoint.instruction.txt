@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Housing Starts' and value 1.5.
+[#OP1 op=remove_datapoint; category=Unemployment Rate]

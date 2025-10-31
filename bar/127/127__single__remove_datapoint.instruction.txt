@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Refund' with a count of 250.
+[#OP1 op=remove_datapoint; category=Bill Payment]

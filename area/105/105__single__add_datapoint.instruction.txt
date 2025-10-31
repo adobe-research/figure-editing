@@ -1,0 +1,2 @@
+Add a new datapoint with date '2022-05-09' and price 220.5 to the stock_data dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=202.8]

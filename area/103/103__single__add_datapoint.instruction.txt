@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Electronics' category with a demand of 180 at the date '2023-06'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=130.0]

@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Alcohol Consumption' with an amount of 65 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age Group 60+; value=92.5]

@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Photography' with an apps_count of 500 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Business; value=750.0]

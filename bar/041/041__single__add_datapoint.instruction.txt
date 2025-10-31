@@ -1,0 +1,2 @@
+Add a new datapoint for 'South Korea' with a GDP per capita of 33777 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Australia; value=40113.0]

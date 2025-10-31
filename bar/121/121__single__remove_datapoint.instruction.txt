@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Robbery' with a count of 500.
+[#OP1 op=remove_datapoint; category=Motor Vehicle Theft]

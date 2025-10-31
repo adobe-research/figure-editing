@@ -1,0 +1,2 @@
+Remove the datapoint for the month '2021-07' with index value 123.5.
+[#OP1 op=remove_datapoint; category=2021-06]

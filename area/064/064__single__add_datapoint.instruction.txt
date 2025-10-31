@@ -1,0 +1,2 @@
+Add a new datapoint for Microsoft on 2023-01-05 with a price of 260.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Apple; value=155.0]

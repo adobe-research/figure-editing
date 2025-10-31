@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing average daily sales for different store types.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "store_type": "Supermarket Type 1",
+          "average_sales": 12500
+        },
+        {
+          "store_type": "Supermarket Type 2",
+          "average_sales": 9800
+        },
+        {
+          "store_type": "Supermarket Type 3",
+          "average_sales": 7200
+        },
+        {
+          "store_type": "Grocery Store",
+          "average_sales": 4500
+        },
+        {
+          "store_type": "Discount Store",
+          "average_sales": 8700
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "store_type"
+      },
+      "range": "width",
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "average_sales"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Store Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Daily Sales"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "store_type"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "average_sales"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "teal"
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing house prices over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Year": 2000,
+          "MedianPrice": 150000
+        },
+        {
+          "Year": 2001,
+          "MedianPrice": 160000
+        },
+        {
+          "Year": 2002,
+          "MedianPrice": 170000
+        },
+        {
+          "Year": 2003,
+          "MedianPrice": 180000
+        },
+        {
+          "Year": 2004,
+          "MedianPrice": 200000
+        },
+        {
+          "Year": 2005,
+          "MedianPrice": 220000
+        },
+        {
+          "Year": 2006,
+          "MedianPrice": 240000
+        },
+        {
+          "Year": 2007,
+          "MedianPrice": 230000
+        },
+        {
+          "Year": 2008,
+          "MedianPrice": 210000
+        },
+        {
+          "Year": 2009,
+          "MedianPrice": 190000
+        },
+        {
+          "Year": 2010,
+          "MedianPrice": 200000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "MedianPrice"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Median House Price (USD)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "MedianPrice"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

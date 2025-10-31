@@ -1,0 +1,2 @@
+Remove the datapoint for 'Brazil' with emissions value 500.
+[#OP1 op=remove_datapoint; category=Germany]

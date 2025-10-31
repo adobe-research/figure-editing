@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing unemployment rates over time by age group.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2023-01",
+          "age_group": "16-24",
+          "rate": 10.1
+        },
+        {
+          "month": "2023-01",
+          "age_group": "25-54",
+          "rate": 4.3
+        },
+        {
+          "month": "2023-01",
+          "age_group": "55+",
+          "rate": 3.2
+        },
+        {
+          "month": "2023-02",
+          "age_group": "16-24",
+          "rate": 9.8
+        },
+        {
+          "month": "2023-02",
+          "age_group": "25-54",
+          "rate": 4.1
+        },
+        {
+          "month": "2023-02",
+          "age_group": "55+",
+          "rate": 3.0
+        },
+        {
+          "month": "2023-03",
+          "age_group": "16-24",
+          "rate": 9.5
+        },
+        {
+          "month": "2023-03",
+          "age_group": "25-54",
+          "rate": 4.0
+        },
+        {
+          "month": "2023-03",
+          "age_group": "55+",
+          "rate": 2.9
+        },
+        {
+          "month": "2023-04",
+          "age_group": "16-24",
+          "rate": 9.3
+        },
+        {
+          "month": "2023-04",
+          "age_group": "25-54",
+          "rate": 3.9
+        },
+        {
+          "month": "2023-04",
+          "age_group": "55+",
+          "rate": 2.8
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['age_group']=='16-24' || datum['age_group']=='25-54'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "rate"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "age_group"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Unemployment Rate (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "age_group"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "rate"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "age_group"
+              },
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "update": {
+              "interpolate": {
+                "value": "monotone"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Age Group",
+      "orient": "right"
+    }
+  ]
+}

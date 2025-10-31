@@ -1,0 +1,186 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A single-series bar chart showing average trip duration by pickup hour.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "pickup_hour": "00:00",
+          "avg_trip_duration": 12.5
+        },
+        {
+          "pickup_hour": "01:00",
+          "avg_trip_duration": 10.8
+        },
+        {
+          "pickup_hour": "02:00",
+          "avg_trip_duration": 9.3
+        },
+        {
+          "pickup_hour": "03:00",
+          "avg_trip_duration": 8.7
+        },
+        {
+          "pickup_hour": "04:00",
+          "avg_trip_duration": 7.5
+        },
+        {
+          "pickup_hour": "05:00",
+          "avg_trip_duration": 11.2
+        },
+        {
+          "pickup_hour": "06:00",
+          "avg_trip_duration": 15.4
+        },
+        {
+          "pickup_hour": "07:00",
+          "avg_trip_duration": 18.1
+        },
+        {
+          "pickup_hour": "08:00",
+          "avg_trip_duration": 20.3
+        },
+        {
+          "pickup_hour": "09:00",
+          "avg_trip_duration": 19.7
+        },
+        {
+          "pickup_hour": "10:00",
+          "avg_trip_duration": 17.6
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "pickup_hour"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "avg_trip_duration"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Pickup Hour"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Trip Duration (minutes)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "pickup_hour"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_trip_duration"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "teal"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.pickup_hour",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.avg_trip_duration",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.avg_trip_duration"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

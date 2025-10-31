@@ -1,0 +1,2 @@
+Add a new datapoint for the industry 'Energy' with earnings of 1600 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Construction; value=1150.0]

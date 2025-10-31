@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2005 with region 'East Asia & Pacific' and GDP growth of 7.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East Asia & Pacific; value=2002.0]

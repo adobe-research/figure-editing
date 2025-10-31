@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing CO2 emissions from fossil fuels over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "emissions",
+      "values": [
+        {
+          "year": 2000,
+          "coal": 6000,
+          "oil": 5000,
+          "gas": 3000
+        },
+        {
+          "year": 2005,
+          "coal": 6500,
+          "oil": 5200,
+          "gas": 3500
+        },
+        {
+          "year": 2010,
+          "coal": 7000,
+          "oil": 5500,
+          "gas": 4000
+        },
+        {
+          "year": 2015,
+          "coal": 6800,
+          "oil": 5700,
+          "gas": 4500
+        },
+        {
+          "year": 2020,
+          "coal": 6400,
+          "oil": 5900,
+          "gas": 5000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "emissions",
+        "fields": [
+          {
+            "data": "emissions",
+            "field": "coal"
+          },
+          {
+            "data": "emissions",
+            "field": "oil"
+          },
+          {
+            "data": "emissions",
+            "field": "gas"
+          }
+        ]
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "coal",
+        "oil",
+        "gas"
+      ],
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "tickCount": 5,
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "CO2 Emissions (MtCO2)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "emissions"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "key"
+          },
+          "interpolate": {
+            "value": "monotone"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      },
+      "sort": {
+        "field": "year",
+        "order": "ascending"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Legend",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

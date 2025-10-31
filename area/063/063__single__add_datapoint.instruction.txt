@@ -1,0 +1,2 @@
+Add a new datapoint for the region 'Europe' with 2500 cases on '2020-03-20'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Asia; value=1750.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for the age group '81-90' with 100 stroke occurrences at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=0-10; value=40.0]

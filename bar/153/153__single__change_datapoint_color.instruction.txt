@@ -1,0 +1,2 @@
+Change the color of the datapoints from 'steelblue' to 'crimson'.
+[#OP1 op=change_datapoint_color; target_category=Unemployed; new_color=#ff7f0e]

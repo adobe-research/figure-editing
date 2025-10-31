@@ -1,0 +1,2 @@
+Remove the datapoint for the category 'Condiments'.
+[#OP1 op=remove_datapoint; category=Dairy Products]

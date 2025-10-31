@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Seed Types and Their Average Areas'.
+[#OP1 op=add_title; title_text=Edited Chart]

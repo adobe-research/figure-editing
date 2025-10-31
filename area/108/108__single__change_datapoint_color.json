@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing unemployment rates over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2023-01",
+          "unemployment_rate": 3.4
+        },
+        {
+          "month": "2023-02",
+          "unemployment_rate": 3.5
+        },
+        {
+          "month": "2023-03",
+          "unemployment_rate": 3.6
+        },
+        {
+          "month": "2023-04",
+          "unemployment_rate": 3.4
+        },
+        {
+          "month": "2023-05",
+          "unemployment_rate": 3.7
+        },
+        {
+          "month": "2023-06",
+          "unemployment_rate": 3.8
+        },
+        {
+          "month": "2023-07",
+          "unemployment_rate": 3.5
+        },
+        {
+          "month": "2023-08",
+          "unemployment_rate": 3.6
+        },
+        {
+          "month": "2023-09",
+          "unemployment_rate": 3.4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "unemployment_rate"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Unemployment Rate (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "unemployment_rate"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

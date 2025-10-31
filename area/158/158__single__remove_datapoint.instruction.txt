@@ -1,0 +1,2 @@
+Remove the datapoint for University B in the year 2016 with a score of 78.3.
+[#OP1 op=remove_datapoint; category=University A]

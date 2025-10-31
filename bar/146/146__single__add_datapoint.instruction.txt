@@ -1,0 +1,2 @@
+Add a new datapoint for 'Class 7' with an average alcohol content of 13.2 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Class 1; value=13.2]

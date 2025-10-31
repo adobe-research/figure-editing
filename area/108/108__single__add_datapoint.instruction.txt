@@ -1,0 +1,2 @@
+Add a new datapoint for October 2023 with an unemployment rate of 3.9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=3.55]

@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020, month 'Jan', with an average temperature of -0.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Apr; value=2010.0]

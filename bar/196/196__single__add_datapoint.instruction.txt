@@ -1,0 +1,2 @@
+Add a new datapoint for pollutant 'NH3' with a concentration of 12.4 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CO; value=19.8]

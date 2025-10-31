@@ -1,0 +1,2 @@
+Add a new datapoint to the 'table' dataset with date '2023-08-15', series1 value 300, and series2 value 190.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=210.0]

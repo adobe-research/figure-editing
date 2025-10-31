@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing FAO Food Price Index trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01",
+          "value": 98.1
+        },
+        {
+          "date": "2021-02",
+          "value": 101.2
+        },
+        {
+          "date": "2021-03",
+          "value": 104.5
+        },
+        {
+          "date": "2021-04",
+          "value": 108.7
+        },
+        {
+          "date": "2021-05",
+          "value": 112.3
+        },
+        {
+          "date": "2021-06",
+          "value": 115.6
+        },
+        {
+          "date": "2021-07",
+          "value": 113.8
+        },
+        {
+          "date": "2021-08",
+          "value": 110.2
+        },
+        {
+          "date": "2021-09",
+          "value": 107.9
+        },
+        {
+          "date": "2021-10",
+          "value": 110.5
+        },
+        {
+          "date": "2021-11",
+          "value": 112.8
+        },
+        {
+          "date": "2021-12",
+          "value": 115.4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date",
+      "labelAngle": -45,
+      "labelFontSize": 18
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Food Price Index",
+      "labelFontSize": 18
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 18
+    }
+  }
+}

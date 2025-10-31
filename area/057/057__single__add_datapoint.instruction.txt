@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2003 with a GDP growth of 8.1% for the region 'East Asia & Pacific'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East Asia & Pacific; value=2001.0]

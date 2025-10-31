@@ -1,0 +1,2 @@
+Remove the data point for December 2022 with a rate of 3.5.
+[#OP1 op=remove_datapoint; category=May]

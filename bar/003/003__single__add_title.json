@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing population by state based on US Census ACS data.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "anchor": "start"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "state": "California",
+          "population": 39538223
+        },
+        {
+          "state": "Texas",
+          "population": 29145505
+        },
+        {
+          "state": "Florida",
+          "population": 21538187
+        },
+        {
+          "state": "New York",
+          "population": 20201249
+        },
+        {
+          "state": "Pennsylvania",
+          "population": 13002700
+        },
+        {
+          "state": "Illinois",
+          "population": 12812508
+        },
+        {
+          "state": "Ohio",
+          "population": 11799448
+        },
+        {
+          "state": "Georgia",
+          "population": 10711908
+        },
+        {
+          "state": "North Carolina",
+          "population": 10439388
+        },
+        {
+          "state": "Michigan",
+          "population": 10077331
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "state"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "population"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "State"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Population"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "state"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "population"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "state",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "population",
+            "offset": -5
+          },
+          "text": {
+            "field": "population"
+          },
+          "fontSize": {
+            "value": 12
+          }
+        }
+      }
+    }
+  ]
+}

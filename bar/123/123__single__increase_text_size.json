@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing US economic indicators.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "indicator": "GDP Growth",
+          "value": 2.3
+        },
+        {
+          "indicator": "Unemployment Rate",
+          "value": 4.6
+        },
+        {
+          "indicator": "Inflation Rate",
+          "value": 1.8
+        },
+        {
+          "indicator": "Consumer Spending",
+          "value": 3.2
+        },
+        {
+          "indicator": "Industrial Production",
+          "value": 1.5
+        },
+        {
+          "indicator": "Retail Sales",
+          "value": 5.0
+        },
+        {
+          "indicator": "Housing Starts",
+          "value": 1.1
+        },
+        {
+          "indicator": "Exports",
+          "value": 2.8
+        },
+        {
+          "indicator": "Imports",
+          "value": 3.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "indicator"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Economic Indicators",
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value (%)",
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "indicator"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          },
+          "fontSize": {
+            "value": 14
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "indicator",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value",
+            "offset": -5
+          },
+          "text": {
+            "field": "value"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for October 8, 2022, with Bitcoin at 20300 and Ethereum at 1410.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=19887.5]

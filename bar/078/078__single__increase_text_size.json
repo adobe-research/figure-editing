@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average annual temperatures for selected cities.",
+  "width": 400,
+  "height": 250,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "city": "New York",
+          "avg_temp": 12.4
+        },
+        {
+          "city": "Los Angeles",
+          "avg_temp": 18.7
+        },
+        {
+          "city": "Chicago",
+          "avg_temp": 10.3
+        },
+        {
+          "city": "Houston",
+          "avg_temp": 20.6
+        },
+        {
+          "city": "Phoenix",
+          "avg_temp": 22.3
+        },
+        {
+          "city": "San Francisco",
+          "avg_temp": 15.1
+        },
+        {
+          "city": "Seattle",
+          "avg_temp": 11.3
+        },
+        {
+          "city": "Miami",
+          "avg_temp": 24.5
+        },
+        {
+          "city": "Denver",
+          "avg_temp": 10.1
+        },
+        {
+          "city": "Atlanta",
+          "avg_temp": 17.2
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "city"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "avg_temp"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "City",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Temperature (°C)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "city"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_temp"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.city",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.avg_temp",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.avg_temp"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

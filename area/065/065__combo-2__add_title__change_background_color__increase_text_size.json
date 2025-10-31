@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing house prices over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "price": 200000
+        },
+        {
+          "year": 2011,
+          "price": 210000
+        },
+        {
+          "year": 2012,
+          "price": 220000
+        },
+        {
+          "year": 2013,
+          "price": 230000
+        },
+        {
+          "year": 2014,
+          "price": 240000
+        },
+        {
+          "year": 2015,
+          "price": 250000
+        },
+        {
+          "year": 2016,
+          "price": 260000
+        },
+        {
+          "year": 2017,
+          "price": 270000
+        },
+        {
+          "year": 2018,
+          "price": 280000
+        },
+        {
+          "year": 2019,
+          "price": 290000
+        },
+        {
+          "year": 2020,
+          "price": 300000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "House Price (USD)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {}
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

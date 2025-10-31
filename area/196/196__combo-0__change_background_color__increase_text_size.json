@@ -1,0 +1,218 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing survey trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "survey_data",
+      "values": [
+        {
+          "year": 2015,
+          "approval_rate": 45,
+          "disapproval_rate": 30
+        },
+        {
+          "year": 2016,
+          "approval_rate": 50,
+          "disapproval_rate": 35
+        },
+        {
+          "year": 2017,
+          "approval_rate": 55,
+          "disapproval_rate": 40
+        },
+        {
+          "year": 2018,
+          "approval_rate": 60,
+          "disapproval_rate": 38
+        },
+        {
+          "year": 2019,
+          "approval_rate": 65,
+          "disapproval_rate": 42
+        },
+        {
+          "year": 2020,
+          "approval_rate": 70,
+          "disapproval_rate": 45
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "approval_rate",
+            "disapproval_rate"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "survey_data",
+        "field": "value"
+      }
+    },
+    {
+      "name": "yscale_disapproval",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "survey_data",
+        "field": "disapproval_rate"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Approval Rate (%)",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_disapproval",
+      "title": "Disapproval Rate (%)",
+      "grid": false,
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "approval_rate"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale_disapproval",
+            "field": "disapproval_rate"
+          },
+          "y2": {
+            "scale": "yscale_disapproval",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

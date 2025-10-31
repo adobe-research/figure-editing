@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'GDP Growth by Region (2000-2002)'.
+[#OP1 op=add_title; title_text=Edited Chart]

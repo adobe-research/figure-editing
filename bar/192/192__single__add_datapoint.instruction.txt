@@ -1,0 +1,2 @@
+Add a new datapoint with comment_type 'Spam' and count 500 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Identity Hate; value=500.0]

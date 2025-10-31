@@ -1,0 +1,2 @@
+Remove the datapoint for the industry 'Retail Trade' with earnings 800.
+[#OP1 op=remove_datapoint; category=Healthcare]

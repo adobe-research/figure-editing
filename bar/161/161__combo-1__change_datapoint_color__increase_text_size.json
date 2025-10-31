@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing CO2 emissions by country for a specific year.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "China",
+          "emissions": 10000
+        },
+        {
+          "country": "United States",
+          "emissions": 5000
+        },
+        {
+          "country": "India",
+          "emissions": 2500,
+          "fill": "#ff5733"
+        },
+        {
+          "country": "Russia",
+          "emissions": 1700
+        },
+        {
+          "country": "Japan",
+          "emissions": 1200
+        },
+        {
+          "country": "Germany",
+          "emissions": 800
+        },
+        {
+          "country": "South Korea",
+          "emissions": 700
+        },
+        {
+          "country": "Canada",
+          "emissions": 600
+        },
+        {
+          "country": "Brazil",
+          "emissions": 500
+        },
+        {
+          "country": "Indonesia",
+          "emissions": 450
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "emissions"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Country",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "CO2 Emissions (million metric tons)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "emissions"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "field": "fill",
+            "default": "steelblue"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['country']==='Japan'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

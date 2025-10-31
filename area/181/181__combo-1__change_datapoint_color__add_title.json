@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing bike rentals over time for different user types.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01",
+          "casual": 120,
+          "registered": 300
+        },
+        {
+          "date": "2021-02",
+          "casual": 150,
+          "registered": 350
+        },
+        {
+          "date": "2021-03",
+          "casual": 200,
+          "registered": 400
+        },
+        {
+          "date": "2021-04",
+          "casual": 250,
+          "registered": 450
+        },
+        {
+          "date": "2021-05",
+          "casual": 300,
+          "registered": 500
+        },
+        {
+          "date": "2021-06",
+          "casual": 320,
+          "registered": 520
+        },
+        {
+          "date": "2021-07",
+          "casual": 340,
+          "registered": 540
+        },
+        {
+          "date": "2021-08",
+          "casual": 360,
+          "registered": 560
+        },
+        {
+          "date": "2021-09",
+          "casual": 380,
+          "registered": 580
+        },
+        {
+          "date": "2021-10",
+          "casual": 400,
+          "registered": 600
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "casual",
+            "registered"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Bike Rentals"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "casual"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "green"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "registered"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

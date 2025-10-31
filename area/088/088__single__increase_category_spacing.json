@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing average monthly temperatures over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "temperature_data",
+      "values": [
+        {
+          "year": 2000,
+          "month": "Jan",
+          "avg_temp": -1.2
+        },
+        {
+          "year": 2000,
+          "month": "Feb",
+          "avg_temp": 0.5
+        },
+        {
+          "year": 2000,
+          "month": "Mar",
+          "avg_temp": 4.0
+        },
+        {
+          "year": 2000,
+          "month": "Apr",
+          "avg_temp": 9.1
+        },
+        {
+          "year": 2000,
+          "month": "May",
+          "avg_temp": 14.3
+        },
+        {
+          "year": 2000,
+          "month": "Jun",
+          "avg_temp": 18.2
+        },
+        {
+          "year": 2000,
+          "month": "Jul",
+          "avg_temp": 20.4
+        },
+        {
+          "year": 2000,
+          "month": "Aug",
+          "avg_temp": 19.8
+        },
+        {
+          "year": 2000,
+          "month": "Sep",
+          "avg_temp": 15.3
+        },
+        {
+          "year": 2000,
+          "month": "Oct",
+          "avg_temp": 9.8
+        },
+        {
+          "year": 2000,
+          "month": "Nov",
+          "avg_temp": 4.3
+        },
+        {
+          "year": 2000,
+          "month": "Dec",
+          "avg_temp": -0.8
+        },
+        {
+          "year": 2010,
+          "month": "Jan",
+          "avg_temp": -0.5
+        },
+        {
+          "year": 2010,
+          "month": "Feb",
+          "avg_temp": 1.0
+        },
+        {
+          "year": 2010,
+          "month": "Mar",
+          "avg_temp": 5.2
+        },
+        {
+          "year": 2010,
+          "month": "Apr",
+          "avg_temp": 10.0
+        },
+        {
+          "year": 2010,
+          "month": "May",
+          "avg_temp": 15.0
+        },
+        {
+          "year": 2010,
+          "month": "Jun",
+          "avg_temp": 19.5
+        },
+        {
+          "year": 2010,
+          "month": "Jul",
+          "avg_temp": 21.0
+        },
+        {
+          "year": 2010,
+          "month": "Aug",
+          "avg_temp": 20.7
+        },
+        {
+          "year": 2010,
+          "month": "Sep",
+          "avg_temp": 16.0
+        },
+        {
+          "year": 2010,
+          "month": "Oct",
+          "avg_temp": 10.5
+        },
+        {
+          "year": 2010,
+          "month": "Nov",
+          "avg_temp": 5.0
+        },
+        {
+          "year": 2010,
+          "month": "Dec",
+          "avg_temp": 0.0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": {
+        "step": 30
+      },
+      "domain": {
+        "data": "temperature_data",
+        "field": "month"
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "temperature_data",
+        "field": "avg_temp"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "temperature_data",
+        "field": "year"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "temperature_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_temp"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "year"
+          },
+          "fillOpacity": {
+            "value": 0.7
+          }
+        },
+        "update": {
+          "interpolate": {
+            "value": "monotone"
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.9
+          }
+        }
+      },
+      "sort": {
+        "field": "month",
+        "order": "ascending"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right"
+    }
+  ]
+}

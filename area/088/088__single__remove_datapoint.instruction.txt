@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2000 and month 'Jul' with an average temperature of 20.4.
+[#OP1 op=remove_datapoint; category=Sep]

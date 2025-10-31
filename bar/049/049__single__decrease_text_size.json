@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the distribution of job types in the Bank Marketing dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "job_type": "Management",
+          "count": 256
+        },
+        {
+          "job_type": "Technician",
+          "count": 182
+        },
+        {
+          "job_type": "Blue-collar",
+          "count": 350
+        },
+        {
+          "job_type": "Entrepreneur",
+          "count": 85
+        },
+        {
+          "job_type": "Self-employed",
+          "count": 96
+        },
+        {
+          "job_type": "Retired",
+          "count": 120
+        },
+        {
+          "job_type": "Student",
+          "count": 50
+        },
+        {
+          "job_type": "Unemployed",
+          "count": 78
+        },
+        {
+          "job_type": "Housemaid",
+          "count": 62
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "job_type"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Job Type",
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Count",
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "job_type"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          },
+          "x": {
+            "scale": "xscale",
+            "field": "job_type",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count",
+            "offset": -5
+          },
+          "text": {
+            "field": "count"
+          },
+          "fontSize": {
+            "value": 10
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

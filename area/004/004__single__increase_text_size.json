@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing average monthly temperatures over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "month": "Jan",
+          "temperature": 5.2
+        },
+        {
+          "year": 2000,
+          "month": "Feb",
+          "temperature": 6.1
+        },
+        {
+          "year": 2000,
+          "month": "Mar",
+          "temperature": 8.3
+        },
+        {
+          "year": 2001,
+          "month": "Jan",
+          "temperature": 4.8
+        },
+        {
+          "year": 2001,
+          "month": "Feb",
+          "temperature": 5.9
+        },
+        {
+          "year": 2001,
+          "month": "Mar",
+          "temperature": 7.6
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "temperature",
+            "year"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

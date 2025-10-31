@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Sports' and count 65 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Education; value=70.0]

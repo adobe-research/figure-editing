@@ -1,0 +1,2 @@
+Remove the datapoint for 'Chelsea' with an average_goals value of 2.0.
+[#OP1 op=remove_datapoint; category=Juventus]

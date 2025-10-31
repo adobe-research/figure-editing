@@ -1,0 +1,216 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing bike sharing demand over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "hour": 0,
+          "demand": 120
+        },
+        {
+          "hour": 1,
+          "demand": 80
+        },
+        {
+          "hour": 2,
+          "demand": 60
+        },
+        {
+          "hour": 3,
+          "demand": 40
+        },
+        {
+          "hour": 4,
+          "demand": 30
+        },
+        {
+          "hour": 5,
+          "demand": 50
+        },
+        {
+          "hour": 6,
+          "demand": 100
+        },
+        {
+          "hour": 7,
+          "demand": 200
+        },
+        {
+          "hour": 8,
+          "demand": 300
+        },
+        {
+          "hour": 9,
+          "demand": 250
+        },
+        {
+          "hour": 10,
+          "demand": 220
+        },
+        {
+          "hour": 11,
+          "demand": 270
+        },
+        {
+          "hour": 12,
+          "demand": 300
+        },
+        {
+          "hour": 13,
+          "demand": 280
+        },
+        {
+          "hour": 14,
+          "demand": 260
+        },
+        {
+          "hour": 15,
+          "demand": 240
+        },
+        {
+          "hour": 16,
+          "demand": 300
+        },
+        {
+          "hour": 17,
+          "demand": 400
+        },
+        {
+          "hour": 18,
+          "demand": 450
+        },
+        {
+          "hour": 19,
+          "demand": 420
+        },
+        {
+          "hour": 20,
+          "demand": 380
+        },
+        {
+          "hour": 21,
+          "demand": 320
+        },
+        {
+          "hour": 22,
+          "demand": 250
+        },
+        {
+          "hour": 23,
+          "demand": 180
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Hour of the Day",
+      "tickCount": 24,
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Bike Demand",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "hour"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "demand"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

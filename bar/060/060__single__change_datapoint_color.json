@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing Netflix stock prices by month.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "price": 540
+        },
+        {
+          "month": "February",
+          "price": 560
+        },
+        {
+          "month": "March",
+          "price": 580
+        },
+        {
+          "month": "April",
+          "price": 590
+        },
+        {
+          "month": "May",
+          "price": 600
+        },
+        {
+          "month": "June",
+          "price": 620
+        },
+        {
+          "month": "July",
+          "price": 610
+        },
+        {
+          "month": "August",
+          "price": 630
+        },
+        {
+          "month": "September",
+          "price": 640
+        },
+        {
+          "month": "October",
+          "price": 650
+        },
+        {
+          "month": "November",
+          "price": 660
+        },
+        {
+          "month": "December",
+          "price": 670
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "price"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "forestgreen"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['month']==='October'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

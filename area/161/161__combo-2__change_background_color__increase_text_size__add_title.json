@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing Netflix stock prices over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01-04",
+          "price": 540.73
+        },
+        {
+          "date": "2021-01-05",
+          "price": 531.49
+        },
+        {
+          "date": "2021-01-06",
+          "price": 516.39
+        },
+        {
+          "date": "2021-01-07",
+          "price": 524.59
+        },
+        {
+          "date": "2021-01-08",
+          "price": 529.56
+        },
+        {
+          "date": "2021-01-11",
+          "price": 507.86
+        },
+        {
+          "date": "2021-01-12",
+          "price": 507.13
+        },
+        {
+          "date": "2021-01-13",
+          "price": 510.8
+        },
+        {
+          "date": "2021-01-14",
+          "price": 512.36
+        },
+        {
+          "date": "2021-01-15",
+          "price": 497.98
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "format": "%b %d",
+      "title": "Date",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price (USD)",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

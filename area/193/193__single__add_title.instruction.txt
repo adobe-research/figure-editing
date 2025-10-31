@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Food Price Index Trends (2020)' and font size 20.
+[#OP1 op=add_title; title_text=Edited Chart]

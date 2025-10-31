@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the distribution of pregnancies in the Pima Indians Diabetes Database.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "pregnancies": "0",
+          "count": 50
+        },
+        {
+          "pregnancies": "1",
+          "count": 60
+        },
+        {
+          "pregnancies": "2",
+          "count": 75
+        },
+        {
+          "pregnancies": "3",
+          "count": 40
+        },
+        {
+          "pregnancies": "4",
+          "count": 30
+        },
+        {
+          "pregnancies": "5",
+          "count": 20
+        },
+        {
+          "pregnancies": "6",
+          "count": 10
+        },
+        {
+          "pregnancies": "7",
+          "count": 5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "pregnancies"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Number of Pregnancies"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "pregnancies"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "forestgreen"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['pregnancies']==='6'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

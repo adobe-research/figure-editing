@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart visualizing temperature trends over months.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "temperature": -2.1
+        },
+        {
+          "month": "February",
+          "temperature": -1.5
+        },
+        {
+          "month": "March",
+          "temperature": 2.3
+        },
+        {
+          "month": "April",
+          "temperature": 8.2
+        },
+        {
+          "month": "May",
+          "temperature": 14.5
+        },
+        {
+          "month": "June",
+          "temperature": 19.8
+        },
+        {
+          "month": "July",
+          "temperature": 22.3
+        },
+        {
+          "month": "August",
+          "temperature": 21.7
+        },
+        {
+          "month": "September",
+          "temperature": 16.5
+        },
+        {
+          "month": "October",
+          "temperature": 10.2
+        },
+        {
+          "month": "November",
+          "temperature": 4.3
+        },
+        {
+          "month": "December",
+          "temperature": -0.8
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

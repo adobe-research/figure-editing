@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing numeric series over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-15",
+          "series1": 120,
+          "series2": 80
+        },
+        {
+          "date": "2023-02-15",
+          "series1": 150,
+          "series2": 95
+        },
+        {
+          "date": "2023-03-15",
+          "series1": 170,
+          "series2": 110
+        },
+        {
+          "date": "2023-04-15",
+          "series1": 200,
+          "series2": 130
+        },
+        {
+          "date": "2023-05-15",
+          "series1": 220,
+          "series2": 145
+        },
+        {
+          "date": "2023-06-15",
+          "series1": 250,
+          "series2": 160
+        },
+        {
+          "date": "2023-07-15",
+          "series1": 270,
+          "series2": 175
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "fields": [
+          {
+            "data": "table",
+            "field": "series1"
+          },
+          {
+            "data": "table",
+            "field": "series2"
+          }
+        ]
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Values"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "data": [
+        {
+          "name": "series1_data",
+          "source": "table",
+          "transform": [
+            {
+              "type": "formula",
+              "as": "value",
+              "expr": "datum.series1"
+            }
+          ]
+        },
+        {
+          "name": "series2_data",
+          "source": "table",
+          "transform": [
+            {
+              "type": "formula",
+              "as": "value",
+              "expr": "datum.series2"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series1_data"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "value": "#1f77b4"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        },
+        {
+          "type": "area",
+          "from": {
+            "data": "series2_data"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "value": "#ff7f0e"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

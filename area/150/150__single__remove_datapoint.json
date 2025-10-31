@@ -1,0 +1,164 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing price trends over months for different categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "category": "Electronics",
+          "price": 120
+        },
+        {
+          "month": "Feb",
+          "category": "Electronics",
+          "price": 150
+        },
+        {
+          "month": "Mar",
+          "category": "Electronics",
+          "price": 130
+        },
+        {
+          "month": "Jan",
+          "category": "Fashion",
+          "price": 80
+        },
+        {
+          "month": "Mar",
+          "category": "Fashion",
+          "price": 110
+        },
+        {
+          "month": "Jan",
+          "category": "Home Goods",
+          "price": 100
+        },
+        {
+          "month": "Feb",
+          "category": "Home Goods",
+          "price": 120
+        },
+        {
+          "month": "Mar",
+          "category": "Home Goods",
+          "price": 105
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['category']=='Electronics' || datum['category']=='Fashion'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Price"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "faceted"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "price"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "category"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.9
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ]
+}

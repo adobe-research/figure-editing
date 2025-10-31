@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing player statistics from FIFA Player Statistics dataset.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "player": "Lionel Messi",
+          "goals": 91
+        },
+        {
+          "player": "Cristiano Ronaldo",
+          "goals": 85
+        },
+        {
+          "player": "Robert Lewandowski",
+          "goals": 72
+        },
+        {
+          "player": "Neymar",
+          "goals": 68
+        },
+        {
+          "player": "Kylian Mbappe",
+          "goals": 60
+        },
+        {
+          "player": "Mohamed Salah",
+          "goals": 55
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "player"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "goals"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Player"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Goals Scored"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "player"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "goals"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "player",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "goals",
+            "offset": -5
+          },
+          "text": {
+            "field": "goals"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        }
+      }
+    }
+  ]
+}

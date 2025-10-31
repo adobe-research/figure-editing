@@ -1,0 +1,2 @@
+Add a new datapoint for November 2021 with an index value of 135.7.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-01; value=124.6]

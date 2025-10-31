@@ -1,0 +1,4 @@
+Change the color of the 'Houston' datapoint to green, increase the text size of axis labels to 14, and add a title 'Average AQI by City' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Los Angeles; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Phoenix; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

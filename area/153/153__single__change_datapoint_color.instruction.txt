@@ -1,0 +1,2 @@
+Change the color of the datapoints for the 'Winter' season to a new color '#6a0dad'.
+[#OP1 op=change_datapoint_color; target_category=2021-12; new_color=#9467bd]

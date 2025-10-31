@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average nightly prices for different neighborhoods in NYC Airbnb data.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "neighborhood": "Williamsburg",
+          "average_price": 150
+        },
+        {
+          "neighborhood": "Midtown",
+          "average_price": 200
+        },
+        {
+          "neighborhood": "Harlem",
+          "average_price": 120
+        },
+        {
+          "neighborhood": "Upper East Side",
+          "average_price": 180
+        },
+        {
+          "neighborhood": "Chelsea",
+          "average_price": 220
+        },
+        {
+          "neighborhood": "Greenpoint",
+          "average_price": 140
+        },
+        {
+          "neighborhood": "East Village",
+          "average_price": 160
+        },
+        {
+          "neighborhood": "Financial District",
+          "average_price": 250
+        },
+        {
+          "neighborhood": "Astoria",
+          "average_price": 130
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "neighborhood"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "average_price"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Neighborhood"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Nightly Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "neighborhood"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "average_price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

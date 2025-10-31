@@ -1,0 +1,2 @@
+Remove the datapoint for '2021-07' with value 113.8.
+[#OP1 op=remove_datapoint; category=2021-02]

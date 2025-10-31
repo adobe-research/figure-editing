@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020 with source 'Coal' and consumption 1450.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Coal; value=2010.0]

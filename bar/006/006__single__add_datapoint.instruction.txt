@@ -1,0 +1,2 @@
+Add a new datapoint for 'Furniture' with an export value of 85 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Electronics; value=87.5]

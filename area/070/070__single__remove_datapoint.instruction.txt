@@ -1,0 +1,2 @@
+Remove the datapoint where the date is '2022-04' and the item is 'A'.
+[#OP1 op=remove_datapoint; category=2022-03]

@@ -1,0 +1,2 @@
+Add a new datapoint for Store 1 with week 5 and sales 32000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Store 1; value=3.0]

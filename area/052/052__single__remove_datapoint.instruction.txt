@@ -1,0 +1,2 @@
+Remove the datapoint for the year 2020 and age group '25-54'.
+[#OP1 op=remove_datapoint; category=25-54]

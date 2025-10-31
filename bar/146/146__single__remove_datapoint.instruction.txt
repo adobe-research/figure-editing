@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Class 4' with an average alcohol content of 14.0.
+[#OP1 op=remove_datapoint; category=Class 1]

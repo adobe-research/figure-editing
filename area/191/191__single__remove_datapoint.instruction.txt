@@ -1,0 +1,2 @@
+Remove the datapoint for the date '2022-10-05' from the dataset.
+[#OP1 op=remove_datapoint; category=2022-10-02]

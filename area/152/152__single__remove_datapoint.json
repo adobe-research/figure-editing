@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing COVID-19 cases over time for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01-01",
+          "region": "Asia",
+          "cases": 100
+        },
+        {
+          "date": "2020-01-01",
+          "region": "Europe",
+          "cases": 50
+        },
+        {
+          "date": "2020-01-01",
+          "region": "America",
+          "cases": 30
+        },
+        {
+          "date": "2020-02-01",
+          "region": "Asia",
+          "cases": 200
+        },
+        {
+          "date": "2020-02-01",
+          "region": "Europe",
+          "cases": 150
+        },
+        {
+          "date": "2020-02-01",
+          "region": "America",
+          "cases": 100
+        },
+        {
+          "date": "2020-03-01",
+          "region": "Asia",
+          "cases": 400
+        },
+        {
+          "date": "2020-03-01",
+          "region": "Europe",
+          "cases": 300
+        },
+        {
+          "date": "2020-03-01",
+          "region": "America",
+          "cases": 250
+        },
+        {
+          "date": "2020-04-01",
+          "region": "Asia",
+          "cases": 600
+        },
+        {
+          "date": "2020-04-01",
+          "region": "America",
+          "cases": 400
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum['region']=='Asia' || datum['region']=='Europe'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Cases"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "facet",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "cases"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing stock prices of multiple companies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "company": "Apple",
+          "price": 145
+        },
+        {
+          "date": "2023-01-01",
+          "company": "Microsoft",
+          "price": 240
+        },
+        {
+          "date": "2023-01-01",
+          "company": "Google",
+          "price": 95
+        },
+        {
+          "date": "2023-01-02",
+          "company": "Apple",
+          "price": 150
+        },
+        {
+          "date": "2023-01-02",
+          "company": "Microsoft",
+          "price": 245
+        },
+        {
+          "date": "2023-01-02",
+          "company": "Google",
+          "price": 100
+        },
+        {
+          "date": "2023-01-03",
+          "company": "Apple",
+          "price": 155
+        },
+        {
+          "date": "2023-01-03",
+          "company": "Microsoft",
+          "price": 250
+        },
+        {
+          "date": "2023-01-03",
+          "company": "Google",
+          "price": 105
+        },
+        {
+          "date": "2023-01-04",
+          "company": "Apple",
+          "price": 160
+        },
+        {
+          "date": "2023-01-04",
+          "company": "Microsoft",
+          "price": 255
+        },
+        {
+          "date": "2023-01-04",
+          "company": "Google",
+          "price": 110
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum['company']=='Apple' || datum['company']=='Microsoft'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "company"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "company"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "price"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "company"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Company",
+      "orient": "right"
+    }
+  ]
+}

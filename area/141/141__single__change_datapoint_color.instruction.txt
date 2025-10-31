@@ -1,0 +1,2 @@
+Change the datapoint color for the 'East Asia & Pacific' region to a new color '#d62728'.
+[#OP1 op=change_datapoint_color; target_category=Europe & Central Asia; new_color=#9467bd]

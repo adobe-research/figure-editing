@@ -1,0 +1,2 @@
+Add a new datapoint for 'Canada' with a GDP per capita of 43200 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Brazil; value=12408.0]

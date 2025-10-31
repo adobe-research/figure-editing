@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing item demand across different stores.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "store": "Store A",
+          "demand": 120
+        },
+        {
+          "store": "Store B",
+          "demand": 95
+        },
+        {
+          "store": "Store C",
+          "demand": 150
+        },
+        {
+          "store": "Store D",
+          "demand": 75
+        },
+        {
+          "store": "Store E",
+          "demand": 110
+        },
+        {
+          "store": "Store F",
+          "demand": 85
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "store"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Store",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Demand",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "store"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "demand"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['store']==='Store E'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "fill": [
+            {
+              "test": "datum['store']==='Store E'",
+              "value": "#ff7f0e"
+            },
+            {
+              "test": "datum.store === 'Store C'",
+              "value": "green"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Remove the datapoint for 'Barley' with a production value of 50.
+[#OP1 op=remove_datapoint; category=Sorghum]

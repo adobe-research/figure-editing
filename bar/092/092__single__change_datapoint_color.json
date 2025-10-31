@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing crop production for various categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "crop": "Corn",
+          "production": 345
+        },
+        {
+          "crop": "Wheat",
+          "production": 290
+        },
+        {
+          "crop": "Soybeans",
+          "production": 310
+        },
+        {
+          "crop": "Rice",
+          "production": 200
+        },
+        {
+          "crop": "Barley",
+          "production": 150
+        },
+        {
+          "crop": "Sorghum",
+          "production": 120
+        },
+        {
+          "crop": "Oats",
+          "production": 80
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "crop"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "production"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Crop Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Production (in million tons)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "crop"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "production"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['crop']==='Corn'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "crop",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "production",
+            "offset": -2
+          },
+          "text": {
+            "field": "production"
+          }
+        }
+      }
+    }
+  ]
+}

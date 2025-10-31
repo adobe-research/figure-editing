@@ -1,0 +1,2 @@
+Add a new datapoint for the category '73-84 months' with a count of 400 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=0-12 months; value=700.0]

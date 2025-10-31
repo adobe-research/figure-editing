@@ -1,0 +1,188 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing crop production trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "crop": "Wheat",
+          "production": 450
+        },
+        {
+          "year": 2010,
+          "crop": "Corn",
+          "production": 520
+        },
+        {
+          "year": 2011,
+          "crop": "Wheat",
+          "production": 470
+        },
+        {
+          "year": 2011,
+          "crop": "Corn",
+          "production": 540
+        },
+        {
+          "year": 2012,
+          "crop": "Wheat",
+          "production": 490
+        },
+        {
+          "year": 2012,
+          "crop": "Corn",
+          "production": 560
+        },
+        {
+          "year": 2013,
+          "crop": "Wheat",
+          "production": 510
+        },
+        {
+          "year": 2013,
+          "crop": "Corn",
+          "production": 580
+        },
+        {
+          "year": 2014,
+          "crop": "Wheat",
+          "production": 530
+        },
+        {
+          "year": 2014,
+          "crop": "Corn",
+          "production": 600
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "crop"
+      },
+      "range": [
+        "#1f77b4",
+        "#00ff00"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Production (in metric tons)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "crop"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "crop"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Crop",
+      "orient": "right"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

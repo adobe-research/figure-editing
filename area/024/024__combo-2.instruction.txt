@@ -1,0 +1,4 @@
+Change the color of the '16-24' age group datapoints to '#8a2be2', increase the text size of axis labels to 12, and add a title 'Unemployment Rates by Age Group'.
+[#OP1 op=change_datapoint_color; target_category=2023-04; new_color=#d62728]
+[#OP2 op=increase_text_size; axis_label_size=14]
+[#OP3 op=add_title; title_text=Edited Chart]

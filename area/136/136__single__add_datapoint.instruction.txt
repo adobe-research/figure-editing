@@ -1,0 +1,2 @@
+Add a new data point for January 2023 with a rate of 3.4 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Apr; value=2022.0]

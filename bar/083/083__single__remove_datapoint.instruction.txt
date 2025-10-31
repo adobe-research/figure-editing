@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Category G' and value 34.
+[#OP1 op=remove_datapoint; category=Category F]

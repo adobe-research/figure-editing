@@ -1,0 +1,2 @@
+Add a new datapoint for the USA with date '2020-03-04' and cases 150.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=China; value=175.0]

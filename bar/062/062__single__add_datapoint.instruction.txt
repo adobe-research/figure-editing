@@ -1,0 +1,2 @@
+Add a new datapoint for 'Natural' wine type with a quality score of 86.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Dessert; value=86.0]

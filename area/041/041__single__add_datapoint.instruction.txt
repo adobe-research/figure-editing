@@ -1,0 +1,2 @@
+Add a new datapoint for January 11, 2021 with 110 rentals and weather condition 'Clear'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Clear; value=80.0]

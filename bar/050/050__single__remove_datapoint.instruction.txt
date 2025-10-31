@@ -1,0 +1,2 @@
+Remove the datapoint for the subject 'History' with an average score of 67.
+[#OP1 op=remove_datapoint; category=Physical Education]

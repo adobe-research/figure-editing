@@ -1,0 +1,2 @@
+Remove the datapoint where the category is 'Furniture' and the date is '2021-02'.
+[#OP1 op=remove_datapoint; category=2021-01]

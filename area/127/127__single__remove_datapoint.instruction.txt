@@ -1,0 +1,2 @@
+Remove the datapoint for week 3 in the Furniture department.
+[#OP1 op=remove_datapoint; category=Furniture]

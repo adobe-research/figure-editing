@@ -1,0 +1,173 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing stock prices of companies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "stocks",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "price": 150,
+          "company": "Company A"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 160,
+          "company": "Company A"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 170,
+          "company": "Company A"
+        },
+        {
+          "date": "2023-01-01",
+          "price": 120,
+          "company": "Company B"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 130,
+          "company": "Company B"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 125,
+          "company": "Company B"
+        },
+        {
+          "date": "2023-01-01",
+          "price": 200,
+          "company": "Company C"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 210,
+          "company": "Company C"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 220,
+          "company": "Company C"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum['company']=='Company A' || datum['company']=='Company B'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "stocks",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "stocks",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "stocks",
+        "field": "company"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "stocks",
+          "name": "series_facet",
+          "groupby": "company"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "price"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "company"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {}
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Company",
+      "orient": "right"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing scores of universities over years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2018,
+          "score": 92,
+          "university": "University A"
+        },
+        {
+          "year": 2019,
+          "score": 94,
+          "university": "University A"
+        },
+        {
+          "year": 2020,
+          "score": 96,
+          "university": "University A"
+        },
+        {
+          "year": 2018,
+          "score": 88,
+          "university": "University B"
+        },
+        {
+          "year": 2019,
+          "score": 90,
+          "university": "University B"
+        },
+        {
+          "year": 2020,
+          "score": 91,
+          "university": "University B"
+        },
+        {
+          "year": 2018,
+          "score": 85,
+          "university": "University C"
+        },
+        {
+          "year": 2019,
+          "score": 87,
+          "university": "University C"
+        },
+        {
+          "year": 2020,
+          "score": 89,
+          "university": "University C"
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['university']=='University A' || datum['university']=='University B'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2018,
+        2019,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "university"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Score",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted",
+          "data": "table",
+          "groupby": "university"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "faceted"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "score"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "university"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "University",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

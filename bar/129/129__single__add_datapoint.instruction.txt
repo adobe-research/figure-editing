@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Freelancers' with a risk score of 40 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Freelancers; value=42.5]

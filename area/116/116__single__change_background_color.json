@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing temperature trends over months.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "temperature": -2.5,
+          "series": "Average"
+        },
+        {
+          "month": "Feb",
+          "temperature": -1.0,
+          "series": "Average"
+        },
+        {
+          "month": "Mar",
+          "temperature": 2.5,
+          "series": "Average"
+        },
+        {
+          "month": "Apr",
+          "temperature": 8.0,
+          "series": "Average"
+        },
+        {
+          "month": "May",
+          "temperature": 14.5,
+          "series": "Average"
+        },
+        {
+          "month": "Jun",
+          "temperature": 19.0,
+          "series": "Average"
+        },
+        {
+          "month": "Jul",
+          "temperature": 22.0,
+          "series": "Average"
+        },
+        {
+          "month": "Aug",
+          "temperature": 21.5,
+          "series": "Average"
+        },
+        {
+          "month": "Sep",
+          "temperature": 16.0,
+          "series": "Average"
+        },
+        {
+          "month": "Oct",
+          "temperature": 10.0,
+          "series": "Average"
+        },
+        {
+          "month": "Nov",
+          "temperature": 3.5,
+          "series": "Average"
+        },
+        {
+          "month": "Dec",
+          "temperature": -1.5,
+          "series": "Average"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

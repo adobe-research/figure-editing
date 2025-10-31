@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing unemployment rates over time for different age groups.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "age_group": "16-24",
+          "unemployment_rate": 16.8
+        },
+        {
+          "year": 2010,
+          "age_group": "25-54",
+          "unemployment_rate": 8.5
+        },
+        {
+          "year": 2010,
+          "age_group": "55+",
+          "unemployment_rate": 6.9
+        },
+        {
+          "year": 2015,
+          "age_group": "16-24",
+          "unemployment_rate": 10.6
+        },
+        {
+          "year": 2015,
+          "age_group": "25-54",
+          "unemployment_rate": 5.3
+        },
+        {
+          "year": 2015,
+          "age_group": "55+",
+          "unemployment_rate": 4.2
+        },
+        {
+          "year": 2020,
+          "age_group": "16-24",
+          "unemployment_rate": 14.9
+        },
+        {
+          "year": 2020,
+          "age_group": "25-54",
+          "unemployment_rate": 8.1
+        },
+        {
+          "year": 2020,
+          "age_group": "55+",
+          "unemployment_rate": 7.3
+        },
+        {
+          "year": 2025,
+          "age_group": "16-24",
+          "unemployment_rate": 12.3
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['age_group']=='16-24' || datum['age_group']=='25-54'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2015,
+        2020,
+        2025
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "unemployment_rate"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "age_group"
+      },
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Unemployment Rate (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "age_group"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "unemployment_rate"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "age_group"
+              },
+              "tooltip": {
+                "signal": "datum.age_group + ': ' + datum.unemployment_rate + '%'"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Age Group",
+      "orient": "right"
+    }
+  ]
+}

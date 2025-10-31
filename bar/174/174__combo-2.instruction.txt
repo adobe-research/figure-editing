@@ -1,0 +1,4 @@
+Change the color of the 'Corn' datapoint to green, increase the text size of axis labels to 14, and add a title 'Crop Production Analysis'.
+[#OP1 op=change_datapoint_color; target_category=Corn; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Soybeans; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

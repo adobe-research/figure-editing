@@ -1,0 +1,2 @@
+Remove the datapoint for '2022-06' with a demand value of 190.
+[#OP1 op=remove_datapoint; category=2022-09]

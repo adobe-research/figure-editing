@@ -1,0 +1,2 @@
+Remove the datapoint for 'Russia' with a GDP per capita of 11656.
+[#OP1 op=remove_datapoint; category=Canada]

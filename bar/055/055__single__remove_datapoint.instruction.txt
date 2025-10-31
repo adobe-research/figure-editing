@@ -1,0 +1,2 @@
+Remove the datapoint for the position 'Winger' with a rating of 86.
+[#OP1 op=remove_datapoint; category=Defender]

@@ -1,0 +1,2 @@
+Add a new datapoint for Country A with year 2005 and GDP growth 5.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Country A; value=2002.0]

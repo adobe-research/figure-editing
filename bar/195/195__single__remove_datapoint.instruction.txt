@@ -1,0 +1,2 @@
+Remove the datapoint for 'Category G' with an average value of 1300.
+[#OP1 op=remove_datapoint; category=Category E]

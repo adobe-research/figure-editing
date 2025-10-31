@@ -1,0 +1,2 @@
+Remove the datapoint for Asia in 2020-03 with 1000 cases.
+[#OP1 op=remove_datapoint; category=2020-01]

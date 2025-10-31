@@ -1,0 +1,2 @@
+Add a new datapoint with 'pickup_hour' as '11:00' and 'avg_trip_duration' as 16.4 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=00:00; value=13.95]

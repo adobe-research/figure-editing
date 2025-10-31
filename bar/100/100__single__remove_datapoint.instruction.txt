@@ -1,0 +1,2 @@
+Remove the datapoint for 'Harlem' with an average price of 110.
+[#OP1 op=remove_datapoint; category=Long Island City]

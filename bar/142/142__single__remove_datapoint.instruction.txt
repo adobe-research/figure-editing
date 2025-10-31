@@ -1,0 +1,2 @@
+Remove the datapoint for 'Luis Suárez' with 58 goals.
+[#OP1 op=remove_datapoint; category=Lionel Messi]

@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of accidents by state.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "state": "California",
+          "accidents": 12000
+        },
+        {
+          "state": "Texas",
+          "accidents": 9500
+        },
+        {
+          "state": "Florida",
+          "accidents": 8700
+        },
+        {
+          "state": "New York",
+          "accidents": 6300
+        },
+        {
+          "state": "Pennsylvania",
+          "accidents": 5200
+        },
+        {
+          "state": "Ohio",
+          "accidents": 4800
+        },
+        {
+          "state": "Illinois",
+          "accidents": 4500
+        },
+        {
+          "state": "Georgia",
+          "accidents": 4200
+        },
+        {
+          "state": "North Carolina",
+          "accidents": 3900
+        },
+        {
+          "state": "Michigan",
+          "accidents": 3600
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "state"
+      },
+      "range": "width",
+      "padding": 0.0,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "accidents"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "State"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Accidents"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "state"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "accidents"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.state",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.accidents",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.accidents"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ]
+}

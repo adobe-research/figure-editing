@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing Food Price Index trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2020-01",
+          "cereal": 100,
+          "meat": 120
+        },
+        {
+          "month": "2020-02",
+          "cereal": 105,
+          "meat": 115
+        },
+        {
+          "month": "2020-03",
+          "cereal": 110,
+          "meat": 118
+        },
+        {
+          "month": "2020-04",
+          "cereal": 108,
+          "meat": 112
+        },
+        {
+          "month": "2020-05",
+          "cereal": 115,
+          "meat": 120
+        },
+        {
+          "month": "2020-06",
+          "cereal": 120,
+          "meat": 125
+        },
+        {
+          "month": "2020-07",
+          "cereal": 125,
+          "meat": 130
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "cereal",
+            "meat"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Food Price Index"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "cereal"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "interpolate": {
+            "value": "monotone"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "meat"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "interpolate": {
+            "value": "monotone"
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing S&P 500 stock prices over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "price": 3800,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 3900,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 4000,
+          "company": "Apple"
+        },
+        {
+          "date": "2023-01-01",
+          "price": 1500,
+          "company": "Microsoft"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 1600,
+          "company": "Microsoft"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 1700,
+          "company": "Microsoft"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "company"
+      },
+      "range": [
+        "steelblue",
+        "green"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series",
+          "groupby": "company"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "price"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "company"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Company",
+      "orient": "right"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

@@ -1,0 +1,3 @@
+Change the color of the 'Electronics' datapoint to green and increase the text size of axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=Electronics; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]

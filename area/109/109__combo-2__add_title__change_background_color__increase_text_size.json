@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart for FAO Food Price Index.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2021-01",
+          "index": 113.3
+        },
+        {
+          "month": "2021-02",
+          "index": 116.1
+        },
+        {
+          "month": "2021-03",
+          "index": 118.4
+        },
+        {
+          "month": "2021-04",
+          "index": 120.9
+        },
+        {
+          "month": "2021-05",
+          "index": 124.6
+        },
+        {
+          "month": "2021-06",
+          "index": 125.9
+        },
+        {
+          "month": "2021-07",
+          "index": 123.5
+        },
+        {
+          "month": "2021-08",
+          "index": 127.4
+        },
+        {
+          "month": "2021-09",
+          "index": 129.2
+        },
+        {
+          "month": "2021-10",
+          "index": 132.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "index"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "FAO Food Price Index",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "index"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

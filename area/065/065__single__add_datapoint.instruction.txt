@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2021 with a house price of 310000.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=2015.5]

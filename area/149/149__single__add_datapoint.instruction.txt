@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2012 with a median price of 205000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=2006.0]

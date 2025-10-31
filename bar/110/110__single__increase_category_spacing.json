@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the distribution of comment types in the Toxic Comment Classification dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "comment_type": "Toxic",
+          "count": 15294
+        },
+        {
+          "comment_type": "Severe Toxic",
+          "count": 1595
+        },
+        {
+          "comment_type": "Obscene",
+          "count": 8449
+        },
+        {
+          "comment_type": "Threat",
+          "count": 478
+        },
+        {
+          "comment_type": "Insult",
+          "count": 7877
+        },
+        {
+          "comment_type": "Identity Hate",
+          "count": 1405
+        },
+        {
+          "comment_type": "Clean",
+          "count": 143346
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "comment_type"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Comment Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "comment_type"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "comment_type",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count",
+            "offset": -5
+          },
+          "text": {
+            "field": "count"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

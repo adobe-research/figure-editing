@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2016 with metric 'Teaching' and score 58.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Research; value=2013.0]

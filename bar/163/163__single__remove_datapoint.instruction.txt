@@ -1,0 +1,2 @@
+Remove the datapoint for Antarctica from the chart.
+[#OP1 op=remove_datapoint; category=South America]

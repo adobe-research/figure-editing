@@ -1,0 +1,2 @@
+Add a new datapoint for the age group '50-54' with a population of 3000000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=10-14; value=2500000.0]

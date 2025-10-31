@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing the number of flights over time for multiple airlines.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "flights",
+      "values": [
+        {
+          "month": "2023-01",
+          "airline": "Airline A",
+          "flights": 1200
+        },
+        {
+          "month": "2023-01",
+          "airline": "Airline B",
+          "flights": 950
+        },
+        {
+          "month": "2023-02",
+          "airline": "Airline A",
+          "flights": 1150
+        },
+        {
+          "month": "2023-02",
+          "airline": "Airline B",
+          "flights": 980
+        },
+        {
+          "month": "2023-03",
+          "airline": "Airline A",
+          "flights": 1300
+        },
+        {
+          "month": "2023-03",
+          "airline": "Airline B",
+          "flights": 1020
+        },
+        {
+          "month": "2023-04",
+          "airline": "Airline A",
+          "flights": 1250
+        },
+        {
+          "month": "2023-04",
+          "airline": "Airline B",
+          "flights": 990
+        },
+        {
+          "month": "2023-05",
+          "airline": "Airline A",
+          "flights": 1400
+        },
+        {
+          "month": "2023-05",
+          "airline": "Airline B",
+          "flights": 1050
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "flights",
+        "field": "month"
+      },
+      "padding": 0.6
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "flights",
+        "field": "flights"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "flights",
+        "field": "airline"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Flights"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "flights",
+          "groupby": "airline"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "flights"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "airline"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Airline",
+      "orient": "right"
+    }
+  ]
+}

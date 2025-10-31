@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average weekly earnings by industry.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "industry": "Construction",
+          "earnings": 1200
+        },
+        {
+          "industry": "Manufacturing",
+          "earnings": 1100
+        },
+        {
+          "industry": "Retail Trade",
+          "earnings": 800
+        },
+        {
+          "industry": "Healthcare",
+          "earnings": 950
+        },
+        {
+          "industry": "Information",
+          "earnings": 1400
+        },
+        {
+          "industry": "Finance",
+          "earnings": 1500
+        },
+        {
+          "industry": "Education",
+          "earnings": 1050
+        },
+        {
+          "industry": "Transportation",
+          "earnings": 1000
+        },
+        {
+          "industry": "Professional Services",
+          "earnings": 1300
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "industry"
+      },
+      "range": "width",
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "earnings"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Industry"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Weekly Earnings ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "industry"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "earnings"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

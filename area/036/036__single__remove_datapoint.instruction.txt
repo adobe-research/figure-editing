@@ -1,0 +1,2 @@
+Remove the datapoint for Microsoft with date '2023-02-01' and price 1600.
+[#OP1 op=remove_datapoint; category=2023-03-01]

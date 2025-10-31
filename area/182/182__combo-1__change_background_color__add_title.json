@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing item demand over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2022-01",
+          "demand": 120
+        },
+        {
+          "date": "2022-02",
+          "demand": 150
+        },
+        {
+          "date": "2022-03",
+          "demand": 180
+        },
+        {
+          "date": "2022-04",
+          "demand": 170
+        },
+        {
+          "date": "2022-05",
+          "demand": 200
+        },
+        {
+          "date": "2022-06",
+          "demand": 190
+        },
+        {
+          "date": "2022-07",
+          "demand": 210
+        },
+        {
+          "date": "2022-08",
+          "demand": 230
+        },
+        {
+          "date": "2022-09",
+          "demand": 220
+        },
+        {
+          "date": "2022-10",
+          "demand": 240
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Demand"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "demand"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

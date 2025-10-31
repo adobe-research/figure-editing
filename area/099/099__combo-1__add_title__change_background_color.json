@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing store sales trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "sales_data",
+      "values": [
+        {
+          "date": "2020-01",
+          "sales": 1500
+        },
+        {
+          "date": "2020-02",
+          "sales": 1600
+        },
+        {
+          "date": "2020-03",
+          "sales": 1700
+        },
+        {
+          "date": "2020-04",
+          "sales": 1400
+        },
+        {
+          "date": "2020-05",
+          "sales": 1800
+        },
+        {
+          "date": "2020-06",
+          "sales": 1900
+        },
+        {
+          "date": "2020-07",
+          "sales": 2000
+        },
+        {
+          "date": "2020-08",
+          "sales": 2100
+        },
+        {
+          "date": "2020-09",
+          "sales": 2200
+        },
+        {
+          "date": "2020-10",
+          "sales": 2300
+        },
+        {
+          "date": "2020-11",
+          "sales": 2400
+        },
+        {
+          "date": "2020-12",
+          "sales": 2500
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "sales_data",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "sales_data",
+        "field": "sales"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Sales ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "sales_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "sales"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "background": "#fff5e6"
+}

@@ -1,0 +1,2 @@
+Change the color of the datapoints from 'steelblue' to 'orange'.
+[#OP1 op=change_datapoint_color; target_category=0.2-0.4; new_color=#ff7f0e]

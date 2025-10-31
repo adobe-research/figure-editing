@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing flight delays over different months.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2022-01",
+          "avg_delay": 12
+        },
+        {
+          "month": "2022-02",
+          "avg_delay": 15
+        },
+        {
+          "month": "2022-03",
+          "avg_delay": 18
+        },
+        {
+          "month": "2022-04",
+          "avg_delay": 10
+        },
+        {
+          "month": "2022-05",
+          "avg_delay": 14
+        },
+        {
+          "month": "2022-06",
+          "avg_delay": 20
+        },
+        {
+          "month": "2022-07",
+          "avg_delay": 25
+        },
+        {
+          "month": "2022-08",
+          "avg_delay": 22
+        },
+        {
+          "month": "2022-09",
+          "avg_delay": 16
+        },
+        {
+          "month": "2022-10",
+          "avg_delay": 12
+        },
+        {
+          "month": "2022-11",
+          "avg_delay": 10
+        },
+        {
+          "month": "2022-12",
+          "avg_delay": 8
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.4
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "avg_delay"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Delay (minutes)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_delay"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

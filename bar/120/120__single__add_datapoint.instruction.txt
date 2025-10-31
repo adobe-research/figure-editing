@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Tree Damage' with an amount of 450 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Air Quality; value=600.0]

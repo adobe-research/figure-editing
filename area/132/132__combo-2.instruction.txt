@@ -1,0 +1,4 @@
+Change the color of datapoints for Region A to green, increase the text size of axis labels to 14, and add a title 'Demand Trends Over Time'.
+[#OP1 op=change_datapoint_color; target_category=2023-02-01; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=2023-01-01; new_color=#ff7f0e]
+[#OP3 op=add_title; title_text=Edited Chart]

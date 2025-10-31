@@ -1,0 +1,2 @@
+Add a new datapoint for the team 'Atletico Madrid' with an average goals value of 2.7 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Atletico Madrid; value=2.4]

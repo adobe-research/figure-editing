@@ -1,0 +1,2 @@
+Add a new datapoint with date '2023-04-08' and precipitation 0.6 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=0.25]

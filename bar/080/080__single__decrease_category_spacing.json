@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of routes per airport.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "airport": "Hartsfield-Jackson Atlanta International",
+          "routes": 200
+        },
+        {
+          "airport": "Los Angeles International",
+          "routes": 180
+        },
+        {
+          "airport": "Chicago O'Hare International",
+          "routes": 150
+        },
+        {
+          "airport": "Dallas/Fort Worth International",
+          "routes": 140
+        },
+        {
+          "airport": "Denver International",
+          "routes": 130
+        },
+        {
+          "airport": "John F. Kennedy International",
+          "routes": 120
+        },
+        {
+          "airport": "San Francisco International",
+          "routes": 110
+        },
+        {
+          "airport": "Seattle-Tacoma International",
+          "routes": 100
+        },
+        {
+          "airport": "Orlando International",
+          "routes": 90
+        },
+        {
+          "airport": "Miami International",
+          "routes": 85
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "airport"
+      },
+      "range": "width",
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "routes"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Airport"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Routes"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "airport"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "routes"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.8
+          },
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

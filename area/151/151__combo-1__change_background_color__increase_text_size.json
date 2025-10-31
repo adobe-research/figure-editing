@@ -1,0 +1,165 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing global temperature anomalies over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "temperature",
+      "values": [
+        {
+          "year": 1880,
+          "anomaly": -0.12
+        },
+        {
+          "year": 1890,
+          "anomaly": -0.1
+        },
+        {
+          "year": 1900,
+          "anomaly": -0.07
+        },
+        {
+          "year": 1910,
+          "anomaly": -0.4
+        },
+        {
+          "year": 1920,
+          "anomaly": -0.25
+        },
+        {
+          "year": 1930,
+          "anomaly": 0.05
+        },
+        {
+          "year": 1940,
+          "anomaly": 0.16
+        },
+        {
+          "year": 1950,
+          "anomaly": -0.1
+        },
+        {
+          "year": 1960,
+          "anomaly": -0.02
+        },
+        {
+          "year": 1970,
+          "anomaly": -0.07
+        },
+        {
+          "year": 1980,
+          "anomaly": 0.15
+        },
+        {
+          "year": 1990,
+          "anomaly": 0.35
+        },
+        {
+          "year": 2000,
+          "anomaly": 0.45
+        },
+        {
+          "year": 2010,
+          "anomaly": 0.7
+        },
+        {
+          "year": 2020,
+          "anomaly": 0.85
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1880,
+        1890,
+        1900,
+        1910,
+        1920,
+        1930,
+        1940,
+        1950,
+        1960,
+        1970,
+        1980,
+        1990,
+        2000,
+        2010,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "temperature",
+        "field": "anomaly"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature Anomaly (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "temperature"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "anomaly"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightcoral"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

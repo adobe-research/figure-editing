@@ -1,0 +1,2 @@
+Add a new datapoint for the vehicle age group '20+ years' with a claim frequency of 110 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=0-2 years; value=135.0]

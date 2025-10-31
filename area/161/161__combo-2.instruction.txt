@@ -1,0 +1,4 @@
+Change the background color to lightblue, increase the text size for axis labels to 14, and add a title 'Netflix Stock Prices in January 2021' with size 18.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=change_background_color; new_bg=#f0f8ff]
+[#OP3 op=add_title; title_text=Edited Chart]

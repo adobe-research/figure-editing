@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2003 with source 'Solar' and consumption value 12.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Hydro; value=2001.0]

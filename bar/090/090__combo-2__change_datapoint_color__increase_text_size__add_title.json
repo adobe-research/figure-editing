@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing export values by product category from UN COMTRADE.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Machinery",
+          "value": 120
+        },
+        {
+          "category": "Chemicals",
+          "value": 85
+        },
+        {
+          "category": "Textiles",
+          "value": 60
+        },
+        {
+          "category": "Electronics",
+          "value": 150
+        },
+        {
+          "category": "Vehicles",
+          "value": 110
+        },
+        {
+          "category": "Metals",
+          "value": 95
+        },
+        {
+          "category": "Food Products",
+          "value": 70
+        },
+        {
+          "category": "Wood Products",
+          "value": 40
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Product Categories",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Export Value (in billion USD)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "#4CAF50"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['category']==='Electronics'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "#4CAF50"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "#FF5722"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "fill": [
+            {
+              "test": "datum['category']==='Electronics'",
+              "value": "#ff7f0e"
+            },
+            {
+              "test": "datum.category === 'Electronics'",
+              "value": "#1E90FF"
+            },
+            {
+              "value": "#4CAF50"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

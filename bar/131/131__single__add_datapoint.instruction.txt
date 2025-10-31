@@ -1,0 +1,2 @@
+Add a new datapoint for 'Cash Deposit' with a frequency of 65 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=ATM Withdrawal; value=67.5]

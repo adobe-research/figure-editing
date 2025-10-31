@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing player statistics from FIFA Player Statistics dataset.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "player": "Lionel Messi",
+          "rating": 93
+        },
+        {
+          "player": "Cristiano Ronaldo",
+          "rating": 92
+        },
+        {
+          "player": "Neymar Jr",
+          "rating": 91
+        },
+        {
+          "player": "Kevin De Bruyne",
+          "rating": 91
+        },
+        {
+          "player": "Robert Lewandowski",
+          "rating": 91
+        },
+        {
+          "player": "Kylian Mbappé",
+          "rating": 90
+        },
+        {
+          "player": "Virgil van Dijk",
+          "rating": 90
+        },
+        {
+          "player": "Mohamed Salah",
+          "rating": 90
+        },
+        {
+          "player": "Sadio Mané",
+          "rating": 89
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "player"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "rating"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Player"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "player"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "rating"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "player",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "rating",
+            "offset": -5
+          },
+          "text": {
+            "field": "rating"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

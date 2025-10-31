@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing median house prices over years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "median_price": 150000
+        },
+        {
+          "year": 2001,
+          "median_price": 155000
+        },
+        {
+          "year": 2002,
+          "median_price": 160000
+        },
+        {
+          "year": 2003,
+          "median_price": 170000
+        },
+        {
+          "year": 2004,
+          "median_price": 180000
+        },
+        {
+          "year": 2005,
+          "median_price": 190000
+        },
+        {
+          "year": 2006,
+          "median_price": 200000
+        },
+        {
+          "year": 2007,
+          "median_price": 210000
+        },
+        {
+          "year": 2008,
+          "median_price": 200000
+        },
+        {
+          "year": 2009,
+          "median_price": 190000
+        },
+        {
+          "year": 2010,
+          "median_price": 195000
+        },
+        {
+          "year": 2011,
+          "median_price": 200000
+        },
+        {
+          "year": 2012,
+          "median_price": 205000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "median_price"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Median House Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "median_price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

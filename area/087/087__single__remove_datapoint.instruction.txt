@@ -1,0 +1,2 @@
+Remove the datapoint for Solar energy production in the year 2018.
+[#OP1 op=remove_datapoint; category=Wind]

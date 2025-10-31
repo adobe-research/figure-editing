@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of matches played by different countries in international football.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "Argentina",
+          "matches": 1200
+        },
+        {
+          "country": "Brazil",
+          "matches": 1350
+        },
+        {
+          "country": "Germany",
+          "matches": 1250
+        },
+        {
+          "country": "Italy",
+          "matches": 1100
+        },
+        {
+          "country": "Spain",
+          "matches": 950
+        },
+        {
+          "country": "England",
+          "matches": 980
+        },
+        {
+          "country": "France",
+          "matches": 1020
+        },
+        {
+          "country": "Netherlands",
+          "matches": 870
+        },
+        {
+          "country": "Portugal",
+          "matches": 890
+        },
+        {
+          "country": "Uruguay",
+          "matches": 820
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "matches"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Country"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Matches Played"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "matches"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "matches",
+            "offset": -5
+          },
+          "text": {
+            "field": "matches"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

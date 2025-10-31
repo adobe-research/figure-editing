@@ -1,0 +1,221 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing average monthly temperatures over several years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "temperature_data",
+      "values": [
+        {
+          "year": 2010,
+          "month": "Jan",
+          "avg_temp": -2.1
+        },
+        {
+          "year": 2010,
+          "month": "Feb",
+          "avg_temp": -1.8
+        },
+        {
+          "year": 2010,
+          "month": "Mar",
+          "avg_temp": 0.5
+        },
+        {
+          "year": 2010,
+          "month": "Apr",
+          "avg_temp": 6.3
+        },
+        {
+          "year": 2010,
+          "month": "May",
+          "avg_temp": 12.1
+        },
+        {
+          "year": 2010,
+          "month": "Jun",
+          "avg_temp": 16.5
+        },
+        {
+          "year": 2010,
+          "month": "Jul",
+          "avg_temp": 19.2
+        },
+        {
+          "year": 2010,
+          "month": "Aug",
+          "avg_temp": 18.8
+        },
+        {
+          "year": 2010,
+          "month": "Sep",
+          "avg_temp": 14.3
+        },
+        {
+          "year": 2010,
+          "month": "Oct",
+          "avg_temp": 8.2
+        },
+        {
+          "year": 2010,
+          "month": "Nov",
+          "avg_temp": 2.7
+        },
+        {
+          "year": 2010,
+          "month": "Dec",
+          "avg_temp": -0.9
+        },
+        {
+          "year": 2011,
+          "month": "Jan",
+          "avg_temp": -1.5
+        },
+        {
+          "year": 2011,
+          "month": "Feb",
+          "avg_temp": -0.7
+        },
+        {
+          "year": 2011,
+          "month": "Mar",
+          "avg_temp": 1.2
+        },
+        {
+          "year": 2011,
+          "month": "Apr",
+          "avg_temp": 7.1
+        },
+        {
+          "year": 2011,
+          "month": "May",
+          "avg_temp": 13.4
+        },
+        {
+          "year": 2011,
+          "month": "Jun",
+          "avg_temp": 17.8
+        },
+        {
+          "year": 2011,
+          "month": "Jul",
+          "avg_temp": 20.3
+        },
+        {
+          "year": 2011,
+          "month": "Aug",
+          "avg_temp": 19.7
+        },
+        {
+          "year": 2011,
+          "month": "Sep",
+          "avg_temp": 15.1
+        },
+        {
+          "year": 2011,
+          "month": "Oct",
+          "avg_temp": 9.3
+        },
+        {
+          "year": 2011,
+          "month": "Nov",
+          "avg_temp": 3.8
+        },
+        {
+          "year": 2011,
+          "month": "Dec",
+          "avg_temp": -0.3
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "avg_temp",
+            "year"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "temperature_data",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "temperature_data",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "temperature_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_temp"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

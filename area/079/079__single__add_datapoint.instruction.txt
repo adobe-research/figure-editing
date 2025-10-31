@@ -1,0 +1,2 @@
+Add a new datapoint for the date '2021-11-06' with Bitcoin price 65000 and Ethereum price 4900.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=62500.0]

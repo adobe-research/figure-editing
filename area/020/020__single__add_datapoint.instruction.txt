@@ -1,0 +1,2 @@
+Add a new datapoint for November 2023 with a demand value of 240.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=210.0]

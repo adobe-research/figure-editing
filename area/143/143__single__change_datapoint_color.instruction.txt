@@ -1,0 +1,2 @@
+Change the color of the datapoints for 'Renewables' to a new color '#6a0dad'.
+[#OP1 op=change_datapoint_color; target_category=Renewables; new_color=#d62728]

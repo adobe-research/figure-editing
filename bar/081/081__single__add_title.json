@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing points scored by NBA players.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "player": "LeBron James",
+          "points": 27
+        },
+        {
+          "player": "Kevin Durant",
+          "points": 29
+        },
+        {
+          "player": "Stephen Curry",
+          "points": 26
+        },
+        {
+          "player": "Giannis Antetokounmpo",
+          "points": 28
+        },
+        {
+          "player": "James Harden",
+          "points": 24
+        },
+        {
+          "player": "Joel Embiid",
+          "points": 30
+        },
+        {
+          "player": "Luka Dončić",
+          "points": 28
+        },
+        {
+          "player": "Nikola Jokić",
+          "points": 25
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "player"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "points"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Player"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Points per Game"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "player"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "points"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

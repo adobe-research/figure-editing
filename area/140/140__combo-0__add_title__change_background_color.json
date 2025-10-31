@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing survey participation trends over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2022-01",
+          "participation": 120
+        },
+        {
+          "month": "2022-02",
+          "participation": 150
+        },
+        {
+          "month": "2022-03",
+          "participation": 170
+        },
+        {
+          "month": "2022-04",
+          "participation": 200
+        },
+        {
+          "month": "2022-05",
+          "participation": 180
+        },
+        {
+          "month": "2022-06",
+          "participation": 210
+        },
+        {
+          "month": "2022-07",
+          "participation": 190
+        },
+        {
+          "month": "2022-08",
+          "participation": 220
+        },
+        {
+          "month": "2022-09",
+          "participation": 230
+        },
+        {
+          "month": "2022-10",
+          "participation": 250
+        },
+        {
+          "month": "2022-11",
+          "participation": 240
+        },
+        {
+          "month": "2022-12",
+          "participation": 260
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "participation"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Survey Participation"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "participation"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

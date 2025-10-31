@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing CO2 emissions over time for different sectors.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "sector": "Energy",
+          "emissions": 25.4
+        },
+        {
+          "year": 2000,
+          "sector": "Agriculture",
+          "emissions": 12.2
+        },
+        {
+          "year": 2000,
+          "sector": "Waste",
+          "emissions": 5.1
+        },
+        {
+          "year": 2005,
+          "sector": "Energy",
+          "emissions": 28.1
+        },
+        {
+          "year": 2005,
+          "sector": "Agriculture",
+          "emissions": 13.5
+        },
+        {
+          "year": 2010,
+          "sector": "Energy",
+          "emissions": 30.7
+        },
+        {
+          "year": 2010,
+          "sector": "Agriculture",
+          "emissions": 14.8
+        },
+        {
+          "year": 2010,
+          "sector": "Waste",
+          "emissions": 6.3
+        },
+        {
+          "year": 2015,
+          "sector": "Energy",
+          "emissions": 33.2
+        },
+        {
+          "year": 2015,
+          "sector": "Agriculture",
+          "emissions": 16.0
+        },
+        {
+          "year": 2015,
+          "sector": "Waste",
+          "emissions": 7.1
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['sector']=='Energy' || datum['sector']=='Agriculture'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "emissions"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "sector"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "CO2 Emissions (Gt)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted",
+          "groupby": "sector"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "faceted"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "emissions"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "sector"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "value": "monotone"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right"
+    }
+  ]
+}

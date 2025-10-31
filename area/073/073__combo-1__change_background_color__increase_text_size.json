@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing temperature and humidity trends over time in Delhi.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "temperature": 15,
+          "humidity": 60
+        },
+        {
+          "date": "2023-01-02",
+          "temperature": 16,
+          "humidity": 58
+        },
+        {
+          "date": "2023-01-03",
+          "temperature": 14,
+          "humidity": 62
+        },
+        {
+          "date": "2023-01-04",
+          "temperature": 13,
+          "humidity": 65
+        },
+        {
+          "date": "2023-01-05",
+          "temperature": 17,
+          "humidity": 59
+        },
+        {
+          "date": "2023-01-06",
+          "temperature": 18,
+          "humidity": 57
+        },
+        {
+          "date": "2023-01-07",
+          "temperature": 16,
+          "humidity": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "humidity",
+            "temperature"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "yscale2",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "humidity"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "right",
+      "scale": "yscale2",
+      "title": "Humidity (%)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "fillOpacity": {
+            "value": 0.5
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale2",
+            "field": "humidity"
+          },
+          "y2": {
+            "scale": "yscale2",
+            "value": 0
+          },
+          "fill": {
+            "value": "blue"
+          },
+          "fillOpacity": {
+            "value": 0.5
+          }
+        },
+        "update": {}
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

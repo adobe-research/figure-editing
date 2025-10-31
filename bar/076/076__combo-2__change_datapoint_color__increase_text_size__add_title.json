@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing energy production by source.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Coal",
+          "amount": 1200
+        },
+        {
+          "category": "Natural Gas",
+          "amount": 950
+        },
+        {
+          "category": "Hydropower",
+          "amount": 400
+        },
+        {
+          "category": "Nuclear",
+          "amount": 600
+        },
+        {
+          "category": "Solar",
+          "amount": 250
+        },
+        {
+          "category": "Wind",
+          "amount": 300
+        },
+        {
+          "category": "Oil",
+          "amount": 700
+        },
+        {
+          "category": "Bioenergy",
+          "amount": 150
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "amount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Energy Source",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Production (TWh)",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "amount"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['category']==='Nuclear'",
+              "value": "#2ca02c"
+            },
+            {
+              "test": "datum['category']==='Hydropower'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  }
+}

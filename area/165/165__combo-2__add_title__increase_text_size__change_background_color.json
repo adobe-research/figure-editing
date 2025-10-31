@@ -1,0 +1,199 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "FAO Food Price Index area chart showing monthly trends for different categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2022-01",
+          "category": "Cereal",
+          "index": 120
+        },
+        {
+          "month": "2022-01",
+          "category": "Dairy",
+          "index": 110
+        },
+        {
+          "month": "2022-01",
+          "category": "Meat",
+          "index": 125
+        },
+        {
+          "month": "2022-02",
+          "category": "Cereal",
+          "index": 122
+        },
+        {
+          "month": "2022-02",
+          "category": "Dairy",
+          "index": 108
+        },
+        {
+          "month": "2022-02",
+          "category": "Meat",
+          "index": 127
+        },
+        {
+          "month": "2022-03",
+          "category": "Cereal",
+          "index": 130
+        },
+        {
+          "month": "2022-03",
+          "category": "Dairy",
+          "index": 115
+        },
+        {
+          "month": "2022-03",
+          "category": "Meat",
+          "index": 133
+        },
+        {
+          "month": "2022-04",
+          "category": "Cereal",
+          "index": 135
+        },
+        {
+          "month": "2022-04",
+          "category": "Dairy",
+          "index": 118
+        },
+        {
+          "month": "2022-04",
+          "category": "Meat",
+          "index": 136
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['category']=='Cereal' || datum['category']=='Dairy'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "zero": true,
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "index"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Food Price Index",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "facet",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "index"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "category"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ]
+}

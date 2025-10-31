@@ -1,0 +1,2 @@
+Add a new datapoint for 'Millet' with a production value of 95 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Barley; value=175.0]

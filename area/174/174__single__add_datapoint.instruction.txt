@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2025 with values coal: 6200, oil: 6000, gas: 5200.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=2012.5]

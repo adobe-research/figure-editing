@@ -1,0 +1,2 @@
+Remove the datapoint where the region is 'Europe' and the date is '2020-04-01'.
+[#OP1 op=remove_datapoint; category=2020-02-01]

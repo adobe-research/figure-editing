@@ -1,0 +1,2 @@
+Increase the text size of the tooltip values to 14.
+[#OP1 op=increase_text_size; axis_label_size=12]

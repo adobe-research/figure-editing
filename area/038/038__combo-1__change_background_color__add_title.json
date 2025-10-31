@@ -1,0 +1,199 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing price trends and sales volume over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "time": 1,
+          "price": 23,
+          "sales_volume": 150
+        },
+        {
+          "time": 2,
+          "price": 25,
+          "sales_volume": 200
+        },
+        {
+          "time": 3,
+          "price": 22,
+          "sales_volume": 180
+        },
+        {
+          "time": 4,
+          "price": 26,
+          "sales_volume": 220
+        },
+        {
+          "time": 5,
+          "price": 24,
+          "sales_volume": 210
+        },
+        {
+          "time": 6,
+          "price": 27,
+          "sales_volume": 230
+        },
+        {
+          "time": 7,
+          "price": 28,
+          "sales_volume": 250
+        },
+        {
+          "time": 8,
+          "price": 26,
+          "sales_volume": 240
+        },
+        {
+          "time": 9,
+          "price": 29,
+          "sales_volume": 260
+        },
+        {
+          "time": 10,
+          "price": 30,
+          "sales_volume": 270
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "price",
+            "sales_volume"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale_price",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    },
+    {
+      "name": "yscale_volume",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "table",
+        "field": "sales_volume"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Time Period"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_price",
+      "title": "Price ($)",
+      "grid": true
+    },
+    {
+      "orient": "right",
+      "scale": "yscale_volume",
+      "title": "Sales Volume",
+      "grid": false
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "time"
+          },
+          "y": {
+            "scale": "yscale_price",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "yscale_price",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "time"
+          },
+          "y": {
+            "scale": "yscale_volume",
+            "field": "sales_volume"
+          },
+          "y2": {
+            "scale": "yscale_volume",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "opacity": {
+            "value": 0.5
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

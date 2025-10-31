@@ -1,0 +1,2 @@
+Add a new datapoint for University A with year 2020 and score 96.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=University A; value=2017.0]

@@ -1,0 +1,202 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing precipitation and temperature trends in Seattle weather data.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "weather_data",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "precipitation": 5.2,
+          "temperature": 8.4
+        },
+        {
+          "date": "2023-01-02",
+          "precipitation": 3.1,
+          "temperature": 7.8
+        },
+        {
+          "date": "2023-01-03",
+          "precipitation": 0.0,
+          "temperature": 6.9
+        },
+        {
+          "date": "2023-01-04",
+          "precipitation": 2.3,
+          "temperature": 7.5
+        },
+        {
+          "date": "2023-01-05",
+          "precipitation": 4.7,
+          "temperature": 8.1
+        },
+        {
+          "date": "2023-01-06",
+          "precipitation": 1.2,
+          "temperature": 9.0
+        },
+        {
+          "date": "2023-01-07",
+          "precipitation": 0.0,
+          "temperature": 10.2
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "precipitation",
+            "temperature"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "weather_data",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale_precipitation",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "weather_data",
+        "field": "precipitation"
+      }
+    },
+    {
+      "name": "yscale_temperature",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "weather_data",
+        "field": "temperature"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_precipitation",
+      "title": "Precipitation (mm)",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "right",
+      "scale": "yscale_temperature",
+      "title": "Temperature (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "weather_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale_precipitation",
+            "field": "precipitation"
+          },
+          "y2": {
+            "scale": "yscale_precipitation",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "weather_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale_temperature",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale_temperature",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.6
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.4
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

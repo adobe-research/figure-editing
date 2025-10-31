@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing temperature trends over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "temperature": 14.5
+        },
+        {
+          "year": 2001,
+          "temperature": 14.7
+        },
+        {
+          "year": 2002,
+          "temperature": 14.8
+        },
+        {
+          "year": 2003,
+          "temperature": 14.9
+        },
+        {
+          "year": 2004,
+          "temperature": 14.6
+        },
+        {
+          "year": 2005,
+          "temperature": 14.8
+        },
+        {
+          "year": 2006,
+          "temperature": 14.9
+        },
+        {
+          "year": 2007,
+          "temperature": 15.0
+        },
+        {
+          "year": 2008,
+          "temperature": 14.7
+        },
+        {
+          "year": 2009,
+          "temperature": 14.8
+        },
+        {
+          "year": 2010,
+          "temperature": 15.1
+        },
+        {
+          "year": 2011,
+          "temperature": 14.9
+        },
+        {
+          "year": 2012,
+          "temperature": 15.2
+        },
+        {
+          "year": 2013,
+          "temperature": 15.1
+        },
+        {
+          "year": 2014,
+          "temperature": 15.3
+        },
+        {
+          "year": 2015,
+          "temperature": 15.5
+        },
+        {
+          "year": 2016,
+          "temperature": 15.6
+        },
+        {
+          "year": 2017,
+          "temperature": 15.5
+        },
+        {
+          "year": 2018,
+          "temperature": 15.4
+        },
+        {
+          "year": 2019,
+          "temperature": 15.6
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

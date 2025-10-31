@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A single-series bar chart showing weekly sales for different store departments.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "department": "Electronics",
+          "sales": 120000
+        },
+        {
+          "department": "Clothing",
+          "sales": 95000
+        },
+        {
+          "department": "Home Goods",
+          "sales": 80000
+        },
+        {
+          "department": "Grocery",
+          "sales": 150000
+        },
+        {
+          "department": "Health & Beauty",
+          "sales": 70000
+        },
+        {
+          "department": "Automotive",
+          "sales": 60000
+        },
+        {
+          "department": "Sports",
+          "sales": 85000
+        },
+        {
+          "department": "Toys",
+          "sales": 90000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "department"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "sales"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Department"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Weekly Sales ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "department"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "sales"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "department",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "sales",
+            "offset": -5
+          },
+          "text": {
+            "field": "sales"
+          }
+        }
+      }
+    }
+  ]
+}

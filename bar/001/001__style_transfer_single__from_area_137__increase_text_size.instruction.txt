@@ -1,0 +1,2 @@
+Make this bar chart use the same axis label font size (12) as the reference chart.
+[#OP1 op=increase_text_size; axis_label_size=12]

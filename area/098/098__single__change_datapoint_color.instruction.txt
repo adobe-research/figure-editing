@@ -1,0 +1,2 @@
+Change the datapoint color for the series to use 'green' and 'purple' instead of 'steelblue' and 'orange'.
+[#OP1 op=change_datapoint_color; target_category=2021-06; new_color=#ff7f0e]

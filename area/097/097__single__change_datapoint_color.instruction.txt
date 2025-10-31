@@ -1,0 +1,2 @@
+Change the datapoint color for the 'casual' series to a new color '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=2022-02; new_color=#d62728]

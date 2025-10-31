@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Sugar' and value 90.
+[#OP1 op=remove_datapoint; category=Vegetable Oils]

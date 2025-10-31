@@ -1,0 +1,2 @@
+Remove the datapoint for 'Harry Kane' with 50 goals.
+[#OP1 op=remove_datapoint; category=Lionel Messi]

@@ -1,0 +1,206 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing CO2 emissions from different sources over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "emissions",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Coal",
+          "emissions": 6500
+        },
+        {
+          "year": 2000,
+          "source": "Oil",
+          "emissions": 4200
+        },
+        {
+          "year": 2000,
+          "source": "Gas",
+          "emissions": 3100
+        },
+        {
+          "year": 2005,
+          "source": "Coal",
+          "emissions": 7200
+        },
+        {
+          "year": 2005,
+          "source": "Oil",
+          "emissions": 4500
+        },
+        {
+          "year": 2005,
+          "source": "Gas",
+          "emissions": 3400
+        },
+        {
+          "year": 2010,
+          "source": "Coal",
+          "emissions": 7800
+        },
+        {
+          "year": 2010,
+          "source": "Oil",
+          "emissions": 4800
+        },
+        {
+          "year": 2010,
+          "source": "Gas",
+          "emissions": 3700
+        },
+        {
+          "year": 2015,
+          "source": "Coal",
+          "emissions": 8100
+        },
+        {
+          "year": 2015,
+          "source": "Oil",
+          "emissions": 5000
+        },
+        {
+          "year": 2015,
+          "source": "Gas",
+          "emissions": 4000
+        },
+        {
+          "year": 2020,
+          "source": "Coal",
+          "emissions": 7700
+        },
+        {
+          "year": 2020,
+          "source": "Oil",
+          "emissions": 4700
+        },
+        {
+          "year": 2020,
+          "source": "Gas",
+          "emissions": 3800
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Coal' || datum['source']=='Oil'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.9
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "emissions",
+        "field": "emissions"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "emissions",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "CO2 Emissions (Mt)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "emissions",
+          "name": "series_facet",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "emissions"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ]
+}

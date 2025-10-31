@@ -1,0 +1,2 @@
+Change the color of the temperature area to green.
+[#OP1 op=change_datapoint_color; target_category=2023-01-01; new_color=#ff7f0e]

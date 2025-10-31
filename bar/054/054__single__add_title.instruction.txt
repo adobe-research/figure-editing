@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Stroke Risk Factors Analysis'.
+[#OP1 op=add_title; title_text=Edited Chart]

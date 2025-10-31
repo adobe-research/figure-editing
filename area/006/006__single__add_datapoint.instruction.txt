@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020, sector 'Energy', with emissions value 35.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=2010.0]

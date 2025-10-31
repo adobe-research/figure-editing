@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing crop production trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "corn": 140,
+          "wheat": 80
+        },
+        {
+          "year": 2016,
+          "corn": 160,
+          "wheat": 85
+        },
+        {
+          "year": 2017,
+          "corn": 150,
+          "wheat": 90
+        },
+        {
+          "year": 2018,
+          "corn": 170,
+          "wheat": 95
+        },
+        {
+          "year": 2019,
+          "corn": 180,
+          "wheat": 100
+        },
+        {
+          "year": 2020,
+          "corn": 190,
+          "wheat": 110
+        },
+        {
+          "year": 2021,
+          "corn": 200,
+          "wheat": 120
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ]
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "fields": [
+          {
+            "data": "table",
+            "field": "corn"
+          },
+          {
+            "data": "table",
+            "field": "wheat"
+          }
+        ]
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": [
+        "corn",
+        "wheat"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Production (millions of tons)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Crop Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "key"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      },
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "corn",
+            "wheat"
+          ]
+        }
+      ],
+      "sort": {
+        "field": "year",
+        "order": "ascending"
+      }
+    }
+  ]
+}

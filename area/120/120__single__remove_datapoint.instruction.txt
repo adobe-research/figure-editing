@@ -1,0 +1,2 @@
+Remove the datapoint for Company B on 2023-04-01 with a price of 230.
+[#OP1 op=remove_datapoint; category=2023-03-01]

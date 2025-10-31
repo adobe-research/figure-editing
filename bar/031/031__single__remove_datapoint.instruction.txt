@@ -1,0 +1,2 @@
+Remove the datapoint for the pollutant 'SO2' with a concentration of 10.8.
+[#OP1 op=remove_datapoint; category=PM10]

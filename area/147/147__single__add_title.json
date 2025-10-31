@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing COVID-19 cases over time for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01-01",
+          "region": "North America",
+          "cases": 100
+        },
+        {
+          "date": "2020-01-01",
+          "region": "Europe",
+          "cases": 50
+        },
+        {
+          "date": "2020-02-01",
+          "region": "North America",
+          "cases": 300
+        },
+        {
+          "date": "2020-02-01",
+          "region": "Europe",
+          "cases": 200
+        },
+        {
+          "date": "2020-03-01",
+          "region": "North America",
+          "cases": 1000
+        },
+        {
+          "date": "2020-03-01",
+          "region": "Europe",
+          "cases": 800
+        },
+        {
+          "date": "2020-04-01",
+          "region": "North America",
+          "cases": 5000
+        },
+        {
+          "date": "2020-04-01",
+          "region": "Europe",
+          "cases": 4000
+        },
+        {
+          "date": "2020-05-01",
+          "region": "North America",
+          "cases": 10000
+        },
+        {
+          "date": "2020-05-01",
+          "region": "Europe",
+          "cases": 9000
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Cases"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}

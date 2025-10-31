@@ -1,0 +1,2 @@
+Remove the datapoint for 'James Harden' with 24 points.
+[#OP1 op=remove_datapoint; category=Luka Dončić]

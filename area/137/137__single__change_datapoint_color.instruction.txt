@@ -1,0 +1,2 @@
+Change the datapoint color to 'steelblue' for the area chart.
+[#OP1 op=change_datapoint_color; target_category=2021-11; new_color=#ff7f0e]

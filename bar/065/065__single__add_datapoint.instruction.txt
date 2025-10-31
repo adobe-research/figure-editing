@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Shell Length: 0.8-0.9' and amount 60 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Shell Length: 0.1-0.2; value=67.5]

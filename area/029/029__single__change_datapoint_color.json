@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing GDP growth rates over years for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 5.4
+        },
+        {
+          "year": 2001,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 4.8
+        },
+        {
+          "year": 2002,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 5.7
+        },
+        {
+          "year": 2003,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 6.1
+        },
+        {
+          "year": 2004,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 7.2
+        },
+        {
+          "year": 2000,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.2
+        },
+        {
+          "year": 2001,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 2.6
+        },
+        {
+          "year": 2002,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.1
+        },
+        {
+          "year": 2003,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 4.0
+        },
+        {
+          "year": 2004,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 4.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "gdp_growth"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "range": [
+        "green",
+        "purple"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "GDP Growth (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "faceted_data",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "faceted_data"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "gdp_growth"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}

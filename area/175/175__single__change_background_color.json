@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing COVID-19 cases over time for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01-01",
+          "region": "North America",
+          "cases": 50000
+        },
+        {
+          "date": "2021-01-01",
+          "region": "Europe",
+          "cases": 45000
+        },
+        {
+          "date": "2021-01-01",
+          "region": "Asia",
+          "cases": 30000
+        },
+        {
+          "date": "2021-02-01",
+          "region": "North America",
+          "cases": 60000
+        },
+        {
+          "date": "2021-02-01",
+          "region": "Europe",
+          "cases": 50000
+        },
+        {
+          "date": "2021-02-01",
+          "region": "Asia",
+          "cases": 35000
+        },
+        {
+          "date": "2021-03-01",
+          "region": "North America",
+          "cases": 70000
+        },
+        {
+          "date": "2021-03-01",
+          "region": "Europe",
+          "cases": 55000
+        },
+        {
+          "date": "2021-03-01",
+          "region": "Asia",
+          "cases": 40000
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum['region']=='North America' || datum['region']=='Europe'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "COVID-19 Cases"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "cases"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}
