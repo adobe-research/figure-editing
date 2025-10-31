@@ -1,0 +1,2 @@
+Remove the datapoint for JetBlue with the series 'Cancelled' and value 5.
+[#OP1 op=remove_datapoint; category=United]

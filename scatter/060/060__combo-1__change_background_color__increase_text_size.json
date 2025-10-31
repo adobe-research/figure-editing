@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot showing transaction amount vs time with fraud status as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Time": 120,
+          "Amount": 200.5,
+          "Fraud": "Yes"
+        },
+        {
+          "Time": 300,
+          "Amount": 150.0,
+          "Fraud": "No"
+        },
+        {
+          "Time": 450,
+          "Amount": 75.3,
+          "Fraud": "No"
+        },
+        {
+          "Time": 600,
+          "Amount": 220.1,
+          "Fraud": "Yes"
+        },
+        {
+          "Time": 780,
+          "Amount": 90.0,
+          "Fraud": "No"
+        },
+        {
+          "Time": 1020,
+          "Amount": 310.8,
+          "Fraud": "Yes"
+        },
+        {
+          "Time": 1300,
+          "Amount": 45.0,
+          "Fraud": "No"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        120.0,
+        1300.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Amount"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Fraud"
+      },
+      "range": [
+        "red",
+        "blue"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "grid": true,
+      "title": "Time (seconds)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "grid": true,
+      "title": "Transaction Amount ($)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Time"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Amount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Fraud"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for the 'ClearCr' neighborhood with the '1Story' series and a value of 260000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=ClearCr; value=260000.0]

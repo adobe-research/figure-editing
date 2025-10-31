@@ -1,0 +1,2 @@
+Change the color of datapoints associated with Customer Segment 'A' to a new color '#d62728'.
+[#OP1 op=change_datapoint_color; target_category=C; new_color=#9467bd]

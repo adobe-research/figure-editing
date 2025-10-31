@@ -1,0 +1,2 @@
+Change the datapoint colors to a new set of colors.
+[#OP1 op=change_datapoint_color; target_category=Medium; new_color=#d62728]

@@ -1,0 +1,190 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing revenue by sector and region for S&P 500 companies.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "sector": "Technology",
+          "region": "North America",
+          "revenue": 120
+        },
+        {
+          "sector": "Technology",
+          "region": "Europe",
+          "revenue": 80
+        },
+        {
+          "sector": "Technology",
+          "region": "Asia",
+          "revenue": 90
+        },
+        {
+          "sector": "Financials",
+          "region": "North America",
+          "revenue": 110
+        },
+        {
+          "sector": "Financials",
+          "region": "Europe",
+          "revenue": 70
+        },
+        {
+          "sector": "Financials",
+          "region": "Asia",
+          "revenue": 60
+        },
+        {
+          "sector": "Healthcare",
+          "region": "North America",
+          "revenue": 100
+        },
+        {
+          "sector": "Healthcare",
+          "region": "Europe",
+          "revenue": 50
+        },
+        {
+          "sector": "Healthcare",
+          "region": "Asia",
+          "revenue": 40
+        },
+        {
+          "sector": "Energy",
+          "region": "North America",
+          "revenue": 90
+        },
+        {
+          "sector": "Energy",
+          "region": "Europe",
+          "revenue": 60
+        },
+        {
+          "sector": "Energy",
+          "region": "Asia",
+          "revenue": 50
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "field": "revenue",
+          "groupby": [
+            "sector"
+          ],
+          "sort": {
+            "field": "region"
+          }
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "sector"
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Sector",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Revenue (in millions)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "sector"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "region"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

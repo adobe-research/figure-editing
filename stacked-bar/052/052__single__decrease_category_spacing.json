@@ -1,0 +1,202 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing climate data by region and year.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "2020",
+          "series": "North America",
+          "value": 3.2
+        },
+        {
+          "category": "2020",
+          "series": "Europe",
+          "value": 2.8
+        },
+        {
+          "category": "2020",
+          "series": "Asia",
+          "value": 4.1
+        },
+        {
+          "category": "2020",
+          "series": "Oceania",
+          "value": 1.5
+        },
+        {
+          "category": "2021",
+          "series": "North America",
+          "value": 3.5
+        },
+        {
+          "category": "2021",
+          "series": "Europe",
+          "value": 2.9
+        },
+        {
+          "category": "2021",
+          "series": "Asia",
+          "value": 4.3
+        },
+        {
+          "category": "2021",
+          "series": "Oceania",
+          "value": 1.6
+        },
+        {
+          "category": "2022",
+          "series": "North America",
+          "value": 3.6
+        },
+        {
+          "category": "2022",
+          "series": "Europe",
+          "value": 3.0
+        },
+        {
+          "category": "2022",
+          "series": "Asia",
+          "value": 4.4
+        },
+        {
+          "category": "2022",
+          "series": "Oceania",
+          "value": 1.7
+        },
+        {
+          "category": "2023",
+          "series": "North America",
+          "value": 3.8
+        },
+        {
+          "category": "2023",
+          "series": "Europe",
+          "value": 3.1
+        },
+        {
+          "category": "2023",
+          "series": "Asia",
+          "value": 4.5
+        },
+        {
+          "category": "2023",
+          "series": "Oceania",
+          "value": 1.8
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

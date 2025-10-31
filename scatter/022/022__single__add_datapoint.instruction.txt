@@ -1,0 +1,2 @@
+Add a new datapoint with Crime_Index 130, Arrest_Rate 0.35, and Primary_Type 'Vandalism'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Assault; value=110.0]

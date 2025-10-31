@@ -1,0 +1,2 @@
+Add a new datapoint with toxicity_score 0.6, severe_toxicity_score 0.25, and category 'toxic'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=non-toxic; value=0.6]

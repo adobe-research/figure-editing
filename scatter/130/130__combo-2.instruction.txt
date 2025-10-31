@@ -1,0 +1,4 @@
+Change the color of datapoints for 'FraudStatus=Yes', increase text size for axis labels, and add a title to the chart.
+[#OP1 op=change_datapoint_color; Change datapoint color for 'FraudStatus=Yes'; target_category=Yes; new_color=#2ca02c]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

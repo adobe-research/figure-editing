@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2030 with 8 goals and match type 'Qualifier'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Friendly; value=1990.0]

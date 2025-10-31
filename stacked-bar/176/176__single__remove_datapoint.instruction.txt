@@ -1,0 +1,2 @@
+Remove the datapoint for Store 4, Dept C with value 7000.
+[#OP1 op=remove_datapoint; category=Store 3]

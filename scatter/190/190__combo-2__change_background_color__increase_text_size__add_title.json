@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of player attributes from the European Soccer Database.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Overall_Rating": 80,
+          "Potential": 85,
+          "Preferred_Foot": "Left"
+        },
+        {
+          "Overall_Rating": 76,
+          "Potential": 82,
+          "Preferred_Foot": "Right"
+        },
+        {
+          "Overall_Rating": 90,
+          "Potential": 92,
+          "Preferred_Foot": "Right"
+        },
+        {
+          "Overall_Rating": 70,
+          "Potential": 75,
+          "Preferred_Foot": "Left"
+        },
+        {
+          "Overall_Rating": 85,
+          "Potential": 88,
+          "Preferred_Foot": "Right"
+        },
+        {
+          "Overall_Rating": 78,
+          "Potential": 81,
+          "Preferred_Foot": "Left"
+        },
+        {
+          "Overall_Rating": 88,
+          "Potential": 91,
+          "Preferred_Foot": "Right"
+        },
+        {
+          "Overall_Rating": 82,
+          "Potential": 84,
+          "Preferred_Foot": "Left"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        70,
+        76,
+        78,
+        80,
+        82,
+        85,
+        88,
+        90
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Potential"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Preferred_Foot"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Overall Rating",
+      "grid": true,
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Potential",
+      "grid": true,
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Preferred Foot"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Overall_Rating"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Potential"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Preferred_Foot"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

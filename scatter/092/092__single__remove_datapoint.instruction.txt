@@ -1,0 +1,2 @@
+Remove the datapoint with Area 14.29 and Perimeter 14.09.
+[#OP1 op=remove_datapoint; category=Kama]

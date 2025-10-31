@@ -1,0 +1,2 @@
+Add a new datapoint for the region 'South America' with type 'Confirmed' and cases 300000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=175000.0]

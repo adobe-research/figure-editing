@@ -1,0 +1,2 @@
+Change the color of the 'Mobile Phones' series to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Fashion; new_color=#4daf4a]

@@ -1,0 +1,2 @@
+Remove the datapoint where TransactionAmt is 10.0 and TransactionTime is 20.
+[#OP1 op=remove_datapoint; category=Yes]

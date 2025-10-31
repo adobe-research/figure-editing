@@ -1,0 +1,2 @@
+Add a new datapoint with Height 160, Weight 55, and Sport 'Cycling'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Athletics; value=175.0]

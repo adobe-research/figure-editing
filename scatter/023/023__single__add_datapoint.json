@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing trip duration vs distance with bike type as series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trip_Duration": 15.2,
+          "Trip_Distance": 3.5,
+          "Bike_Type": "Electric"
+        },
+        {
+          "Trip_Duration": 8.5,
+          "Trip_Distance": 2.1,
+          "Bike_Type": "Standard"
+        },
+        {
+          "Trip_Duration": 12.7,
+          "Trip_Distance": 4.0,
+          "Bike_Type": "Electric"
+        },
+        {
+          "Trip_Duration": 10.3,
+          "Trip_Distance": 3.7,
+          "Bike_Type": "Standard"
+        },
+        {
+          "Trip_Duration": 18.6,
+          "Trip_Distance": 5.2,
+          "Bike_Type": "Electric"
+        },
+        {
+          "Trip_Duration": 7.8,
+          "Trip_Distance": 2.0,
+          "Bike_Type": "Standard"
+        },
+        {
+          "Trip_Duration": 14.0,
+          "Trip_Distance": 3.8,
+          "Bike_Type": "Electric"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        7.8,
+        18.6
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trip_Distance"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Bike_Type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trip Duration (minutes)",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Distance (miles)",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Bike Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Trip_Duration"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trip_Distance"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Bike_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

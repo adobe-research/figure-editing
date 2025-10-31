@@ -1,0 +1,230 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Netflix stock performance metrics.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "2015",
+          "series": "Open",
+          "value": 50
+        },
+        {
+          "category": "2015",
+          "series": "Close",
+          "value": 55
+        },
+        {
+          "category": "2015",
+          "series": "High",
+          "value": 60
+        },
+        {
+          "category": "2015",
+          "series": "Low",
+          "value": 45
+        },
+        {
+          "category": "2016",
+          "series": "Open",
+          "value": 65
+        },
+        {
+          "category": "2016",
+          "series": "Close",
+          "value": 70
+        },
+        {
+          "category": "2016",
+          "series": "High",
+          "value": 75
+        },
+        {
+          "category": "2016",
+          "series": "Low",
+          "value": 60
+        },
+        {
+          "category": "2017",
+          "series": "Open",
+          "value": 80
+        },
+        {
+          "category": "2017",
+          "series": "Close",
+          "value": 85
+        },
+        {
+          "category": "2017",
+          "series": "High",
+          "value": 90
+        },
+        {
+          "category": "2017",
+          "series": "Low",
+          "value": 75
+        },
+        {
+          "category": "2018",
+          "series": "Open",
+          "value": 95
+        },
+        {
+          "category": "2018",
+          "series": "Close",
+          "value": 100
+        },
+        {
+          "category": "2018",
+          "series": "High",
+          "value": 105
+        },
+        {
+          "category": "2018",
+          "series": "Low",
+          "value": 90
+        },
+        {
+          "category": "2019",
+          "series": "Open",
+          "value": 110
+        },
+        {
+          "category": "2019",
+          "series": "Close",
+          "value": 115
+        },
+        {
+          "category": "2019",
+          "series": "High",
+          "value": 120
+        },
+        {
+          "category": "2019",
+          "series": "Low",
+          "value": 105
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Stock Value",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Metric",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

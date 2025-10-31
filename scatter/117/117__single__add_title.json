@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing toxicity scores and comment lengths, colored by toxicity type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16,
+    "fontWeight": "bold"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Toxicity_Score": 0.85,
+          "Comment_Length": 120,
+          "Toxicity_Type": "Severe Toxic"
+        },
+        {
+          "Toxicity_Score": 0.45,
+          "Comment_Length": 90,
+          "Toxicity_Type": "Obscene"
+        },
+        {
+          "Toxicity_Score": 0.72,
+          "Comment_Length": 150,
+          "Toxicity_Type": "Threat"
+        },
+        {
+          "Toxicity_Score": 0.3,
+          "Comment_Length": 60,
+          "Toxicity_Type": "Insult"
+        },
+        {
+          "Toxicity_Score": 0.95,
+          "Comment_Length": 200,
+          "Toxicity_Type": "Severe Toxic"
+        },
+        {
+          "Toxicity_Score": 0.5,
+          "Comment_Length": 110,
+          "Toxicity_Type": "Obscene"
+        },
+        {
+          "Toxicity_Score": 0.65,
+          "Comment_Length": 140,
+          "Toxicity_Type": "Threat"
+        },
+        {
+          "Toxicity_Score": 0.25,
+          "Comment_Length": 80,
+          "Toxicity_Type": "Insult"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": [
+        0.25,
+        0.95
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Comment_Length"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Toxicity_Type"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8",
+        "#4daf4a",
+        "#984ea3"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "tickCount": 5,
+      "title": "Toxicity Score"
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "titlePadding": 5,
+      "title": "Comment Length (characters)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Toxicity Type",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "name": "marks",
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Toxicity_Score"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Comment_Length"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Toxicity_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

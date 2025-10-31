@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing trade value vs. quantity with commodity categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trade_Value": 5000,
+          "Quantity": 200,
+          "Commodity": "Electronics"
+        },
+        {
+          "Trade_Value": 3000,
+          "Quantity": 150,
+          "Commodity": "Textiles"
+        },
+        {
+          "Trade_Value": 7000,
+          "Quantity": 300,
+          "Commodity": "Machinery"
+        },
+        {
+          "Trade_Value": 2000,
+          "Quantity": 100,
+          "Commodity": "Agriculture"
+        },
+        {
+          "Trade_Value": 8000,
+          "Quantity": 400,
+          "Commodity": "Vehicles"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        2000.0,
+        8000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Quantity"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Commodity"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trade Value (in thousands USD)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Quantity (in units)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Commodity"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Trade_Value"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Quantity"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Commodity"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum.Commodity + ': ' + datum.Trade_Value + ' USD, ' + datum.Quantity + ' units'"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

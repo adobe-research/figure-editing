@@ -1,0 +1,2 @@
+Add a new datapoint with a toxicity score of 0.5, word count of 250, and comment type 'positive'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=identity_hate; value=0.475]

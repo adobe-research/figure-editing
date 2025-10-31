@@ -1,0 +1,2 @@
+Change the color of datapoints representing 'Approved' Loan Status to '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=Rejected; new_color=#d62728]

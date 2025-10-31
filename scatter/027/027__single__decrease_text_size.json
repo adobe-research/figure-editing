@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot showing click time vs device ID with app category as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "ClickTime": 1.5,
+          "DeviceID": 10234,
+          "AppCategory": "Social"
+        },
+        {
+          "ClickTime": 2.3,
+          "DeviceID": 20456,
+          "AppCategory": "Gaming"
+        },
+        {
+          "ClickTime": 0.8,
+          "DeviceID": 30567,
+          "AppCategory": "Shopping"
+        },
+        {
+          "ClickTime": 3.1,
+          "DeviceID": 40234,
+          "AppCategory": "Social"
+        },
+        {
+          "ClickTime": 1.0,
+          "DeviceID": 50245,
+          "AppCategory": "Gaming"
+        },
+        {
+          "ClickTime": 2.8,
+          "DeviceID": 60356,
+          "AppCategory": "Shopping"
+        },
+        {
+          "ClickTime": 1.2,
+          "DeviceID": 70467,
+          "AppCategory": "Social"
+        },
+        {
+          "ClickTime": 3.0,
+          "DeviceID": 80578,
+          "AppCategory": "Gaming"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.8,
+        3.1
+      ],
+      "range": "width",
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "DeviceID"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "AppCategory"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Click Time (hours)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Device ID",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "scale": "color",
+      "title": "App Category"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "ClickTime"
+          },
+          "y": {
+            "scale": "y",
+            "field": "DeviceID"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "AppCategory"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

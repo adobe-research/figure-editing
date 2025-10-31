@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Sugar' and series '2015'.
+[#OP1 op=remove_datapoint; category=Sugar]

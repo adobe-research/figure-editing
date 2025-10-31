@@ -1,0 +1,2 @@
+Add a title to the scatter plot that reads 'Student Performance: Math vs Reading Scores'.
+[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint for the state 'Ohio' with crop 'Wheat' and production value 350.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Illinois; value=350.0]

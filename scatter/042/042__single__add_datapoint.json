@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between study time and final grade, with gender as a categorical series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "StudyTime": 2,
+          "FinalGrade": 75,
+          "Gender": "Male"
+        },
+        {
+          "StudyTime": 5,
+          "FinalGrade": 90,
+          "Gender": "Female"
+        },
+        {
+          "StudyTime": 3,
+          "FinalGrade": 80,
+          "Gender": "Male"
+        },
+        {
+          "StudyTime": 1,
+          "FinalGrade": 65,
+          "Gender": "Female"
+        },
+        {
+          "StudyTime": 4,
+          "FinalGrade": 85,
+          "Gender": "Male"
+        },
+        {
+          "StudyTime": 2,
+          "FinalGrade": 70,
+          "Gender": "Female"
+        },
+        {
+          "StudyTime": 6,
+          "FinalGrade": 95,
+          "Gender": "Male"
+        },
+        {
+          "StudyTime": 3,
+          "FinalGrade": 78,
+          "Gender": "Female"
+        },
+        {
+          "StudyTime": 7,
+          "FinalGrade": 88,
+          "Gender": "Female"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "FinalGrade"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Gender"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Study Time (hours)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Final Grade (%)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Gender",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "StudyTime"
+          },
+          "y": {
+            "scale": "y",
+            "field": "FinalGrade"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Gender"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

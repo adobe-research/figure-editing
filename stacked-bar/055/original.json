@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing categories and sub-series values.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Politics",
+          "series": "Democrat",
+          "value": 45
+        },
+        {
+          "category": "Politics",
+          "series": "Republican",
+          "value": 35
+        },
+        {
+          "category": "Politics",
+          "series": "Independent",
+          "value": 20
+        },
+        {
+          "category": "Sports",
+          "series": "Football",
+          "value": 50
+        },
+        {
+          "category": "Sports",
+          "series": "Basketball",
+          "value": 30
+        },
+        {
+          "category": "Sports",
+          "series": "Baseball",
+          "value": 20
+        },
+        {
+          "category": "Entertainment",
+          "series": "Movies",
+          "value": 55
+        },
+        {
+          "category": "Entertainment",
+          "series": "TV Shows",
+          "value": 25
+        },
+        {
+          "category": "Entertainment",
+          "series": "Music",
+          "value": 20
+        },
+        {
+          "category": "Technology",
+          "series": "Software",
+          "value": 60
+        },
+        {
+          "category": "Technology",
+          "series": "Hardware",
+          "value": 30
+        },
+        {
+          "category": "Technology",
+          "series": "AI",
+          "value": 10
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

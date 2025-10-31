@@ -1,0 +1,2 @@
+Change the color of the 'Recovered' case type to a new color, '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Europe; new_color=#ff7f0e]

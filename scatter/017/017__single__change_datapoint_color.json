@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of Santander Customer Transaction data.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "TransactionValue1": 120.5,
+          "TransactionValue2": 80.1,
+          "CustomerSegment": "A"
+        },
+        {
+          "TransactionValue1": 95.2,
+          "TransactionValue2": 65.3,
+          "CustomerSegment": "B"
+        },
+        {
+          "TransactionValue1": 150.8,
+          "TransactionValue2": 90.7,
+          "CustomerSegment": "A"
+        },
+        {
+          "TransactionValue1": 110.4,
+          "TransactionValue2": 75.6,
+          "CustomerSegment": "C"
+        },
+        {
+          "TransactionValue1": 130.9,
+          "TransactionValue2": 85.2,
+          "CustomerSegment": "B"
+        },
+        {
+          "TransactionValue1": 100.0,
+          "TransactionValue2": 70.0,
+          "CustomerSegment": "C"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        95.2,
+        150.8
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "TransactionValue2"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "CustomerSegment"
+      },
+      "range": [
+        "#d62728",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Value 1"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Value 2"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Customer Segment"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "TransactionValue1"
+          },
+          "y": {
+            "scale": "y",
+            "field": "TransactionValue2"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "CustomerSegment"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

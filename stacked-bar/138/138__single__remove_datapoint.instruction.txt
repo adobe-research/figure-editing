@@ -1,0 +1,2 @@
+Remove the datapoint where category is 'Kansas' and series is 'Soybeans'.
+[#OP1 op=remove_datapoint; category=Texas]

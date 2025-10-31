@@ -1,0 +1,2 @@
+Remove the datapoint where Math_Score is 50 and Reading_Score is 55.
+[#OP1 op=remove_datapoint; category=Female]

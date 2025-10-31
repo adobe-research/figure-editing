@@ -1,0 +1,2 @@
+Add a new datapoint for the country 'France' in the 'Residential' sector with a consumption value of 85.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=China; value=85.0]

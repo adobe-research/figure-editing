@@ -1,0 +1,2 @@
+Remove the datapoint for Illinois with series 'Renewables' and value 65.
+[#OP1 op=remove_datapoint; category=Florida]

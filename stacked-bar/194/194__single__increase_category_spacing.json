@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing crop production by type and region.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Wheat",
+          "series": "North",
+          "value": 120
+        },
+        {
+          "category": "Wheat",
+          "series": "South",
+          "value": 80
+        },
+        {
+          "category": "Wheat",
+          "series": "East",
+          "value": 50
+        },
+        {
+          "category": "Corn",
+          "series": "North",
+          "value": 150
+        },
+        {
+          "category": "Corn",
+          "series": "South",
+          "value": 100
+        },
+        {
+          "category": "Corn",
+          "series": "East",
+          "value": 70
+        },
+        {
+          "category": "Soybeans",
+          "series": "North",
+          "value": 90
+        },
+        {
+          "category": "Soybeans",
+          "series": "South",
+          "value": 60
+        },
+        {
+          "category": "Soybeans",
+          "series": "East",
+          "value": 40
+        },
+        {
+          "category": "Rice",
+          "series": "North",
+          "value": 50
+        },
+        {
+          "category": "Rice",
+          "series": "South",
+          "value": 70
+        },
+        {
+          "category": "Rice",
+          "series": "East",
+          "value": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Crop Type"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Production (in tons)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

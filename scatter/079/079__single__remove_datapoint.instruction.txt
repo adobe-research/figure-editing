@@ -1,0 +1,2 @@
+Remove the datapoint with TransactionAmt 80.0 and TransactionTime 400.
+[#OP1 op=remove_datapoint; category=Fraud]

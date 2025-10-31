@@ -1,0 +1,2 @@
+Add a new datapoint for June 2020 with a temperature of 70 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=2021.0]

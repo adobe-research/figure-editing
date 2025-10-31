@@ -1,0 +1,2 @@
+Remove the datapoint where category is 'Store E' and series is 'Clothing'.
+[#OP1 op=remove_datapoint; category=Store D]

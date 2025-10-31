@@ -1,0 +1,2 @@
+Remove the datapoint with TransactionTime 600 and TransactionAmount 500.0.
+[#OP1 op=remove_datapoint; category=No]

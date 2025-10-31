@@ -1,0 +1,212 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing store item demand across categories and series.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Store A",
+          "series": "Electronics",
+          "value": 120
+        },
+        {
+          "category": "Store A",
+          "series": "Clothing",
+          "value": 80
+        },
+        {
+          "category": "Store A",
+          "series": "Furniture",
+          "value": 60
+        },
+        {
+          "category": "Store B",
+          "series": "Electronics",
+          "value": 150
+        },
+        {
+          "category": "Store B",
+          "series": "Clothing",
+          "value": 90
+        },
+        {
+          "category": "Store B",
+          "series": "Furniture",
+          "value": 50
+        },
+        {
+          "category": "Store C",
+          "series": "Electronics",
+          "value": 100
+        },
+        {
+          "category": "Store C",
+          "series": "Clothing",
+          "value": 70
+        },
+        {
+          "category": "Store C",
+          "series": "Furniture",
+          "value": 40
+        },
+        {
+          "category": "Store D",
+          "series": "Electronics",
+          "value": 130
+        },
+        {
+          "category": "Store D",
+          "series": "Clothing",
+          "value": 110
+        },
+        {
+          "category": "Store D",
+          "series": "Furniture",
+          "value": 90
+        },
+        {
+          "category": "Store E",
+          "series": "Electronics",
+          "value": 140
+        },
+        {
+          "category": "Store E",
+          "series": "Clothing",
+          "value": 100
+        },
+        {
+          "category": "Store E",
+          "series": "Furniture",
+          "value": 80
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Store Categories",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Product Series",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series",
+            "value": {
+              "Furniture": "#FF5733"
+            }
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Store A'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

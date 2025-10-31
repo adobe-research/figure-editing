@@ -1,0 +1,171 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing airline on-time performance by carrier and flight type.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Carrier A",
+          "series": "On-Time",
+          "value": 75
+        },
+        {
+          "category": "Carrier A",
+          "series": "Delayed",
+          "value": 25
+        },
+        {
+          "category": "Carrier B",
+          "series": "On-Time",
+          "value": 60
+        },
+        {
+          "category": "Carrier B",
+          "series": "Delayed",
+          "value": 40
+        },
+        {
+          "category": "Carrier C",
+          "series": "On-Time",
+          "value": 80
+        },
+        {
+          "category": "Carrier C",
+          "series": "Delayed",
+          "value": 20
+        },
+        {
+          "category": "Carrier D",
+          "series": "On-Time",
+          "value": 50
+        },
+        {
+          "category": "Carrier D",
+          "series": "Delayed",
+          "value": 50
+        },
+        {
+          "category": "Carrier E",
+          "series": "On-Time",
+          "value": 70
+        },
+        {
+          "category": "Carrier E",
+          "series": "Delayed",
+          "value": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Carrier"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Percentage"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Flight Status",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

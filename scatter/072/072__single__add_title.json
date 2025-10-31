@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot showing the relationship between complaint response time and request resolution time in NYC 311 service requests.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "ResponseTime": 2.5,
+          "ResolutionTime": 4.8,
+          "ComplaintType": "Noise"
+        },
+        {
+          "ResponseTime": 1.0,
+          "ResolutionTime": 2.1,
+          "ComplaintType": "Water Leak"
+        },
+        {
+          "ResponseTime": 3.2,
+          "ResolutionTime": 5.7,
+          "ComplaintType": "Illegal Parking"
+        },
+        {
+          "ResponseTime": 0.8,
+          "ResolutionTime": 1.9,
+          "ComplaintType": "Pothole"
+        },
+        {
+          "ResponseTime": 4.1,
+          "ResolutionTime": 6.5,
+          "ComplaintType": "Street Light Outage"
+        },
+        {
+          "ResponseTime": 2.9,
+          "ResolutionTime": 4.3,
+          "ComplaintType": "Graffiti"
+        },
+        {
+          "ResponseTime": 1.5,
+          "ResolutionTime": 3.0,
+          "ComplaintType": "Trash Collection"
+        },
+        {
+          "ResponseTime": 3.8,
+          "ResolutionTime": 5.9,
+          "ComplaintType": "Building Violation"
+        },
+        {
+          "ResponseTime": 2.1,
+          "ResolutionTime": 3.6,
+          "ComplaintType": "Rodent"
+        },
+        {
+          "ResponseTime": 0.6,
+          "ResolutionTime": 1.5,
+          "ComplaintType": "Tree Damage"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        0.6,
+        4.1
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "ResolutionTime"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "ComplaintType"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Response Time (hours)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Resolution Time (hours)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Complaint Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "ResponseTime"
+          },
+          "y": {
+            "scale": "y",
+            "field": "ResolutionTime"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "ComplaintType"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "{'Complaint Type': datum.ComplaintType, 'Response Time': datum.ResponseTime, 'Resolution Time': datum.ResolutionTime}"
+          }
+        }
+      }
+    }
+  ]
+}

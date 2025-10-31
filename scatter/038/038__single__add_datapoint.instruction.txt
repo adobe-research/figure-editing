@@ -1,0 +1,2 @@
+Add a new datapoint with age 32, hours_per_week 25, and income '>50K'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=<=50K; value=32.0]

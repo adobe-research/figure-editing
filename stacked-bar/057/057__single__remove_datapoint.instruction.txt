@@ -1,0 +1,2 @@
+Remove the datapoint for 'Agriculture' category and 'Coal' source with value 40.
+[#OP1 op=remove_datapoint; category=Commercial]

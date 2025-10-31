@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing player statistics from Baseball Reference.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Batting_Average": 0.32,
+          "Home_Runs": 35,
+          "Position": "Outfielder"
+        },
+        {
+          "Batting_Average": 0.275,
+          "Home_Runs": 20,
+          "Position": "Infielder"
+        },
+        {
+          "Batting_Average": 0.31,
+          "Home_Runs": 40,
+          "Position": "Catcher"
+        },
+        {
+          "Batting_Average": 0.305,
+          "Home_Runs": 30,
+          "Position": "Outfielder"
+        },
+        {
+          "Batting_Average": 0.285,
+          "Home_Runs": 22,
+          "Position": "Infielder"
+        },
+        {
+          "Batting_Average": 0.3,
+          "Home_Runs": 28,
+          "Position": "Catcher"
+        },
+        {
+          "Batting_Average": 0.295,
+          "Home_Runs": 18,
+          "Position": "Pitcher"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.275,
+        0.32
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Home_Runs"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Batting Average",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Home Runs",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Batting_Average"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Home_Runs"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

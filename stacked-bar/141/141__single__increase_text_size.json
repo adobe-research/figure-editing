@@ -1,0 +1,205 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy production by source for different regions.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "North America",
+          "series": "Coal",
+          "value": 120
+        },
+        {
+          "category": "North America",
+          "series": "Oil",
+          "value": 150
+        },
+        {
+          "category": "North America",
+          "series": "Natural Gas",
+          "value": 200
+        },
+        {
+          "category": "Europe",
+          "series": "Coal",
+          "value": 100
+        },
+        {
+          "category": "Europe",
+          "series": "Oil",
+          "value": 130
+        },
+        {
+          "category": "Europe",
+          "series": "Natural Gas",
+          "value": 180
+        },
+        {
+          "category": "Asia",
+          "series": "Coal",
+          "value": 300
+        },
+        {
+          "category": "Asia",
+          "series": "Oil",
+          "value": 250
+        },
+        {
+          "category": "Asia",
+          "series": "Natural Gas",
+          "value": 320
+        },
+        {
+          "category": "Africa",
+          "series": "Coal",
+          "value": 80
+        },
+        {
+          "category": "Africa",
+          "series": "Oil",
+          "value": 90
+        },
+        {
+          "category": "Africa",
+          "series": "Natural Gas",
+          "value": 100
+        },
+        {
+          "category": "South America",
+          "series": "Coal",
+          "value": 70
+        },
+        {
+          "category": "South America",
+          "series": "Oil",
+          "value": 110
+        },
+        {
+          "category": "South America",
+          "series": "Natural Gas",
+          "value": 140
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Production (TWh)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Energy Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

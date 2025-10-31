@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing income versus age with a color encoding for credit status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 25,
+          "MonthlyIncome": 3500,
+          "CreditStatus": "Good"
+        },
+        {
+          "Age": 34,
+          "MonthlyIncome": 4500,
+          "CreditStatus": "Bad"
+        },
+        {
+          "Age": 29,
+          "MonthlyIncome": 3800,
+          "CreditStatus": "Good"
+        },
+        {
+          "Age": 42,
+          "MonthlyIncome": 5200,
+          "CreditStatus": "Bad"
+        },
+        {
+          "Age": 37,
+          "MonthlyIncome": 4800,
+          "CreditStatus": "Good"
+        },
+        {
+          "Age": 50,
+          "MonthlyIncome": 6000,
+          "CreditStatus": "Bad"
+        },
+        {
+          "Age": 31,
+          "MonthlyIncome": 4000,
+          "CreditStatus": "Good"
+        },
+        {
+          "Age": 45,
+          "MonthlyIncome": 5500,
+          "CreditStatus": "Bad"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        25,
+        29,
+        31,
+        34,
+        37,
+        42,
+        45,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "MonthlyIncome"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "CreditStatus"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Monthly Income",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Credit Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyIncome"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "CreditStatus"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

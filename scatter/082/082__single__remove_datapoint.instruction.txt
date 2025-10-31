@@ -1,0 +1,2 @@
+Remove the datapoint where ApplicantIncome is 2800 and LoanAmount is 110.
+[#OP1 op=remove_datapoint; category=Y]

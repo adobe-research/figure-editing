@@ -1,0 +1,2 @@
+Remove the datapoint for Store C in February with a demand of 120.
+[#OP1 op=remove_datapoint; category=Feb]

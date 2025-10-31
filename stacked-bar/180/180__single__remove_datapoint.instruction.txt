@@ -1,0 +1,2 @@
+Remove the datapoint for 'South America' with 'severity' as 'Severe'.
+[#OP1 op=remove_datapoint; category=Africa]

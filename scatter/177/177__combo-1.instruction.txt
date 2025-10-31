@@ -1,0 +1,3 @@
+Change the color of datapoints for the 'Customer' category to '#00ff00' and add a title 'Trip Analysis Scatter Plot' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Customer; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]

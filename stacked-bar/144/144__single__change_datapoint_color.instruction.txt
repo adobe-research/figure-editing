@@ -1,0 +1,2 @@
+Change the color of the 'Industry' sector datapoints to a new color 'steelblue'.
+[#OP1 op=change_datapoint_color; target_category=India; new_color=#2ca02c]

@@ -1,0 +1,2 @@
+Add a new datapoint with GDP 23000, UnemploymentRate 3.7, and Region 'Central'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central; value=21500.0]

@@ -1,0 +1,2 @@
+Remove the datapoint where Height is 170 and Weight is 64.
+[#OP1 op=remove_datapoint; category=Basketball]

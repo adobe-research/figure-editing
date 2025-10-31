@@ -1,0 +1,2 @@
+Remove the datapoint where Credit_Amount is 85000 and Annual_Income is 170000.
+[#OP1 op=remove_datapoint; category=On Time]

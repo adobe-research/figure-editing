@@ -1,0 +1,3 @@
+Change the color of the datapoints to green and add a title to the chart with the text 'Airport Scatter Plot'.
+[#OP1 op=change_datapoint_color; target_category=-74.1687; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

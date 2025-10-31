@@ -1,0 +1,2 @@
+Add a new datapoint with Question_Length 180, Word_Count 22, and Insincere 'No'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=120.0]

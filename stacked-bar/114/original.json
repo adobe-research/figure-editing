@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy consumption by source across different years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "2023",
+          "series": "Coal",
+          "value": 450
+        },
+        {
+          "category": "2023",
+          "series": "Natural Gas",
+          "value": 600
+        },
+        {
+          "category": "2023",
+          "series": "Renewables",
+          "value": 350
+        },
+        {
+          "category": "2024",
+          "series": "Coal",
+          "value": 400
+        },
+        {
+          "category": "2024",
+          "series": "Natural Gas",
+          "value": 650
+        },
+        {
+          "category": "2024",
+          "series": "Renewables",
+          "value": 400
+        },
+        {
+          "category": "2025",
+          "series": "Coal",
+          "value": 420
+        },
+        {
+          "category": "2025",
+          "series": "Natural Gas",
+          "value": 700
+        },
+        {
+          "category": "2025",
+          "series": "Renewables",
+          "value": 450
+        },
+        {
+          "category": "2026",
+          "series": "Coal",
+          "value": 390
+        },
+        {
+          "category": "2026",
+          "series": "Natural Gas",
+          "value": 720
+        },
+        {
+          "category": "2026",
+          "series": "Renewables",
+          "value": 500
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (TWh)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Energy Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing trip duration vs trip distance with passenger count as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "trip_distance": 2.5,
+          "trip_duration": 600,
+          "passenger_count": 1
+        },
+        {
+          "trip_distance": 3.8,
+          "trip_duration": 900,
+          "passenger_count": 2
+        },
+        {
+          "trip_distance": 1.2,
+          "trip_duration": 300,
+          "passenger_count": 1
+        },
+        {
+          "trip_distance": 5.4,
+          "trip_duration": 1200,
+          "passenger_count": 3
+        },
+        {
+          "trip_distance": 2.0,
+          "trip_duration": 450,
+          "passenger_count": 1
+        },
+        {
+          "trip_distance": 8.1,
+          "trip_duration": 1800,
+          "passenger_count": 4
+        },
+        {
+          "trip_distance": 3.3,
+          "trip_duration": 750,
+          "passenger_count": 2
+        },
+        {
+          "trip_distance": 6.7,
+          "trip_duration": 1500,
+          "passenger_count": 3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.2,
+        8.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "trip_duration"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "passenger_count"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trip Distance (miles)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (seconds)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "trip_distance"
+          },
+          "y": {
+            "scale": "y",
+            "field": "trip_duration"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "passenger_count"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

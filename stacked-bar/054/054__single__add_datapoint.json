@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart displaying crop production across various states and types.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "state": "Iowa",
+          "crop": "Corn",
+          "production": 450
+        },
+        {
+          "state": "Iowa",
+          "crop": "Soybeans",
+          "production": 300
+        },
+        {
+          "state": "Kansas",
+          "crop": "Corn",
+          "production": 350
+        },
+        {
+          "state": "Kansas",
+          "crop": "Wheat",
+          "production": 400
+        },
+        {
+          "state": "Nebraska",
+          "crop": "Corn",
+          "production": 500
+        },
+        {
+          "state": "Nebraska",
+          "crop": "Soybeans",
+          "production": 250
+        },
+        {
+          "state": "Illinois",
+          "crop": "Corn",
+          "production": 600
+        },
+        {
+          "state": "Illinois",
+          "crop": "Soybeans",
+          "production": 400
+        },
+        {
+          "state": "Indiana",
+          "crop": "Corn",
+          "production": 300
+        },
+        {
+          "state": "Indiana",
+          "crop": "Soybeans",
+          "production": 200
+        },
+        {
+          "state": "Ohio",
+          "crop": "Wheat",
+          "production": 350
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "state"
+          ],
+          "sort": {
+            "field": "crop"
+          },
+          "field": "production"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "state"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "crop"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "State"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Production (in thousands)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Crop Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "state"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "crop"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

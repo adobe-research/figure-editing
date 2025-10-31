@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing FIFA 19 player stats with Overall rating vs. Value, and colored by Position.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Overall": 85,
+          "Value": 95000000,
+          "Position": "ST"
+        },
+        {
+          "Overall": 92,
+          "Value": 120000000,
+          "Position": "RW"
+        },
+        {
+          "Overall": 88,
+          "Value": 105000000,
+          "Position": "CM"
+        },
+        {
+          "Overall": 81,
+          "Value": 65000000,
+          "Position": "CB"
+        },
+        {
+          "Overall": 79,
+          "Value": 40000000,
+          "Position": "GK"
+        },
+        {
+          "Overall": 87,
+          "Value": 90000000,
+          "Position": "LW"
+        },
+        {
+          "Overall": 84,
+          "Value": 75000000,
+          "Position": "CDM"
+        },
+        {
+          "Overall": 91,
+          "Value": 115000000,
+          "Position": "CF"
+        },
+        {
+          "Overall": 83,
+          "Value": 70000000,
+          "Position": "RB"
+        },
+        {
+          "Overall": 80,
+          "Value": 50000000,
+          "Position": "LB"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        79,
+        80,
+        81,
+        83,
+        84,
+        85,
+        87,
+        88,
+        91,
+        92
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Overall Rating",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Market Value (€)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Overall"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

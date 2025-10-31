@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing monthly average temperatures for different years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "year": "2020",
+          "temperature": 32
+        },
+        {
+          "month": "January",
+          "year": "2021",
+          "temperature": 30
+        },
+        {
+          "month": "January",
+          "year": "2022",
+          "temperature": 28
+        },
+        {
+          "month": "February",
+          "year": "2020",
+          "temperature": 35
+        },
+        {
+          "month": "February",
+          "year": "2021",
+          "temperature": 33
+        },
+        {
+          "month": "February",
+          "year": "2022",
+          "temperature": 31
+        },
+        {
+          "month": "March",
+          "year": "2020",
+          "temperature": 45
+        },
+        {
+          "month": "March",
+          "year": "2021",
+          "temperature": 43
+        },
+        {
+          "month": "March",
+          "year": "2022",
+          "temperature": 41
+        },
+        {
+          "month": "April",
+          "year": "2020",
+          "temperature": 55
+        },
+        {
+          "month": "April",
+          "year": "2021",
+          "temperature": 53
+        },
+        {
+          "month": "April",
+          "year": "2022",
+          "temperature": 51
+        },
+        {
+          "month": "May",
+          "year": "2020",
+          "temperature": 65
+        },
+        {
+          "month": "May",
+          "year": "2021",
+          "temperature": 63
+        },
+        {
+          "month": "May",
+          "year": "2022",
+          "temperature": 61
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "year"
+          },
+          "field": "temperature"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature (°F)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "year"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

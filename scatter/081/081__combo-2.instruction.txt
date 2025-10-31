@@ -1,0 +1,4 @@
+Change the color of datapoints with 'CreditStatus' as 'Good' to '#00ff00', increase the text size of axis labels to 14, and add a title 'Income vs Age Analysis'.
+[#OP1 op=change_datapoint_color; target_category=Good; new_color=#2ca02c]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

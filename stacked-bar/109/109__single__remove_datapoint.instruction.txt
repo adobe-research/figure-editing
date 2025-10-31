@@ -1,0 +1,2 @@
+Remove the datapoint for the 1990s decade in the Asia region with an anomaly value of 0.5.
+[#OP1 op=remove_datapoint; category=1950s]

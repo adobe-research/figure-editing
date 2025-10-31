@@ -1,0 +1,2 @@
+Change the color of the 'On-Time' series to a new color, '#1f77b4'.
+[#OP1 op=change_datapoint_color; target_category=Carrier B; new_color=#2ca02c]

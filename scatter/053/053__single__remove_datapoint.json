@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing accident severity against traffic delay with point color representing weather condition.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Severity": 2,
+          "Traffic_Delay": 15.5,
+          "Weather_Condition": "Clear"
+        },
+        {
+          "Severity": 3,
+          "Traffic_Delay": 25.2,
+          "Weather_Condition": "Rain"
+        },
+        {
+          "Severity": 1,
+          "Traffic_Delay": 5.0,
+          "Weather_Condition": "Clear"
+        },
+        {
+          "Severity": 3,
+          "Traffic_Delay": 30.1,
+          "Weather_Condition": "Fog"
+        },
+        {
+          "Severity": 4,
+          "Traffic_Delay": 45.3,
+          "Weather_Condition": "Rain"
+        },
+        {
+          "Severity": 2,
+          "Traffic_Delay": 12.7,
+          "Weather_Condition": "Clear"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "round": true,
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Traffic_Delay"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Weather_Condition"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Severity"
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Traffic Delay (minutes)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Condition",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Severity"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Traffic_Delay"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Weather_Condition"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

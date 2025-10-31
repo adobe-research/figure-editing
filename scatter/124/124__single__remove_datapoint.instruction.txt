@@ -1,0 +1,2 @@
+Remove the datapoint with Longitude -87.65 and Latitude 41.875.
+[#OP1 op=remove_datapoint; category=No]

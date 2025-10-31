@@ -1,0 +1,2 @@
+Add a new datapoint with Review_Length 140, Rating 4.3, and Category 'Garden'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Automotive; value=130.0]

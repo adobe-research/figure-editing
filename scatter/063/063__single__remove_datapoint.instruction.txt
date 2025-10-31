@@ -1,0 +1,2 @@
+Remove the datapoint with Rating 1 and Review_Length 300.
+[#OP1 op=remove_datapoint; category=Gym]

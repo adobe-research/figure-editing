@@ -1,0 +1,2 @@
+Add a new datapoint with Claim Severity 3200, Policy Age 7, and Vehicle Age Group '6+ years'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=0-2 years; value=2500.0]

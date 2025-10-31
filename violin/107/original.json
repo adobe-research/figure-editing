@@ -1,0 +1,334 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of mortality rates across age groups.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "mortality",
+      "values": [
+        {
+          "Age Group": "0-4",
+          "Mortality Rate": 120
+        },
+        {
+          "Age Group": "0-4",
+          "Mortality Rate": 130
+        },
+        {
+          "Age Group": "0-4",
+          "Mortality Rate": 125
+        },
+        {
+          "Age Group": "5-14",
+          "Mortality Rate": 30
+        },
+        {
+          "Age Group": "5-14",
+          "Mortality Rate": 35
+        },
+        {
+          "Age Group": "5-14",
+          "Mortality Rate": 28
+        },
+        {
+          "Age Group": "15-24",
+          "Mortality Rate": 50
+        },
+        {
+          "Age Group": "15-24",
+          "Mortality Rate": 55
+        },
+        {
+          "Age Group": "15-24",
+          "Mortality Rate": 52
+        },
+        {
+          "Age Group": "25-34",
+          "Mortality Rate": 70
+        },
+        {
+          "Age Group": "25-34",
+          "Mortality Rate": 68
+        },
+        {
+          "Age Group": "25-34",
+          "Mortality Rate": 75
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Age Group'] != null && datum['Mortality Rate'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "mortality",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Mortality Rate",
+          "groupby": [
+            "Age Group"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [0, 200]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "mortality",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Age Group"
+          ],
+          "fields": [
+            "Mortality Rate",
+            "Mortality Rate",
+            "Mortality Rate"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "mortality",
+        "field": "Age Group"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "mortality",
+        "field": "Mortality Rate"
+      },
+      "domainMin": 0,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "mortality",
+        "field": "Age Group"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Age Group"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Age Group",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Age Group'] === parent['Age Group']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Age Group"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

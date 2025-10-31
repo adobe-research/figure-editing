@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between age and height of Olympic athletes, colored by sport.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 23,
+          "Height": 180,
+          "Sport": "Athletics"
+        },
+        {
+          "Age": 30,
+          "Height": 175,
+          "Sport": "Swimming"
+        },
+        {
+          "Age": 19,
+          "Height": 160,
+          "Sport": "Gymnastics"
+        },
+        {
+          "Age": 25,
+          "Height": 190,
+          "Sport": "Basketball"
+        },
+        {
+          "Age": 28,
+          "Height": 185,
+          "Sport": "Rowing"
+        },
+        {
+          "Age": 22,
+          "Height": 170,
+          "Sport": "Cycling"
+        },
+        {
+          "Age": 26,
+          "Height": 178,
+          "Sport": "Fencing"
+        },
+        {
+          "Age": 24,
+          "Height": 182,
+          "Sport": "Athletics"
+        },
+        {
+          "Age": 21,
+          "Height": 165,
+          "Sport": "Gymnastics"
+        },
+        {
+          "Age": 29,
+          "Height": 188,
+          "Sport": "Swimming"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Height"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Sport"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Height (cm)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sport",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Height"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Sport"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

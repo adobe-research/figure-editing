@@ -1,0 +1,2 @@
+Add a new datapoint with Shell_Weight 0.9, Diameter 0.5, and Sex 'Male'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Female; value=0.6]

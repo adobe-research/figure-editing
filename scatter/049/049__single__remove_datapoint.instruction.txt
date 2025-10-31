@@ -1,0 +1,2 @@
+Remove the datapoint where PointsPerGame is 18.7 and AssistsPerGame is 3.2.
+[#OP1 op=remove_datapoint; category=Guard]

@@ -1,0 +1,2 @@
+Add a new datapoint for the region 'South Asia' with income group 'Low income' and population 100 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East Asia & Pacific; value=150.0]

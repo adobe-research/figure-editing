@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 30 and CreditScore is 680.
+[#OP1 op=remove_datapoint; category=Low]

@@ -1,0 +1,2 @@
+Remove the datapoint with GDP 23000 and Employment Rate 94.8 from the chart.
+[#OP1 op=remove_datapoint; category=Midwest]

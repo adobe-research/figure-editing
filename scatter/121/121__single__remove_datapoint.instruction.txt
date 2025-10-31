@@ -1,0 +1,2 @@
+Remove the datapoint where CO is 3.1 and NO2 is 50.1.
+[#OP1 op=remove_datapoint; category=Urban]

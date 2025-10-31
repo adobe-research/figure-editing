@@ -1,0 +1,2 @@
+Remove the datapoint where 'Overall_Rating' is 90 and 'Potential' is 92.
+[#OP1 op=remove_datapoint; category=Right]

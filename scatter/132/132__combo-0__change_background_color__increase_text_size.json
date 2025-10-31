@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot for Kaggle: Give Me Some Credit dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "DebtRatio": 0.5,
+          "MonthlyIncome": 4000,
+          "SeriousDlqin2yrs": "No"
+        },
+        {
+          "DebtRatio": 0.3,
+          "MonthlyIncome": 2500,
+          "SeriousDlqin2yrs": "No"
+        },
+        {
+          "DebtRatio": 0.8,
+          "MonthlyIncome": 3200,
+          "SeriousDlqin2yrs": "Yes"
+        },
+        {
+          "DebtRatio": 0.4,
+          "MonthlyIncome": 5000,
+          "SeriousDlqin2yrs": "No"
+        },
+        {
+          "DebtRatio": 0.7,
+          "MonthlyIncome": 2800,
+          "SeriousDlqin2yrs": "Yes"
+        },
+        {
+          "DebtRatio": 0.6,
+          "MonthlyIncome": 3500,
+          "SeriousDlqin2yrs": "No"
+        },
+        {
+          "DebtRatio": 0.9,
+          "MonthlyIncome": 2000,
+          "SeriousDlqin2yrs": "Yes"
+        },
+        {
+          "DebtRatio": 0.2,
+          "MonthlyIncome": 4500,
+          "SeriousDlqin2yrs": "No"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.2,
+        0.9
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "MonthlyIncome"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "SeriousDlqin2yrs"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Debt Ratio",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Monthly Income",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Serious Delinquency in 2 Years",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "DebtRatio"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyIncome"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "SeriousDlqin2yrs"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of sepal length vs petal length for the Iris dataset, colored by species.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "sepalLength": 5.1,
+          "petalLength": 1.4,
+          "species": "setosa"
+        },
+        {
+          "sepalLength": 7.0,
+          "petalLength": 4.7,
+          "species": "versicolor"
+        },
+        {
+          "sepalLength": 6.3,
+          "petalLength": 6.0,
+          "species": "virginica"
+        },
+        {
+          "sepalLength": 5.4,
+          "petalLength": 1.7,
+          "species": "setosa"
+        },
+        {
+          "sepalLength": 6.4,
+          "petalLength": 4.5,
+          "species": "versicolor"
+        },
+        {
+          "sepalLength": 5.8,
+          "petalLength": 5.1,
+          "species": "virginica"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        5.1,
+        7.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "petalLength"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "species"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Sepal Length",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Petal Length",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Species",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "sepalLength"
+          },
+          "y": {
+            "scale": "y",
+            "field": "petalLength"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "species"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

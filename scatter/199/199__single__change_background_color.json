@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing GDP vs. Employment Rate with regions as categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP": 21000,
+          "Employment_Rate": 95.4,
+          "Region": "Northeast"
+        },
+        {
+          "GDP": 34000,
+          "Employment_Rate": 92.7,
+          "Region": "Midwest"
+        },
+        {
+          "GDP": 28000,
+          "Employment_Rate": 93.5,
+          "Region": "South"
+        },
+        {
+          "GDP": 45000,
+          "Employment_Rate": 90.1,
+          "Region": "West"
+        },
+        {
+          "GDP": 32000,
+          "Employment_Rate": 94.8,
+          "Region": "Northeast"
+        },
+        {
+          "GDP": 39000,
+          "Employment_Rate": 91.5,
+          "Region": "Midwest"
+        },
+        {
+          "GDP": 25000,
+          "Employment_Rate": 93.0,
+          "Region": "South"
+        },
+        {
+          "GDP": 47000,
+          "Employment_Rate": 89.8,
+          "Region": "West"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        21000.0,
+        47000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Employment_Rate"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP (in USD)",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Employment Rate (%)",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "GDP"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Employment_Rate"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

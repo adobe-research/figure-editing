@@ -1,0 +1,326 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of income for different contract types.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "income_data",
+      "values": [
+        {
+          "Contract Type": "Cash Loans",
+          "Income": 25000
+        },
+        {
+          "Contract Type": "Cash Loans",
+          "Income": 27000
+        },
+        {
+          "Contract Type": "Cash Loans",
+          "Income": 30000
+        },
+        {
+          "Contract Type": "Cash Loans",
+          "Income": 32000
+        },
+        {
+          "Contract Type": "Cash Loans",
+          "Income": 35000
+        },
+        {
+          "Contract Type": "Revolving Loans",
+          "Income": 20000
+        },
+        {
+          "Contract Type": "Revolving Loans",
+          "Income": 22000
+        },
+        {
+          "Contract Type": "Revolving Loans",
+          "Income": 24000
+        },
+        {
+          "Contract Type": "Revolving Loans",
+          "Income": 26000
+        },
+        {
+          "Contract Type": "Revolving Loans",
+          "Income": 28000
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Contract Type'] != null && datum['Income'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "income_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Income",
+          "groupby": [
+            "Contract Type"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [15000, 40000]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "income_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Contract Type"
+          ],
+          "fields": [
+            "Income",
+            "Income",
+            "Income"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "income_data",
+        "field": "Contract Type"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "income_data",
+        "field": "Income"
+      },
+      "domainMin": 15000,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "income_data",
+        "field": "Contract Type"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Contract Type"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Contract Type",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Contract Type'] === parent['Contract Type']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Contract Type"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

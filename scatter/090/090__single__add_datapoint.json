@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot for UCI: Car Evaluation dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Buying": 3,
+          "Safety": 5,
+          "Class": "unacc"
+        },
+        {
+          "Buying": 2,
+          "Safety": 4,
+          "Class": "acc"
+        },
+        {
+          "Buying": 4,
+          "Safety": 6,
+          "Class": "good"
+        },
+        {
+          "Buying": 1,
+          "Safety": 3,
+          "Class": "vgood"
+        },
+        {
+          "Buying": 3,
+          "Safety": 5,
+          "Class": "unacc"
+        },
+        {
+          "Buying": 2,
+          "Safety": 4,
+          "Class": "acc"
+        },
+        {
+          "Buying": 4,
+          "Safety": 6,
+          "Class": "good"
+        },
+        {
+          "Buying": 1,
+          "Safety": 3,
+          "Class": "vgood"
+        },
+        {
+          "Buying": 5,
+          "Safety": 7,
+          "Class": "excellent"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Safety"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Class"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Buying Score",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Safety Score",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Class",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Buying"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Safety"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Class"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

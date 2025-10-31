@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing customer tenure vs monthly charges, colored by churn status.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Tenure": 1,
+          "MonthlyCharges": 29.85,
+          "Churn": "Yes"
+        },
+        {
+          "Tenure": 34,
+          "MonthlyCharges": 56.95,
+          "Churn": "No"
+        },
+        {
+          "Tenure": 2,
+          "MonthlyCharges": 53.85,
+          "Churn": "Yes"
+        },
+        {
+          "Tenure": 45,
+          "MonthlyCharges": 42.3,
+          "Churn": "No"
+        },
+        {
+          "Tenure": 22,
+          "MonthlyCharges": 70.7,
+          "Churn": "Yes"
+        },
+        {
+          "Tenure": 58,
+          "MonthlyCharges": 99.65,
+          "Churn": "No"
+        },
+        {
+          "Tenure": 10,
+          "MonthlyCharges": 89.1,
+          "Churn": "Yes"
+        },
+        {
+          "Tenure": 24,
+          "MonthlyCharges": 49.95,
+          "Churn": "No"
+        },
+        {
+          "Tenure": 12,
+          "MonthlyCharges": 29.75,
+          "Churn": "Yes"
+        },
+        {
+          "Tenure": 72,
+          "MonthlyCharges": 104.8,
+          "Churn": "No"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1,
+        2,
+        10,
+        12,
+        22,
+        24,
+        34,
+        45,
+        58,
+        72
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "MonthlyCharges"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Churn"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Tenure (Months)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Monthly Charges ($)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Churn Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Tenure"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyCharges"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Churn"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

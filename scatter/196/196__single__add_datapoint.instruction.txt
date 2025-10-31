@@ -1,0 +1,2 @@
+Add a new datapoint with age 32, campaign 6, and job 'student' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=admin; value=35.0]

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing house sale counts by year and condition.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2006",
+          "condition": "Excellent",
+          "count": 120
+        },
+        {
+          "year": "2006",
+          "condition": "Good",
+          "count": 80
+        },
+        {
+          "year": "2007",
+          "condition": "Excellent",
+          "count": 140
+        },
+        {
+          "year": "2007",
+          "condition": "Good",
+          "count": 60
+        },
+        {
+          "year": "2007",
+          "condition": "Fair",
+          "count": 30
+        },
+        {
+          "year": "2008",
+          "condition": "Excellent",
+          "count": 110
+        },
+        {
+          "year": "2008",
+          "condition": "Good",
+          "count": 90
+        },
+        {
+          "year": "2008",
+          "condition": "Fair",
+          "count": 50
+        },
+        {
+          "year": "2009",
+          "condition": "Excellent",
+          "count": 130
+        },
+        {
+          "year": "2009",
+          "condition": "Good",
+          "count": 70
+        },
+        {
+          "year": "2009",
+          "condition": "Fair",
+          "count": 20
+        },
+        {
+          "year": "2010",
+          "condition": "Excellent",
+          "count": 100
+        },
+        {
+          "year": "2010",
+          "condition": "Good",
+          "count": 85
+        },
+        {
+          "year": "2010",
+          "condition": "Fair",
+          "count": 35
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "condition"
+          },
+          "field": "count"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "condition"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "House Sale Counts"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Condition",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "condition"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

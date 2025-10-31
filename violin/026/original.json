@@ -1,0 +1,312 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of monthly charges for different contract types in the Telco Customer Churn dataset.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "customers",
+      "values": [
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 29.85
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 56.95
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 53.85
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 42.3
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 70.2
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 20.0
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 35.5
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 65.0
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 55.1
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 18.25
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 25.5
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 45.0
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 60.5
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "customers",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "MonthlyCharges",
+          "groupby": [
+            "Contract"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "customers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Contract"
+          ],
+          "fields": [
+            "MonthlyCharges",
+            "MonthlyCharges",
+            "MonthlyCharges"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "customers",
+        "field": "Contract"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "customers",
+        "field": "MonthlyCharges"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "customers",
+        "field": "Contract"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Monthly Charges (USD)"
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "title": "Contract Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Contract"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Contract",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Contract === parent.Contract"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Contract"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with a toxicity_score of 0.95 and severe_toxicity_score of 0.8.
+[#OP1 op=remove_datapoint; category=toxic]

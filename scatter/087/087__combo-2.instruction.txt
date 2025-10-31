@@ -1,0 +1,4 @@
+Change the color of datapoints for the 'Forward' category to '#8a2be2', increase the text size of axis labels to 14, and add a title 'Player Performance Scatter Plot' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Defender; new_color=#9467bd]
+[#OP2 op=change_datapoint_color; target_category=Goalkeeper; new_color=#9467bd]
+[#OP3 op=add_title; title_text=Edited Chart]

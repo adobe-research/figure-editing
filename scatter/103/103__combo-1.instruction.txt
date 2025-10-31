@@ -1,0 +1,3 @@
+Change the color of datapoints for 'Vendor A' to '#2ca02c' and add a title 'NYC Taxi Trip Analysis'.
+[#OP1 op=change_datapoint_color; target_category=Vendor B; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

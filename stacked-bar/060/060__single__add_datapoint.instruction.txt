@@ -1,0 +1,2 @@
+Add a new datapoint for 'Oceania' with series 'GDP Growth' and value 3.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=4.65]

@@ -1,0 +1,2 @@
+Change the color of the 'Recovered' series to a new color not used in the original spec.
+[#OP1 op=change_datapoint_color; target_category=Europe; new_color=#9467bd]

@@ -1,0 +1,2 @@
+Add a new datapoint with GDP per Capita of 25000, Life Expectancy of 77, and Region as 'Central Asia'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central Asia; value=20000.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with Length 0.48, Diameter 0.38, and Sex 'F' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=F; value=0.44]

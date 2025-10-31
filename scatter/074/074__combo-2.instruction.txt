@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Subscriber' to green, increase the text size of axis labels to 14, and add a title 'Trip Analysis Scatter Plot' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Customer; new_color=#2ca02c]
+[#OP2 op=change_datapoint_color; target_category=Customer; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

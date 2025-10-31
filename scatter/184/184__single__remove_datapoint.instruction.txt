@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 45 and MonthlyIncome is 6000.
+[#OP1 op=remove_datapoint; category=Denied]

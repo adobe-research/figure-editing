@@ -1,0 +1,2 @@
+Remove the datapoint where 'Fatalities' is 8 and 'Injuries' is 12.
+[#OP1 op=remove_datapoint; category=Bombing/Explosion]

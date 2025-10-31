@@ -1,0 +1,2 @@
+Remove the datapoint for 'Location D' with series 'Terraced' and value 250000.
+[#OP1 op=remove_datapoint; category=Location B]

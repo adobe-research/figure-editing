@@ -1,0 +1,1 @@
+Change the color of the point in the red circle to #bcbd22.

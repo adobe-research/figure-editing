@@ -1,0 +1,2 @@
+Add a new datapoint for the country 'France' with source 'Coal' and emissions value 3000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=China; value=2500.0]

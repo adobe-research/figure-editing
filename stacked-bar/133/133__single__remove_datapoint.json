@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Bitcoin metrics over different months.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "metric": "Volume",
+          "value": 35000
+        },
+        {
+          "month": "January",
+          "metric": "MarketCap",
+          "value": 45000
+        },
+        {
+          "month": "February",
+          "metric": "Volume",
+          "value": 30000
+        },
+        {
+          "month": "February",
+          "metric": "MarketCap",
+          "value": 40000
+        },
+        {
+          "month": "March",
+          "metric": "Volume",
+          "value": 40000
+        },
+        {
+          "month": "March",
+          "metric": "MarketCap",
+          "value": 50000
+        },
+        {
+          "month": "April",
+          "metric": "Volume",
+          "value": 45000
+        },
+        {
+          "month": "April",
+          "metric": "MarketCap",
+          "value": 55000
+        },
+        {
+          "month": "May",
+          "metric": "Volume",
+          "value": 50000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "metric"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "metric"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Metrics",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "metric"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

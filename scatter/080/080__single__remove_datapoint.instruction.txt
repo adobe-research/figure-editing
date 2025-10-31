@@ -1,0 +1,2 @@
+Remove the datapoint where 'AMT_INCOME_TOTAL' is 720000 and 'AMT_CREDIT' is 540000.
+[#OP1 op=remove_datapoint; category=Default]

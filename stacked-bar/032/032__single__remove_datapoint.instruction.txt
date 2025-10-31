@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Agriculture', series '2010', and value 20.
+[#OP1 op=remove_datapoint; category=Health]

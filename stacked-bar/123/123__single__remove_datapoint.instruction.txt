@@ -1,0 +1,2 @@
+Remove the datapoint for the Southern Hemisphere in the 1940s with a value of 0.1.
+[#OP1 op=remove_datapoint; category=1930s]

@@ -1,0 +1,203 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing item demand across stores and categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Store A",
+          "series": "Category 1",
+          "value": 120
+        },
+        {
+          "category": "Store A",
+          "series": "Category 2",
+          "value": 80
+        },
+        {
+          "category": "Store A",
+          "series": "Category 3",
+          "value": 60
+        },
+        {
+          "category": "Store B",
+          "series": "Category 1",
+          "value": 150
+        },
+        {
+          "category": "Store B",
+          "series": "Category 2",
+          "value": 100
+        },
+        {
+          "category": "Store B",
+          "series": "Category 3",
+          "value": 70
+        },
+        {
+          "category": "Store C",
+          "series": "Category 1",
+          "value": 90
+        },
+        {
+          "category": "Store C",
+          "series": "Category 2",
+          "value": 60
+        },
+        {
+          "category": "Store C",
+          "series": "Category 3",
+          "value": 50
+        },
+        {
+          "category": "Store D",
+          "series": "Category 1",
+          "value": 200
+        },
+        {
+          "category": "Store D",
+          "series": "Category 2",
+          "value": 140
+        },
+        {
+          "category": "Store D",
+          "series": "Category 3",
+          "value": 100
+        },
+        {
+          "category": "Store E",
+          "series": "Category 1",
+          "value": 170
+        },
+        {
+          "category": "Store E",
+          "series": "Category 2",
+          "value": 110
+        },
+        {
+          "category": "Store E",
+          "series": "Category 3",
+          "value": 90
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Stores"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Categories",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

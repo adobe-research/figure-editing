@@ -1,0 +1,214 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Stacked bar chart for FAO Food Price Index data.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Cereals",
+          "series": "2018",
+          "value": 110,
+          "fill": "#FF5733"
+        },
+        {
+          "category": "Cereals",
+          "series": "2019",
+          "value": 95
+        },
+        {
+          "category": "Cereals",
+          "series": "2020",
+          "value": 120
+        },
+        {
+          "category": "Dairy",
+          "series": "2018",
+          "value": 85
+        },
+        {
+          "category": "Dairy",
+          "series": "2019",
+          "value": 90
+        },
+        {
+          "category": "Dairy",
+          "series": "2020",
+          "value": 105
+        },
+        {
+          "category": "Meat",
+          "series": "2018",
+          "value": 75
+        },
+        {
+          "category": "Meat",
+          "series": "2019",
+          "value": 80
+        },
+        {
+          "category": "Meat",
+          "series": "2020",
+          "value": 95
+        },
+        {
+          "category": "Sugar",
+          "series": "2018",
+          "value": 65
+        },
+        {
+          "category": "Sugar",
+          "series": "2019",
+          "value": 70
+        },
+        {
+          "category": "Sugar",
+          "series": "2020",
+          "value": 85
+        },
+        {
+          "category": "Vegetable Oils",
+          "series": "2018",
+          "value": 90
+        },
+        {
+          "category": "Vegetable Oils",
+          "series": "2019",
+          "value": 100
+        },
+        {
+          "category": "Vegetable Oils",
+          "series": "2020",
+          "value": 115
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Cereals'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

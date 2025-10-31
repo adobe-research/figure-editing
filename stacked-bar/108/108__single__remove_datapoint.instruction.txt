@@ -1,0 +1,2 @@
+Remove the datapoint for May 2022 with a temperature of 61.
+[#OP1 op=remove_datapoint; category=March]

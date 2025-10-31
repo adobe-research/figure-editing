@@ -1,0 +1,2 @@
+Remove the datapoint for 'University of Cambridge' with series 'Citations' and value 95.
+[#OP1 op=remove_datapoint; category=University of Cambridge]

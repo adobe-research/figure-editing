@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing relationships between seed attributes.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Area": 15.26,
+          "Perimeter": 14.84,
+          "Type": "Kama"
+        },
+        {
+          "Area": 14.88,
+          "Perimeter": 14.57,
+          "Type": "Kama"
+        },
+        {
+          "Area": 14.29,
+          "Perimeter": 14.09,
+          "Type": "Rosa"
+        },
+        {
+          "Area": 13.84,
+          "Perimeter": 13.94,
+          "Type": "Rosa"
+        },
+        {
+          "Area": 16.14,
+          "Perimeter": 15.79,
+          "Type": "Canadian"
+        },
+        {
+          "Area": 14.38,
+          "Perimeter": 14.21,
+          "Type": "Canadian"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        13.84,
+        16.14
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "Perimeter"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Area",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Perimeter",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Seed Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Area"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Perimeter"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

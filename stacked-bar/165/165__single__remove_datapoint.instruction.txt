@@ -1,0 +1,2 @@
+Remove the datapoint for the month of 'May' and hemisphere 'Southern'.
+[#OP1 op=remove_datapoint; category=January]

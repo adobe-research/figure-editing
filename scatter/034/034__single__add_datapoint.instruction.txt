@@ -1,0 +1,2 @@
+Add a new datapoint with Overall 81, Potential 86, and Position 'Midfielder'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=84.0]

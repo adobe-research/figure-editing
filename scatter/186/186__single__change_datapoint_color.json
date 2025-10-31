@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing tenure vs monthly charges with churn status as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "tenure": 5,
+          "MonthlyCharges": 70.35,
+          "Churn": "Yes"
+        },
+        {
+          "tenure": 10,
+          "MonthlyCharges": 50.15,
+          "Churn": "No"
+        },
+        {
+          "tenure": 20,
+          "MonthlyCharges": 85.5,
+          "Churn": "No"
+        },
+        {
+          "tenure": 2,
+          "MonthlyCharges": 95.1,
+          "Churn": "Yes"
+        },
+        {
+          "tenure": 15,
+          "MonthlyCharges": 65.8,
+          "Churn": "No"
+        },
+        {
+          "tenure": 8,
+          "MonthlyCharges": 75.25,
+          "Churn": "Yes"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        2,
+        5,
+        8,
+        10,
+        15,
+        20
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "MonthlyCharges"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Churn"
+      },
+      "range": [
+        "#4daf4a",
+        "#984ea3"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Tenure (months)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Monthly Charges ($)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Churn Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "tenure"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyCharges"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Churn"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

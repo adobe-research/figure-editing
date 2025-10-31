@@ -1,0 +1,2 @@
+Remove the datapoint where HomeGoals is 0 and AwayGoals is 2.
+[#OP1 op=remove_datapoint; category=Qualifier]

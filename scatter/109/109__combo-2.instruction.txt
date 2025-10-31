@@ -1,0 +1,4 @@
+Change the color of datapoints for the 'Europe' region to '#FF5733', increase the text size of axis labels to 14, and add a title 'Scatter Plot of Distance vs Routes by Region' with size 18.
+[#OP1 op=change_datapoint_color; target_category=South America; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=North America; new_color=#ff7f0e]
+[#OP3 op=add_title; title_text=Edited Chart]

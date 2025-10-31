@@ -1,0 +1,2 @@
+Remove the datapoint with Trade_Value 87000 and Quantity 350 from the chart.
+[#OP1 op=remove_datapoint; category=Asia]

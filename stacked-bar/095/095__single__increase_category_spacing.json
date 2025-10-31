@@ -1,0 +1,213 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing global temperature anomalies by decade and region.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "decade": "1880s",
+          "region": "North America",
+          "temperature_anomaly": -0.31
+        },
+        {
+          "decade": "1880s",
+          "region": "Europe",
+          "temperature_anomaly": -0.25
+        },
+        {
+          "decade": "1880s",
+          "region": "Asia",
+          "temperature_anomaly": -0.28
+        },
+        {
+          "decade": "1890s",
+          "region": "North America",
+          "temperature_anomaly": -0.29
+        },
+        {
+          "decade": "1890s",
+          "region": "Europe",
+          "temperature_anomaly": -0.23
+        },
+        {
+          "decade": "1890s",
+          "region": "Asia",
+          "temperature_anomaly": -0.27
+        },
+        {
+          "decade": "1900s",
+          "region": "North America",
+          "temperature_anomaly": -0.21
+        },
+        {
+          "decade": "1900s",
+          "region": "Europe",
+          "temperature_anomaly": -0.18
+        },
+        {
+          "decade": "1900s",
+          "region": "Asia",
+          "temperature_anomaly": -0.22
+        },
+        {
+          "decade": "1910s",
+          "region": "North America",
+          "temperature_anomaly": -0.17
+        },
+        {
+          "decade": "1910s",
+          "region": "Europe",
+          "temperature_anomaly": -0.14
+        },
+        {
+          "decade": "1910s",
+          "region": "Asia",
+          "temperature_anomaly": -0.16
+        },
+        {
+          "decade": "1920s",
+          "region": "North America",
+          "temperature_anomaly": -0.12
+        },
+        {
+          "decade": "1920s",
+          "region": "Europe",
+          "temperature_anomaly": -0.08
+        },
+        {
+          "decade": "1920s",
+          "region": "Asia",
+          "temperature_anomaly": -0.11
+        },
+        {
+          "decade": "1930s",
+          "region": "North America",
+          "temperature_anomaly": 0.02
+        },
+        {
+          "decade": "1930s",
+          "region": "Europe",
+          "temperature_anomaly": 0.05
+        },
+        {
+          "decade": "1930s",
+          "region": "Asia",
+          "temperature_anomaly": 0.01
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "decade"
+          ],
+          "sort": {
+            "field": "region"
+          },
+          "field": "temperature_anomaly"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "decade"
+      },
+      "padding": 0.4
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Decade",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)",
+      "zindex": 1
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "decade"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "region"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

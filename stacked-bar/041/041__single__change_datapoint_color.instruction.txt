@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new set of colors: 'lightblue' for 'Casual' and 'lightgreen' for 'Registered'.
+[#OP1 op=change_datapoint_color; target_category=Fall; new_color=#ff7f0e]

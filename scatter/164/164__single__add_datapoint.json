@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of review length vs helpfulness with rating as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Review_Length": 120,
+          "Helpfulness_Score": 0.85,
+          "Rating": 5
+        },
+        {
+          "Review_Length": 250,
+          "Helpfulness_Score": 0.92,
+          "Rating": 4
+        },
+        {
+          "Review_Length": 180,
+          "Helpfulness_Score": 0.78,
+          "Rating": 3
+        },
+        {
+          "Review_Length": 300,
+          "Helpfulness_Score": 0.95,
+          "Rating": 5
+        },
+        {
+          "Review_Length": 90,
+          "Helpfulness_Score": 0.6,
+          "Rating": 2
+        },
+        {
+          "Review_Length": 220,
+          "Helpfulness_Score": 0.88,
+          "Rating": 4
+        },
+        {
+          "Review_Length": 150,
+          "Helpfulness_Score": 0.75,
+          "Rating": 3
+        },
+        {
+          "Review_Length": 400,
+          "Helpfulness_Score": 0.98,
+          "Rating": 5
+        },
+        {
+          "Review_Length": 110,
+          "Helpfulness_Score": 0.65,
+          "Rating": 2
+        },
+        {
+          "Review_Length": 280,
+          "Helpfulness_Score": 0.91,
+          "Rating": 4
+        },
+        {
+          "Review_Length": 350,
+          "Helpfulness_Score": 0.89,
+          "Rating": 4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        90.0,
+        400.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Helpfulness_Score"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Rating"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Review Length (characters)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Helpfulness Score"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Rating",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Review_Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Helpfulness_Score"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

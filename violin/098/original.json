@@ -1,0 +1,328 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of mean radius for malignant and benign tumors in the Breast Cancer Wisconsin dataset.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 2"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "tumors",
+      "values": [
+        {
+          "Diagnosis": "Malignant",
+          "Mean Radius": 17.8
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean Radius": 20.5
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean Radius": 15.3
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean Radius": 18.6
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean Radius": 21.1
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean Radius": 19.4
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean Radius": 12.1
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean Radius": 14.2
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean Radius": 13.8
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean Radius": 11.6
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean Radius": 14.5
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean Radius": 13.2
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "tumors",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Mean Radius",
+          "groupby": [
+            "Diagnosis"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [10, 25]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "tumors",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Diagnosis"
+          ],
+          "fields": [
+            "Mean Radius",
+            "Mean Radius",
+            "Mean Radius"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "tumors",
+        "field": "Diagnosis"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "tumors",
+        "field": "Mean Radius"
+      },
+      "domainMin": 10,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "tumors",
+        "field": "Diagnosis"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Diagnosis"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Diagnosis",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Diagnosis === parent.Diagnosis"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Diagnosis"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with sepal_length 6.3 and petal_length 6.0.
+[#OP1 op=remove_datapoint; category=versicolor]

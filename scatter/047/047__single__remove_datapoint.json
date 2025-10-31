@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of trade volume vs trade value with color representing product category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trade_Volume": 1000,
+          "Trade_Value": 5000,
+          "Product_Category": "Electronics"
+        },
+        {
+          "Trade_Volume": 1500,
+          "Trade_Value": 7000,
+          "Product_Category": "Automobiles"
+        },
+        {
+          "Trade_Volume": 2000,
+          "Trade_Value": 9000,
+          "Product_Category": "Machinery"
+        },
+        {
+          "Trade_Volume": 800,
+          "Trade_Value": 3000,
+          "Product_Category": "Agriculture"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        800.0,
+        2000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trade_Value"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Product_Category"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trade Volume (in units)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trade Value (in USD)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Product Category"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Trade_Volume"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trade_Value"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Product_Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

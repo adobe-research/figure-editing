@@ -1,0 +1,2 @@
+Remove the datapoint representing Brazil's Services sector with a value of 1200.
+[#OP1 op=remove_datapoint; category=China]

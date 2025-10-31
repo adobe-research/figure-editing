@@ -1,0 +1,2 @@
+Add a new datapoint with Batting_Average 0.33, Home_Runs 45, and Position 'Designated Hitter'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Catcher; value=0.3]

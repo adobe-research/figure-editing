@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing forest fire area vs. wind speed, with temperature as the color category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "wind": 4.0,
+          "area": 0.0,
+          "temp": 22.1
+        },
+        {
+          "wind": 2.7,
+          "area": 12.3,
+          "temp": 24.3
+        },
+        {
+          "wind": 3.6,
+          "area": 0.0,
+          "temp": 23.5
+        },
+        {
+          "wind": 5.4,
+          "area": 45.6,
+          "temp": 28.9
+        },
+        {
+          "wind": 1.8,
+          "area": 0.0,
+          "temp": 19.4
+        },
+        {
+          "wind": 4.5,
+          "area": 67.9,
+          "temp": 30.2
+        },
+        {
+          "wind": 3.1,
+          "area": 0.0,
+          "temp": 21.7
+        },
+        {
+          "wind": 6.2,
+          "area": 15.4,
+          "temp": 25.8
+        },
+        {
+          "wind": 2.0,
+          "area": 0.0,
+          "temp": 20.6
+        },
+        {
+          "wind": 4.8,
+          "area": 33.2,
+          "temp": 29.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.8,
+        6.2
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "area"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "temp"
+      },
+      "range": [
+        "green",
+        "purple"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Wind Speed (km/h)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Burned Area (ha)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "wind"
+          },
+          "y": {
+            "scale": "y",
+            "field": "area"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "temp"
+          },
+          "size": {
+            "value": 100
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

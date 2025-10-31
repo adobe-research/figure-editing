@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of kernel length vs kernel width for UCI: Seeds dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Kernel_Length": 5.1,
+          "Kernel_Width": 3.5,
+          "Variety": "Kama"
+        },
+        {
+          "Kernel_Length": 5.5,
+          "Kernel_Width": 3.7,
+          "Variety": "Rosa"
+        },
+        {
+          "Kernel_Length": 6.0,
+          "Kernel_Width": 3.8,
+          "Variety": "Canadian"
+        },
+        {
+          "Kernel_Length": 5.4,
+          "Kernel_Width": 3.4,
+          "Variety": "Kama"
+        },
+        {
+          "Kernel_Length": 5.8,
+          "Kernel_Width": 3.6,
+          "Variety": "Rosa"
+        },
+        {
+          "Kernel_Length": 6.2,
+          "Kernel_Width": 3.9,
+          "Variety": "Canadian"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        5.1,
+        6.2
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Kernel_Width"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Variety"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8",
+        "#4daf4a"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Kernel Length"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Kernel Width"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Variety",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Kernel_Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Kernel_Width"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Variety"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

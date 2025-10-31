@@ -1,0 +1,2 @@
+Remove the datapoint for 'Winter' and 'Casual' with value 8000.
+[#OP1 op=remove_datapoint; category=Summer]

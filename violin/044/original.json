@@ -1,0 +1,346 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Violin plot showing the distribution of mortality rates across different regions.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "mortality",
+      "values": [
+        {
+          "Region": "Europe",
+          "Mortality Rate (per 100k)": 150
+        },
+        {
+          "Region": "Europe",
+          "Mortality Rate (per 100k)": 160
+        },
+        {
+          "Region": "Europe",
+          "Mortality Rate (per 100k)": 170
+        },
+        {
+          "Region": "Europe",
+          "Mortality Rate (per 100k)": 180
+        },
+        {
+          "Region": "Europe",
+          "Mortality Rate (per 100k)": 190
+        },
+        {
+          "Region": "Africa",
+          "Mortality Rate (per 100k)": 300
+        },
+        {
+          "Region": "Africa",
+          "Mortality Rate (per 100k)": 320
+        },
+        {
+          "Region": "Africa",
+          "Mortality Rate (per 100k)": 340
+        },
+        {
+          "Region": "Africa",
+          "Mortality Rate (per 100k)": 360
+        },
+        {
+          "Region": "Africa",
+          "Mortality Rate (per 100k)": 380
+        },
+        {
+          "Region": "Asia",
+          "Mortality Rate (per 100k)": 200
+        },
+        {
+          "Region": "Asia",
+          "Mortality Rate (per 100k)": 210
+        },
+        {
+          "Region": "Asia",
+          "Mortality Rate (per 100k)": 220
+        },
+        {
+          "Region": "Asia",
+          "Mortality Rate (per 100k)": 230
+        },
+        {
+          "Region": "Asia",
+          "Mortality Rate (per 100k)": 240
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Region != null && datum['Mortality Rate (per 100k)'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "mortality",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Mortality Rate (per 100k)",
+          "groupby": [
+            "Region"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [100, 400]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "mortality",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Region"
+          ],
+          "fields": [
+            "Mortality Rate (per 100k)",
+            "Mortality Rate (per 100k)",
+            "Mortality Rate (per 100k)"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "mortality",
+        "field": "Region"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "mortality",
+        "field": "Mortality Rate (per 100k)"
+      },
+      "domainMin": 100,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "mortality",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Region"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Region",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Region === parent.Region"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Region"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

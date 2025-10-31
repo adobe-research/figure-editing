@@ -1,0 +1,2 @@
+Remove the datapoint for 'Energy' in 'Q4' with value 130.
+[#OP1 op=remove_datapoint; category=Technology]

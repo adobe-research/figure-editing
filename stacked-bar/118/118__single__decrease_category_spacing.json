@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing COVID-19 cases by region and category.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "region": "North America",
+          "category": "Confirmed",
+          "cases": 500000
+        },
+        {
+          "region": "North America",
+          "category": "Deaths",
+          "cases": 15000
+        },
+        {
+          "region": "North America",
+          "category": "Recovered",
+          "cases": 450000
+        },
+        {
+          "region": "Europe",
+          "category": "Confirmed",
+          "cases": 700000
+        },
+        {
+          "region": "Europe",
+          "category": "Deaths",
+          "cases": 30000
+        },
+        {
+          "region": "Europe",
+          "category": "Recovered",
+          "cases": 600000
+        },
+        {
+          "region": "Asia",
+          "category": "Confirmed",
+          "cases": 800000
+        },
+        {
+          "region": "Asia",
+          "category": "Deaths",
+          "cases": 20000
+        },
+        {
+          "region": "Asia",
+          "category": "Recovered",
+          "cases": 750000
+        },
+        {
+          "region": "South America",
+          "category": "Confirmed",
+          "cases": 400000
+        },
+        {
+          "region": "South America",
+          "category": "Deaths",
+          "cases": 10000
+        },
+        {
+          "region": "South America",
+          "category": "Recovered",
+          "cases": 350000
+        },
+        {
+          "region": "Africa",
+          "category": "Confirmed",
+          "cases": 300000
+        },
+        {
+          "region": "Africa",
+          "category": "Deaths",
+          "cases": 8000
+        },
+        {
+          "region": "Africa",
+          "category": "Recovered",
+          "cases": 250000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "region"
+          ],
+          "sort": {
+            "field": "category"
+          },
+          "field": "cases"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Cases"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

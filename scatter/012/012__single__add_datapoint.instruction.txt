@@ -1,0 +1,2 @@
+Add a new datapoint with Rating 3, Review_Length 140, and Category 'Bookstore'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bookstore; value=3.0]

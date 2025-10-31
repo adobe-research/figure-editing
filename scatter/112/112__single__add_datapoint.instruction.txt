@@ -1,0 +1,2 @@
+Add a new datapoint with Age 45, Fare 50.0, and Survived 'Yes' to the chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=28.0]

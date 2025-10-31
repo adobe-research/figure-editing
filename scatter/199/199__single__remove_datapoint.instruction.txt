@@ -1,0 +1,2 @@
+Remove the datapoint with GDP 25000 and Employment Rate 93.0 from the chart.
+[#OP1 op=remove_datapoint; category=South]

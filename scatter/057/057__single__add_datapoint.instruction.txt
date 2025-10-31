@@ -1,0 +1,2 @@
+Add a new datapoint with 28.5 points, 7.2 assists, and position 'Guard'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Center; value=22.5]

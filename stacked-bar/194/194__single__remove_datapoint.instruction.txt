@@ -1,0 +1,2 @@
+Remove the datapoint for 'Rice' in the 'East' series with a value of 30.
+[#OP1 op=remove_datapoint; category=Wheat]

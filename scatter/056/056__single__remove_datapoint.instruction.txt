@@ -1,0 +1,2 @@
+Remove the datapoint with sepal_length 6.3 and sepal_width 3.3.
+[#OP1 op=remove_datapoint; category=virginica]

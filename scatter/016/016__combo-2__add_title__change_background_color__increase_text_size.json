@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing vehicle age vs annual premium, colored by vehicle damage status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Vehicle_Age": 1.0,
+          "Annual_Premium": 30000,
+          "Vehicle_Damage": "Yes"
+        },
+        {
+          "Vehicle_Age": 2.0,
+          "Annual_Premium": 40000,
+          "Vehicle_Damage": "No"
+        },
+        {
+          "Vehicle_Age": 3.0,
+          "Annual_Premium": 50000,
+          "Vehicle_Damage": "Yes"
+        },
+        {
+          "Vehicle_Age": 1.5,
+          "Annual_Premium": 35000,
+          "Vehicle_Damage": "No"
+        },
+        {
+          "Vehicle_Age": 2.5,
+          "Annual_Premium": 45000,
+          "Vehicle_Damage": "Yes"
+        },
+        {
+          "Vehicle_Age": 3.0,
+          "Annual_Premium": 60000,
+          "Vehicle_Damage": "No"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.0,
+        3.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Annual_Premium"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Vehicle_Damage"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Vehicle Age (years)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Annual Premium (₹)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Vehicle Damage",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Vehicle_Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Annual_Premium"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Vehicle_Damage"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "{'Vehicle Age': datum.Vehicle_Age, 'Annual Premium': datum.Annual_Premium, 'Vehicle Damage': datum.Vehicle_Damage}"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

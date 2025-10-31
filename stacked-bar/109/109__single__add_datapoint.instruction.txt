@@ -1,0 +1,2 @@
+Add a new datapoint for the 2000s decade with region 'Africa' and anomaly value 0.35.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1950s; value=0.35]

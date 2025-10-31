@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Spring' season with 'user_type' as 'Visitor' and 'rentals' as 1500.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Fall; value=2400.0]

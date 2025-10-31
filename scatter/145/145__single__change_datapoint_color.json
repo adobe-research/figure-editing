@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of seed dimensions from the UCI: Seeds dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Area": 15.26,
+          "Perimeter": 14.84,
+          "Category": "Kama"
+        },
+        {
+          "Area": 14.88,
+          "Perimeter": 14.57,
+          "Category": "Kama"
+        },
+        {
+          "Area": 14.29,
+          "Perimeter": 14.09,
+          "Category": "Kama"
+        },
+        {
+          "Area": 13.84,
+          "Perimeter": 13.94,
+          "Category": "Rosa"
+        },
+        {
+          "Area": 16.14,
+          "Perimeter": 14.99,
+          "Category": "Rosa"
+        },
+        {
+          "Area": 14.38,
+          "Perimeter": 14.21,
+          "Category": "Canadian"
+        },
+        {
+          "Area": 14.69,
+          "Perimeter": 14.49,
+          "Category": "Canadian"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        13.84,
+        16.14
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Perimeter"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8",
+        "#4daf4a"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Area",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Perimeter",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Area"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Perimeter"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

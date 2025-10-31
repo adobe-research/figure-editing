@@ -1,0 +1,2 @@
+Add a title to the scatter plot with the text 'Trade Volume vs Trade Value by Category'.
+[#OP1 op=add_title; title_text=Edited Chart]

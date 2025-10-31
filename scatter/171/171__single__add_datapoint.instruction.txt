@@ -1,0 +1,2 @@
+Add a new datapoint with Transaction_Amount 140.0, Account_Balance 4000.0, and Customer_Segment 'Segment_D'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Segment_A; value=130.2]

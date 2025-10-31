@@ -1,0 +1,2 @@
+Add a new datapoint with CO level 2.6, Temperature 24.0, and Station 'D'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=2.3]

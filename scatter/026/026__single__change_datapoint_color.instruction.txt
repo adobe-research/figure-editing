@@ -1,0 +1,2 @@
+Change the color of datapoints to a new palette with shades of green.
+[#OP1 op=change_datapoint_color; target_category=Latin America; new_color=#7f7f7f]

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of international football match results.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "HomeGoals": 2,
+          "AwayGoals": 1,
+          "MatchType": "Friendly"
+        },
+        {
+          "HomeGoals": 3,
+          "AwayGoals": 0,
+          "MatchType": "World Cup"
+        },
+        {
+          "HomeGoals": 1,
+          "AwayGoals": 1,
+          "MatchType": "Qualifier"
+        },
+        {
+          "HomeGoals": 0,
+          "AwayGoals": 2,
+          "MatchType": "Friendly"
+        },
+        {
+          "HomeGoals": 4,
+          "AwayGoals": 3,
+          "MatchType": "World Cup"
+        },
+        {
+          "HomeGoals": 2,
+          "AwayGoals": 2,
+          "MatchType": "Qualifier"
+        },
+        {
+          "HomeGoals": 5,
+          "AwayGoals": 4,
+          "MatchType": "Friendly"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "AwayGoals"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "MatchType"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Home Goals"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Away Goals"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Match Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "HomeGoals"
+          },
+          "y": {
+            "scale": "y",
+            "field": "AwayGoals"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "MatchType"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

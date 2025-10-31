@@ -1,0 +1,2 @@
+Add a new datapoint with Helpfulness 0.92, ReviewLength 350, and Category 'Garden' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Books; value=0.8]

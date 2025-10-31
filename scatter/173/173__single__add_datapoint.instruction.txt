@@ -1,0 +1,2 @@
+Add a new datapoint with NO2 concentration of 60.0, CO level of 2.5, and Station type 'Urban'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Industrial; value=35.2]

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing review ratings and review length with sentiment as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Review_Length": 120,
+          "Rating": 4.5,
+          "Sentiment": "Positive"
+        },
+        {
+          "Review_Length": 200,
+          "Rating": 3.0,
+          "Sentiment": "Neutral"
+        },
+        {
+          "Review_Length": 80,
+          "Rating": 5.0,
+          "Sentiment": "Positive"
+        },
+        {
+          "Review_Length": 150,
+          "Rating": 2.5,
+          "Sentiment": "Negative"
+        },
+        {
+          "Review_Length": 300,
+          "Rating": 1.0,
+          "Sentiment": "Negative"
+        },
+        {
+          "Review_Length": 220,
+          "Rating": 4.0,
+          "Sentiment": "Positive"
+        },
+        {
+          "Review_Length": 50,
+          "Rating": 3.5,
+          "Sentiment": "Neutral"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        50.0,
+        300.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Sentiment"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Review Length (words)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Rating"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sentiment",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Review_Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Rating"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Sentiment"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

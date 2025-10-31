@@ -1,0 +1,2 @@
+Remove the datapoint with Trip_Distance 3.4 and Trip_Duration 1200.
+[#OP1 op=remove_datapoint; category=Vendor A]

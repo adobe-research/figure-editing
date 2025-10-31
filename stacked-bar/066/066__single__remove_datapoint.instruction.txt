@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Books' and series 'Used - Good'.
+[#OP1 op=remove_datapoint; category=Electronics]

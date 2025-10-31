@@ -1,0 +1,3 @@
+Change the color of datapoints for the 'Male' category to '#2ca02c' and add a title 'Study Time vs Final Grade'.
+[#OP1 op=change_datapoint_color; target_category=Female; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

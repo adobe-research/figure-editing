@@ -1,0 +1,2 @@
+Change the datapoint color palette to new colors for the Wine Class categories.
+[#OP1 op=change_datapoint_color; target_category=Class 3; new_color=#d62728]

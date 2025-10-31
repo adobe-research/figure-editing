@@ -1,0 +1,158 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot for UCI: Abalone dataset showing relationship between shell weight and length, colored by sex.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Length": 0.455,
+          "ShellWeight": 0.2245,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.35,
+          "ShellWeight": 0.0995,
+          "Sex": "F"
+        },
+        {
+          "Length": 0.53,
+          "ShellWeight": 0.1415,
+          "Sex": "I"
+        },
+        {
+          "Length": 0.44,
+          "ShellWeight": 0.2,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.33,
+          "ShellWeight": 0.07,
+          "Sex": "F"
+        },
+        {
+          "Length": 0.545,
+          "ShellWeight": 0.15,
+          "Sex": "I"
+        },
+        {
+          "Length": 0.6,
+          "ShellWeight": 0.3,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.465,
+          "ShellWeight": 0.21,
+          "Sex": "F"
+        },
+        {
+          "Length": 0.375,
+          "ShellWeight": 0.12,
+          "Sex": "I"
+        },
+        {
+          "Length": 0.49,
+          "ShellWeight": 0.25,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.52,
+          "ShellWeight": 0.18,
+          "Sex": "F"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.33,
+        0.6
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "ShellWeight"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Sex"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Length (mm)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Shell Weight (grams)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sex",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "ShellWeight"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Sex"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

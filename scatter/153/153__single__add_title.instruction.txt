@@ -1,0 +1,2 @@
+Add a title to the scatter plot that reads 'Player Statistics: Batting Average vs Home Runs'.
+[#OP1 op=add_title; title_text=Edited Chart]

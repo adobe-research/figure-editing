@@ -1,0 +1,2 @@
+Remove the datapoint for the 'High income' group in the 'Middle East & North Africa' region.
+[#OP1 op=remove_datapoint; category=Latin America & Caribbean]

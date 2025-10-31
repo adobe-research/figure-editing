@@ -1,0 +1,2 @@
+Add a new datapoint with clicks 250, app_usage 550, and device 'Smartwatch'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Desktop; value=180.0]

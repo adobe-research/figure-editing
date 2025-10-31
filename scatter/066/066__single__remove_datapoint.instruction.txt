@@ -1,0 +1,2 @@
+Remove the datapoint with 'Toxicity_Score' 0.95 and 'Word_Count' 150.
+[#OP1 op=remove_datapoint; category=obscene]

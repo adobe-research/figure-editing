@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing crime incidents by location and arrest status in Chicago.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Longitude": -87.6278,
+          "Latitude": 41.8781,
+          "Arrest": "Yes"
+        },
+        {
+          "Longitude": -87.6359,
+          "Latitude": 41.8819,
+          "Arrest": "No"
+        },
+        {
+          "Longitude": -87.62,
+          "Latitude": 41.89,
+          "Arrest": "Yes"
+        },
+        {
+          "Longitude": -87.63,
+          "Latitude": 41.88,
+          "Arrest": "Yes"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        -87.65,
+        -87.62
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Latitude"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Arrest"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Longitude"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Latitude"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Arrest Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Longitude"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Latitude"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Arrest"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

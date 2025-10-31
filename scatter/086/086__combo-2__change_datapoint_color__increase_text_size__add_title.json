@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of international football results.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Year": 2000,
+          "Goals": 3,
+          "Tournament": "Friendly"
+        },
+        {
+          "Year": 2002,
+          "Goals": 5,
+          "Tournament": "World Cup"
+        },
+        {
+          "Year": 2004,
+          "Goals": 2,
+          "Tournament": "Euro"
+        },
+        {
+          "Year": 2006,
+          "Goals": 4,
+          "Tournament": "World Cup"
+        },
+        {
+          "Year": 2008,
+          "Goals": 1,
+          "Tournament": "Friendly"
+        },
+        {
+          "Year": 2010,
+          "Goals": 3,
+          "Tournament": "World Cup"
+        },
+        {
+          "Year": 2012,
+          "Goals": 2,
+          "Tournament": "Euro"
+        },
+        {
+          "Year": 2014,
+          "Goals": 6,
+          "Tournament": "World Cup"
+        },
+        {
+          "Year": 2016,
+          "Goals": 3,
+          "Tournament": "Euro"
+        },
+        {
+          "Year": 2018,
+          "Goals": 4,
+          "Tournament": "World Cup"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        2000,
+        2002,
+        2004,
+        2006,
+        2008,
+        2010,
+        2012,
+        2014,
+        2016,
+        2018
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Goals"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Tournament"
+      },
+      "range": [
+        "#8a2be2",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Year",
+      "grid": true,
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Goals",
+      "grid": true,
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Tournament",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Goals"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Tournament"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

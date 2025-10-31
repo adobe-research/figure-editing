@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between age and height of athletes, colored by gender.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 23,
+          "Height": 180,
+          "Gender": "Male"
+        },
+        {
+          "Age": 21,
+          "Height": 165,
+          "Gender": "Female"
+        },
+        {
+          "Age": 25,
+          "Height": 175,
+          "Gender": "Male"
+        },
+        {
+          "Age": 19,
+          "Height": 160,
+          "Gender": "Female"
+        },
+        {
+          "Age": 22,
+          "Height": 170,
+          "Gender": "Male"
+        },
+        {
+          "Age": 20,
+          "Height": 168,
+          "Gender": "Female"
+        },
+        {
+          "Age": 24,
+          "Height": 182,
+          "Gender": "Male"
+        },
+        {
+          "Age": 18,
+          "Height": 158,
+          "Gender": "Female"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Height"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Gender"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age (years)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Height (cm)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Gender"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Height"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Gender"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

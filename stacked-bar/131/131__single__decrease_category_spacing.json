@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing demand prediction by category and sub-series.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "series": "Mobile Phones",
+          "value": 120
+        },
+        {
+          "category": "Electronics",
+          "series": "Laptops",
+          "value": 80
+        },
+        {
+          "category": "Electronics",
+          "series": "Headphones",
+          "value": 60
+        },
+        {
+          "category": "Fashion",
+          "series": "Men's Clothing",
+          "value": 100
+        },
+        {
+          "category": "Fashion",
+          "series": "Women's Clothing",
+          "value": 140
+        },
+        {
+          "category": "Fashion",
+          "series": "Accessories",
+          "value": 50
+        },
+        {
+          "category": "Home Goods",
+          "series": "Furniture",
+          "value": 200
+        },
+        {
+          "category": "Home Goods",
+          "series": "Kitchenware",
+          "value": 150
+        },
+        {
+          "category": "Home Goods",
+          "series": "Decor",
+          "value": 90
+        },
+        {
+          "category": "Sports",
+          "series": "Equipment",
+          "value": 130
+        },
+        {
+          "category": "Sports",
+          "series": "Clothing",
+          "value": 70
+        },
+        {
+          "category": "Sports",
+          "series": "Accessories",
+          "value": 40
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value",
+      "zindex": 1
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

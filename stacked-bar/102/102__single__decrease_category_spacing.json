@@ -1,0 +1,196 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing airline on-time performance by carrier and delay type.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Carrier A",
+          "series": "Weather Delay",
+          "value": 15
+        },
+        {
+          "category": "Carrier A",
+          "series": "Carrier Delay",
+          "value": 25
+        },
+        {
+          "category": "Carrier A",
+          "series": "Security Delay",
+          "value": 5
+        },
+        {
+          "category": "Carrier B",
+          "series": "Weather Delay",
+          "value": 20
+        },
+        {
+          "category": "Carrier B",
+          "series": "Carrier Delay",
+          "value": 30
+        },
+        {
+          "category": "Carrier B",
+          "series": "Security Delay",
+          "value": 10
+        },
+        {
+          "category": "Carrier C",
+          "series": "Weather Delay",
+          "value": 10
+        },
+        {
+          "category": "Carrier C",
+          "series": "Carrier Delay",
+          "value": 35
+        },
+        {
+          "category": "Carrier C",
+          "series": "Security Delay",
+          "value": 8
+        },
+        {
+          "category": "Carrier D",
+          "series": "Weather Delay",
+          "value": 25
+        },
+        {
+          "category": "Carrier D",
+          "series": "Carrier Delay",
+          "value": 40
+        },
+        {
+          "category": "Carrier D",
+          "series": "Security Delay",
+          "value": 12
+        },
+        {
+          "category": "Carrier E",
+          "series": "Weather Delay",
+          "value": 18
+        },
+        {
+          "category": "Carrier E",
+          "series": "Carrier Delay",
+          "value": 28
+        },
+        {
+          "category": "Carrier E",
+          "series": "Security Delay",
+          "value": 6
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Airline Carrier"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Delay Duration (minutes)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Delay Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Change the datapoint color for the 'Position' scale to use new colors.
+[#OP1 op=change_datapoint_color; target_category=Forward; new_color=#d62728]

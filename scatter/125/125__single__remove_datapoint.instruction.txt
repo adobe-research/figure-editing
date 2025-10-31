@@ -1,0 +1,2 @@
+Remove the datapoint with Trip_Duration 13.7 and Bike_Speed 17.9.
+[#OP1 op=remove_datapoint; category=Customer]

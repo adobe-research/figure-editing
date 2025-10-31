@@ -1,0 +1,160 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing relationships between Age and Hours-per-week, colored by Education level.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 25,
+          "Hours_per_week": 40,
+          "Education": "Bachelors"
+        },
+        {
+          "Age": 34,
+          "Hours_per_week": 50,
+          "Education": "Masters"
+        },
+        {
+          "Age": 29,
+          "Hours_per_week": 45,
+          "Education": "Some-college"
+        },
+        {
+          "Age": 42,
+          "Hours_per_week": 60,
+          "Education": "Doctorate"
+        },
+        {
+          "Age": 37,
+          "Hours_per_week": 55,
+          "Education": "Bachelors"
+        },
+        {
+          "Age": 50,
+          "Hours_per_week": 35,
+          "Education": "High-school"
+        },
+        {
+          "Age": 23,
+          "Hours_per_week": 20,
+          "Education": "Associate"
+        },
+        {
+          "Age": 31,
+          "Hours_per_week": 48,
+          "Education": "Masters"
+        },
+        {
+          "Age": 45,
+          "Hours_per_week": 40,
+          "Education": "Bachelors"
+        },
+        {
+          "Age": 28,
+          "Hours_per_week": 38,
+          "Education": "PhD"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        23,
+        25,
+        28,
+        29,
+        31,
+        34,
+        37,
+        42,
+        45,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Hours_per_week"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Education"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Hours per Week",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Education",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Hours_per_week"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Education"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

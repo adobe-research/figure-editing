@@ -1,0 +1,2 @@
+Add a new datapoint with Tenure 20, MonthlyCharges 72.5, and Churn 'No'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=12.0]

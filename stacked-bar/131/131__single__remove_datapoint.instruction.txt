@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Sports' and series 'Accessories'.
+[#OP1 op=remove_datapoint; category=Fashion]

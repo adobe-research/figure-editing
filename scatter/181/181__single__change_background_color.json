@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing click time vs. IP count with device type as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Click_Time": 1.5,
+          "IP_Count": 300,
+          "Device_Type": "Mobile"
+        },
+        {
+          "Click_Time": 2.0,
+          "IP_Count": 450,
+          "Device_Type": "Desktop"
+        },
+        {
+          "Click_Time": 0.8,
+          "IP_Count": 200,
+          "Device_Type": "Tablet"
+        },
+        {
+          "Click_Time": 1.2,
+          "IP_Count": 350,
+          "Device_Type": "Mobile"
+        },
+        {
+          "Click_Time": 2.5,
+          "IP_Count": 500,
+          "Device_Type": "Desktop"
+        },
+        {
+          "Click_Time": 0.6,
+          "IP_Count": 180,
+          "Device_Type": "Tablet"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.6,
+        2.5
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "IP_Count"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Device_Type"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Click Time (hours)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "IP Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Click_Time"
+          },
+          "y": {
+            "scale": "y",
+            "field": "IP_Count"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Device_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

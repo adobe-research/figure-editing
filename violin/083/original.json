@@ -1,0 +1,317 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of athlete ages by sport.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 50,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "athletes",
+      "values": [
+        {
+          "Sport": "Swimming",
+          "Age": 23
+        },
+        {
+          "Sport": "Swimming",
+          "Age": 21
+        },
+        {
+          "Sport": "Swimming",
+          "Age": 22
+        },
+        {
+          "Sport": "Swimming",
+          "Age": 24
+        },
+        {
+          "Sport": "Swimming",
+          "Age": 25
+        },
+        {
+          "Sport": "Track & Field",
+          "Age": 26
+        },
+        {
+          "Sport": "Track & Field",
+          "Age": 27
+        },
+        {
+          "Sport": "Track & Field",
+          "Age": 29
+        },
+        {
+          "Sport": "Track & Field",
+          "Age": 28
+        },
+        {
+          "Sport": "Track & Field",
+          "Age": 30
+        },
+        {
+          "Sport": "Gymnastics",
+          "Age": 16
+        },
+        {
+          "Sport": "Gymnastics",
+          "Age": 17
+        },
+        {
+          "Sport": "Gymnastics",
+          "Age": 18
+        },
+        {
+          "Sport": "Gymnastics",
+          "Age": 19
+        },
+        {
+          "Sport": "Gymnastics",
+          "Age": 20
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "athletes",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Age",
+          "groupby": [
+            "Sport"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "athletes",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Sport"
+          ],
+          "fields": [
+            "Age",
+            "Age",
+            "Age"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "athletes",
+        "field": "Sport"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "athletes",
+        "field": "Age"
+      },
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "athletes",
+        "field": "Sport"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale"
+    },
+    {
+      "orient": "left",
+      "scale": "layout"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Sport"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Sport",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Sport === parent.Sport"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Sport"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

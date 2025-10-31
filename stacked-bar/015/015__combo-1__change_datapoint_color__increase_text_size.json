@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing daily weather metrics for Delhi.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Monday",
+          "series": "Temperature",
+          "value": 32
+        },
+        {
+          "category": "Monday",
+          "series": "Humidity",
+          "value": 70
+        },
+        {
+          "category": "Monday",
+          "series": "Wind Speed",
+          "value": 15
+        },
+        {
+          "category": "Tuesday",
+          "series": "Temperature",
+          "value": 34
+        },
+        {
+          "category": "Tuesday",
+          "series": "Humidity",
+          "value": 65
+        },
+        {
+          "category": "Tuesday",
+          "series": "Wind Speed",
+          "value": 12
+        },
+        {
+          "category": "Wednesday",
+          "series": "Temperature",
+          "value": 33
+        },
+        {
+          "category": "Wednesday",
+          "series": "Humidity",
+          "value": 68
+        },
+        {
+          "category": "Wednesday",
+          "series": "Wind Speed",
+          "value": 14
+        },
+        {
+          "category": "Thursday",
+          "series": "Temperature",
+          "value": 31
+        },
+        {
+          "category": "Thursday",
+          "series": "Humidity",
+          "value": 72
+        },
+        {
+          "category": "Thursday",
+          "series": "Wind Speed",
+          "value": 13
+        },
+        {
+          "category": "Friday",
+          "series": "Temperature",
+          "value": 30
+        },
+        {
+          "category": "Friday",
+          "series": "Humidity",
+          "value": 75
+        },
+        {
+          "category": "Friday",
+          "series": "Wind Speed",
+          "value": 10
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#FF5733",
+        "#1f77b4",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Day of the Week",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Metrics",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Metrics",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

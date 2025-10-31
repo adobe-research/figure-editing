@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy consumption by sector for various countries.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "USA",
+          "sector": "Industry",
+          "consumption": 120
+        },
+        {
+          "country": "USA",
+          "sector": "Transport",
+          "consumption": 80
+        },
+        {
+          "country": "USA",
+          "sector": "Residential",
+          "consumption": 100
+        },
+        {
+          "country": "China",
+          "sector": "Industry",
+          "consumption": 200
+        },
+        {
+          "country": "China",
+          "sector": "Transport",
+          "consumption": 70
+        },
+        {
+          "country": "China",
+          "sector": "Residential",
+          "consumption": 90
+        },
+        {
+          "country": "India",
+          "sector": "Industry",
+          "consumption": 150
+        },
+        {
+          "country": "India",
+          "sector": "Transport",
+          "consumption": 50
+        },
+        {
+          "country": "India",
+          "sector": "Residential",
+          "consumption": 60
+        },
+        {
+          "country": "Germany",
+          "sector": "Industry",
+          "consumption": 100
+        },
+        {
+          "country": "Germany",
+          "sector": "Transport",
+          "consumption": 40
+        },
+        {
+          "country": "Germany",
+          "sector": "Residential",
+          "consumption": 70
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "country"
+          ],
+          "sort": {
+            "field": "sector"
+          },
+          "field": "consumption"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "sector"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Country"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (in TWh)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "country"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "sector"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['country']==='India'",
+              "value": "#2ca02c"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

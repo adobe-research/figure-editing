@@ -1,0 +1,2 @@
+Remove the datapoint where age is 30 and hours worked per week is 60.
+[#OP1 op=remove_datapoint; category=>50K]

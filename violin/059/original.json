@@ -1,0 +1,334 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of player overall ratings by preferred foot in FIFA 19.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 2"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "players",
+      "values": [
+        {
+          "Preferred Foot": "Left",
+          "Overall Rating": 85
+        },
+        {
+          "Preferred Foot": "Left",
+          "Overall Rating": 88
+        },
+        {
+          "Preferred Foot": "Left",
+          "Overall Rating": 83
+        },
+        {
+          "Preferred Foot": "Left",
+          "Overall Rating": 90
+        },
+        {
+          "Preferred Foot": "Left",
+          "Overall Rating": 87
+        },
+        {
+          "Preferred Foot": "Left",
+          "Overall Rating": 84
+        },
+        {
+          "Preferred Foot": "Right",
+          "Overall Rating": 80
+        },
+        {
+          "Preferred Foot": "Right",
+          "Overall Rating": 78
+        },
+        {
+          "Preferred Foot": "Right",
+          "Overall Rating": 82
+        },
+        {
+          "Preferred Foot": "Right",
+          "Overall Rating": 85
+        },
+        {
+          "Preferred Foot": "Right",
+          "Overall Rating": 79
+        },
+        {
+          "Preferred Foot": "Right",
+          "Overall Rating": 81
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Preferred Foot'] != null && datum['Overall Rating'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "players",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Overall Rating",
+          "groupby": [
+            "Preferred Foot"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [60, 100]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "players",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Preferred Foot"
+          ],
+          "fields": [
+            "Overall Rating",
+            "Overall Rating",
+            "Overall Rating"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "players",
+        "field": "Preferred Foot"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "players",
+        "field": "Overall Rating"
+      },
+      "domainMin": 60,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "players",
+        "field": "Preferred Foot"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Preferred Foot"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Preferred Foot",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Preferred Foot'] === parent['Preferred Foot']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Preferred Foot"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

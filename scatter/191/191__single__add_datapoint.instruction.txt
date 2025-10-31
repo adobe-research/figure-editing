@@ -1,0 +1,2 @@
+Add a new datapoint with Age 26, Height 185, and Gender 'Male' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Female; value=22.0]

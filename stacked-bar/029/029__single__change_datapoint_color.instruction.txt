@@ -1,0 +1,2 @@
+Change the color of the datapoints representing 'Coal' to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Africa; new_color=#ff7f0e]

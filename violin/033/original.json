@@ -1,0 +1,326 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of transaction amounts for different transaction types.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 20,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "transactions",
+      "values": [
+        {
+          "TransactionType": "Online",
+          "TransactionAmount": 25.6
+        },
+        {
+          "TransactionType": "Online",
+          "TransactionAmount": 30.1
+        },
+        {
+          "TransactionType": "Online",
+          "TransactionAmount": 45.5
+        },
+        {
+          "TransactionType": "Online",
+          "TransactionAmount": 60.2
+        },
+        {
+          "TransactionType": "Online",
+          "TransactionAmount": 75.3
+        },
+        {
+          "TransactionType": "In-Person",
+          "TransactionAmount": 10.2
+        },
+        {
+          "TransactionType": "In-Person",
+          "TransactionAmount": 15.5
+        },
+        {
+          "TransactionType": "In-Person",
+          "TransactionAmount": 20.7
+        },
+        {
+          "TransactionType": "In-Person",
+          "TransactionAmount": 35.0
+        },
+        {
+          "TransactionType": "In-Person",
+          "TransactionAmount": 50.8
+        },
+        {
+          "TransactionType": "Recurring",
+          "TransactionAmount": 5.0
+        },
+        {
+          "TransactionType": "Recurring",
+          "TransactionAmount": 7.5
+        },
+        {
+          "TransactionType": "Recurring",
+          "TransactionAmount": 12.0
+        },
+        {
+          "TransactionType": "Recurring",
+          "TransactionAmount": 18.5
+        },
+        {
+          "TransactionType": "Recurring",
+          "TransactionAmount": 25.0
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.TransactionType != null && datum.TransactionAmount != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "TransactionAmount",
+          "groupby": [
+            "TransactionType"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "TransactionType"
+          ],
+          "fields": [
+            "TransactionAmount",
+            "TransactionAmount",
+            "TransactionAmount"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "transactions",
+        "field": "TransactionType"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "transactions",
+        "field": "TransactionAmount"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "transactions",
+        "field": "TransactionType"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "TransactionType"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "TransactionType",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.TransactionType === parent.TransactionType"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "TransactionType"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

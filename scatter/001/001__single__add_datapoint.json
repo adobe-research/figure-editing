@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of trip distance vs trip duration with payment type as a series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "trip_distance": 2.5,
+          "trip_duration": 600,
+          "payment_type": "Credit Card"
+        },
+        {
+          "trip_distance": 1.8,
+          "trip_duration": 450,
+          "payment_type": "Cash"
+        },
+        {
+          "trip_distance": 3.2,
+          "trip_duration": 720,
+          "payment_type": "Credit Card"
+        },
+        {
+          "trip_distance": 0.9,
+          "trip_duration": 300,
+          "payment_type": "Cash"
+        },
+        {
+          "trip_distance": 4.0,
+          "trip_duration": 900,
+          "payment_type": "Credit Card"
+        },
+        {
+          "trip_distance": 2.1,
+          "trip_duration": 480,
+          "payment_type": "Cash"
+        },
+        {
+          "trip_distance": 3.5,
+          "trip_duration": 800,
+          "payment_type": "Credit Card"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.9,
+        4.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "trip_duration"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "payment_type"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trip Distance (miles)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (seconds)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Payment Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "trip_distance"
+          },
+          "y": {
+            "scale": "y",
+            "field": "trip_duration"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "payment_type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

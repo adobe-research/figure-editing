@@ -1,0 +1,2 @@
+Remove the datapoint with Crime_Index 90 and Arrest_Rate 0.55.
+[#OP1 op=remove_datapoint; category=Robbery]

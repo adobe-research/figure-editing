@@ -1,0 +1,2 @@
+Remove the datapoint where ApplicantIncome is 3200 and LoanAmount is 90.
+[#OP1 op=remove_datapoint; category=Approved]

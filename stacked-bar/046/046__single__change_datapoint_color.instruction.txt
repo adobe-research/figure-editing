@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new palette using shades of green and blue.
+[#OP1 op=change_datapoint_color; target_category=Delta Airlines; new_color=#ff7f0e]

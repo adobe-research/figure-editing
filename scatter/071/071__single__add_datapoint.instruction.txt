@@ -1,0 +1,2 @@
+Add a new datapoint with price 180, minimum nights 6, and room type 'Entire home/apt'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Entire home/apt; value=120.0]

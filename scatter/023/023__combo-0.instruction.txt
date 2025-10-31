@@ -1,0 +1,3 @@
+Change the color of datapoints for the 'Electric' bike type to '#2ca02c' and add a title 'Trip Analysis: Duration vs Distance'.
+[#OP1 op=change_datapoint_color; target_category=Electric; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

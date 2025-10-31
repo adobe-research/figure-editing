@@ -1,0 +1,3 @@
+Change the color of datapoints for 'Approved' LoanStatus to '#2ca02c' and add a title 'Scatter Plot of Loan Data'.
+[#OP1 op=change_datapoint_color; target_category=Rejected; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

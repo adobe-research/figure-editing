@@ -1,0 +1,2 @@
+Remove the datapoint for 'May' with metric 'MarketCap' and value 60000.
+[#OP1 op=remove_datapoint; category=April]

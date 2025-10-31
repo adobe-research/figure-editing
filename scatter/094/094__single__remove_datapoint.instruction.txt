@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 45 and Balance is 2200.
+[#OP1 op=remove_datapoint; category=Divorced]

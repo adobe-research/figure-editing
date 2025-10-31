@@ -1,0 +1,2 @@
+Remove the datapoint where region is 'West' and type is 'Terraced'.
+[#OP1 op=remove_datapoint; category=East]

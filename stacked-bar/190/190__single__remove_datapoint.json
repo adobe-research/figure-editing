@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showcasing cryptocurrency trading volumes by date and exchange.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "exchange": "Binance",
+          "volume": 1200
+        },
+        {
+          "date": "2023-01-01",
+          "exchange": "Coinbase",
+          "volume": 800
+        },
+        {
+          "date": "2023-01-01",
+          "exchange": "Kraken",
+          "volume": 600
+        },
+        {
+          "date": "2023-01-02",
+          "exchange": "Binance",
+          "volume": 1500
+        },
+        {
+          "date": "2023-01-02",
+          "exchange": "Coinbase",
+          "volume": 900
+        },
+        {
+          "date": "2023-01-02",
+          "exchange": "Kraken",
+          "volume": 700
+        },
+        {
+          "date": "2023-01-03",
+          "exchange": "Binance",
+          "volume": 1300
+        },
+        {
+          "date": "2023-01-03",
+          "exchange": "Coinbase",
+          "volume": 850
+        },
+        {
+          "date": "2023-01-03",
+          "exchange": "Kraken",
+          "volume": 650
+        },
+        {
+          "date": "2023-01-04",
+          "exchange": "Binance",
+          "volume": 1400
+        },
+        {
+          "date": "2023-01-04",
+          "exchange": "Coinbase",
+          "volume": 950
+        },
+        {
+          "date": "2023-01-04",
+          "exchange": "Kraken",
+          "volume": 750
+        },
+        {
+          "date": "2023-01-05",
+          "exchange": "Binance",
+          "volume": 1600
+        },
+        {
+          "date": "2023-01-05",
+          "exchange": "Coinbase",
+          "volume": 1000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "date"
+          ],
+          "sort": {
+            "field": "exchange"
+          },
+          "field": "volume"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "exchange"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Trading Volume"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Exchange",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "exchange"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

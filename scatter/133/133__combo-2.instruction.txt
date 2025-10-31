@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Approved' LoanStatus to green, add a title 'Loan Analysis', and increase the text size for axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=Rejected; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=16]

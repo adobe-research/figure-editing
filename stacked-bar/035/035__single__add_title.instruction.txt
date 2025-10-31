@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Store Demand by Item Type'.
+[#OP1 op=add_title; title_text=Edited Chart]

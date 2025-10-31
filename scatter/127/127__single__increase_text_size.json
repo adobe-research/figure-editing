@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between the number of casualties and the attack success rate in global terrorism incidents.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Casualties": 10,
+          "SuccessRate": 0.8,
+          "Region": "Middle East"
+        },
+        {
+          "Casualties": 25,
+          "SuccessRate": 0.9,
+          "Region": "South Asia"
+        },
+        {
+          "Casualties": 5,
+          "SuccessRate": 0.6,
+          "Region": "Europe"
+        },
+        {
+          "Casualties": 50,
+          "SuccessRate": 0.95,
+          "Region": "Africa"
+        },
+        {
+          "Casualties": 15,
+          "SuccessRate": 0.7,
+          "Region": "North America"
+        },
+        {
+          "Casualties": 30,
+          "SuccessRate": 0.85,
+          "Region": "South America"
+        },
+        {
+          "Casualties": 20,
+          "SuccessRate": 0.75,
+          "Region": "Southeast Asia"
+        },
+        {
+          "Casualties": 40,
+          "SuccessRate": 0.9,
+          "Region": "Central Asia"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        40,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "SuccessRate"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Casualties",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Success Rate",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Casualties"
+          },
+          "y": {
+            "scale": "y",
+            "field": "SuccessRate"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

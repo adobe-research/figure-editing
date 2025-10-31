@@ -1,0 +1,2 @@
+Change the color of the datapoints representing the 'Solar' series to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Florida; new_color=#ff7f0e]

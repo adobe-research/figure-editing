@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing relationships between numeric fields.",
+  "width": 300,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "X_Value": 5.2,
+          "Y_Value": 3.8,
+          "Category": "A"
+        },
+        {
+          "X_Value": 6.5,
+          "Y_Value": 2.9,
+          "Category": "B"
+        },
+        {
+          "X_Value": 4.8,
+          "Y_Value": 4.5,
+          "Category": "A"
+        },
+        {
+          "X_Value": 7.1,
+          "Y_Value": 3.0,
+          "Category": "C"
+        },
+        {
+          "X_Value": 5.9,
+          "Y_Value": 3.2,
+          "Category": "B"
+        },
+        {
+          "X_Value": 6.3,
+          "Y_Value": 2.7,
+          "Category": "C"
+        },
+        {
+          "X_Value": 5.4,
+          "Y_Value": 4.1,
+          "Category": "A"
+        },
+        {
+          "X_Value": 6.8,
+          "Y_Value": 2.8,
+          "Category": "B"
+        },
+        {
+          "X_Value": 4.9,
+          "Y_Value": 4.3,
+          "Category": "A"
+        },
+        {
+          "X_Value": 7.3,
+          "Y_Value": 3.1,
+          "Category": "C"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        4.8,
+        7.3
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "Y_Value"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "X Value",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Y Value",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "X_Value"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Y_Value"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

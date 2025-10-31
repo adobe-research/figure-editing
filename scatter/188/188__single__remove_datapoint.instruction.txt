@@ -1,0 +1,2 @@
+Remove the datapoint with Overall 79 and Value 40000000.
+[#OP1 op=remove_datapoint; category=RW]

@@ -1,0 +1,2 @@
+Remove the datapoint where Question_Length is 95 and Word_Count is 18.
+[#OP1 op=remove_datapoint; category=Yes]

@@ -1,0 +1,2 @@
+Remove the datapoint with Overall 78 and Potential 83 from the chart.
+[#OP1 op=remove_datapoint; category=CAM]

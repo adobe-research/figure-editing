@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy consumption by source and sector.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Residential",
+          "series": "Coal",
+          "value": 120
+        },
+        {
+          "category": "Residential",
+          "series": "Natural Gas",
+          "value": 300
+        },
+        {
+          "category": "Residential",
+          "series": "Renewables",
+          "value": 180
+        },
+        {
+          "category": "Commercial",
+          "series": "Coal",
+          "value": 90
+        },
+        {
+          "category": "Commercial",
+          "series": "Natural Gas",
+          "value": 250
+        },
+        {
+          "category": "Commercial",
+          "series": "Renewables",
+          "value": 200
+        },
+        {
+          "category": "Industrial",
+          "series": "Coal",
+          "value": 400
+        },
+        {
+          "category": "Industrial",
+          "series": "Natural Gas",
+          "value": 500
+        },
+        {
+          "category": "Industrial",
+          "series": "Renewables",
+          "value": 220
+        },
+        {
+          "category": "Transportation",
+          "series": "Coal",
+          "value": 50
+        },
+        {
+          "category": "Transportation",
+          "series": "Natural Gas",
+          "value": 100
+        },
+        {
+          "category": "Transportation",
+          "series": "Renewables",
+          "value": 70
+        },
+        {
+          "category": "Electric Power",
+          "series": "Coal",
+          "value": 600
+        },
+        {
+          "category": "Electric Power",
+          "series": "Natural Gas",
+          "value": 800
+        },
+        {
+          "category": "Electric Power",
+          "series": "Renewables",
+          "value": 400
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Sector"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (TWh)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Energy Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

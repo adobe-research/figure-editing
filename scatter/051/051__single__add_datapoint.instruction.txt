@@ -1,0 +1,2 @@
+Add a new datapoint with X_Value 5.7, Y_Value 3.6, and Category 'D'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=5.9]

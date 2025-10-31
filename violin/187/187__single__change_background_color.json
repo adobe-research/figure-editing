@@ -1,0 +1,296 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of player ages by position in European soccer.",
+  "width": 500,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "players",
+      "values": [
+        {
+          "Position": "Midfield",
+          "Age": 22
+        },
+        {
+          "Position": "Midfield",
+          "Age": 24
+        },
+        {
+          "Position": "Midfield",
+          "Age": 26
+        },
+        {
+          "Position": "Midfield",
+          "Age": 28
+        },
+        {
+          "Position": "Midfield",
+          "Age": 30
+        },
+        {
+          "Position": "Defender",
+          "Age": 20
+        },
+        {
+          "Position": "Defender",
+          "Age": 21
+        },
+        {
+          "Position": "Defender",
+          "Age": 23
+        },
+        {
+          "Position": "Defender",
+          "Age": 25
+        },
+        {
+          "Position": "Defender",
+          "Age": 27
+        },
+        {
+          "Position": "Forward",
+          "Age": 19
+        },
+        {
+          "Position": "Forward",
+          "Age": 21
+        },
+        {
+          "Position": "Forward",
+          "Age": 24
+        },
+        {
+          "Position": "Forward",
+          "Age": 26
+        },
+        {
+          "Position": "Forward",
+          "Age": 29
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "players",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Age",
+          "groupby": [
+            "Position"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "players",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Position"
+          ],
+          "fields": [
+            "Age",
+            "Age",
+            "Age"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "players",
+        "field": "Position"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "players",
+        "field": "Age"
+      },
+      "zero": false
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        60
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "players",
+        "field": "Position"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Age"
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "title": "Position"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Position"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Position",
+            "band": 0.5
+          },
+          "height": {
+            "value": 60
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Position === parent.Position"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Position"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "30"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "30"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "30"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020 with industry 'Technology' and employment 40.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2016; value=25.0]

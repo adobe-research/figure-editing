@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Stacked bar chart showing COVID-19 cases by region and type.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "region": "North America",
+          "case_type": "Active",
+          "count": 120000
+        },
+        {
+          "region": "North America",
+          "case_type": "Recovered",
+          "count": 80000
+        },
+        {
+          "region": "North America",
+          "case_type": "Deaths",
+          "count": 20000
+        },
+        {
+          "region": "South America",
+          "case_type": "Active",
+          "count": 90000
+        },
+        {
+          "region": "South America",
+          "case_type": "Recovered",
+          "count": 70000
+        },
+        {
+          "region": "South America",
+          "case_type": "Deaths",
+          "count": 15000
+        },
+        {
+          "region": "Europe",
+          "case_type": "Active",
+          "count": 150000
+        },
+        {
+          "region": "Europe",
+          "case_type": "Recovered",
+          "count": 100000
+        },
+        {
+          "region": "Europe",
+          "case_type": "Deaths",
+          "count": 25000
+        },
+        {
+          "region": "Asia",
+          "case_type": "Active",
+          "count": 200000
+        },
+        {
+          "region": "Asia",
+          "case_type": "Recovered",
+          "count": 150000
+        },
+        {
+          "region": "Asia",
+          "case_type": "Deaths",
+          "count": 30000
+        },
+        {
+          "region": "Africa",
+          "case_type": "Active",
+          "count": 50000
+        },
+        {
+          "region": "Africa",
+          "case_type": "Recovered",
+          "count": 40000
+        },
+        {
+          "region": "Africa",
+          "case_type": "Deaths",
+          "count": 10000
+        },
+        {
+          "region": "Oceania",
+          "case_type": "Active",
+          "count": 60000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "region"
+          ],
+          "sort": {
+            "field": "case_type"
+          },
+          "field": "count"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "case_type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Case Count"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Case Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "case_type"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

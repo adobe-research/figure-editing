@@ -1,0 +1,2 @@
+Remove the datapoint for 'Africa' with case type 'Deaths'.
+[#OP1 op=remove_datapoint; category=Europe]

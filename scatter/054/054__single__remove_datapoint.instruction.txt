@@ -1,0 +1,2 @@
+Remove the datapoint where Passing is 65 and Dribbling is 70.
+[#OP1 op=remove_datapoint; category=Midfielder]

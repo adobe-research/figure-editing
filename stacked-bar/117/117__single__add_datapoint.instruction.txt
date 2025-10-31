@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Fruits' in the region 'North America' with a value of 80.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cereals; value=130.0]

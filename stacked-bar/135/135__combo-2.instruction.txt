@@ -1,0 +1,4 @@
+Add a title to the chart, increase the text size of axis labels to 14, and change the background color to light gray.
+[#OP1 op=add_title; title_text=Employment Statistics by Industry and Gender; title_size=18]
+[#OP2 op=increase_text_size; axis_label_size=14]
+[#OP3 op=change_background_color; new_bg=#d3d3d3]

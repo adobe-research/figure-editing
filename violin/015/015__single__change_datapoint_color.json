@@ -1,0 +1,307 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of glucose levels by diabetes status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "violinWidth",
+      "value": 60
+    },
+    {
+      "name": "bandwidth",
+      "value": 20,
+      "bind": {
+        "input": "range",
+        "min": 5,
+        "max": 50,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "diabetes_data",
+      "values": [
+        {
+          "DiabetesStatus": "Positive",
+          "Glucose": 150
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "Glucose": 160
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "Glucose": 170
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "Glucose": 180
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "Glucose": 190
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "Glucose": 85
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "Glucose": 90
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "Glucose": 95
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "Glucose": 100
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "Glucose": 105
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "diabetes_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Glucose",
+          "groupby": [
+            "DiabetesStatus"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "summary",
+      "source": "diabetes_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "DiabetesStatus"
+          ],
+          "fields": [
+            "Glucose",
+            "Glucose",
+            "Glucose"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "y",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "diabetes_data",
+        "field": "DiabetesStatus"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "x",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "diabetes_data",
+        "field": "Glucose"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "densityScale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "violinWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "diabetes_data",
+        "field": "DiabetesStatus"
+      },
+      "range": [
+        "orange",
+        "category"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Glucose Level"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Diabetes Status"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "DiabetesStatus"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "y",
+            "field": "DiabetesStatus",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "violinWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "DiabetesStatus"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "x",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "violinWidth / 2"
+              },
+              "height": {
+                "scale": "densityScale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "x",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "x",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "violinWidth / 2"
+              },
+              "fill": [
+                {
+                  "test": "datum['DiabetesStatus']==='Negative'",
+                  "value": "#ff7f0e"
+                },
+                {
+                  "value": "black"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "x",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "violinWidth / 2"
+              },
+              "fill": [
+                {
+                  "test": "datum['DiabetesStatus']==='Negative'",
+                  "value": "#ff7f0e"
+                },
+                {
+                  "value": "black"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

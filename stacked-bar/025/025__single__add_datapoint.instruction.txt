@@ -1,0 +1,2 @@
+Add a new datapoint for the month of May with region 'North America' and temperature 18.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=3.0]

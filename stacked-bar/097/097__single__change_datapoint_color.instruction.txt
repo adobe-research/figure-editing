@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new palette with 'orange' for 'Casual' and 'purple' for 'Registered'.
+[#OP1 op=change_datapoint_color; target_category=Spring; new_color=#ff7f0e]

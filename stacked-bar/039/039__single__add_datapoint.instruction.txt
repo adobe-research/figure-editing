@@ -1,0 +1,2 @@
+Add a new datapoint for the category '2010s', series 'Northern Hemisphere', with a value of 0.85.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1880s; value=0.325]

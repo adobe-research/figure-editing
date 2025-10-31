@@ -1,0 +1,313 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of player overall ratings by player positions.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 4"
+    },
+    {
+      "name": "bandwidth",
+      "value": 20,
+      "bind": {
+        "input": "range",
+        "min": 5,
+        "max": 50,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "players",
+      "values": [
+        {
+          "Position": "Striker",
+          "Overall Rating": 85
+        },
+        {
+          "Position": "Striker",
+          "Overall Rating": 88
+        },
+        {
+          "Position": "Striker",
+          "Overall Rating": 90
+        },
+        {
+          "Position": "Striker",
+          "Overall Rating": 92
+        },
+        {
+          "Position": "Midfielder",
+          "Overall Rating": 80
+        },
+        {
+          "Position": "Midfielder",
+          "Overall Rating": 83
+        },
+        {
+          "Position": "Midfielder",
+          "Overall Rating": 85
+        },
+        {
+          "Position": "Midfielder",
+          "Overall Rating": 87
+        },
+        {
+          "Position": "Defender",
+          "Overall Rating": 75
+        },
+        {
+          "Position": "Defender",
+          "Overall Rating": 78
+        },
+        {
+          "Position": "Defender",
+          "Overall Rating": 80
+        },
+        {
+          "Position": "Defender",
+          "Overall Rating": 82
+        },
+        {
+          "Position": "Goalkeeper",
+          "Overall Rating": 88
+        },
+        {
+          "Position": "Goalkeeper",
+          "Overall Rating": 85
+        },
+        {
+          "Position": "Goalkeeper",
+          "Overall Rating": 89
+        },
+        {
+          "Position": "Goalkeeper",
+          "Overall Rating": 92
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "players",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Overall Rating",
+          "groupby": [
+            "Position"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "players",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Position"
+          ],
+          "fields": [
+            "Overall Rating",
+            "Overall Rating",
+            "Overall Rating"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "players",
+        "field": "Position"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "players",
+        "field": "Overall Rating"
+      },
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "players",
+        "field": "Position"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1,
+      "title": "Overall Rating"
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "zindex": 1,
+      "title": "Position"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Position"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Position",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Position"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "stats"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "stats"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

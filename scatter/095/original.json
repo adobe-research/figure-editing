@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing forest fire data with temperature and wind, categorized by the month.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Temperature": 22.1,
+          "Wind": 5.3,
+          "Month": "August"
+        },
+        {
+          "Temperature": 18.5,
+          "Wind": 3.1,
+          "Month": "September"
+        },
+        {
+          "Temperature": 25.0,
+          "Wind": 4.5,
+          "Month": "July"
+        },
+        {
+          "Temperature": 19.8,
+          "Wind": 2.8,
+          "Month": "June"
+        },
+        {
+          "Temperature": 23.4,
+          "Wind": 6.0,
+          "Month": "August"
+        },
+        {
+          "Temperature": 21.2,
+          "Wind": 4.2,
+          "Month": "September"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        18.5,
+        25.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Wind"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Month"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Temperature (°C)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Wind (km/h)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Month",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Temperature"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Wind"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Month"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

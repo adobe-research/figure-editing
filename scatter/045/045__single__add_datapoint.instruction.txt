@@ -1,0 +1,2 @@
+Add a new datapoint with ProteinContent 0.68, EnzymeActivity 0.82, and YeastType 'Type D'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Type A; value=0.6]

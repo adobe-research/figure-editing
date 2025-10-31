@@ -1,0 +1,2 @@
+Remove the datapoint where age is 60 and hours worked per week is 25.
+[#OP1 op=remove_datapoint; category=High School]

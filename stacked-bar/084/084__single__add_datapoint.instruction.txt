@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Gaming' with series '18-29' and value 85.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Gaming; value=72.0]

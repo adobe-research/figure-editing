@@ -1,0 +1,2 @@
+Remove the datapoint with Temperature 30.0 and Humidity 20.
+[#OP1 op=remove_datapoint; category=Aug]

@@ -1,0 +1,165 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of Yelp reviews with ratings and review lengths.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Rating": 5,
+          "Review_Length": 120,
+          "Category": "Restaurant"
+        },
+        {
+          "Rating": 4,
+          "Review_Length": 200,
+          "Category": "Cafe"
+        },
+        {
+          "Rating": 3,
+          "Review_Length": 150,
+          "Category": "Bar"
+        },
+        {
+          "Rating": 5,
+          "Review_Length": 300,
+          "Category": "Restaurant"
+        },
+        {
+          "Rating": 2,
+          "Review_Length": 100,
+          "Category": "Cafe"
+        },
+        {
+          "Rating": 1,
+          "Review_Length": 80,
+          "Category": "Bar"
+        },
+        {
+          "Rating": 4,
+          "Review_Length": 250,
+          "Category": "Restaurant"
+        },
+        {
+          "Rating": 3,
+          "Review_Length": 180,
+          "Category": "Cafe"
+        },
+        {
+          "Rating": 5,
+          "Review_Length": 400,
+          "Category": "Bar"
+        },
+        {
+          "Rating": 2,
+          "Review_Length": 90,
+          "Category": "Restaurant"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Review_Length"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Rating",
+      "grid": true,
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Review Length",
+      "grid": true,
+      "labelFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Rating"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Review_Length"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 14
+    }
+  }
+}

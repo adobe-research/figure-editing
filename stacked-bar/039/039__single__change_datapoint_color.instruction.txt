@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new palette using shades of teal and orange.
+[#OP1 op=change_datapoint_color; target_category=1960s; new_color=#ff7f0e]

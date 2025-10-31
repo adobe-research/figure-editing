@@ -1,0 +1,2 @@
+Remove the datapoint with Points 15.4 and Assists 10.2.
+[#OP1 op=remove_datapoint; category=Forward]

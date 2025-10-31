@@ -1,0 +1,2 @@
+Remove the datapoint for Store D in February with a value of 85.
+[#OP1 op=remove_datapoint; category=Store C]

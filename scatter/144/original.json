@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing student performance metrics.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Math_Score": 78,
+          "Reading_Score": 85,
+          "Study_Time": "Low"
+        },
+        {
+          "Math_Score": 92,
+          "Reading_Score": 88,
+          "Study_Time": "High"
+        },
+        {
+          "Math_Score": 65,
+          "Reading_Score": 70,
+          "Study_Time": "Medium"
+        },
+        {
+          "Math_Score": 80,
+          "Reading_Score": 75,
+          "Study_Time": "Low"
+        },
+        {
+          "Math_Score": 88,
+          "Reading_Score": 90,
+          "Study_Time": "High"
+        },
+        {
+          "Math_Score": 72,
+          "Reading_Score": 78,
+          "Study_Time": "Medium"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        65,
+        72,
+        78,
+        80,
+        88,
+        92
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Reading_Score"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Study_Time"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Math Score",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Reading Score",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Study Time",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Math_Score"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Reading_Score"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Study_Time"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Change the color of the 'Coal' series to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=South America; new_color=#2ca02c]

@@ -1,0 +1,4 @@
+Change the color of datapoints for Customer Segment 'A', increase the text size of axis labels, and add a title to the chart.
+[#OP1 op=change_datapoint_color; target_category=C; new_color=#d62728]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

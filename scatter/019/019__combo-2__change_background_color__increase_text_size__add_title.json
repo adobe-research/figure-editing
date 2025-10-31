@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing air quality data.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "CO": 2.3,
+          "NO2": 15.4,
+          "Location": "Urban"
+        },
+        {
+          "CO": 1.8,
+          "NO2": 12.7,
+          "Location": "Rural"
+        },
+        {
+          "CO": 3.1,
+          "NO2": 18.9,
+          "Location": "Industrial"
+        },
+        {
+          "CO": 2.0,
+          "NO2": 14.0,
+          "Location": "Urban"
+        },
+        {
+          "CO": 1.5,
+          "NO2": 10.5,
+          "Location": "Rural"
+        },
+        {
+          "CO": 3.5,
+          "NO2": 20.3,
+          "Location": "Industrial"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.5,
+        3.5
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "NO2"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Location"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "CO (ppm)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "NO2 (ppb)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Location",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "CO"
+          },
+          "y": {
+            "scale": "y",
+            "field": "NO2"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Location"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

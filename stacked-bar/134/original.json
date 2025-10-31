@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing cryptocurrency trading volumes by category and series.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Bitcoin",
+          "series": "Volume (USD)",
+          "value": 45000
+        },
+        {
+          "category": "Bitcoin",
+          "series": "Volume (BTC)",
+          "value": 2.1
+        },
+        {
+          "category": "Ethereum",
+          "series": "Volume (USD)",
+          "value": 30000
+        },
+        {
+          "category": "Ethereum",
+          "series": "Volume (ETH)",
+          "value": 15
+        },
+        {
+          "category": "Ripple",
+          "series": "Volume (USD)",
+          "value": 15000
+        },
+        {
+          "category": "Ripple",
+          "series": "Volume (XRP)",
+          "value": 500
+        },
+        {
+          "category": "Litecoin",
+          "series": "Volume (USD)",
+          "value": 10000
+        },
+        {
+          "category": "Litecoin",
+          "series": "Volume (LTC)",
+          "value": 50
+        },
+        {
+          "category": "Cardano",
+          "series": "Volume (USD)",
+          "value": 8000
+        },
+        {
+          "category": "Cardano",
+          "series": "Volume (ADA)",
+          "value": 300
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Cryptocurrency"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Trading Volume"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Volume Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

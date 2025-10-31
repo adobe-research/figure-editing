@@ -1,0 +1,1 @@
+Change the color of the bar in the red circle to #9467bd.

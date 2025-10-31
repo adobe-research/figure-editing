@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Residential', source 'Hydropower', and value 70.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=90.0]

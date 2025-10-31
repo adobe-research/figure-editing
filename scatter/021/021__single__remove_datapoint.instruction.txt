@@ -1,0 +1,2 @@
+Remove the datapoint where Complaint_Duration is 7 and Resolution_Time is 3.
+[#OP1 op=remove_datapoint; category=Heat]

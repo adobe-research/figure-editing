@@ -1,0 +1,2 @@
+Add a new datapoint with Alcohol 13.9, Malic_Acid 1.85, and Wine_Class 'Class 2'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Class 1; value=13.8]

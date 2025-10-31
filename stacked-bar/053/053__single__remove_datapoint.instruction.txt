@@ -1,0 +1,2 @@
+Remove the datapoint for the 1890s category and Asia series.
+[#OP1 op=remove_datapoint; category=1890s]

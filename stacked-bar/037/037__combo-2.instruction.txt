@@ -1,0 +1,4 @@
+Change the color of the 'Good' condition in 2008 to '#FF5733', increase the text size of axis labels to 14, and add a title 'House Sales by Year and Condition'.
+[#OP1 op=change_datapoint_color; target_category=2010; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

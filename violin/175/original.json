@@ -1,0 +1,320 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Violin plot showing distributions of click durations by device type.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "ad_clicks",
+      "values": [
+        {
+          "DeviceType": "Mobile",
+          "ClickDuration": 2.3
+        },
+        {
+          "DeviceType": "Mobile",
+          "ClickDuration": 1.8
+        },
+        {
+          "DeviceType": "Mobile",
+          "ClickDuration": 2.5
+        },
+        {
+          "DeviceType": "Mobile",
+          "ClickDuration": 3.0
+        },
+        {
+          "DeviceType": "Mobile",
+          "ClickDuration": 2.7
+        },
+        {
+          "DeviceType": "Desktop",
+          "ClickDuration": 1.2
+        },
+        {
+          "DeviceType": "Desktop",
+          "ClickDuration": 1.5
+        },
+        {
+          "DeviceType": "Desktop",
+          "ClickDuration": 1.8
+        },
+        {
+          "DeviceType": "Desktop",
+          "ClickDuration": 1.4
+        },
+        {
+          "DeviceType": "Tablet",
+          "ClickDuration": 2.0
+        },
+        {
+          "DeviceType": "Tablet",
+          "ClickDuration": 2.3
+        },
+        {
+          "DeviceType": "Tablet",
+          "ClickDuration": 1.9
+        },
+        {
+          "DeviceType": "Tablet",
+          "ClickDuration": 2.1
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.DeviceType != null && datum.ClickDuration != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "ad_clicks",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "ClickDuration",
+          "groupby": [
+            "DeviceType"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "ad_clicks",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "DeviceType"
+          ],
+          "fields": [
+            "ClickDuration",
+            "ClickDuration",
+            "ClickDuration"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "ad_clicks",
+        "field": "DeviceType"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "ad_clicks",
+        "field": "ClickDuration"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "ad_clicks",
+        "field": "DeviceType"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "DeviceType"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "DeviceType",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.DeviceType === parent.DeviceType"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "DeviceType"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

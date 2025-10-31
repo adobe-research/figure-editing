@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Luxury Price' and series 'Fair Condition'.
+[#OP1 op=remove_datapoint; category=Low Price]

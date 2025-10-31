@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Nevada' with series 'Coal' and value 40.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=California; value=72.5]

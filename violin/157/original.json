@@ -1,0 +1,346 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of Monthly Income across different credit groups.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "credit_data",
+      "values": [
+        {
+          "Credit Group": "Low Risk",
+          "Monthly Income": 2500
+        },
+        {
+          "Credit Group": "Low Risk",
+          "Monthly Income": 2700
+        },
+        {
+          "Credit Group": "Low Risk",
+          "Monthly Income": 3000
+        },
+        {
+          "Credit Group": "Low Risk",
+          "Monthly Income": 3200
+        },
+        {
+          "Credit Group": "Low Risk",
+          "Monthly Income": 3400
+        },
+        {
+          "Credit Group": "Medium Risk",
+          "Monthly Income": 1500
+        },
+        {
+          "Credit Group": "Medium Risk",
+          "Monthly Income": 1800
+        },
+        {
+          "Credit Group": "Medium Risk",
+          "Monthly Income": 2000
+        },
+        {
+          "Credit Group": "Medium Risk",
+          "Monthly Income": 2200
+        },
+        {
+          "Credit Group": "Medium Risk",
+          "Monthly Income": 2500
+        },
+        {
+          "Credit Group": "High Risk",
+          "Monthly Income": 1000
+        },
+        {
+          "Credit Group": "High Risk",
+          "Monthly Income": 1200
+        },
+        {
+          "Credit Group": "High Risk",
+          "Monthly Income": 1400
+        },
+        {
+          "Credit Group": "High Risk",
+          "Monthly Income": 1600
+        },
+        {
+          "Credit Group": "High Risk",
+          "Monthly Income": 1800
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Credit Group'] != null && datum['Monthly Income'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Monthly Income",
+          "groupby": [
+            "Credit Group"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [500, 4000]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Credit Group"
+          ],
+          "fields": [
+            "Monthly Income",
+            "Monthly Income",
+            "Monthly Income"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "credit_data",
+        "field": "Credit Group"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "credit_data",
+        "field": "Monthly Income"
+      },
+      "domainMin": 500,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "credit_data",
+        "field": "Credit Group"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Credit Group"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Credit Group",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Credit Group'] === parent['Credit Group']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Credit Group"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

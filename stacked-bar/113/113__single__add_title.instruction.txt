@@ -1,0 +1,2 @@
+Add a title to the chart that reads 'Energy Consumption by Sector and Region'.
+[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Change the datapoint color scale to range from green to orange.
+[#OP1 op=change_datapoint_color; target_category=85; new_color=#ff7f0e]

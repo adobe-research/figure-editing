@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Friendly' matches to '#e41a1c', increase the text size of axis labels to 14, and add a title 'Goals Scored Over the Years'.
+[#OP1 op=change_datapoint_color; target_category=Qualifier; new_color=#d62728]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

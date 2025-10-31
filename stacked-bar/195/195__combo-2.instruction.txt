@@ -1,0 +1,4 @@
+Change the color of the 'Democrats' series to blue, increase the text size of axis labels to 14, and add a title 'Distribution of Opinions by Category and Series'.
+[#OP1 op=increase_text_size; axis_label_size=16]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Health Awareness', series 'Agree', and value 55 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Climate Change Awareness; value=30.0]

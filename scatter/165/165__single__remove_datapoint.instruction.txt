@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 54 and Fare is 51.8625.
+[#OP1 op=remove_datapoint; category=Yes]

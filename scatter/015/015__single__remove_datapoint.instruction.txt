@@ -1,0 +1,2 @@
+Remove the datapoint with a toxicity_score of 0.9 and length of 300.
+[#OP1 op=remove_datapoint; category=insult]

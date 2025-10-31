@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing FIFA player statistics.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Overall": 85,
+          "Potential": 90,
+          "Value": 95
+        },
+        {
+          "Overall": 78,
+          "Potential": 82,
+          "Value": 70
+        },
+        {
+          "Overall": 88,
+          "Potential": 91,
+          "Value": 98
+        },
+        {
+          "Overall": 75,
+          "Potential": 80,
+          "Value": 65
+        },
+        {
+          "Overall": 92,
+          "Potential": 95,
+          "Value": 100
+        },
+        {
+          "Overall": 81,
+          "Potential": 85,
+          "Value": 88
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        75,
+        78,
+        81,
+        85,
+        88,
+        92
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "Potential"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": [
+        "blue",
+        "red"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Overall Rating",
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Potential Rating",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Overall"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Potential"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 14
+    }
+  }
+}

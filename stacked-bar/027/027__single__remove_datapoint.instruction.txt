@@ -1,0 +1,2 @@
+Remove the datapoint where category is '55+' and series is 'Drama'.
+[#OP1 op=remove_datapoint; category=35-44]

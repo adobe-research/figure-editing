@@ -1,0 +1,2 @@
+Add a new datapoint with Longitude 100.75, Latitude 1.35, and RouteCount 120.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=50.148]

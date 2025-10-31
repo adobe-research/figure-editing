@@ -1,0 +1,2 @@
+Add a new datapoint for the region 'Oceania' with category 'Confirmed' and cases 100000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=325000.0]

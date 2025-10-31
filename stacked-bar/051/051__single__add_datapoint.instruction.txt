@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2016 in the Healthcare series with a value of 55.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2011; value=42.5]

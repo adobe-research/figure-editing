@@ -1,0 +1,350 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Violin plot showing distributions of income for different credit risk categories.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "credit_data",
+      "values": [
+        {
+          "Risk_Category": "Low Risk",
+          "Income": 35000
+        },
+        {
+          "Risk_Category": "Low Risk",
+          "Income": 36000
+        },
+        {
+          "Risk_Category": "Low Risk",
+          "Income": 37000
+        },
+        {
+          "Risk_Category": "Low Risk",
+          "Income": 38000
+        },
+        {
+          "Risk_Category": "Low Risk",
+          "Income": 39000
+        },
+        {
+          "Risk_Category": "Low Risk",
+          "Income": 40000
+        },
+        {
+          "Risk_Category": "Moderate Risk",
+          "Income": 25000
+        },
+        {
+          "Risk_Category": "Moderate Risk",
+          "Income": 26000
+        },
+        {
+          "Risk_Category": "Moderate Risk",
+          "Income": 27000
+        },
+        {
+          "Risk_Category": "Moderate Risk",
+          "Income": 28000
+        },
+        {
+          "Risk_Category": "Moderate Risk",
+          "Income": 29000
+        },
+        {
+          "Risk_Category": "High Risk",
+          "Income": 15000
+        },
+        {
+          "Risk_Category": "High Risk",
+          "Income": 16000
+        },
+        {
+          "Risk_Category": "High Risk",
+          "Income": 17000
+        },
+        {
+          "Risk_Category": "High Risk",
+          "Income": 18000
+        },
+        {
+          "Risk_Category": "High Risk",
+          "Income": 19000
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Risk_Category != null && datum.Income != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Income",
+          "groupby": [
+            "Risk_Category"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [10000, 50000]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Risk_Category"
+          ],
+          "fields": [
+            "Income",
+            "Income",
+            "Income"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "credit_data",
+        "field": "Risk_Category"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "credit_data",
+        "field": "Income"
+      },
+      "domainMin": 10000,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "credit_data",
+        "field": "Risk_Category"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Risk_Category"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Risk_Category",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Risk_Category === parent.Risk_Category"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Risk_Category"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

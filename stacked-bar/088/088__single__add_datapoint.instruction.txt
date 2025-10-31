@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Renewable Energy' with series '2020' and value 15 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CO2 Emissions; value=2020.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with Goals_Scored as 3, Goals_Conceded as 4, and Match_Type as 'Qualifier'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Friendly; value=2.0]

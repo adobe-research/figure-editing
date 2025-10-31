@@ -1,0 +1,2 @@
+Add a new datapoint for 'Carrier F' with series 'On-Time' and value 65 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Carrier A; value=50.0]

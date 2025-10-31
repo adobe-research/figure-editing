@@ -1,0 +1,2 @@
+Add a new datapoint for Saturday with series 'Temperature' and value 29.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Friday; value=31.5]

@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between Credit Amount and Annual Income, with Payment Status as a category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Credit_Amount": 50000,
+          "Annual_Income": 120000,
+          "Payment_Status": "On Time"
+        },
+        {
+          "Credit_Amount": 75000,
+          "Annual_Income": 150000,
+          "Payment_Status": "Late"
+        },
+        {
+          "Credit_Amount": 30000,
+          "Annual_Income": 80000,
+          "Payment_Status": "On Time"
+        },
+        {
+          "Credit_Amount": 100000,
+          "Annual_Income": 200000,
+          "Payment_Status": "Defaulted"
+        },
+        {
+          "Credit_Amount": 45000,
+          "Annual_Income": 95000,
+          "Payment_Status": "On Time"
+        },
+        {
+          "Credit_Amount": 60000,
+          "Annual_Income": 110000,
+          "Payment_Status": "Late"
+        },
+        {
+          "Credit_Amount": 85000,
+          "Annual_Income": 170000,
+          "Payment_Status": "Defaulted"
+        },
+        {
+          "Credit_Amount": 40000,
+          "Annual_Income": 90000,
+          "Payment_Status": "On Time"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        30000.0,
+        100000.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Annual_Income"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Payment_Status"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Credit Amount"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Annual Income"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Payment Status"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Credit_Amount"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Annual_Income"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Payment_Status"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

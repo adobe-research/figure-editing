@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing employment distribution by sector and year.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "2020",
+          "series": "Manufacturing",
+          "value": 15
+        },
+        {
+          "category": "2020",
+          "series": "Healthcare",
+          "value": 25
+        },
+        {
+          "category": "2020",
+          "series": "Education",
+          "value": 20
+        },
+        {
+          "category": "2020",
+          "series": "Technology",
+          "value": 18
+        },
+        {
+          "category": "2021",
+          "series": "Manufacturing",
+          "value": 16
+        },
+        {
+          "category": "2021",
+          "series": "Healthcare",
+          "value": 27
+        },
+        {
+          "category": "2021",
+          "series": "Education",
+          "value": 22
+        },
+        {
+          "category": "2021",
+          "series": "Technology",
+          "value": 19
+        },
+        {
+          "category": "2022",
+          "series": "Manufacturing",
+          "value": 17
+        },
+        {
+          "category": "2022",
+          "series": "Healthcare",
+          "value": 28
+        },
+        {
+          "category": "2022",
+          "series": "Education",
+          "value": 23
+        },
+        {
+          "category": "2022",
+          "series": "Technology",
+          "value": 20
+        },
+        {
+          "category": "2023",
+          "series": "Manufacturing",
+          "value": 18
+        },
+        {
+          "category": "2023",
+          "series": "Healthcare",
+          "value": 30
+        },
+        {
+          "category": "2023",
+          "series": "Education",
+          "value": 25
+        },
+        {
+          "category": "2023",
+          "series": "Technology",
+          "value": 22
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Employment (millions)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing CO2 emissions by sector over different years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2000",
+          "sector": "Energy",
+          "emissions": 25
+        },
+        {
+          "year": "2000",
+          "sector": "Industry",
+          "emissions": 15
+        },
+        {
+          "year": "2000",
+          "sector": "Transport",
+          "emissions": 10
+        },
+        {
+          "year": "2005",
+          "sector": "Energy",
+          "emissions": 30
+        },
+        {
+          "year": "2005",
+          "sector": "Industry",
+          "emissions": 20
+        },
+        {
+          "year": "2005",
+          "sector": "Transport",
+          "emissions": 12
+        },
+        {
+          "year": "2010",
+          "sector": "Energy",
+          "emissions": 35
+        },
+        {
+          "year": "2010",
+          "sector": "Industry",
+          "emissions": 25
+        },
+        {
+          "year": "2010",
+          "sector": "Transport",
+          "emissions": 15
+        },
+        {
+          "year": "2015",
+          "sector": "Energy",
+          "emissions": 40
+        },
+        {
+          "year": "2015",
+          "sector": "Industry",
+          "emissions": 30
+        },
+        {
+          "year": "2015",
+          "sector": "Transport",
+          "emissions": 18
+        },
+        {
+          "year": "2020",
+          "sector": "Energy",
+          "emissions": 45
+        },
+        {
+          "year": "2020",
+          "sector": "Industry",
+          "emissions": 35
+        },
+        {
+          "year": "2020",
+          "sector": "Transport",
+          "emissions": 20
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "sector"
+          },
+          "field": "emissions"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "sector"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "CO2 Emissions (Gt)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "sector"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

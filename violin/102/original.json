@@ -1,0 +1,318 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of points per game for NBA player positions.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 5"
+    },
+    {
+      "name": "bandwidth",
+      "value": 20,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "nba_stats",
+      "values": [
+        {
+          "Position": "Guard",
+          "Points Per Game": 15.2
+        },
+        {
+          "Position": "Guard",
+          "Points Per Game": 18.4
+        },
+        {
+          "Position": "Guard",
+          "Points Per Game": 20.1
+        },
+        {
+          "Position": "Guard",
+          "Points Per Game": 22.3
+        },
+        {
+          "Position": "Guard",
+          "Points Per Game": 24.7
+        },
+        {
+          "Position": "Forward",
+          "Points Per Game": 12.5
+        },
+        {
+          "Position": "Forward",
+          "Points Per Game": 14.8
+        },
+        {
+          "Position": "Forward",
+          "Points Per Game": 17.2
+        },
+        {
+          "Position": "Forward",
+          "Points Per Game": 19.6
+        },
+        {
+          "Position": "Forward",
+          "Points Per Game": 21.9
+        },
+        {
+          "Position": "Center",
+          "Points Per Game": 10.3
+        },
+        {
+          "Position": "Center",
+          "Points Per Game": 12.1
+        },
+        {
+          "Position": "Center",
+          "Points Per Game": 13.8
+        },
+        {
+          "Position": "Center",
+          "Points Per Game": 15.4
+        },
+        {
+          "Position": "Center",
+          "Points Per Game": 16.9
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "nba_stats",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Points Per Game",
+          "groupby": [
+            "Position"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "nba_stats",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Position"
+          ],
+          "fields": [
+            "Points Per Game",
+            "Points Per Game",
+            "Points Per Game"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "nba_stats",
+        "field": "Position"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "nba_stats",
+        "field": "Points Per Game"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "nba_stats",
+        "field": "Position"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale"
+    },
+    {
+      "orient": "left",
+      "scale": "layout"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Position"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Position",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Position === parent.Position"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Position"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with clicks=100 and installs=25.
+[#OP1 op=remove_datapoint; category=Desktop]

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing sepal length vs. sepal width with species as color.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "sepal_length": 5.1,
+          "sepal_width": 3.5,
+          "species": "setosa"
+        },
+        {
+          "sepal_length": 4.9,
+          "sepal_width": 3.0,
+          "species": "setosa"
+        },
+        {
+          "sepal_length": 6.3,
+          "sepal_width": 3.3,
+          "species": "versicolor"
+        },
+        {
+          "sepal_length": 5.8,
+          "sepal_width": 2.7,
+          "species": "versicolor"
+        },
+        {
+          "sepal_length": 7.1,
+          "sepal_width": 3.0,
+          "species": "virginica"
+        },
+        {
+          "sepal_length": 6.3,
+          "sepal_width": 2.9,
+          "species": "virginica"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        4.9,
+        7.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "sepal_width"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "species"
+      },
+      "range": [
+        "#e41a1c",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Sepal Length (cm)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Sepal Width (cm)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Species",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "sepal_length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "sepal_width"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "species"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

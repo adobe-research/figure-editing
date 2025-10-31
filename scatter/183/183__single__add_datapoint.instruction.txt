@@ -1,0 +1,2 @@
+Add a new datapoint with AMT_CREDIT 450000, DAYS_EMPLOYED -500, and TARGET 'Default'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Default; value=600000.0]

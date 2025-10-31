@@ -1,0 +1,222 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing survey responses by category and series.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Social Media Usage",
+          "series": "Strongly Agree",
+          "value": 40
+        },
+        {
+          "category": "Social Media Usage",
+          "series": "Agree",
+          "value": 35
+        },
+        {
+          "category": "Social Media Usage",
+          "series": "Neutral",
+          "value": 15
+        },
+        {
+          "category": "Social Media Usage",
+          "series": "Disagree",
+          "value": 10
+        },
+        {
+          "category": "Privacy Concerns",
+          "series": "Strongly Agree",
+          "value": 30
+        },
+        {
+          "category": "Privacy Concerns",
+          "series": "Agree",
+          "value": 40
+        },
+        {
+          "category": "Privacy Concerns",
+          "series": "Neutral",
+          "value": 20
+        },
+        {
+          "category": "Privacy Concerns",
+          "series": "Disagree",
+          "value": 10
+        },
+        {
+          "category": "Online Shopping",
+          "series": "Strongly Agree",
+          "value": 50
+        },
+        {
+          "category": "Online Shopping",
+          "series": "Agree",
+          "value": 30
+        },
+        {
+          "category": "Online Shopping",
+          "series": "Neutral",
+          "value": 10
+        },
+        {
+          "category": "Online Shopping",
+          "series": "Disagree",
+          "value": 10
+        },
+        {
+          "category": "Streaming Services",
+          "series": "Strongly Agree",
+          "value": 45
+        },
+        {
+          "category": "Streaming Services",
+          "series": "Agree",
+          "value": 35
+        },
+        {
+          "category": "Streaming Services",
+          "series": "Neutral",
+          "value": 15
+        },
+        {
+          "category": "Streaming Services",
+          "series": "Disagree",
+          "value": 5
+        },
+        {
+          "category": "News Consumption",
+          "series": "Strongly Agree",
+          "value": 25
+        },
+        {
+          "category": "News Consumption",
+          "series": "Agree",
+          "value": 40
+        },
+        {
+          "category": "News Consumption",
+          "series": "Neutral",
+          "value": 25
+        },
+        {
+          "category": "News Consumption",
+          "series": "Disagree",
+          "value": 10
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Survey Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Responses"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Response Level",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

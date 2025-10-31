@@ -1,0 +1,2 @@
+Remove the datapoint for Carrier D with series 'Delayed' and value 50.
+[#OP1 op=remove_datapoint; category=Carrier A]

@@ -1,0 +1,177 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing CO2 emissions by sector for various regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "emissions",
+      "values": [
+        {
+          "region": "North America",
+          "sector": "Transportation",
+          "emissions": 1500
+        },
+        {
+          "region": "North America",
+          "sector": "Industry",
+          "emissions": 2000
+        },
+        {
+          "region": "North America",
+          "sector": "Residential",
+          "emissions": 1200
+        },
+        {
+          "region": "Europe",
+          "sector": "Transportation",
+          "emissions": 1300
+        },
+        {
+          "region": "Europe",
+          "sector": "Industry",
+          "emissions": 1800
+        },
+        {
+          "region": "Europe",
+          "sector": "Residential",
+          "emissions": 1100
+        },
+        {
+          "region": "Asia",
+          "sector": "Transportation",
+          "emissions": 2500
+        },
+        {
+          "region": "Asia",
+          "sector": "Industry",
+          "emissions": 3000
+        },
+        {
+          "region": "Asia",
+          "sector": "Residential",
+          "emissions": 1700
+        },
+        {
+          "region": "Africa",
+          "sector": "Transportation",
+          "emissions": 800
+        },
+        {
+          "region": "Africa",
+          "sector": "Industry",
+          "emissions": 1000
+        },
+        {
+          "region": "Africa",
+          "sector": "Residential",
+          "emissions": 700
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "padding": 0.1,
+      "domain": {
+        "data": "emissions",
+        "field": "region"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "emissions",
+        "field": "emissions"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "emissions",
+        "field": "sector"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "CO2 Emissions (MtCO2)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "emissions"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "emissions",
+            "offset": 0
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "sector"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

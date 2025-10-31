@@ -1,0 +1,2 @@
+Remove the datapoint where Click_Time is 0.6 and IP_Count is 180.
+[#OP1 op=remove_datapoint; category=Mobile]

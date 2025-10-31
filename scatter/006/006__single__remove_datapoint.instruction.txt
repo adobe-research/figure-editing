@@ -1,0 +1,2 @@
+Remove the datapoint where Points is 22.9 and Assists is 4.4.
+[#OP1 op=remove_datapoint; category=Forward]

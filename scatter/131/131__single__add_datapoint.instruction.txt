@@ -1,0 +1,2 @@
+Add a new datapoint with Credit Amount 70000, Annual Income 140000, and Payment Status 'On Time'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defaulted; value=60000.0]

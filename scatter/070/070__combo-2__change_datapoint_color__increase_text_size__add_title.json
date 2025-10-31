@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of Air Quality data showing CO levels vs Temperature, colored by Station.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "CO": 2.3,
+          "Temperature": 22.5,
+          "Station": "A"
+        },
+        {
+          "CO": 1.8,
+          "Temperature": 25.0,
+          "Station": "B"
+        },
+        {
+          "CO": 3.1,
+          "Temperature": 19.8,
+          "Station": "C"
+        },
+        {
+          "CO": 2.0,
+          "Temperature": 21.3,
+          "Station": "A"
+        },
+        {
+          "CO": 1.5,
+          "Temperature": 23.7,
+          "Station": "B"
+        },
+        {
+          "CO": 2.8,
+          "Temperature": 20.5,
+          "Station": "C"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.5,
+        3.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Temperature"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Station"
+      },
+      "range": [
+        "#e41a1c",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "CO Levels (mg/m³)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Temperature (°C)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Station",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "CO"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Temperature"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Station"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

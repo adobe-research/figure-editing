@@ -1,0 +1,2 @@
+Remove the datapoint with Alcohol 13.7 and Color Intensity 7.2.
+[#OP1 op=remove_datapoint; category=Class 2]

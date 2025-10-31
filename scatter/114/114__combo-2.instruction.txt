@@ -1,0 +1,4 @@
+Change the color of datapoints in the 'Cafe' category to '#8a2be2', increase the text size of axis labels to 12, and add a title 'Scatter Plot of Yelp Reviews'.
+[#OP1 op=change_datapoint_color; target_category=Restaurant; new_color=#d62728]
+[#OP2 op=change_datapoint_color; target_category=Restaurant; new_color=#d62728]
+[#OP3 op=add_title; title_text=Edited Chart]

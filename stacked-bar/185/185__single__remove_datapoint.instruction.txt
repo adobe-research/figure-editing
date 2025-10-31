@@ -1,0 +1,2 @@
+Remove the datapoint for Tesla's Energy revenue of 1.5 billion.
+[#OP1 op=remove_datapoint; category=Amazon]

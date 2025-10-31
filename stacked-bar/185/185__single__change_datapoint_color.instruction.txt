@@ -1,0 +1,2 @@
+Change the color of the 'Technology' series to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Amazon; new_color=#8c564b]

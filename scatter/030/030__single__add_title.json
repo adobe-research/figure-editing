@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing credit score vs age with income range as a categorical series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 25,
+          "CreditScore": 650,
+          "IncomeRange": "Low"
+        },
+        {
+          "Age": 35,
+          "CreditScore": 700,
+          "IncomeRange": "Medium"
+        },
+        {
+          "Age": 45,
+          "CreditScore": 720,
+          "IncomeRange": "High"
+        },
+        {
+          "Age": 30,
+          "CreditScore": 680,
+          "IncomeRange": "Low"
+        },
+        {
+          "Age": 40,
+          "CreditScore": 710,
+          "IncomeRange": "Medium"
+        },
+        {
+          "Age": 50,
+          "CreditScore": 730,
+          "IncomeRange": "High"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "CreditScore"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "IncomeRange"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Credit Score"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Income Range"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "CreditScore"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "IncomeRange"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

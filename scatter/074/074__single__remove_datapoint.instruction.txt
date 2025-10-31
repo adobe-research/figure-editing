@@ -1,0 +1,2 @@
+Remove the datapoint with Trip_Duration 20 and Trip_Distance 3.0.
+[#OP1 op=remove_datapoint; category=Customer]

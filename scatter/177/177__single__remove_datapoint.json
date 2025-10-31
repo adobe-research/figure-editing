@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing trip duration vs trip distance, categorized by user type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trip_Duration": 320,
+          "Trip_Distance": 1.2,
+          "User_Type": "Subscriber"
+        },
+        {
+          "Trip_Duration": 450,
+          "Trip_Distance": 2.5,
+          "User_Type": "Customer"
+        },
+        {
+          "Trip_Duration": 600,
+          "Trip_Distance": 3.1,
+          "User_Type": "Subscriber"
+        },
+        {
+          "Trip_Duration": 150,
+          "Trip_Distance": 0.8,
+          "User_Type": "Customer"
+        },
+        {
+          "Trip_Duration": 200,
+          "Trip_Distance": 1.0,
+          "User_Type": "Customer"
+        },
+        {
+          "Trip_Duration": 500,
+          "Trip_Distance": 2.7,
+          "User_Type": "Subscriber"
+        },
+        {
+          "Trip_Duration": 300,
+          "Trip_Distance": 1.8,
+          "User_Type": "Customer"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.8,
+        4.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trip_Duration"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "User_Type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trip Distance (miles)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (seconds)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Trip_Distance"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trip_Duration"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "User_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

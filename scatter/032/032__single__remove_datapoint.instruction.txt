@@ -1,0 +1,2 @@
+Remove the datapoint with Tenure 12 and MonthlyCharges 29.75.
+[#OP1 op=remove_datapoint; category=No]

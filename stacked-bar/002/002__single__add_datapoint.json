@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy production by source across different states.",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "California",
+          "series": "Solar",
+          "value": 120
+        },
+        {
+          "category": "California",
+          "series": "Wind",
+          "value": 80
+        },
+        {
+          "category": "California",
+          "series": "Hydro",
+          "value": 50
+        },
+        {
+          "category": "Texas",
+          "series": "Solar",
+          "value": 100
+        },
+        {
+          "category": "Texas",
+          "series": "Wind",
+          "value": 150
+        },
+        {
+          "category": "Texas",
+          "series": "Hydro",
+          "value": 30
+        },
+        {
+          "category": "Florida",
+          "series": "Solar",
+          "value": 90
+        },
+        {
+          "category": "Florida",
+          "series": "Wind",
+          "value": 40
+        },
+        {
+          "category": "Florida",
+          "series": "Hydro",
+          "value": 20
+        },
+        {
+          "category": "New York",
+          "series": "Solar",
+          "value": 60
+        },
+        {
+          "category": "New York",
+          "series": "Wind",
+          "value": 70
+        },
+        {
+          "category": "New York",
+          "series": "Hydro",
+          "value": 80
+        },
+        {
+          "category": "Illinois",
+          "series": "Solar",
+          "value": 50
+        },
+        {
+          "category": "Illinois",
+          "series": "Wind",
+          "value": 90
+        },
+        {
+          "category": "Illinois",
+          "series": "Hydro",
+          "value": 40
+        },
+        {
+          "category": "Nevada",
+          "series": "Solar",
+          "value": 110
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "State"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Production (in MW)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Energy Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

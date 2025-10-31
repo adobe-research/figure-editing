@@ -1,0 +1,2 @@
+Add a new datapoint with 250 clicks, 70 installs, and device type 'Smartwatch' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Desktop; value=150.0]

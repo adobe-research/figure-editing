@@ -1,0 +1,2 @@
+Remove the datapoint for 'May' and 'Exchange C' with a value of 3200.
+[#OP1 op=remove_datapoint; category=February]

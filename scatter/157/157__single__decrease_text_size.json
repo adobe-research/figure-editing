@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing FIFA player statistics.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Overall": 85,
+          "Potential": 90,
+          "Position": "ST"
+        },
+        {
+          "Overall": 88,
+          "Potential": 91,
+          "Position": "CM"
+        },
+        {
+          "Overall": 92,
+          "Potential": 94,
+          "Position": "LW"
+        },
+        {
+          "Overall": 81,
+          "Potential": 86,
+          "Position": "CB"
+        },
+        {
+          "Overall": 87,
+          "Potential": 89,
+          "Position": "GK"
+        },
+        {
+          "Overall": 78,
+          "Potential": 83,
+          "Position": "RW"
+        },
+        {
+          "Overall": 84,
+          "Potential": 88,
+          "Position": "LB"
+        },
+        {
+          "Overall": 89,
+          "Potential": 92,
+          "Position": "CF"
+        },
+        {
+          "Overall": 80,
+          "Potential": 85,
+          "Position": "RB"
+        },
+        {
+          "Overall": 86,
+          "Potential": 90,
+          "Position": "CAM"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        78,
+        80,
+        81,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        92
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Potential"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Overall Rating",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Potential Rating",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Overall"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Potential"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "{'Overall': datum.Overall, 'Potential': datum.Potential, 'Position': datum.Position}"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

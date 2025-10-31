@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing credit amount vs days employed with target category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "AMT_CREDIT": 500000,
+          "DAYS_EMPLOYED": -1000,
+          "TARGET": "Default"
+        },
+        {
+          "AMT_CREDIT": 600000,
+          "DAYS_EMPLOYED": -1200,
+          "TARGET": "Non-Default"
+        },
+        {
+          "AMT_CREDIT": 700000,
+          "DAYS_EMPLOYED": -800,
+          "TARGET": "Default"
+        },
+        {
+          "AMT_CREDIT": 800000,
+          "DAYS_EMPLOYED": -4000,
+          "TARGET": "Non-Default"
+        },
+        {
+          "AMT_CREDIT": 300000,
+          "DAYS_EMPLOYED": -1500,
+          "TARGET": "Default"
+        },
+        {
+          "AMT_CREDIT": 1000000,
+          "DAYS_EMPLOYED": -200,
+          "TARGET": "Non-Default"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        300000.0,
+        1000000.0
+      ],
+      "range": "width",
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "DAYS_EMPLOYED"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "TARGET"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Credit Amount"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Days Employed"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "AMT_CREDIT"
+          },
+          "y": {
+            "scale": "y",
+            "field": "DAYS_EMPLOYED"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "TARGET"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

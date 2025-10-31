@@ -1,0 +1,346 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing distributions of glucose levels for diabetes categories.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "diabetes",
+      "values": [
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 150
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 160
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 170
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 180
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 190
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 200
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 210
+        },
+        {
+          "Outcome": "Diabetic",
+          "Glucose": 220
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 90
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 95
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 100
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 105
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 110
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 115
+        },
+        {
+          "Outcome": "Non-Diabetic",
+          "Glucose": 120
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Outcome != null && datum.Glucose != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "diabetes",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Glucose",
+          "groupby": [
+            "Outcome"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [50, 250]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "diabetes",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Outcome"
+          ],
+          "fields": [
+            "Glucose",
+            "Glucose",
+            "Glucose"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "diabetes",
+        "field": "Outcome"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "diabetes",
+        "field": "Glucose"
+      },
+      "domainMin": 50,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "diabetes",
+        "field": "Outcome"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Outcome"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Outcome",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Outcome === parent.Outcome"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Outcome"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

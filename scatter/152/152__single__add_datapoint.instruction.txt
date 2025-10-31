@@ -1,0 +1,2 @@
+Add a new datapoint with 20.5 Points_Per_Game, 11.3 Rebounds_Per_Game, and Position 'Forward'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Center; value=22.3]

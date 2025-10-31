@@ -1,0 +1,4 @@
+Change the color of datapoints in Segment_A to #e41a1c, increase text size for axis labels to 14, and add a title 'Santander Transactions Analysis' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Segment_A; new_color=#d62728]
+[#OP2 op=change_datapoint_color; target_category=Segment_B; new_color=#d62728]
+[#OP3 op=add_title; title_text=Edited Chart]

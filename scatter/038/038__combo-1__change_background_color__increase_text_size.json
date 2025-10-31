@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing relationship between age and hours worked per week with income category as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "age": 25,
+          "hours_per_week": 40,
+          "income": ">50K"
+        },
+        {
+          "age": 45,
+          "hours_per_week": 50,
+          "income": "<=50K"
+        },
+        {
+          "age": 30,
+          "hours_per_week": 60,
+          "income": ">50K"
+        },
+        {
+          "age": 35,
+          "hours_per_week": 20,
+          "income": "<=50K"
+        },
+        {
+          "age": 50,
+          "hours_per_week": 45,
+          "income": ">50K"
+        },
+        {
+          "age": 28,
+          "hours_per_week": 35,
+          "income": "<=50K"
+        },
+        {
+          "age": 40,
+          "hours_per_week": 55,
+          "income": ">50K"
+        },
+        {
+          "age": 22,
+          "hours_per_week": 30,
+          "income": "<=50K"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        22,
+        25,
+        28,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "hours_per_week"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "income"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Hours per Week",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Income",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "hours_per_week"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "income"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

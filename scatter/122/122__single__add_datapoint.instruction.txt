@@ -1,0 +1,2 @@
+Add a new datapoint with Price 300, Reviews 90, and RoomType 'Entire home/apt'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Entire home/apt; value=150.0]

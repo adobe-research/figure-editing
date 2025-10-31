@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of age vs balance with job type as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "age": 25,
+          "balance": 1200,
+          "job": "teacher"
+        },
+        {
+          "age": 35,
+          "balance": 1500,
+          "job": "developer"
+        },
+        {
+          "age": 45,
+          "balance": 800,
+          "job": "nurse"
+        },
+        {
+          "age": 29,
+          "balance": 2000,
+          "job": "engineer"
+        },
+        {
+          "age": 40,
+          "balance": 1700,
+          "job": "lawyer"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        25,
+        29,
+        35,
+        40,
+        45
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "balance"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "job"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Age"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Balance"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "balance"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "job"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

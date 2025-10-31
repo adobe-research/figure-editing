@@ -1,0 +1,2 @@
+Add a new datapoint with Player_Age 27, Overall_Rating 81, and Position 'Midfielder'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=27.0]

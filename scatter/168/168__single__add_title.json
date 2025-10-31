@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing question length and word count, colored by question type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "QuestionLength": 120,
+          "WordCount": 20,
+          "QuestionType": "Insincere"
+        },
+        {
+          "QuestionLength": 85,
+          "WordCount": 15,
+          "QuestionType": "Sincere"
+        },
+        {
+          "QuestionLength": 140,
+          "WordCount": 25,
+          "QuestionType": "Insincere"
+        },
+        {
+          "QuestionLength": 100,
+          "WordCount": 18,
+          "QuestionType": "Sincere"
+        },
+        {
+          "QuestionLength": 160,
+          "WordCount": 30,
+          "QuestionType": "Insincere"
+        },
+        {
+          "QuestionLength": 90,
+          "WordCount": 16,
+          "QuestionType": "Sincere"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        85,
+        90,
+        100,
+        120,
+        140,
+        160
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "WordCount"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "QuestionType"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Question Length"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Word Count"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Question Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "QuestionLength"
+          },
+          "y": {
+            "scale": "y",
+            "field": "WordCount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "QuestionType"
+          },
+          "size": {
+            "value": 50
+          }
+        }
+      }
+    }
+  ]
+}

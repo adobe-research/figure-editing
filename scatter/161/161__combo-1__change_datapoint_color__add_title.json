@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of airport coordinates with route counts.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Longitude": -74.1687,
+          "Latitude": 40.6925,
+          "RouteCount": 150
+        },
+        {
+          "Longitude": -118.4085,
+          "Latitude": 33.9416,
+          "RouteCount": 200
+        },
+        {
+          "Longitude": 151.1772,
+          "Latitude": -33.9461,
+          "RouteCount": 180
+        },
+        {
+          "Longitude": -0.4543,
+          "Latitude": 51.47,
+          "RouteCount": 250
+        },
+        {
+          "Longitude": 139.7811,
+          "Latitude": 35.5494,
+          "RouteCount": 300
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        -118.4085,
+        151.1772
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Latitude"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "size",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "RouteCount"
+      },
+      "range": [
+        10,
+        300
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Longitude"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Latitude"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Longitude"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Latitude"
+          },
+          "size": {
+            "scale": "size",
+            "field": "RouteCount"
+          },
+          "fill": {
+            "value": "green"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  }
+}

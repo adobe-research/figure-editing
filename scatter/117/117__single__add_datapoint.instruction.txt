@@ -1,0 +1,2 @@
+Add a new datapoint with a Toxicity Score of 0.6, Comment Length of 130, and Toxicity Type 'Harassment'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Harassment; value=0.6]

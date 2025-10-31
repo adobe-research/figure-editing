@@ -1,0 +1,195 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing carbon emissions by sector for different years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "2010",
+          "series": "Industry",
+          "value": 5000
+        },
+        {
+          "category": "2010",
+          "series": "Transport",
+          "value": 3000
+        },
+        {
+          "category": "2010",
+          "series": "Residential",
+          "value": 2000
+        },
+        {
+          "category": "2010",
+          "series": "Agriculture",
+          "value": 1500
+        },
+        {
+          "category": "2015",
+          "series": "Industry",
+          "value": 5200
+        },
+        {
+          "category": "2015",
+          "series": "Transport",
+          "value": 3200
+        },
+        {
+          "category": "2015",
+          "series": "Residential",
+          "value": 2100
+        },
+        {
+          "category": "2015",
+          "series": "Agriculture",
+          "value": 1600
+        },
+        {
+          "category": "2020",
+          "series": "Industry",
+          "value": 5400
+        },
+        {
+          "category": "2020",
+          "series": "Transport",
+          "value": 3400
+        },
+        {
+          "category": "2020",
+          "series": "Residential",
+          "value": 2200
+        },
+        {
+          "category": "2020",
+          "series": "Agriculture",
+          "value": 1700
+        },
+        {
+          "category": "2025",
+          "series": "Industry",
+          "value": 5600
+        },
+        {
+          "category": "2025",
+          "series": "Transport",
+          "value": 3600
+        },
+        {
+          "category": "2025",
+          "series": "Residential",
+          "value": 2300
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Carbon Emissions (MtCO2)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

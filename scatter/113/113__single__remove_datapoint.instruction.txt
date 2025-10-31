@@ -1,0 +1,2 @@
+Remove the datapoint with Helpfulness 0.95 and ReviewLength 400.
+[#OP1 op=remove_datapoint; category=Home]

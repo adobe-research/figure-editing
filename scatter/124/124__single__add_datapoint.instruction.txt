@@ -1,0 +1,2 @@
+Add a new datapoint with Longitude -87.64, Latitude 41.879, and Arrest 'No'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=-87.633]

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing survey responses by category and sub-series.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Economy",
+          "series": "Positive",
+          "value": 45
+        },
+        {
+          "category": "Economy",
+          "series": "Negative",
+          "value": 30
+        },
+        {
+          "category": "Economy",
+          "series": "Neutral",
+          "value": 25
+        },
+        {
+          "category": "Healthcare",
+          "series": "Positive",
+          "value": 50
+        },
+        {
+          "category": "Healthcare",
+          "series": "Negative",
+          "value": 35
+        },
+        {
+          "category": "Healthcare",
+          "series": "Neutral",
+          "value": 15
+        },
+        {
+          "category": "Education",
+          "series": "Positive",
+          "value": 60
+        },
+        {
+          "category": "Education",
+          "series": "Negative",
+          "value": 25
+        },
+        {
+          "category": "Education",
+          "series": "Neutral",
+          "value": 15
+        },
+        {
+          "category": "Environment",
+          "series": "Positive",
+          "value": 40
+        },
+        {
+          "category": "Environment",
+          "series": "Negative",
+          "value": 30
+        },
+        {
+          "category": "Environment",
+          "series": "Neutral",
+          "value": 30
+        },
+        {
+          "category": "Technology",
+          "series": "Positive",
+          "value": 55
+        },
+        {
+          "category": "Technology",
+          "series": "Negative",
+          "value": 20
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Survey Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Responses"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Response Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint where Trip_Duration is 720 and Trip_Distance is 4.0.
+[#OP1 op=remove_datapoint; category=Subscriber]

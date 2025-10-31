@@ -1,0 +1,2 @@
+Match the datapoint color #4daf4a used in the reference chart.
+[#OP1 op=change_datapoint_color; target_category=CDM; new_color=#4daf4a]

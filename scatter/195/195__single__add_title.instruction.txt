@@ -1,0 +1,2 @@
+Add a title to the scatter plot with the text 'Kernel Dimensions by Variety'.
+[#OP1 op=add_title; title_text=Edited Chart]

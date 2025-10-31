@@ -1,0 +1,2 @@
+Add a new datapoint with Incident_Count 110, Average_Response_Time 5.8, and Primary_Type 'Arson'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Arson; value=120.0]

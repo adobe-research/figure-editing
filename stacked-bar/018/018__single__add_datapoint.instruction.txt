@@ -1,0 +1,2 @@
+Add a new datapoint for the airline 'JetBlue' with delay type 'Weather' and 85 minutes at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=American; value=85.0]

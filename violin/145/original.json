@@ -1,0 +1,359 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of player ages by position in European soccer.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 4"
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 50,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "players",
+      "values": [
+        {
+          "Position": "Midfield",
+          "Age": 22
+        },
+        {
+          "Position": "Midfield",
+          "Age": 24
+        },
+        {
+          "Position": "Midfield",
+          "Age": 26
+        },
+        {
+          "Position": "Midfield",
+          "Age": 28
+        },
+        {
+          "Position": "Midfield",
+          "Age": 30
+        },
+        {
+          "Position": "Midfield",
+          "Age": 32
+        },
+        {
+          "Position": "Forward",
+          "Age": 20
+        },
+        {
+          "Position": "Forward",
+          "Age": 23
+        },
+        {
+          "Position": "Forward",
+          "Age": 25
+        },
+        {
+          "Position": "Forward",
+          "Age": 27
+        },
+        {
+          "Position": "Forward",
+          "Age": 29
+        },
+        {
+          "Position": "Forward",
+          "Age": 31
+        },
+        {
+          "Position": "Defender",
+          "Age": 21
+        },
+        {
+          "Position": "Defender",
+          "Age": 23
+        },
+        {
+          "Position": "Defender",
+          "Age": 26
+        },
+        {
+          "Position": "Defender",
+          "Age": 28
+        },
+        {
+          "Position": "Defender",
+          "Age": 30
+        },
+        {
+          "Position": "Defender",
+          "Age": 33
+        },
+        {
+          "Position": "Goalkeeper",
+          "Age": 24
+        },
+        {
+          "Position": "Goalkeeper",
+          "Age": 26
+        },
+        {
+          "Position": "Goalkeeper",
+          "Age": 28
+        },
+        {
+          "Position": "Goalkeeper",
+          "Age": 30
+        },
+        {
+          "Position": "Goalkeeper",
+          "Age": 32
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "players",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Age",
+          "groupby": [
+            "Position"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "summary",
+      "source": "players",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Position"
+          ],
+          "fields": [
+            "Age",
+            "Age",
+            "Age"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "players",
+        "field": "Position"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "players",
+        "field": "Age"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "players",
+        "field": "Position"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Position"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Position",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "summary",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Position === parent.Position"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Position"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

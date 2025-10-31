@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing income versus age, colored by loan status.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 25,
+          "MonthlyIncome": 3000,
+          "LoanStatus": "Approved"
+        },
+        {
+          "Age": 40,
+          "MonthlyIncome": 4500,
+          "LoanStatus": "Denied"
+        },
+        {
+          "Age": 35,
+          "MonthlyIncome": 5000,
+          "LoanStatus": "Approved"
+        },
+        {
+          "Age": 50,
+          "MonthlyIncome": 7000,
+          "LoanStatus": "Denied"
+        },
+        {
+          "Age": 30,
+          "MonthlyIncome": 3200,
+          "LoanStatus": "Approved"
+        },
+        {
+          "Age": 45,
+          "MonthlyIncome": 6000,
+          "LoanStatus": "Denied"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "round": true,
+      "domain": [
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "MonthlyIncome"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "LoanStatus"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Age",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Monthly Income",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Loan Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyIncome"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "LoanStatus"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

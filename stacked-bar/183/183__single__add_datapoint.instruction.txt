@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'November' with series 'Temperature' and value 22.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=August; value=40.0]

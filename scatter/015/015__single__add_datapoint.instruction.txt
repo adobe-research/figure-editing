@@ -1,0 +1,2 @@
+Add a new datapoint with toxicity_score 0.85, length 250, and category 'neutral'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=identity_hate; value=0.55]

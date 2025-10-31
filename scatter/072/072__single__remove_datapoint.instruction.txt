@@ -1,0 +1,2 @@
+Remove the datapoint with 'ComplaintType' equal to 'Tree Damage'.
+[#OP1 op=remove_datapoint; category=Pothole]

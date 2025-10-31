@@ -1,0 +1,2 @@
+Remove the datapoint where 'Buying_Price' is 3.0 and 'Maintenance_Cost' is 2.0.
+[#OP1 op=remove_datapoint; category=High]

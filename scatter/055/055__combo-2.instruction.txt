@@ -1,0 +1,4 @@
+Change the background color to light gray, increase the text size of axis labels to 14, and add a new datapoint with Alcohol 13.0, Malic_Acid 1.5, and Wine_Class 'Class 1' at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_datapoint; position=end; category=New 1; series=Class 1; value=13.5]

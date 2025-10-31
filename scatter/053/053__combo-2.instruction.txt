@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Rain' to '#6a0dad', increase text size for axis labels to 14, and add a title 'Traffic Analysis by Severity and Weather'.
+[#OP1 op=change_datapoint_color; target_category=Fog; new_color=#9467bd]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

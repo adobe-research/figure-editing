@@ -1,0 +1,2 @@
+Change the color of datapoints for 'Subscriber' to a new color '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=Customer; new_color=#d62728]

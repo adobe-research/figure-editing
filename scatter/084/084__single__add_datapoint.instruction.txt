@@ -1,0 +1,2 @@
+Add a new datapoint with StudyTime 5, FinalGrade 92, and Gender 'Male'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Female; value=3.0]

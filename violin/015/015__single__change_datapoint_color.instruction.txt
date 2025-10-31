@@ -1,0 +1,2 @@
+Change the color of the datapoints representing 'Positive' diabetes status to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Negative; new_color=#ff7f0e]

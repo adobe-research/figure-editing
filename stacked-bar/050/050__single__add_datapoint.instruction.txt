@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Ripple' with series 'Market Cap (USD)' and value 20000000000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Binance Coin; value=30000000000.0]

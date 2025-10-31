@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing temperature anomalies by region over selected years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2000",
+          "region": "North America",
+          "anomaly": 0.5
+        },
+        {
+          "year": "2000",
+          "region": "Europe",
+          "anomaly": 0.6
+        },
+        {
+          "year": "2000",
+          "region": "Asia",
+          "anomaly": 0.7
+        },
+        {
+          "year": "2010",
+          "region": "North America",
+          "anomaly": 0.8
+        },
+        {
+          "year": "2010",
+          "region": "Europe",
+          "anomaly": 0.9
+        },
+        {
+          "year": "2010",
+          "region": "Asia",
+          "anomaly": 1.0
+        },
+        {
+          "year": "2020",
+          "region": "North America",
+          "anomaly": 1.1
+        },
+        {
+          "year": "2020",
+          "region": "Europe",
+          "anomaly": 1.2
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "region"
+          },
+          "field": "anomaly"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "region"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

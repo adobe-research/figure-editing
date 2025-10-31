@@ -1,0 +1,2 @@
+Remove the datapoint for 'Africa' in 'January' with a value of 50000.
+[#OP1 op=remove_datapoint; category=Europe]

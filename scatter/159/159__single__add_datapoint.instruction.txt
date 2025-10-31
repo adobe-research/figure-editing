@@ -1,0 +1,2 @@
+Add a new datapoint with sepalLength 6.0, petalLength 3.5, and species 'versicolor'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=setosa; value=6.0]

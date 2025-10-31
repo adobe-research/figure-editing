@@ -1,0 +1,2 @@
+Add a new datapoint with CO=2.7, NO2=45.0, and Station='Rural'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Industrial; value=2.5]

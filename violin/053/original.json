@@ -1,0 +1,319 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of Loan Amounts across Property Areas.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 10,
+        "max": 100,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "loans",
+      "values": [
+        {
+          "Property Area": "Urban",
+          "Loan Amount": 150000
+        },
+        {
+          "Property Area": "Urban",
+          "Loan Amount": 175000
+        },
+        {
+          "Property Area": "Urban",
+          "Loan Amount": 200000
+        },
+        {
+          "Property Area": "Urban",
+          "Loan Amount": 225000
+        },
+        {
+          "Property Area": "Urban",
+          "Loan Amount": 250000
+        },
+        {
+          "Property Area": "Rural",
+          "Loan Amount": 100000
+        },
+        {
+          "Property Area": "Rural",
+          "Loan Amount": 125000
+        },
+        {
+          "Property Area": "Rural",
+          "Loan Amount": 150000
+        },
+        {
+          "Property Area": "Rural",
+          "Loan Amount": 175000
+        },
+        {
+          "Property Area": "Rural",
+          "Loan Amount": 200000
+        },
+        {
+          "Property Area": "Semiurban",
+          "Loan Amount": 120000
+        },
+        {
+          "Property Area": "Semiurban",
+          "Loan Amount": 140000
+        },
+        {
+          "Property Area": "Semiurban",
+          "Loan Amount": 160000
+        },
+        {
+          "Property Area": "Semiurban",
+          "Loan Amount": 180000
+        },
+        {
+          "Property Area": "Semiurban",
+          "Loan Amount": 200000
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "loans",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Loan Amount",
+          "groupby": [
+            "Property Area"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "loans",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Property Area"
+          ],
+          "fields": [
+            "Loan Amount",
+            "Loan Amount",
+            "Loan Amount"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "loans",
+        "field": "Property Area"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "loans",
+        "field": "Loan Amount"
+      },
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "loans",
+        "field": "Property Area"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Loan Amount"
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "title": "Property Area"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Property Area"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Property Area",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Property Area'] === parent['Property Area']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Property Area"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

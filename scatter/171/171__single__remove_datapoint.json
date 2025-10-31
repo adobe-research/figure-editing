@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of Santander Customer Transaction data.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Transaction_Amount": 120.5,
+          "Account_Balance": 3500.75,
+          "Customer_Segment": "Segment_A"
+        },
+        {
+          "Transaction_Amount": 180.0,
+          "Account_Balance": 4500.0,
+          "Customer_Segment": "Segment_C"
+        },
+        {
+          "Transaction_Amount": 75.8,
+          "Account_Balance": 2200.5,
+          "Customer_Segment": "Segment_A"
+        },
+        {
+          "Transaction_Amount": 130.2,
+          "Account_Balance": 3800.1,
+          "Customer_Segment": "Segment_B"
+        },
+        {
+          "Transaction_Amount": 160.7,
+          "Account_Balance": 4200.35,
+          "Customer_Segment": "Segment_C"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        75.8,
+        180.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Account_Balance"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Customer_Segment"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Amount (USD)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Account Balance (USD)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Customer Segment",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Transaction_Amount"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Account_Balance"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Customer_Segment"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for the 'West' region with 'Nuclear' as the source and a value of 140.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Midwest; value=140.0]

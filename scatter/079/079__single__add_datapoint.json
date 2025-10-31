@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing transaction amount vs. time with fraud labels.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "TransactionAmt": 50.5,
+          "TransactionTime": 120,
+          "FraudLabel": "Fraud"
+        },
+        {
+          "TransactionAmt": 75.0,
+          "TransactionTime": 300,
+          "FraudLabel": "No Fraud"
+        },
+        {
+          "TransactionAmt": 20.3,
+          "TransactionTime": 50,
+          "FraudLabel": "Fraud"
+        },
+        {
+          "TransactionAmt": 100.0,
+          "TransactionTime": 600,
+          "FraudLabel": "No Fraud"
+        },
+        {
+          "TransactionAmt": 150.7,
+          "TransactionTime": 840,
+          "FraudLabel": "Fraud"
+        },
+        {
+          "TransactionAmt": 45.9,
+          "TransactionTime": 200,
+          "FraudLabel": "No Fraud"
+        },
+        {
+          "TransactionAmt": 80.0,
+          "TransactionTime": 400,
+          "FraudLabel": "Fraud"
+        },
+        {
+          "TransactionAmt": 60.0,
+          "TransactionTime": 500,
+          "FraudLabel": "No Fraud"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        50.0,
+        840.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "TransactionAmt"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "FraudLabel"
+      },
+      "range": [
+        "red",
+        "blue"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Time (seconds)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Amount (USD)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Fraud Label"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "TransactionTime"
+          },
+          "y": {
+            "scale": "y",
+            "field": "TransactionAmt"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "FraudLabel"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

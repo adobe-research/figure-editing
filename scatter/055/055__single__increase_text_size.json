@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing alcohol content vs malic acid with color representing wine class.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Alcohol": 14.2,
+          "Malic_Acid": 1.71,
+          "Wine_Class": "Class 1"
+        },
+        {
+          "Alcohol": 13.2,
+          "Malic_Acid": 1.78,
+          "Wine_Class": "Class 2"
+        },
+        {
+          "Alcohol": 13.8,
+          "Malic_Acid": 2.36,
+          "Wine_Class": "Class 3"
+        },
+        {
+          "Alcohol": 12.4,
+          "Malic_Acid": 1.12,
+          "Wine_Class": "Class 1"
+        },
+        {
+          "Alcohol": 13.5,
+          "Malic_Acid": 2.45,
+          "Wine_Class": "Class 2"
+        },
+        {
+          "Alcohol": 14.1,
+          "Malic_Acid": 2.15,
+          "Wine_Class": "Class 3"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        12.4,
+        14.2
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Malic_Acid"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Wine_Class"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Alcohol Content",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Malic Acid",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Wine Class"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Alcohol"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Malic_Acid"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Wine_Class"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

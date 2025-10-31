@@ -1,0 +1,2 @@
+Add a new datapoint with age 55, balance 4500, and job 'artist'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=artist; value=40.0]

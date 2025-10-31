@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of Abalone dataset depicting shell dimensions and age.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Length": 0.455,
+          "Diameter": 0.365,
+          "Rings": 15,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.35,
+          "Diameter": 0.265,
+          "Rings": 7,
+          "Sex": "F"
+        },
+        {
+          "Length": 0.53,
+          "Diameter": 0.42,
+          "Rings": 9,
+          "Sex": "I"
+        },
+        {
+          "Length": 0.44,
+          "Diameter": 0.365,
+          "Rings": 10,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.47,
+          "Diameter": 0.385,
+          "Rings": 12,
+          "Sex": "I"
+        },
+        {
+          "Length": 0.5,
+          "Diameter": 0.4,
+          "Rings": 11,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.34,
+          "Diameter": 0.27,
+          "Rings": 8,
+          "Sex": "F"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.33,
+        0.53
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Diameter"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Sex"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Length (mm)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Diameter (mm)"
+    }
+  ],
+  "legends": [
+    {
+      "scale": "color",
+      "title": "Sex"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Diameter"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Sex"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

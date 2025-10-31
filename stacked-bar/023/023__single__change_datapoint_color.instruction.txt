@@ -1,0 +1,2 @@
+Change the color of datapoints representing the 'Healthcare' industry to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=2016; new_color=#d62728]

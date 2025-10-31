@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing house prices by neighborhood and year built.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Neighborhood A",
+          "series": "Before 1950",
+          "value": 150000
+        },
+        {
+          "category": "Neighborhood A",
+          "series": "1950-2000",
+          "value": 250000
+        },
+        {
+          "category": "Neighborhood A",
+          "series": "After 2000",
+          "value": 300000
+        },
+        {
+          "category": "Neighborhood B",
+          "series": "Before 1950",
+          "value": 200000
+        },
+        {
+          "category": "Neighborhood B",
+          "series": "1950-2000",
+          "value": 300000
+        },
+        {
+          "category": "Neighborhood B",
+          "series": "After 2000",
+          "value": 350000
+        },
+        {
+          "category": "Neighborhood C",
+          "series": "Before 1950",
+          "value": 180000
+        },
+        {
+          "category": "Neighborhood C",
+          "series": "1950-2000",
+          "value": 270000
+        },
+        {
+          "category": "Neighborhood C",
+          "series": "After 2000",
+          "value": 320000
+        },
+        {
+          "category": "Neighborhood D",
+          "series": "Before 1950",
+          "value": 220000
+        },
+        {
+          "category": "Neighborhood D",
+          "series": "1950-2000",
+          "value": 310000
+        },
+        {
+          "category": "Neighborhood D",
+          "series": "After 2000",
+          "value": 360000
+        },
+        {
+          "category": "Neighborhood E",
+          "series": "Before 1950",
+          "value": 170000
+        },
+        {
+          "category": "Neighborhood E",
+          "series": "After 2000",
+          "value": 310000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Neighborhood"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "House Price ($)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year Built",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

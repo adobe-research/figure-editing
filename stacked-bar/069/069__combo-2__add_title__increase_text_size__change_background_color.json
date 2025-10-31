@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing bike sharing demand by season and user type.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Spring",
+          "series": "Casual Users",
+          "value": 3200
+        },
+        {
+          "category": "Spring",
+          "series": "Registered Users",
+          "value": 7800
+        },
+        {
+          "category": "Summer",
+          "series": "Casual Users",
+          "value": 4500
+        },
+        {
+          "category": "Summer",
+          "series": "Registered Users",
+          "value": 9200
+        },
+        {
+          "category": "Fall",
+          "series": "Casual Users",
+          "value": 3100
+        },
+        {
+          "category": "Fall",
+          "series": "Registered Users",
+          "value": 8500
+        },
+        {
+          "category": "Winter",
+          "series": "Casual Users",
+          "value": 2100
+        },
+        {
+          "category": "Winter",
+          "series": "Registered Users",
+          "value": 6800
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Season",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Bike Sharing Demand",
+      "labelFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "User Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

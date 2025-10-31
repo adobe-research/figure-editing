@@ -1,0 +1,346 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing transaction amount distributions for different product categories.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "transactions",
+      "values": [
+        {
+          "ProductCD": "W",
+          "TransactionAmt": 25.5
+        },
+        {
+          "ProductCD": "W",
+          "TransactionAmt": 27.3
+        },
+        {
+          "ProductCD": "W",
+          "TransactionAmt": 29.2
+        },
+        {
+          "ProductCD": "W",
+          "TransactionAmt": 30.1
+        },
+        {
+          "ProductCD": "W",
+          "TransactionAmt": 32.8
+        },
+        {
+          "ProductCD": "C",
+          "TransactionAmt": 50.2
+        },
+        {
+          "ProductCD": "C",
+          "TransactionAmt": 52.5
+        },
+        {
+          "ProductCD": "C",
+          "TransactionAmt": 55.1
+        },
+        {
+          "ProductCD": "C",
+          "TransactionAmt": 57.8
+        },
+        {
+          "ProductCD": "C",
+          "TransactionAmt": 60.0
+        },
+        {
+          "ProductCD": "R",
+          "TransactionAmt": 15.0
+        },
+        {
+          "ProductCD": "R",
+          "TransactionAmt": 18.5
+        },
+        {
+          "ProductCD": "R",
+          "TransactionAmt": 20.3
+        },
+        {
+          "ProductCD": "R",
+          "TransactionAmt": 22.0
+        },
+        {
+          "ProductCD": "R",
+          "TransactionAmt": 23.7
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.ProductCD != null && datum.TransactionAmt != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "TransactionAmt",
+          "groupby": [
+            "ProductCD"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [10, 70]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "ProductCD"
+          ],
+          "fields": [
+            "TransactionAmt",
+            "TransactionAmt",
+            "TransactionAmt"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "transactions",
+        "field": "ProductCD"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "transactions",
+        "field": "TransactionAmt"
+      },
+      "domainMin": 10,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "transactions",
+        "field": "ProductCD"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "ProductCD"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "ProductCD",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.ProductCD === parent.ProductCD"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "ProductCD"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Change the datapoint color for 'Insincere' classification to a new color palette.
+[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#ff7f0e]

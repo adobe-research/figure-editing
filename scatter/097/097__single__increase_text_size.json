@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of GDP vs. Personal Income with regions as categories.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP": 21000,
+          "Personal_Income": 35000,
+          "Region": "Northeast"
+        },
+        {
+          "GDP": 18000,
+          "Personal_Income": 30000,
+          "Region": "Midwest"
+        },
+        {
+          "GDP": 25000,
+          "Personal_Income": 40000,
+          "Region": "West"
+        },
+        {
+          "GDP": 16000,
+          "Personal_Income": 28000,
+          "Region": "South"
+        },
+        {
+          "GDP": 22000,
+          "Personal_Income": 37000,
+          "Region": "Northeast"
+        },
+        {
+          "GDP": 19000,
+          "Personal_Income": 32000,
+          "Region": "Midwest"
+        },
+        {
+          "GDP": 27000,
+          "Personal_Income": 42000,
+          "Region": "West"
+        },
+        {
+          "GDP": 17000,
+          "Personal_Income": 29000,
+          "Region": "South"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        16000.0,
+        27000.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "Personal_Income"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP (in billions)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Personal Income (in dollars)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "GDP"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Personal_Income"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

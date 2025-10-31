@@ -1,0 +1,2 @@
+Remove the datapoint with Transaction_Amount 80.0 and Transaction_Time 56789.
+[#OP1 op=remove_datapoint; category=Non-Fraud]

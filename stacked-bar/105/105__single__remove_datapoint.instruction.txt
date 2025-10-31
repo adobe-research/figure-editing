@@ -1,0 +1,2 @@
+Remove the datapoint for 'April' with series 'Low Price' and value 43000.
+[#OP1 op=remove_datapoint; category=March]

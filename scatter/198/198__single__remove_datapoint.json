@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing protein localization data from the UCI Yeast Dataset.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "mcg": 0.66,
+          "gvh": 0.5,
+          "location": "CYT"
+        },
+        {
+          "mcg": 0.85,
+          "gvh": 0.7,
+          "location": "NUC"
+        },
+        {
+          "mcg": 0.57,
+          "gvh": 0.45,
+          "location": "MIT"
+        },
+        {
+          "mcg": 0.9,
+          "gvh": 0.8,
+          "location": "ME3"
+        },
+        {
+          "mcg": 0.72,
+          "gvh": 0.6,
+          "location": "CYT"
+        },
+        {
+          "mcg": 0.55,
+          "gvh": 0.4,
+          "location": "ME2"
+        },
+        {
+          "mcg": 0.62,
+          "gvh": 0.5,
+          "location": "MIT"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.55,
+        0.9
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "gvh"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "location"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "mcg (McGeoch's method for signal sequence recognition)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "gvh (von Heijne's method for signal sequence recognition)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Location",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "mcg"
+          },
+          "y": {
+            "scale": "y",
+            "field": "gvh"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "location"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

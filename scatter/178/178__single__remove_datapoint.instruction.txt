@@ -1,0 +1,2 @@
+Remove the datapoint representing Oceania with GDP 25000 and Inflation 2.0.
+[#OP1 op=remove_datapoint; category=North America]

@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing weather conditions by month.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "condition": "Rainy",
+          "days": 15
+        },
+        {
+          "month": "January",
+          "condition": "Sunny",
+          "days": 10
+        },
+        {
+          "month": "January",
+          "condition": "Overcast",
+          "days": 6
+        },
+        {
+          "month": "February",
+          "condition": "Rainy",
+          "days": 12
+        },
+        {
+          "month": "February",
+          "condition": "Sunny",
+          "days": 8
+        },
+        {
+          "month": "February",
+          "condition": "Overcast",
+          "days": 8
+        },
+        {
+          "month": "March",
+          "condition": "Rainy",
+          "days": 10
+        },
+        {
+          "month": "March",
+          "condition": "Sunny",
+          "days": 12
+        },
+        {
+          "month": "March",
+          "condition": "Overcast",
+          "days": 9
+        },
+        {
+          "month": "April",
+          "condition": "Rainy",
+          "days": 8
+        },
+        {
+          "month": "April",
+          "condition": "Sunny",
+          "days": 15
+        },
+        {
+          "month": "April",
+          "condition": "Overcast",
+          "days": 7
+        },
+        {
+          "month": "May",
+          "condition": "Rainy",
+          "days": 5
+        },
+        {
+          "month": "May",
+          "condition": "Sunny",
+          "days": 20
+        },
+        {
+          "month": "May",
+          "condition": "Overcast",
+          "days": 6
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "condition"
+          },
+          "field": "days"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "paddingInner": 0.8,
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "condition"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Days"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Condition",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "condition"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with price 300 and number_of_reviews 15.
+[#OP1 op=remove_datapoint; category=Bronx]

@@ -1,0 +1,2 @@
+Add a new datapoint with Severity 5, Traffic_Delay 50.0, and Weather_Condition 'Hail'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Clear; value=3.0]

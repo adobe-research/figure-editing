@@ -1,0 +1,2 @@
+Change the datapoint color for 'Electric' bike type to '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=Standard; new_color=#d62728]

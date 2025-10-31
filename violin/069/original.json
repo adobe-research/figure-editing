@@ -1,0 +1,358 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of transaction amounts for different customer segments.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "transactions",
+      "values": [
+        {
+          "Segment": "High Value",
+          "Transaction Amount": 5000
+        },
+        {
+          "Segment": "High Value",
+          "Transaction Amount": 5200
+        },
+        {
+          "Segment": "High Value",
+          "Transaction Amount": 5400
+        },
+        {
+          "Segment": "High Value",
+          "Transaction Amount": 5600
+        },
+        {
+          "Segment": "High Value",
+          "Transaction Amount": 5800
+        },
+        {
+          "Segment": "High Value",
+          "Transaction Amount": 6000
+        },
+        {
+          "Segment": "Medium Value",
+          "Transaction Amount": 3000
+        },
+        {
+          "Segment": "Medium Value",
+          "Transaction Amount": 3200
+        },
+        {
+          "Segment": "Medium Value",
+          "Transaction Amount": 3400
+        },
+        {
+          "Segment": "Medium Value",
+          "Transaction Amount": 3500
+        },
+        {
+          "Segment": "Medium Value",
+          "Transaction Amount": 3600
+        },
+        {
+          "Segment": "Medium Value",
+          "Transaction Amount": 3800
+        },
+        {
+          "Segment": "Low Value",
+          "Transaction Amount": 1000
+        },
+        {
+          "Segment": "Low Value",
+          "Transaction Amount": 1200
+        },
+        {
+          "Segment": "Low Value",
+          "Transaction Amount": 1400
+        },
+        {
+          "Segment": "Low Value",
+          "Transaction Amount": 1500
+        },
+        {
+          "Segment": "Low Value",
+          "Transaction Amount": 1600
+        },
+        {
+          "Segment": "Low Value",
+          "Transaction Amount": 1800
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Segment != null && datum['Transaction Amount'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Transaction Amount",
+          "groupby": [
+            "Segment"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [0, 7000]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Segment"
+          ],
+          "fields": [
+            "Transaction Amount",
+            "Transaction Amount",
+            "Transaction Amount"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "transactions",
+        "field": "Segment"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "transactions",
+        "field": "Transaction Amount"
+      },
+      "domainMin": 0,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "transactions",
+        "field": "Segment"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Segment"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Segment",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Segment === parent.Segment"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Segment"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

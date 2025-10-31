@@ -1,0 +1,2 @@
+Add a new datapoint for June with series 'Region A' and value 220 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=130.0]

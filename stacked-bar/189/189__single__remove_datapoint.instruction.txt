@@ -1,0 +1,2 @@
+Remove the datapoint with category 'May' and series 'Derivatives'.
+[#OP1 op=remove_datapoint; category=March]

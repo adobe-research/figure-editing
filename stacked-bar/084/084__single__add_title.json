@@ -1,0 +1,206 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing survey responses by category and series.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Social Media Use",
+          "series": "18-29",
+          "value": 75
+        },
+        {
+          "category": "Social Media Use",
+          "series": "30-49",
+          "value": 68
+        },
+        {
+          "category": "Social Media Use",
+          "series": "50-64",
+          "value": 55
+        },
+        {
+          "category": "Social Media Use",
+          "series": "65+",
+          "value": 34
+        },
+        {
+          "category": "Online Shopping",
+          "series": "18-29",
+          "value": 82
+        },
+        {
+          "category": "Online Shopping",
+          "series": "30-49",
+          "value": 76
+        },
+        {
+          "category": "Online Shopping",
+          "series": "50-64",
+          "value": 63
+        },
+        {
+          "category": "Online Shopping",
+          "series": "65+",
+          "value": 41
+        },
+        {
+          "category": "News Consumption",
+          "series": "18-29",
+          "value": 60
+        },
+        {
+          "category": "News Consumption",
+          "series": "30-49",
+          "value": 72
+        },
+        {
+          "category": "News Consumption",
+          "series": "50-64",
+          "value": 78
+        },
+        {
+          "category": "News Consumption",
+          "series": "65+",
+          "value": 85
+        },
+        {
+          "category": "Streaming Services",
+          "series": "18-29",
+          "value": 90
+        },
+        {
+          "category": "Streaming Services",
+          "series": "30-49",
+          "value": 80
+        },
+        {
+          "category": "Streaming Services",
+          "series": "50-64",
+          "value": 65
+        },
+        {
+          "category": "Streaming Services",
+          "series": "65+",
+          "value": 45
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Survey Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Percentage (%)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Age Group",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

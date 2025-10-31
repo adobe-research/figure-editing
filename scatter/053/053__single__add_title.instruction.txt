@@ -1,0 +1,2 @@
+Add a title to the scatter plot with the text 'Traffic Delay vs Severity by Weather Condition'.
+[#OP1 op=add_title; title_text=Edited Chart]

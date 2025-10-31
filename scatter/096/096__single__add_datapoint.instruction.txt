@@ -1,0 +1,2 @@
+Add a new datapoint with mcg=0.55, gvh=0.6, and class='VAC'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CYT; value=0.58]

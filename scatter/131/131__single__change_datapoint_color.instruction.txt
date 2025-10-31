@@ -1,0 +1,2 @@
+Change the color of datapoints associated with 'On Time' payment status to a new color '#8c564b'.
+[#OP1 op=change_datapoint_color; target_category=On Time; new_color=#d62728]

@@ -1,0 +1,2 @@
+Remove the datapoint where GDP is 19000 and Personal Income is 32000.
+[#OP1 op=remove_datapoint; category=Midwest]

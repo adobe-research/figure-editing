@@ -1,0 +1,2 @@
+Remove the datapoint for 'Africa' with series 'Deaths' and value 10000.
+[#OP1 op=remove_datapoint; category=North America]

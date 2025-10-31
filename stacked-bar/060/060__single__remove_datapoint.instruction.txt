@@ -1,0 +1,2 @@
+Remove the datapoint for South America with series 'Inflation Rate' and value 15.6.
+[#OP1 op=remove_datapoint; category=South America]

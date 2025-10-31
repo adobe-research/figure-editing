@@ -1,0 +1,2 @@
+Remove the datapoint where 'Buying' is 4.3 and 'Safety' is 8.1.
+[#OP1 op=remove_datapoint; category=Unacceptable]

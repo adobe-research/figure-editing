@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing Age vs Fare with Survival Status as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 22,
+          "Fare": 7.25,
+          "Survived": "No"
+        },
+        {
+          "Age": 38,
+          "Fare": 71.2833,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 26,
+          "Fare": 7.925,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 35,
+          "Fare": 53.1,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 28,
+          "Fare": 8.05,
+          "Survived": "No"
+        },
+        {
+          "Age": 54,
+          "Fare": 51.8625,
+          "Survived": "No"
+        },
+        {
+          "Age": 2,
+          "Fare": 21.075,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 27,
+          "Fare": 11.1333,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 14,
+          "Fare": 30.0708,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 4,
+          "Fare": 16.7,
+          "Survived": "Yes"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "round": true,
+      "domain": [
+        2,
+        4,
+        14,
+        22,
+        26,
+        27,
+        28,
+        35,
+        38,
+        54
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Fare"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Survived"
+      },
+      "range": [
+        "red",
+        "green"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "tickCount": 5,
+      "title": "Age"
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "titlePadding": 5,
+      "title": "Fare"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Survival Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "name": "marks",
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Fare"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Survived"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

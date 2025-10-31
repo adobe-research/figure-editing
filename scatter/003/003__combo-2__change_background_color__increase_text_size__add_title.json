@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of FIFA player statistics showing Overall Rating vs Potential with points colored by Position.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Overall": 85,
+          "Potential": 90,
+          "Position": "Forward"
+        },
+        {
+          "Overall": 78,
+          "Potential": 82,
+          "Position": "Midfielder"
+        },
+        {
+          "Overall": 88,
+          "Potential": 91,
+          "Position": "Defender"
+        },
+        {
+          "Overall": 92,
+          "Potential": 94,
+          "Position": "Forward"
+        },
+        {
+          "Overall": 76,
+          "Potential": 80,
+          "Position": "Goalkeeper"
+        },
+        {
+          "Overall": 81,
+          "Potential": 85,
+          "Position": "Midfielder"
+        },
+        {
+          "Overall": 79,
+          "Potential": 84,
+          "Position": "Defender"
+        },
+        {
+          "Overall": 90,
+          "Potential": 93,
+          "Position": "Forward"
+        },
+        {
+          "Overall": 77,
+          "Potential": 81,
+          "Position": "Goalkeeper"
+        },
+        {
+          "Overall": 84,
+          "Potential": 88,
+          "Position": "Midfielder"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        76,
+        77,
+        78,
+        79,
+        81,
+        84,
+        85,
+        88,
+        90,
+        92
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Potential"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Overall Rating",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Potential",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Overall"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Potential"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

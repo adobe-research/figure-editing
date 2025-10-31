@@ -1,0 +1,2 @@
+Remove the datapoint with Temperature 36.0 and Rain 0.1 from the chart.
+[#OP1 op=remove_datapoint; category=South]

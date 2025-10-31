@@ -1,0 +1,2 @@
+Remove the datapoint for 'Humidity' in the month of 'June'.
+[#OP1 op=remove_datapoint; category=February]

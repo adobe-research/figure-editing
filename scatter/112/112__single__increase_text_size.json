@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between age and fare for Titanic passengers, colored by survival status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 22,
+          "Fare": 7.25,
+          "Survived": "No"
+        },
+        {
+          "Age": 38,
+          "Fare": 71.2833,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 26,
+          "Fare": 7.925,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 35,
+          "Fare": 53.1,
+          "Survived": "No"
+        },
+        {
+          "Age": 28,
+          "Fare": 8.4583,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 2,
+          "Fare": 21.075,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 40,
+          "Fare": 27.9,
+          "Survived": "No"
+        },
+        {
+          "Age": 31,
+          "Fare": 18.0,
+          "Survived": "No"
+        },
+        {
+          "Age": 19,
+          "Fare": 263.0,
+          "Survived": "Yes"
+        },
+        {
+          "Age": 24,
+          "Fare": 7.75,
+          "Survived": "No"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        2,
+        19,
+        22,
+        24,
+        26,
+        28,
+        31,
+        35,
+        38,
+        40
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Fare"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Survived"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Fare",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Survived",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Fare"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Survived"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

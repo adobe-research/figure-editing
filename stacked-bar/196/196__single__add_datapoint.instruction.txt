@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Gaming Habits', series 'Strongly Agree', and value 60.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Gaming Habits; value=25.0]

@@ -1,0 +1,2 @@
+Remove the datapoint where 'State' is 'GA'.
+[#OP1 op=remove_datapoint; category=NC]

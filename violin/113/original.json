@@ -1,0 +1,326 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing transaction amounts by fraud category.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "transactions",
+      "values": [
+        {
+          "FraudCategory": "Legitimate",
+          "TransactionAmount": 50
+        },
+        {
+          "FraudCategory": "Legitimate",
+          "TransactionAmount": 75
+        },
+        {
+          "FraudCategory": "Legitimate",
+          "TransactionAmount": 90
+        },
+        {
+          "FraudCategory": "Legitimate",
+          "TransactionAmount": 120
+        },
+        {
+          "FraudCategory": "Legitimate",
+          "TransactionAmount": 150
+        },
+        {
+          "FraudCategory": "Fraudulent",
+          "TransactionAmount": 200
+        },
+        {
+          "FraudCategory": "Fraudulent",
+          "TransactionAmount": 250
+        },
+        {
+          "FraudCategory": "Fraudulent",
+          "TransactionAmount": 300
+        },
+        {
+          "FraudCategory": "Fraudulent",
+          "TransactionAmount": 350
+        },
+        {
+          "FraudCategory": "Fraudulent",
+          "TransactionAmount": 400
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.FraudCategory != null && datum.TransactionAmount != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "TransactionAmount",
+          "groupby": [
+            "FraudCategory"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [0, 500]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "transactions",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "FraudCategory"
+          ],
+          "fields": [
+            "TransactionAmount",
+            "TransactionAmount",
+            "TransactionAmount"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "transactions",
+        "field": "FraudCategory"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "transactions",
+        "field": "TransactionAmount"
+      },
+      "domainMin": 0,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "transactions",
+        "field": "FraudCategory"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "FraudCategory"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "FraudCategory",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.FraudCategory === parent.FraudCategory"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "FraudCategory"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

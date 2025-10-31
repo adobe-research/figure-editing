@@ -1,0 +1,2 @@
+Remove the datapoint where Vehicle_Age is 3.0 and Annual_Premium is 60000.
+[#OP1 op=remove_datapoint; category=Yes]

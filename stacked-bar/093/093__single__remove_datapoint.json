@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing property types and their average sale prices by house condition.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Single-Family",
+          "series": "Excellent",
+          "value": 350000
+        },
+        {
+          "category": "Single-Family",
+          "series": "Good",
+          "value": 300000
+        },
+        {
+          "category": "Single-Family",
+          "series": "Fair",
+          "value": 250000
+        },
+        {
+          "category": "Condo",
+          "series": "Excellent",
+          "value": 400000
+        },
+        {
+          "category": "Condo",
+          "series": "Good",
+          "value": 350000
+        },
+        {
+          "category": "Townhouse",
+          "series": "Excellent",
+          "value": 375000
+        },
+        {
+          "category": "Townhouse",
+          "series": "Good",
+          "value": 325000
+        },
+        {
+          "category": "Townhouse",
+          "series": "Fair",
+          "value": 275000
+        },
+        {
+          "category": "Multi-Family",
+          "series": "Excellent",
+          "value": 450000
+        },
+        {
+          "category": "Multi-Family",
+          "series": "Good",
+          "value": 400000
+        },
+        {
+          "category": "Multi-Family",
+          "series": "Fair",
+          "value": 350000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Property Type"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Average Sale Price"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Condition",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

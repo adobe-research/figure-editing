@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing COVID-19 cases by region and month.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "North America",
+          "series": "January",
+          "value": 120000
+        },
+        {
+          "category": "North America",
+          "series": "February",
+          "value": 150000
+        },
+        {
+          "category": "North America",
+          "series": "March",
+          "value": 180000
+        },
+        {
+          "category": "Europe",
+          "series": "January",
+          "value": 100000
+        },
+        {
+          "category": "Europe",
+          "series": "February",
+          "value": 130000
+        },
+        {
+          "category": "Europe",
+          "series": "March",
+          "value": 170000
+        },
+        {
+          "category": "Asia",
+          "series": "January",
+          "value": 90000
+        },
+        {
+          "category": "Asia",
+          "series": "February",
+          "value": 110000
+        },
+        {
+          "category": "Asia",
+          "series": "March",
+          "value": 140000
+        },
+        {
+          "category": "South America",
+          "series": "January",
+          "value": 70000
+        },
+        {
+          "category": "South America",
+          "series": "February",
+          "value": 85000
+        },
+        {
+          "category": "South America",
+          "series": "March",
+          "value": 95000
+        },
+        {
+          "category": "Africa",
+          "series": "January",
+          "value": 60000
+        },
+        {
+          "category": "Africa",
+          "series": "February",
+          "value": 75000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "COVID-19 Cases"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Month",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

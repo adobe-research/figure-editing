@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing FAO Food Price Index categories and sub-series values.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Cereals",
+          "series": "2019",
+          "value": 105
+        },
+        {
+          "category": "Cereals",
+          "series": "2020",
+          "value": 120
+        },
+        {
+          "category": "Cereals",
+          "series": "2021",
+          "value": 135
+        },
+        {
+          "category": "Vegetable Oils",
+          "series": "2019",
+          "value": 95
+        },
+        {
+          "category": "Vegetable Oils",
+          "series": "2020",
+          "value": 110
+        },
+        {
+          "category": "Vegetable Oils",
+          "series": "2021",
+          "value": 125
+        },
+        {
+          "category": "Meat",
+          "series": "2019",
+          "value": 80
+        },
+        {
+          "category": "Meat",
+          "series": "2020",
+          "value": 85
+        },
+        {
+          "category": "Meat",
+          "series": "2021",
+          "value": 90
+        },
+        {
+          "category": "Dairy",
+          "series": "2019",
+          "value": 75
+        },
+        {
+          "category": "Dairy",
+          "series": "2020",
+          "value": 80
+        },
+        {
+          "category": "Dairy",
+          "series": "2021",
+          "value": 85
+        },
+        {
+          "category": "Sugar",
+          "series": "2019",
+          "value": 65
+        },
+        {
+          "category": "Sugar",
+          "series": "2020",
+          "value": 70
+        },
+        {
+          "category": "Sugar",
+          "series": "2021",
+          "value": 75
+        },
+        {
+          "category": "Fruits",
+          "series": "2022",
+          "value": 100
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Food Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Index Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

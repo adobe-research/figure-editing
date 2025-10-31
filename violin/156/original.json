@@ -1,0 +1,342 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing distributions of income level by loan status.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "income_data",
+      "values": [
+        {
+          "Loan Status": "Approved",
+          "Income Level": 25000
+        },
+        {
+          "Loan Status": "Approved",
+          "Income Level": 27000
+        },
+        {
+          "Loan Status": "Approved",
+          "Income Level": 30000
+        },
+        {
+          "Loan Status": "Approved",
+          "Income Level": 32000
+        },
+        {
+          "Loan Status": "Approved",
+          "Income Level": 35000
+        },
+        {
+          "Loan Status": "Approved",
+          "Income Level": 37000
+        },
+        {
+          "Loan Status": "Approved",
+          "Income Level": 40000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 18000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 20000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 22000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 24000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 26000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 28000
+        },
+        {
+          "Loan Status": "Denied",
+          "Income Level": 30000
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Loan Status'] != null && datum['Income Level'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "income_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Income Level",
+          "groupby": [
+            "Loan Status"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [15000, 45000]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "income_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Loan Status"
+          ],
+          "fields": [
+            "Income Level",
+            "Income Level",
+            "Income Level"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "income_data",
+        "field": "Loan Status"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "income_data",
+        "field": "Income Level"
+      },
+      "domainMin": 15000,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "income_data",
+        "field": "Loan Status"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Loan Status"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Loan Status",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Loan Status'] === parent['Loan Status']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Loan Status"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

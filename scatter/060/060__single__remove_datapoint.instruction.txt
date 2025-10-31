@@ -1,0 +1,2 @@
+Remove the datapoint where Time is 1300 and Amount is 45.0.
+[#OP1 op=remove_datapoint; category=No]

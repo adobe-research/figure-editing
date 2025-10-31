@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Technology', series 'Democrats', and value 65 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Economy; value=35.0]

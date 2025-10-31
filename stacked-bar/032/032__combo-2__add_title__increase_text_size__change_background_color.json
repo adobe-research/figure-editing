@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart using World Bank WDI data.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Health",
+          "series": "2010",
+          "value": 45
+        },
+        {
+          "category": "Health",
+          "series": "2020",
+          "value": 60
+        },
+        {
+          "category": "Education",
+          "series": "2010",
+          "value": 30
+        },
+        {
+          "category": "Education",
+          "series": "2020",
+          "value": 50
+        },
+        {
+          "category": "Infrastructure",
+          "series": "2010",
+          "value": 25
+        },
+        {
+          "category": "Infrastructure",
+          "series": "2020",
+          "value": 40
+        },
+        {
+          "category": "Environment",
+          "series": "2010",
+          "value": 35
+        },
+        {
+          "category": "Environment",
+          "series": "2020",
+          "value": 55
+        },
+        {
+          "category": "Agriculture",
+          "series": "2010",
+          "value": 20
+        },
+        {
+          "category": "Agriculture",
+          "series": "2020",
+          "value": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category",
+      "labelFontSize": 16,
+      "tickFontSize": 12,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value",
+      "labelFontSize": 16,
+      "tickFontSize": 12,
+      "titleFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

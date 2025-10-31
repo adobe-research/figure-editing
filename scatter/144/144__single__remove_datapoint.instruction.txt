@@ -1,0 +1,2 @@
+Remove the datapoint where Math_Score is 80 and Reading_Score is 75.
+[#OP1 op=remove_datapoint; category=High]

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing COVID-19 cases by region and type.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "region": "North America",
+          "type": "Confirmed",
+          "cases": 500000
+        },
+        {
+          "region": "North America",
+          "type": "Recovered",
+          "cases": 300000
+        },
+        {
+          "region": "North America",
+          "type": "Deaths",
+          "cases": 20000
+        },
+        {
+          "region": "Europe",
+          "type": "Confirmed",
+          "cases": 600000
+        },
+        {
+          "region": "Europe",
+          "type": "Recovered",
+          "cases": 400000
+        },
+        {
+          "region": "Europe",
+          "type": "Deaths",
+          "cases": 30000
+        },
+        {
+          "region": "Asia",
+          "type": "Confirmed",
+          "cases": 700000
+        },
+        {
+          "region": "Asia",
+          "type": "Recovered",
+          "cases": 500000
+        },
+        {
+          "region": "Asia",
+          "type": "Deaths",
+          "cases": 25000
+        },
+        {
+          "region": "Africa",
+          "type": "Confirmed",
+          "cases": 200000
+        },
+        {
+          "region": "Africa",
+          "type": "Recovered",
+          "cases": 150000
+        },
+        {
+          "region": "Africa",
+          "type": "Deaths",
+          "cases": 10000
+        },
+        {
+          "region": "Oceania",
+          "type": "Confirmed",
+          "cases": 50000
+        },
+        {
+          "region": "Oceania",
+          "type": "Recovered",
+          "cases": 40000
+        },
+        {
+          "region": "Oceania",
+          "type": "Deaths",
+          "cases": 2000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Cases",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Case Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "cases",
+            "offset": 0
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "type"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

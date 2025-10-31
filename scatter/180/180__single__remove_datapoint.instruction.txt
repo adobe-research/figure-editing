@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the region 'Middle East'.
+[#OP1 op=remove_datapoint; category=Oceania]

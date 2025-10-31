@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Average Monthly Temperature and Humidity in Delhi'.
+[#OP1 op=add_title; title_text=Edited Chart]

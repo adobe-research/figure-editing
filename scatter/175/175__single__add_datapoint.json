@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing complaint resolution times and request volumes in NYC 311 service requests.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Resolution_Time": 12.5,
+          "Request_Volume": 350,
+          "Borough": "Staten Island"
+        },
+        {
+          "Resolution_Time": 18.2,
+          "Request_Volume": 500,
+          "Borough": "Bronx"
+        },
+        {
+          "Resolution_Time": 8.7,
+          "Request_Volume": 1200,
+          "Borough": "Brooklyn"
+        },
+        {
+          "Resolution_Time": 15.3,
+          "Request_Volume": 750,
+          "Borough": "Queens"
+        },
+        {
+          "Resolution_Time": 10.1,
+          "Request_Volume": 980,
+          "Borough": "Manhattan"
+        },
+        {
+          "Resolution_Time": 20.0,
+          "Request_Volume": 600,
+          "Borough": "New Borough"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        8.7,
+        20.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Request_Volume"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Borough"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Resolution Time (hours)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Request Volume"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Borough"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Resolution_Time"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Request_Volume"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Borough"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

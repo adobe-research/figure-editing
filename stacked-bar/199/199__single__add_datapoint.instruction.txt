@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2040, sector 'Agriculture', with emissions value 3.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2000; value=6.0]

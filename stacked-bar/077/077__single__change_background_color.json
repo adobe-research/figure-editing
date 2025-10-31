@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Bitcoin trading volume by type across different months.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "type": "Spot",
+          "volume": 120000
+        },
+        {
+          "month": "January",
+          "type": "Futures",
+          "volume": 80000
+        },
+        {
+          "month": "February",
+          "type": "Spot",
+          "volume": 150000
+        },
+        {
+          "month": "February",
+          "type": "Futures",
+          "volume": 70000
+        },
+        {
+          "month": "March",
+          "type": "Spot",
+          "volume": 180000
+        },
+        {
+          "month": "March",
+          "type": "Futures",
+          "volume": 90000
+        },
+        {
+          "month": "April",
+          "type": "Spot",
+          "volume": 200000
+        },
+        {
+          "month": "April",
+          "type": "Futures",
+          "volume": 100000
+        },
+        {
+          "month": "May",
+          "type": "Spot",
+          "volume": 220000
+        },
+        {
+          "month": "May",
+          "type": "Futures",
+          "volume": 110000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "type"
+          },
+          "field": "volume"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Trading Volume"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "type"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

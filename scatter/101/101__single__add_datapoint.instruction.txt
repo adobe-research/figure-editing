@@ -1,0 +1,2 @@
+Add a new datapoint with Batting_Average 0.27, Home_Runs 38, and Team 'Pirates'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Astros; value=0.29]

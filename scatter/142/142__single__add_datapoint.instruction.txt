@@ -1,0 +1,2 @@
+Add a new datapoint with Length 0.48, Diameter 0.38, Rings 13, and Sex 'F'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=F; value=0.455]

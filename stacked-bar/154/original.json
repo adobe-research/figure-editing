@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing weather conditions in Seattle.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "January",
+          "series": "Rainy Days",
+          "value": 15
+        },
+        {
+          "category": "January",
+          "series": "Sunny Days",
+          "value": 10
+        },
+        {
+          "category": "February",
+          "series": "Rainy Days",
+          "value": 12
+        },
+        {
+          "category": "February",
+          "series": "Sunny Days",
+          "value": 8
+        },
+        {
+          "category": "March",
+          "series": "Rainy Days",
+          "value": 20
+        },
+        {
+          "category": "March",
+          "series": "Sunny Days",
+          "value": 5
+        },
+        {
+          "category": "April",
+          "series": "Rainy Days",
+          "value": 17
+        },
+        {
+          "category": "April",
+          "series": "Sunny Days",
+          "value": 10
+        },
+        {
+          "category": "May",
+          "series": "Rainy Days",
+          "value": 10
+        },
+        {
+          "category": "May",
+          "series": "Sunny Days",
+          "value": 15
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Days"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Carrier F' with 'Weather Delay' and a value of 22.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Carrier A; value=19.0]

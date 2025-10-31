@@ -1,0 +1,208 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing COVID-19 cases by region and severity.",
+  "width": 600,
+  "height": 400,
+  "padding": 10,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "region": "North America",
+          "severity": "Mild",
+          "cases": 120000
+        },
+        {
+          "region": "North America",
+          "severity": "Moderate",
+          "cases": 80000
+        },
+        {
+          "region": "North America",
+          "severity": "Severe",
+          "cases": 30000
+        },
+        {
+          "region": "Europe",
+          "severity": "Mild",
+          "cases": 100000
+        },
+        {
+          "region": "Europe",
+          "severity": "Moderate",
+          "cases": 70000
+        },
+        {
+          "region": "Europe",
+          "severity": "Severe",
+          "cases": 25000
+        },
+        {
+          "region": "Asia",
+          "severity": "Mild",
+          "cases": 150000
+        },
+        {
+          "region": "Asia",
+          "severity": "Moderate",
+          "cases": 90000
+        },
+        {
+          "region": "Asia",
+          "severity": "Severe",
+          "cases": 40000
+        },
+        {
+          "region": "Africa",
+          "severity": "Mild",
+          "cases": 50000
+        },
+        {
+          "region": "Africa",
+          "severity": "Moderate",
+          "cases": 30000
+        },
+        {
+          "region": "Africa",
+          "severity": "Severe",
+          "cases": 10000
+        },
+        {
+          "region": "South America",
+          "severity": "Mild",
+          "cases": 70000
+        },
+        {
+          "region": "South America",
+          "severity": "Moderate",
+          "cases": 50000
+        },
+        {
+          "region": "South America",
+          "severity": "Severe",
+          "cases": 20000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "region"
+          ],
+          "sort": {
+            "field": "severity"
+          },
+          "field": "cases"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "severity"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Cases",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Severity",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "severity"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.6
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

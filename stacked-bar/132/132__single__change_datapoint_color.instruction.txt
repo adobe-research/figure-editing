@@ -1,0 +1,2 @@
+Change the color of the datapoints representing 'Q1' to a new color 'lightblue'.
+[#OP1 op=change_datapoint_color; target_category=2019; new_color=#d62728]

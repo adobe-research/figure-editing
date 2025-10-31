@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Bitcoin trading volumes by month and exchange.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "January",
+          "series": "Exchange A",
+          "value": 3200
+        },
+        {
+          "category": "January",
+          "series": "Exchange B",
+          "value": 4500
+        },
+        {
+          "category": "January",
+          "series": "Exchange C",
+          "value": 2800
+        },
+        {
+          "category": "February",
+          "series": "Exchange A",
+          "value": 3800
+        },
+        {
+          "category": "February",
+          "series": "Exchange B",
+          "value": 5200
+        },
+        {
+          "category": "February",
+          "series": "Exchange C",
+          "value": 3100
+        },
+        {
+          "category": "March",
+          "series": "Exchange A",
+          "value": 4100
+        },
+        {
+          "category": "March",
+          "series": "Exchange B",
+          "value": 4700
+        },
+        {
+          "category": "March",
+          "series": "Exchange C",
+          "value": 3500
+        },
+        {
+          "category": "April",
+          "series": "Exchange A",
+          "value": 2900
+        },
+        {
+          "category": "April",
+          "series": "Exchange B",
+          "value": 4300
+        },
+        {
+          "category": "April",
+          "series": "Exchange C",
+          "value": 2600
+        },
+        {
+          "category": "May",
+          "series": "Exchange A",
+          "value": 3700
+        },
+        {
+          "category": "May",
+          "series": "Exchange B",
+          "value": 4900
+        },
+        {
+          "category": "May",
+          "series": "Exchange C",
+          "value": 3200
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Trading Volume"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Exchange",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

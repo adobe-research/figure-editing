@@ -1,0 +1,2 @@
+Remove the datapoint where clicks are 180 and app usage is 350.
+[#OP1 op=remove_datapoint; category=Tablet]

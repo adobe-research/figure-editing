@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing NBA player statistics.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Points": 25.3,
+          "Assists": 5.4,
+          "Position": "Guard"
+        },
+        {
+          "Points": 18.7,
+          "Assists": 7.1,
+          "Position": "Forward"
+        },
+        {
+          "Points": 22.5,
+          "Assists": 3.8,
+          "Position": "Center"
+        },
+        {
+          "Points": 30.1,
+          "Assists": 6.5,
+          "Position": "Guard"
+        },
+        {
+          "Points": 15.3,
+          "Assists": 8.2,
+          "Position": "Forward"
+        },
+        {
+          "Points": 12.4,
+          "Assists": 4.9,
+          "Position": "Center"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        12.4,
+        30.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Assists"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Points"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Assists"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Points"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Assists"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

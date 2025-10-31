@@ -1,0 +1,2 @@
+Change the datapoint color for 'Loan_Status' categories to new colors.
+[#OP1 op=change_datapoint_color; target_category=Rejected; new_color=#9467bd]

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing employment statistics by industry and gender.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Manufacturing",
+          "series": "Male",
+          "value": 45
+        },
+        {
+          "category": "Manufacturing",
+          "series": "Female",
+          "value": 35
+        },
+        {
+          "category": "Healthcare",
+          "series": "Male",
+          "value": 30
+        },
+        {
+          "category": "Healthcare",
+          "series": "Female",
+          "value": 50
+        },
+        {
+          "category": "Retail",
+          "series": "Male",
+          "value": 25
+        },
+        {
+          "category": "Retail",
+          "series": "Female",
+          "value": 40
+        },
+        {
+          "category": "Education",
+          "series": "Male",
+          "value": 20
+        },
+        {
+          "category": "Education",
+          "series": "Female",
+          "value": 60
+        },
+        {
+          "category": "Construction",
+          "series": "Male",
+          "value": 55
+        },
+        {
+          "category": "Construction",
+          "series": "Female",
+          "value": 15
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#4CAF50",
+        "#e15759"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Industry",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Employment (in thousands)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Gender",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Education'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between distance and number of routes for airports with regions as series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Distance": 500,
+          "Routes": 20,
+          "Region": "North America"
+        },
+        {
+          "Distance": 1200,
+          "Routes": 35,
+          "Region": "Europe"
+        },
+        {
+          "Distance": 800,
+          "Routes": 25,
+          "Region": "Asia"
+        },
+        {
+          "Distance": 1500,
+          "Routes": 40,
+          "Region": "South America"
+        },
+        {
+          "Distance": 1000,
+          "Routes": 30,
+          "Region": "Africa"
+        },
+        {
+          "Distance": 2000,
+          "Routes": 50,
+          "Region": "Oceania"
+        },
+        {
+          "Distance": 700,
+          "Routes": 22,
+          "Region": "North America"
+        },
+        {
+          "Distance": 1800,
+          "Routes": 45,
+          "Region": "Europe"
+        },
+        {
+          "Distance": 1100,
+          "Routes": 28,
+          "Region": "Asia"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        500.0,
+        2000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Routes"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": [
+        "category",
+        "#FF5733"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Distance (km)",
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Routes",
+      "labelFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Distance"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Routes"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  }
+}

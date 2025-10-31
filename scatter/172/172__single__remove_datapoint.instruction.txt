@@ -1,0 +1,2 @@
+Remove the datapoint with Feature_1 equal to 0.45 and Feature_2 equal to 0.95.
+[#OP1 op=remove_datapoint; category=Group A]

@@ -1,0 +1,2 @@
+Add a new datapoint with Distance 1300, Routes 38, and Region 'Antarctica'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=1150.0]

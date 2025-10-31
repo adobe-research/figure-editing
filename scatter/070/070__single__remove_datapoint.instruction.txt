@@ -1,0 +1,2 @@
+Remove the datapoint where CO is 2.8 and Temperature is 20.5.
+[#OP1 op=remove_datapoint; category=B]

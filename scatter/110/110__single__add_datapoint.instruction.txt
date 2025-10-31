@@ -1,0 +1,2 @@
+Add a new datapoint with Age 32, Balance 1700, and Job 'artist' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=admin.; value=34.0]

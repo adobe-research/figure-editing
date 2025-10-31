@@ -1,0 +1,2 @@
+Remove the datapoint with X_Value 4.9 and Y_Value 3.1 from the chart.
+[#OP1 op=remove_datapoint; category=C]

@@ -1,0 +1,2 @@
+Remove the datapoint with category 'CollgCr' and series '1.5Fin'.
+[#OP1 op=remove_datapoint; category=NridgHt]

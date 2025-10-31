@@ -1,0 +1,2 @@
+Change the color of datapoints associated with 'Rain' to '#00bfff'.
+[#OP1 op=change_datapoint_color; target_category=Snow; new_color=#8c564b]

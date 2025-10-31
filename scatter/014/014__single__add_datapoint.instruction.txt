@@ -1,0 +1,2 @@
+Add a new datapoint with Word_Count 16, Sentiment_Score 0.6, and Question_Type 'Sincere'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Insincere; value=15.0]

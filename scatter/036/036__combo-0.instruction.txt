@@ -1,0 +1,3 @@
+Change the background color to light gray and add a new datapoint with Overall_Rating 86, Potential 89, and Position 'Midfielder' at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_datapoint; position=end; category=New 1; series=Defender; value=85.0]

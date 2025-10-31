@@ -1,0 +1,3 @@
+Change the color of datapoints for the 'Rejected' Loan Status to '#00ff00' and add a title 'Loan Analysis Scatter Plot' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Approved; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]

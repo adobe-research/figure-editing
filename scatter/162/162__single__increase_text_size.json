@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of age vs balance with job type as the color series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "age": 25,
+          "balance": 1500,
+          "job": "entrepreneur"
+        },
+        {
+          "age": 30,
+          "balance": 2000,
+          "job": "student"
+        },
+        {
+          "age": 45,
+          "balance": 3000,
+          "job": "retired"
+        },
+        {
+          "age": 35,
+          "balance": 2500,
+          "job": "unemployed"
+        },
+        {
+          "age": 50,
+          "balance": 4000,
+          "job": "housemaid"
+        },
+        {
+          "age": 40,
+          "balance": 3500,
+          "job": "services"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "balance"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "job"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "grid": true,
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Balance",
+      "grid": true,
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Job Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "balance"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "job"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

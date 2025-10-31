@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 50 and Annual Premium is 80000.
+[#OP1 op=remove_datapoint; category=No]

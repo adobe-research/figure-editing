@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing employment distribution across sectors.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Agriculture",
+          "series": "Full-time",
+          "value": 35
+        },
+        {
+          "category": "Agriculture",
+          "series": "Part-time",
+          "value": 15
+        },
+        {
+          "category": "Manufacturing",
+          "series": "Full-time",
+          "value": 50
+        },
+        {
+          "category": "Manufacturing",
+          "series": "Part-time",
+          "value": 20
+        },
+        {
+          "category": "Retail",
+          "series": "Full-time",
+          "value": 45
+        },
+        {
+          "category": "Retail",
+          "series": "Part-time",
+          "value": 30
+        },
+        {
+          "category": "Healthcare",
+          "series": "Full-time",
+          "value": 60
+        },
+        {
+          "category": "Healthcare",
+          "series": "Part-time",
+          "value": 25
+        },
+        {
+          "category": "Education",
+          "series": "Full-time",
+          "value": 40
+        },
+        {
+          "category": "Education",
+          "series": "Part-time",
+          "value": 20
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "green",
+        "#ff7f0e"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Sector",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Employment (in thousands)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Employment Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart"
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

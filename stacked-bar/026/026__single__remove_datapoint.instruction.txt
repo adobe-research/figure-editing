@@ -1,0 +1,2 @@
+Remove the datapoint for Nebraska's Corn production of 250.
+[#OP1 op=remove_datapoint; category=Iowa]

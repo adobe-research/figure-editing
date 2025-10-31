@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Ripple' and series 'Volume (XRP)'.
+[#OP1 op=remove_datapoint; category=Bitcoin]

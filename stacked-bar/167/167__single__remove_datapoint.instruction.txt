@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Health' and series 'Women'.
+[#OP1 op=remove_datapoint; category=Health]

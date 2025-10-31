@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'SEA' with series 'Delta' and value 90.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=ATL; value=69.0]

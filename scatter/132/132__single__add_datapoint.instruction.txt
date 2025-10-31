@@ -1,0 +1,2 @@
+Add a new datapoint with DebtRatio 0.35, MonthlyIncome 4200, and SeriousDlqin2yrs 'No'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=0.5]

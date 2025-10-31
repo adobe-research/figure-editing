@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing precipitation levels by month and weather type.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "weather": "Rainy",
+          "precipitation": 120
+        },
+        {
+          "month": "January",
+          "weather": "Snowy",
+          "precipitation": 30
+        },
+        {
+          "month": "January",
+          "weather": "Sunny",
+          "precipitation": 10
+        },
+        {
+          "month": "February",
+          "weather": "Rainy",
+          "precipitation": 100
+        },
+        {
+          "month": "February",
+          "weather": "Snowy",
+          "precipitation": 25
+        },
+        {
+          "month": "February",
+          "weather": "Sunny",
+          "precipitation": 15
+        },
+        {
+          "month": "March",
+          "weather": "Rainy",
+          "precipitation": 80
+        },
+        {
+          "month": "March",
+          "weather": "Snowy",
+          "precipitation": 10
+        },
+        {
+          "month": "March",
+          "weather": "Sunny",
+          "precipitation": 20
+        },
+        {
+          "month": "April",
+          "weather": "Rainy",
+          "precipitation": 90
+        },
+        {
+          "month": "April",
+          "weather": "Snowy",
+          "precipitation": 5
+        },
+        {
+          "month": "April",
+          "weather": "Sunny",
+          "precipitation": 30
+        },
+        {
+          "month": "May",
+          "weather": "Rainy",
+          "precipitation": 60
+        },
+        {
+          "month": "May",
+          "weather": "Sunny",
+          "precipitation": 40
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "weather"
+          },
+          "field": "precipitation"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "weather"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Precipitation (mm)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "weather"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

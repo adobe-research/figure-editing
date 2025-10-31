@@ -1,0 +1,2 @@
+Add a new datapoint with Unemployment_Rate 4.2, Inflation_Rate 2.4, and Region 'Central'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central; value=4.2]

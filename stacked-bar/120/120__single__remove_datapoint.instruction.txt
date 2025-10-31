@@ -1,0 +1,2 @@
+Remove the datapoint for 'Store 4' in the 'Home Goods' series with a value of 4500.
+[#OP1 op=remove_datapoint; category=Store 1]

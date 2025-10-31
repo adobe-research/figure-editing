@@ -1,0 +1,2 @@
+Remove the datapoint where 'Transaction_Value' is 9000 and 'Customer_Age' is 27.
+[#OP1 op=remove_datapoint; category=East]

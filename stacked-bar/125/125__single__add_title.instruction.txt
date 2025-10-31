@@ -1,0 +1,2 @@
+Add a title to the chart that reads 'Bike Rentals by Season and User Type'.
+[#OP1 op=add_title; title_text=Edited Chart]

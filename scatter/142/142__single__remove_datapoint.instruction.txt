@@ -1,0 +1,2 @@
+Remove the datapoint with Length 0.33, Diameter 0.255, Rings 6, and Sex F.
+[#OP1 op=remove_datapoint; category=M]

@@ -1,0 +1,277 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of BMI for different age groups in the NHANES Survey Data.",
+  "width": 500,
+  "padding": 5,
+  "data": [
+    {
+      "name": "nhanes",
+      "values": [
+        {
+          "Age Group": "18-24",
+          "BMI": 22.5
+        },
+        {
+          "Age Group": "18-24",
+          "BMI": 23.1
+        },
+        {
+          "Age Group": "18-24",
+          "BMI": 24.8
+        },
+        {
+          "Age Group": "25-34",
+          "BMI": 26.2
+        },
+        {
+          "Age Group": "25-34",
+          "BMI": 27.1
+        },
+        {
+          "Age Group": "25-34",
+          "BMI": 28.3
+        },
+        {
+          "Age Group": "35-44",
+          "BMI": 30.1
+        },
+        {
+          "Age Group": "35-44",
+          "BMI": 31.4
+        },
+        {
+          "Age Group": "35-44",
+          "BMI": 32.0
+        },
+        {
+          "Age Group": "45-54",
+          "BMI": 29.5
+        },
+        {
+          "Age Group": "45-54",
+          "BMI": 30.7
+        },
+        {
+          "Age Group": "45-54",
+          "BMI": 31.9
+        },
+        {
+          "Age Group": "55-64",
+          "BMI": 28.7
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "nhanes",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "BMI",
+          "groupby": [
+            "Age Group"
+          ],
+          "bandwidth": 1.5
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "nhanes",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Age Group"
+          ],
+          "fields": [
+            "BMI",
+            "BMI",
+            "BMI"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "nhanes",
+        "field": "Age Group"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "nhanes",
+        "field": "BMI"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        100
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "nhanes",
+        "field": "Age Group"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "BMI"
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "title": "Age Group"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Age Group"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Age Group",
+            "band": 0.5
+          },
+          "height": {
+            "value": 100
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Age Group"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "100 / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "stats"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "100 / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "stats"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "100 / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

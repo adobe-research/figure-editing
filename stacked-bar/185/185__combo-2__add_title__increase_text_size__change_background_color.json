@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing revenue breakdown by sector for selected companies in the S&P 500.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Apple",
+          "series": "Technology",
+          "value": 274.5
+        },
+        {
+          "category": "Apple",
+          "series": "Services",
+          "value": 50.0
+        },
+        {
+          "category": "Microsoft",
+          "series": "Technology",
+          "value": 168.1
+        },
+        {
+          "category": "Microsoft",
+          "series": "Cloud",
+          "value": 59.5
+        },
+        {
+          "category": "Amazon",
+          "series": "Retail",
+          "value": 386.1
+        },
+        {
+          "category": "Amazon",
+          "series": "Cloud",
+          "value": 45.3
+        },
+        {
+          "category": "Tesla",
+          "series": "Automotive",
+          "value": 31.5
+        },
+        {
+          "category": "Tesla",
+          "series": "Energy",
+          "value": 1.5
+        },
+        {
+          "category": "Google",
+          "series": "Advertising",
+          "value": 146.9
+        },
+        {
+          "category": "Google",
+          "series": "Cloud",
+          "value": 19.2
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Company",
+      "labelFontSize": 14,
+      "tickFontSize": 12,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Revenue (in billions)",
+      "labelFontSize": 14,
+      "tickFontSize": 12,
+      "titleFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Revenue Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

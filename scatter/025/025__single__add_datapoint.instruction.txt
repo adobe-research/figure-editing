@@ -1,0 +1,2 @@
+Add a new datapoint with 12 fatalities, 22 injuries, and attack type 'Cyber Attack'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Armed Assault; value=7.0]

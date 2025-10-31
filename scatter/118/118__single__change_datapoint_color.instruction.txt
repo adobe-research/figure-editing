@@ -1,0 +1,2 @@
+Change the datapoint color for 'Vehicle Damage' categories to new colors.
+[#OP1 op=change_datapoint_color; target_category=No; new_color=#9467bd]

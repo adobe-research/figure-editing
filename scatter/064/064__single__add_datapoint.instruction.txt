@@ -1,0 +1,2 @@
+Add a new datapoint with ReviewLength 200, SentimentScore 0.85, and Genre 'Sci-Fi'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Action; value=250.0]

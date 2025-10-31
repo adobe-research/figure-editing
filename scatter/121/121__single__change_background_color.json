@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of air quality measurements.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "CO": 2.5,
+          "NO2": 40.2,
+          "Station": "Urban"
+        },
+        {
+          "CO": 1.8,
+          "NO2": 35.4,
+          "Station": "Suburban"
+        },
+        {
+          "CO": 3.1,
+          "NO2": 50.1,
+          "Station": "Industrial"
+        },
+        {
+          "CO": 2.0,
+          "NO2": 42.5,
+          "Station": "Urban"
+        },
+        {
+          "CO": 1.5,
+          "NO2": 30.0,
+          "Station": "Suburban"
+        },
+        {
+          "CO": 3.8,
+          "NO2": 55.3,
+          "Station": "Industrial"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.5,
+        3.8
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "NO2"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Station"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "CO (ppm)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "NO2 (ppb)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Station Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "CO"
+          },
+          "y": {
+            "scale": "y",
+            "field": "NO2"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Station"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

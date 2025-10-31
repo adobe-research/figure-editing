@@ -1,0 +1,2 @@
+Remove the datapoint where Player_Age is 31 and Overall_Rating is 88.
+[#OP1 op=remove_datapoint; category=Defender]

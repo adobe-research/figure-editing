@@ -1,0 +1,2 @@
+Change the datapoint colors to a new set of colors: ['#e41a1c', '#377eb8', '#4daf4a'].
+[#OP1 op=change_datapoint_color; target_category=Acceptable; new_color=#d62728]

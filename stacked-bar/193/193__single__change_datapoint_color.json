@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing temperature anomalies by region.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "North America",
+          "series": "Winter",
+          "value": 1.2
+        },
+        {
+          "category": "North America",
+          "series": "Summer",
+          "value": 0.8
+        },
+        {
+          "category": "Europe",
+          "series": "Winter",
+          "value": 1.5
+        },
+        {
+          "category": "Europe",
+          "series": "Summer",
+          "value": 1.1
+        },
+        {
+          "category": "Asia",
+          "series": "Winter",
+          "value": 1.8
+        },
+        {
+          "category": "Asia",
+          "series": "Summer",
+          "value": 1.3
+        },
+        {
+          "category": "Africa",
+          "series": "Winter",
+          "value": 1.0
+        },
+        {
+          "category": "Africa",
+          "series": "Summer",
+          "value": 0.9
+        },
+        {
+          "category": "South America",
+          "series": "Winter",
+          "value": 0.7
+        },
+        {
+          "category": "South America",
+          "series": "Summer",
+          "value": 0.6
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "orange",
+        "#1f77b4"
+      ],
+      "domain": [
+        "Winter",
+        "Summer"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)",
+      "zindex": 1
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Season",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='North America'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

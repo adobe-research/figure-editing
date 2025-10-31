@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing GDP per capita vs Life Expectancy with regions as categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP_per_Capita": 45000,
+          "Life_Expectancy": 82,
+          "Region": "Europe"
+        },
+        {
+          "GDP_per_Capita": 1500,
+          "Life_Expectancy": 60,
+          "Region": "Sub-Saharan Africa"
+        },
+        {
+          "GDP_per_Capita": 12000,
+          "Life_Expectancy": 75,
+          "Region": "East Asia"
+        },
+        {
+          "GDP_per_Capita": 38000,
+          "Life_Expectancy": 81,
+          "Region": "North America"
+        },
+        {
+          "GDP_per_Capita": 2500,
+          "Life_Expectancy": 65,
+          "Region": "South Asia"
+        },
+        {
+          "GDP_per_Capita": 18000,
+          "Life_Expectancy": 78,
+          "Region": "Latin America"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1500.0,
+        45000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Life_Expectancy"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP per Capita (USD)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Life Expectancy (Years)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "GDP_per_Capita"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Life_Expectancy"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint with Position 'Goalkeeper' and Age 25 to the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=24.5]

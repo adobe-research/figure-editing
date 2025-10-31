@@ -1,0 +1,2 @@
+Add a new datapoint with HomeGoals=5, AwayGoals=4, and MatchType='Friendly'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Friendly; value=2.0]

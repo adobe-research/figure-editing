@@ -1,0 +1,2 @@
+Add a new datapoint with ApplicantIncome 5500, LoanAmount 180, and Loan_Status 'N'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=N; value=4000.0]

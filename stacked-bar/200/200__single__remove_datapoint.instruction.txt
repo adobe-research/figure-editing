@@ -1,0 +1,2 @@
+Remove the datapoint for 'Population Growth' in the 'Europe' series.
+[#OP1 op=remove_datapoint; category=Unemployment Rate]

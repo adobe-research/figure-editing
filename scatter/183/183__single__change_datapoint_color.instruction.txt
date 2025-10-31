@@ -1,0 +1,2 @@
+Change the datapoint colors to new colors for the 'Default' and 'Non-Default' categories.
+[#OP1 op=change_datapoint_color; target_category=Non-Default; new_color=#ff7f0e]

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing complaint counts vs resolution time in NYC 311 Service Requests.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Complaint_Count": 120,
+          "Resolution_Time": 48,
+          "Complaint_Type": "Noise"
+        },
+        {
+          "Complaint_Count": 85,
+          "Resolution_Time": 72,
+          "Complaint_Type": "Heat/Hot Water"
+        },
+        {
+          "Complaint_Count": 200,
+          "Resolution_Time": 24,
+          "Complaint_Type": "Illegal Parking"
+        },
+        {
+          "Complaint_Count": 150,
+          "Resolution_Time": 36,
+          "Complaint_Type": "Rodent"
+        },
+        {
+          "Complaint_Count": 95,
+          "Resolution_Time": 60,
+          "Complaint_Type": "Street Condition"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        85,
+        95,
+        120,
+        150,
+        200
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Resolution_Time"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Complaint_Type"
+      },
+      "range": [
+        "#FF5733",
+        "#33FF57",
+        "#3357FF",
+        "#FF33A1",
+        "#A133FF"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Complaint Count",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Resolution Time (hours)",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Complaint Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Complaint_Count"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Resolution_Time"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Complaint_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

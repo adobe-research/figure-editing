@@ -1,0 +1,2 @@
+Remove the datapoint where price is 300 and minimum nights is 7.
+[#OP1 op=remove_datapoint; category=Entire home/apt]

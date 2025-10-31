@@ -1,0 +1,2 @@
+Remove the datapoint where Points is 30.1 and Assists is 6.5.
+[#OP1 op=remove_datapoint; category=Center]

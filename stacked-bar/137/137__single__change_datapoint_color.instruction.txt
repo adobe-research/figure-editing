@@ -1,0 +1,2 @@
+Change the color of datapoints representing the 'Asia' region to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=2020; new_color=#2ca02c]

@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing points per game vs assists per game with player positions as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "PointsPerGame": 25.3,
+          "AssistsPerGame": 8.1,
+          "Position": "Guard"
+        },
+        {
+          "PointsPerGame": 30.1,
+          "AssistsPerGame": 5.4,
+          "Position": "Forward"
+        },
+        {
+          "PointsPerGame": 15.2,
+          "AssistsPerGame": 10.5,
+          "Position": "Guard"
+        },
+        {
+          "PointsPerGame": 22.1,
+          "AssistsPerGame": 6.8,
+          "Position": "Forward"
+        },
+        {
+          "PointsPerGame": 12.3,
+          "AssistsPerGame": 7.4,
+          "Position": "Guard"
+        },
+        {
+          "PointsPerGame": 27.8,
+          "AssistsPerGame": 4.2,
+          "Position": "Forward"
+        },
+        {
+          "PointsPerGame": 10.5,
+          "AssistsPerGame": 9.7,
+          "Position": "Guard"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        10.5,
+        30.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "AssistsPerGame"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Points Per Game",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Assists Per Game",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Player Position"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "PointsPerGame"
+          },
+          "y": {
+            "scale": "y",
+            "field": "AssistsPerGame"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

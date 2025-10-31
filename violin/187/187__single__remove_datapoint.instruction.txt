@@ -1,0 +1,2 @@
+Remove the datapoint where Position is 'Forward' and Age is 29.
+[#OP1 op=remove_datapoint; category=Midfield]

@@ -1,0 +1,230 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy consumption by category and source.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Residential",
+          "source": "Coal",
+          "value": 120
+        },
+        {
+          "category": "Residential",
+          "source": "Oil",
+          "value": 80
+        },
+        {
+          "category": "Residential",
+          "source": "Natural Gas",
+          "value": 150
+        },
+        {
+          "category": "Residential",
+          "source": "Renewables",
+          "value": 90
+        },
+        {
+          "category": "Industrial",
+          "source": "Coal",
+          "value": 200
+        },
+        {
+          "category": "Industrial",
+          "source": "Oil",
+          "value": 140
+        },
+        {
+          "category": "Industrial",
+          "source": "Natural Gas",
+          "value": 180
+        },
+        {
+          "category": "Industrial",
+          "source": "Renewables",
+          "value": 110
+        },
+        {
+          "category": "Transportation",
+          "source": "Coal",
+          "value": 50
+        },
+        {
+          "category": "Transportation",
+          "source": "Oil",
+          "value": 300
+        },
+        {
+          "category": "Transportation",
+          "source": "Natural Gas",
+          "value": 100
+        },
+        {
+          "category": "Transportation",
+          "source": "Renewables",
+          "value": 60
+        },
+        {
+          "category": "Commercial",
+          "source": "Coal",
+          "value": 90
+        },
+        {
+          "category": "Commercial",
+          "source": "Oil",
+          "value": 70
+        },
+        {
+          "category": "Commercial",
+          "source": "Natural Gas",
+          "value": 130
+        },
+        {
+          "category": "Commercial",
+          "source": "Renewables",
+          "value": 95
+        },
+        {
+          "category": "Agriculture",
+          "source": "Coal",
+          "value": 40
+        },
+        {
+          "category": "Agriculture",
+          "source": "Oil",
+          "value": 60
+        },
+        {
+          "category": "Agriculture",
+          "source": "Natural Gas",
+          "value": 80
+        },
+        {
+          "category": "Agriculture",
+          "source": "Renewables",
+          "value": 50
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "source"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (Mtoe)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Energy Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "source"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

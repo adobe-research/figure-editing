@@ -1,0 +1,2 @@
+Remove the datapoint for 'May' with type 'Futures' and volume 110000.
+[#OP1 op=remove_datapoint; category=January]

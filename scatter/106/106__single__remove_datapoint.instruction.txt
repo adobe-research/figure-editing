@@ -1,0 +1,2 @@
+Remove the datapoint with Alcohol 13.7 and Malic_Acid 1.85.
+[#OP1 op=remove_datapoint; category=Class_1]

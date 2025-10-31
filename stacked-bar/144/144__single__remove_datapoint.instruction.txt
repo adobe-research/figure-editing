@@ -1,0 +1,2 @@
+Remove the datapoint for Germany in the Transport sector with a consumption value of 40.
+[#OP1 op=remove_datapoint; category=USA]

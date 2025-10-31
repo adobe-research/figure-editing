@@ -1,0 +1,2 @@
+Increase the spacing between categories on the x-axis by reducing the band size to 0.8.
+[#OP1 op=increase_category_spacing; scale=auto; new_padding=0.20]

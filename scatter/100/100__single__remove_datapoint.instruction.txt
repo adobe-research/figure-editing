@@ -1,0 +1,2 @@
+Remove the datapoint where 'Points_Per_Game' is 18.2 and 'Assists_Per_Game' is 2.3.
+[#OP1 op=remove_datapoint; category=Forward]

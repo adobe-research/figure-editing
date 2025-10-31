@@ -1,0 +1,2 @@
+Remove the datapoint with values mcg=0.29, gvh=0.36, and class=NUC.
+[#OP1 op=remove_datapoint; category=NUC]

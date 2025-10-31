@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing airport latitude vs longitude with region as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Latitude": 40.639751,
+          "Longitude": -73.778925,
+          "Region": "North America"
+        },
+        {
+          "Latitude": 34.052235,
+          "Longitude": -118.243683,
+          "Region": "North America"
+        },
+        {
+          "Latitude": 51.47002,
+          "Longitude": -0.454295,
+          "Region": "Europe"
+        },
+        {
+          "Latitude": 35.689487,
+          "Longitude": 139.691711,
+          "Region": "Asia"
+        },
+        {
+          "Latitude": -33.86882,
+          "Longitude": 151.20929,
+          "Region": "Oceania"
+        },
+        {
+          "Latitude": 48.353783,
+          "Longitude": 11.786086,
+          "Region": "Europe"
+        },
+        {
+          "Latitude": -26.133694,
+          "Longitude": 28.242317,
+          "Region": "Africa"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        -118.243683,
+        151.20929
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Latitude"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": [
+        "category",
+        "#FF5733"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Longitude",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Latitude",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Longitude"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Latitude"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

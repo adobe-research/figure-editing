@@ -1,0 +1,2 @@
+Add a new datapoint with TransactionAmount 290.0, CustomerScore 76.0, and Region 'Central'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central; value=250.5]

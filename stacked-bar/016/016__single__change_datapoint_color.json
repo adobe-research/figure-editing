@@ -1,0 +1,232 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing stock price changes across sectors.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Technology",
+          "series": "Q1",
+          "value": 120
+        },
+        {
+          "category": "Technology",
+          "series": "Q2",
+          "value": 150
+        },
+        {
+          "category": "Technology",
+          "series": "Q3",
+          "value": 170
+        },
+        {
+          "category": "Technology",
+          "series": "Q4",
+          "value": 200
+        },
+        {
+          "category": "Healthcare",
+          "series": "Q1",
+          "value": 90
+        },
+        {
+          "category": "Healthcare",
+          "series": "Q2",
+          "value": 110
+        },
+        {
+          "category": "Healthcare",
+          "series": "Q3",
+          "value": 130
+        },
+        {
+          "category": "Healthcare",
+          "series": "Q4",
+          "value": 140
+        },
+        {
+          "category": "Finance",
+          "series": "Q1",
+          "value": 100
+        },
+        {
+          "category": "Finance",
+          "series": "Q2",
+          "value": 120
+        },
+        {
+          "category": "Finance",
+          "series": "Q3",
+          "value": 140
+        },
+        {
+          "category": "Finance",
+          "series": "Q4",
+          "value": 160
+        },
+        {
+          "category": "Energy",
+          "series": "Q1",
+          "value": 80
+        },
+        {
+          "category": "Energy",
+          "series": "Q2",
+          "value": 90
+        },
+        {
+          "category": "Energy",
+          "series": "Q3",
+          "value": 100
+        },
+        {
+          "category": "Energy",
+          "series": "Q4",
+          "value": 110
+        },
+        {
+          "category": "Consumer Goods",
+          "series": "Q1",
+          "value": 70
+        },
+        {
+          "category": "Consumer Goods",
+          "series": "Q2",
+          "value": 80
+        },
+        {
+          "category": "Consumer Goods",
+          "series": "Q3",
+          "value": 90
+        },
+        {
+          "category": "Consumer Goods",
+          "series": "Q4",
+          "value": 100
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#4A90E2",
+        "#50E3C2",
+        "#B8E986",
+        "#F5A623"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Sector"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Stock Price"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Quarter",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Consumer Goods'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

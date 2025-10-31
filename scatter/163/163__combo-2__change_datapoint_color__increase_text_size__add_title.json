@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing transaction amount and time, colored by fraud status.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Transaction_Time": 100,
+          "Transaction_Amount": 50.2,
+          "Fraud_Status": "Fraud"
+        },
+        {
+          "Transaction_Time": 200,
+          "Transaction_Amount": 20.5,
+          "Fraud_Status": "Non-Fraud"
+        },
+        {
+          "Transaction_Time": 150,
+          "Transaction_Amount": 75.0,
+          "Fraud_Status": "Fraud"
+        },
+        {
+          "Transaction_Time": 300,
+          "Transaction_Amount": 10.8,
+          "Fraud_Status": "Non-Fraud"
+        },
+        {
+          "Transaction_Time": 250,
+          "Transaction_Amount": 60.7,
+          "Fraud_Status": "Fraud"
+        },
+        {
+          "Transaction_Time": 400,
+          "Transaction_Amount": 90.3,
+          "Fraud_Status": "Non-Fraud"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        100.0,
+        400.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Transaction_Amount"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Fraud_Status"
+      },
+      "range": [
+        "#00ff00",
+        "#4c78a8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Time",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Amount",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Transaction_Time"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Transaction_Amount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Fraud_Status"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

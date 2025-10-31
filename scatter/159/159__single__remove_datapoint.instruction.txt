@@ -1,0 +1,2 @@
+Remove the datapoint with sepalLength 6.3 and petalLength 6.0 from the chart.
+[#OP1 op=remove_datapoint; category=setosa]

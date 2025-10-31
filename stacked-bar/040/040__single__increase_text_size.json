@@ -1,0 +1,205 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing COVID-19 case distributions by region and type.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "North America",
+          "series": "Active Cases",
+          "value": 1200000
+        },
+        {
+          "category": "North America",
+          "series": "Recovered Cases",
+          "value": 800000
+        },
+        {
+          "category": "North America",
+          "series": "Fatal Cases",
+          "value": 200000
+        },
+        {
+          "category": "Europe",
+          "series": "Active Cases",
+          "value": 1500000
+        },
+        {
+          "category": "Europe",
+          "series": "Recovered Cases",
+          "value": 1000000
+        },
+        {
+          "category": "Europe",
+          "series": "Fatal Cases",
+          "value": 250000
+        },
+        {
+          "category": "Asia",
+          "series": "Active Cases",
+          "value": 2500000
+        },
+        {
+          "category": "Asia",
+          "series": "Recovered Cases",
+          "value": 1800000
+        },
+        {
+          "category": "Asia",
+          "series": "Fatal Cases",
+          "value": 300000
+        },
+        {
+          "category": "South America",
+          "series": "Active Cases",
+          "value": 900000
+        },
+        {
+          "category": "South America",
+          "series": "Recovered Cases",
+          "value": 600000
+        },
+        {
+          "category": "South America",
+          "series": "Fatal Cases",
+          "value": 150000
+        },
+        {
+          "category": "Africa",
+          "series": "Active Cases",
+          "value": 400000
+        },
+        {
+          "category": "Africa",
+          "series": "Recovered Cases",
+          "value": 300000
+        },
+        {
+          "category": "Africa",
+          "series": "Fatal Cases",
+          "value": 50000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Case Count",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Case Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

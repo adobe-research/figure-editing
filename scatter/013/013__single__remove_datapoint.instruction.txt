@@ -1,0 +1,2 @@
+Remove the datapoint with Rating 5.8 and WordCount 700.
+[#OP1 op=remove_datapoint; category=Negative]

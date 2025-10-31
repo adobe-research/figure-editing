@@ -1,0 +1,2 @@
+Add a new datapoint for 'Neighborhood F' in the '1950-2000' series with a value of 280000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Neighborhood A; value=275000.0]

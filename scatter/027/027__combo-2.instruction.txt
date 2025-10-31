@@ -1,0 +1,4 @@
+Change the color of datapoints in the 'Gaming' category to '#8a2be2', increase the text size of axis labels to 14, and add a title 'Scatter Plot of Click Time vs Device ID'.
+[#OP1 op=change_datapoint_color; target_category=Social; new_color=#d62728]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

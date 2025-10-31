@@ -1,0 +1,186 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing FAO Food Price Index components across categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Dairy",
+          "series": "2018",
+          "value": 120
+        },
+        {
+          "category": "Dairy",
+          "series": "2019",
+          "value": 135
+        },
+        {
+          "category": "Dairy",
+          "series": "2020",
+          "value": 150
+        },
+        {
+          "category": "Meat",
+          "series": "2018",
+          "value": 140
+        },
+        {
+          "category": "Meat",
+          "series": "2019",
+          "value": 155
+        },
+        {
+          "category": "Meat",
+          "series": "2020",
+          "value": 160
+        },
+        {
+          "category": "Cereals",
+          "series": "2018",
+          "value": 110
+        },
+        {
+          "category": "Cereals",
+          "series": "2019",
+          "value": 125
+        },
+        {
+          "category": "Cereals",
+          "series": "2020",
+          "value": 140
+        },
+        {
+          "category": "Sugar",
+          "series": "2018",
+          "value": 90
+        },
+        {
+          "category": "Sugar",
+          "series": "2019",
+          "value": 95
+        },
+        {
+          "category": "Sugar",
+          "series": "2020",
+          "value": 100
+        },
+        {
+          "category": "Oils",
+          "series": "2018",
+          "value": 130
+        },
+        {
+          "category": "Oils",
+          "series": "2019",
+          "value": 140
+        },
+        {
+          "category": "Oils",
+          "series": "2020",
+          "value": 150
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "padding": 0.1,
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "FAO Food Price Index"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Year",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "value",
+            "offset": 0
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

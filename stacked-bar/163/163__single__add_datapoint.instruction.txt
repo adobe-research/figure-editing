@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Finance' with series 'Men' and value 20.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=20.0]

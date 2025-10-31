@@ -1,0 +1,195 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing cryptocurrency trading volumes by type over different months.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "type": "Bitcoin",
+          "volume": 1200
+        },
+        {
+          "month": "January",
+          "type": "Ethereum",
+          "volume": 800
+        },
+        {
+          "month": "January",
+          "type": "Ripple",
+          "volume": 500
+        },
+        {
+          "month": "February",
+          "type": "Bitcoin",
+          "volume": 1500
+        },
+        {
+          "month": "February",
+          "type": "Ethereum",
+          "volume": 900
+        },
+        {
+          "month": "February",
+          "type": "Ripple",
+          "volume": 600
+        },
+        {
+          "month": "March",
+          "type": "Bitcoin",
+          "volume": 1700
+        },
+        {
+          "month": "March",
+          "type": "Ethereum",
+          "volume": 1100
+        },
+        {
+          "month": "March",
+          "type": "Ripple",
+          "volume": 700
+        },
+        {
+          "month": "April",
+          "type": "Bitcoin",
+          "volume": 2000
+        },
+        {
+          "month": "April",
+          "type": "Ethereum",
+          "volume": 1300
+        },
+        {
+          "month": "April",
+          "type": "Ripple",
+          "volume": 800
+        },
+        {
+          "month": "May",
+          "type": "Bitcoin",
+          "volume": 2200
+        },
+        {
+          "month": "May",
+          "type": "Ethereum",
+          "volume": 1400
+        },
+        {
+          "month": "May",
+          "type": "Ripple",
+          "volume": 900
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "type"
+          },
+          "field": "volume"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Trading Volume"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Cryptocurrency Type",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "type"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

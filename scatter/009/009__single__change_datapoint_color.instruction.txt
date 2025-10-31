@@ -1,0 +1,2 @@
+Change the datapoint colors to new colors for the 'Fraud' field.
+[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#9467bd]

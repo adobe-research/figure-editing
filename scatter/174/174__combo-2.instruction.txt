@@ -1,0 +1,4 @@
+Change the color of datapoints for the 'Brooklyn' neighborhood group to '#00bfff', increase the text size of axis labels to 14, and add a title 'Airbnb Prices vs. Reviews'.
+[#OP1 op=change_datapoint_color; target_category=Manhattan; new_color=#8c564b]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

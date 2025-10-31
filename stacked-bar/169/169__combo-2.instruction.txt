@@ -1,0 +1,4 @@
+Change the color of the 'Coal' datapoints to '#FF5733', increase the text size of axis labels to 14, and add a title 'Energy Consumption by Category and Source' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Commercial; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Commercial; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

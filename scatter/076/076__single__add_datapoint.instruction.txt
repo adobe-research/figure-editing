@@ -1,0 +1,2 @@
+Add a new datapoint with Attack_Type 'Cyber Attack', Casualties 5, and Region 'Europe'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Armed Assault; value=17.5]

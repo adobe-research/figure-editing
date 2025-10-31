@@ -1,0 +1,150 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of player statistics from the European Soccer Database.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Player_Age": 22,
+          "Overall_Rating": 78,
+          "Position": "Forward"
+        },
+        {
+          "Player_Age": 29,
+          "Overall_Rating": 85,
+          "Position": "Midfielder"
+        },
+        {
+          "Player_Age": 25,
+          "Overall_Rating": 82,
+          "Position": "Defender"
+        },
+        {
+          "Player_Age": 31,
+          "Overall_Rating": 88,
+          "Position": "Goalkeeper"
+        },
+        {
+          "Player_Age": 24,
+          "Overall_Rating": 80,
+          "Position": "Forward"
+        },
+        {
+          "Player_Age": 28,
+          "Overall_Rating": 83,
+          "Position": "Midfielder"
+        },
+        {
+          "Player_Age": 26,
+          "Overall_Rating": 77,
+          "Position": "Defender"
+        },
+        {
+          "Player_Age": 30,
+          "Overall_Rating": 86,
+          "Position": "Goalkeeper"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        22,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Overall_Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Player Age",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Overall Rating",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Player_Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Overall_Rating"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "{'Player Age': datum.Player_Age, 'Overall Rating': datum.Overall_Rating, 'Position': datum.Position}"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Change the color of the 'On-Time' series to '#FF5733' and increase the text size of axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=Southwest; new_color=#2ca02c]
+[#OP2 op=increase_text_size; axis_label_size=16]

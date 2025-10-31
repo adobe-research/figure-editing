@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between latitude and longitude for airports, colored by region.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Latitude": 40.6413,
+          "Longitude": -73.7781,
+          "Region": "North America"
+        },
+        {
+          "Latitude": 51.47,
+          "Longitude": -0.4543,
+          "Region": "Europe"
+        },
+        {
+          "Latitude": 35.214,
+          "Longitude": -80.9431,
+          "Region": "North America"
+        },
+        {
+          "Latitude": 33.9428,
+          "Longitude": -118.4106,
+          "Region": "North America"
+        },
+        {
+          "Latitude": 22.308,
+          "Longitude": 113.9185,
+          "Region": "Asia"
+        },
+        {
+          "Latitude": -33.9461,
+          "Longitude": 151.1772,
+          "Region": "Oceania"
+        },
+        {
+          "Latitude": -23.4356,
+          "Longitude": -46.4731,
+          "Region": "South America"
+        },
+        {
+          "Latitude": 25.7959,
+          "Longitude": -80.287,
+          "Region": "North America"
+        },
+        {
+          "Latitude": 48.3538,
+          "Longitude": 11.7861,
+          "Region": "Europe"
+        },
+        {
+          "Latitude": 35.6895,
+          "Longitude": 139.6917,
+          "Region": "Asia"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": [
+        -118.4106,
+        151.1772
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "Latitude"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Longitude"
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Latitude"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "name": "marks",
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Longitude"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Latitude"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

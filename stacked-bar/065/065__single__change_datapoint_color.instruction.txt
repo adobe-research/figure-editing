@@ -1,0 +1,2 @@
+Change the color of the datapoints representing 'Excellent Condition' to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Luxury Price; new_color=#2ca02c]

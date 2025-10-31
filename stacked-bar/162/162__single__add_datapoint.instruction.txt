@@ -1,0 +1,2 @@
+Add a new datapoint for the month of June with type 'Bitcoin' and volume 2500.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=1150.0]

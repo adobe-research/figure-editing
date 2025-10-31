@@ -1,0 +1,3 @@
+Change the color of datapoints for 'Fraud: Yes' to green and add a title 'Transaction Analysis'.
+[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]

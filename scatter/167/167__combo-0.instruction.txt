@@ -1,0 +1,3 @@
+Change the background color to light gray and add a new datapoint for the 'Thriller' genre with a review length of 160 and sentiment score of 0.85.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_datapoint; position=end; category=New 1; series=Action; value=155.0]

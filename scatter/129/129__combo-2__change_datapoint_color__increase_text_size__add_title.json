@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing click count versus app usage with device as a series.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "clicks": 120,
+          "app_usage": 300,
+          "device": "Mobile"
+        },
+        {
+          "clicks": 200,
+          "app_usage": 450,
+          "device": "Tablet"
+        },
+        {
+          "clicks": 150,
+          "app_usage": 400,
+          "device": "Desktop"
+        },
+        {
+          "clicks": 180,
+          "app_usage": 350,
+          "device": "Mobile"
+        },
+        {
+          "clicks": 220,
+          "app_usage": 500,
+          "device": "Tablet"
+        },
+        {
+          "clicks": 170,
+          "app_usage": 380,
+          "device": "Desktop"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        120,
+        150,
+        170,
+        180,
+        200,
+        220
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "app_usage"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "device"
+      },
+      "range": [
+        "#e41a1c",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Click Count",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "App Usage (minutes)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Device Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "clicks"
+          },
+          "y": {
+            "scale": "y",
+            "field": "app_usage"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "device"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

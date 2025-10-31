@@ -1,0 +1,2 @@
+Remove the datapoint with Temperature 23.4 and Wind 6.0 from the chart.
+[#OP1 op=remove_datapoint; category=July]

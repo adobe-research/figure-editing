@@ -1,0 +1,210 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing sales distribution across stores and departments.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Store 1",
+          "series": "Dept A",
+          "value": 120
+        },
+        {
+          "category": "Store 1",
+          "series": "Dept B",
+          "value": 80
+        },
+        {
+          "category": "Store 1",
+          "series": "Dept C",
+          "value": 50
+        },
+        {
+          "category": "Store 2",
+          "series": "Dept A",
+          "value": 90
+        },
+        {
+          "category": "Store 2",
+          "series": "Dept B",
+          "value": 60
+        },
+        {
+          "category": "Store 2",
+          "series": "Dept C",
+          "value": 70
+        },
+        {
+          "category": "Store 3",
+          "series": "Dept A",
+          "value": 100
+        },
+        {
+          "category": "Store 3",
+          "series": "Dept B",
+          "value": 40,
+          "fill": "#FF5733"
+        },
+        {
+          "category": "Store 3",
+          "series": "Dept C",
+          "value": 60
+        },
+        {
+          "category": "Store 4",
+          "series": "Dept A",
+          "value": 110
+        },
+        {
+          "category": "Store 4",
+          "series": "Dept B",
+          "value": 70
+        },
+        {
+          "category": "Store 4",
+          "series": "Dept C",
+          "value": 80
+        },
+        {
+          "category": "Store 5",
+          "series": "Dept A",
+          "value": 130
+        },
+        {
+          "category": "Store 5",
+          "series": "Dept B",
+          "value": 90
+        },
+        {
+          "category": "Store 5",
+          "series": "Dept C",
+          "value": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Stores",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Sales",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Departments",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Store 2'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

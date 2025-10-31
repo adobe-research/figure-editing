@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Netflix stock price changes by year and type.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2011",
+          "type": "Opening",
+          "price": 25
+        },
+        {
+          "year": "2011",
+          "type": "Closing",
+          "price": 28
+        },
+        {
+          "year": "2012",
+          "type": "Opening",
+          "price": 30
+        },
+        {
+          "year": "2012",
+          "type": "Closing",
+          "price": 35
+        },
+        {
+          "year": "2013",
+          "type": "Opening",
+          "price": 40
+        },
+        {
+          "year": "2013",
+          "type": "Closing",
+          "price": 45
+        },
+        {
+          "year": "2014",
+          "type": "Opening",
+          "price": 50
+        },
+        {
+          "year": "2014",
+          "type": "Closing",
+          "price": 55
+        },
+        {
+          "year": "2015",
+          "type": "Opening",
+          "price": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "type"
+          },
+          "field": "price"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Stock Price"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "type"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

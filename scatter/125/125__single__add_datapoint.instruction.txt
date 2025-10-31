@@ -1,0 +1,2 @@
+Add a new datapoint with Trip_Duration 14.0, Bike_Speed 20.0, and User_Type 'Subscriber'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Customer; value=11.2]

@@ -1,0 +1,2 @@
+Remove the datapoint for Kansas with series Soybeans and value 80.
+[#OP1 op=remove_datapoint; category=California]

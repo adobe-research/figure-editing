@@ -1,0 +1,4 @@
+Change the color of datapoints with Rating 5 to a new color, increase the text size of axis labels, and add a title to the chart.
+[#OP1 op=change_datapoint_color; target_category=120; new_color=#8c564b]
+[#OP2 op=change_datapoint_color; target_category=120; new_color=#8c564b]
+[#OP3 op=add_title; title_text=Edited Chart]

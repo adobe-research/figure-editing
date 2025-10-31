@@ -1,0 +1,2 @@
+Remove the datapoint with 'mcg' value 0.45 and 'gvh' value 0.4.
+[#OP1 op=remove_datapoint; category=ME3]

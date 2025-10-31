@@ -1,0 +1,2 @@
+Change the datapoint color for the 'AppCategory' scale to use new colors.
+[#OP1 op=change_datapoint_color; target_category=Shopping; new_color=#d62728]

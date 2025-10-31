@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing population by income group across regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "region": "East Asia & Pacific",
+          "income_group": "Low income",
+          "population": 120
+        },
+        {
+          "region": "East Asia & Pacific",
+          "income_group": "Lower middle income",
+          "population": 450
+        },
+        {
+          "region": "East Asia & Pacific",
+          "income_group": "Upper middle income",
+          "population": 300
+        },
+        {
+          "region": "East Asia & Pacific",
+          "income_group": "High income",
+          "population": 80
+        },
+        {
+          "region": "Europe & Central Asia",
+          "income_group": "Low income",
+          "population": 50
+        },
+        {
+          "region": "Europe & Central Asia",
+          "income_group": "Lower middle income",
+          "population": 200
+        },
+        {
+          "region": "Europe & Central Asia",
+          "income_group": "Upper middle income",
+          "population": 400
+        },
+        {
+          "region": "Europe & Central Asia",
+          "income_group": "High income",
+          "population": 150
+        },
+        {
+          "region": "Sub-Saharan Africa",
+          "income_group": "Low income",
+          "population": 500
+        },
+        {
+          "region": "Sub-Saharan Africa",
+          "income_group": "Lower middle income",
+          "population": 300
+        },
+        {
+          "region": "Sub-Saharan Africa",
+          "income_group": "Upper middle income",
+          "population": 100
+        },
+        {
+          "region": "Sub-Saharan Africa",
+          "income_group": "High income",
+          "population": 20
+        },
+        {
+          "region": "Latin America & Caribbean",
+          "income_group": "Low income",
+          "population": 80
+        },
+        {
+          "region": "Latin America & Caribbean",
+          "income_group": "Lower middle income",
+          "population": 350
+        },
+        {
+          "region": "Latin America & Caribbean",
+          "income_group": "Upper middle income",
+          "population": 300
+        },
+        {
+          "region": "Latin America & Caribbean",
+          "income_group": "High income",
+          "population": 70
+        },
+        {
+          "region": "Middle East & North Africa",
+          "income_group": "Low income",
+          "population": 60
+        },
+        {
+          "region": "Middle East & North Africa",
+          "income_group": "Lower middle income",
+          "population": 250
+        },
+        {
+          "region": "Middle East & North Africa",
+          "income_group": "Upper middle income",
+          "population": 200
+        },
+        {
+          "region": "Middle East & North Africa",
+          "income_group": "High income",
+          "population": 90
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "region"
+          ],
+          "sort": {
+            "field": "income_group"
+          },
+          "field": "population"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "income_group"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Population (millions)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Income Group",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "income_group"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "background": "#fff5e6",
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

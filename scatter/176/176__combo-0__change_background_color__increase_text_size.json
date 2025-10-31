@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing crime incidents with their respective latitude and longitude, colored by primary type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Latitude": 41.8781,
+          "Longitude": -87.6298,
+          "Primary_Type": "THEFT"
+        },
+        {
+          "Latitude": 41.8819,
+          "Longitude": -87.6278,
+          "Primary_Type": "BATTERY"
+        },
+        {
+          "Latitude": 41.8842,
+          "Longitude": -87.6324,
+          "Primary_Type": "ROBBERY"
+        },
+        {
+          "Latitude": 41.8898,
+          "Longitude": -87.6229,
+          "Primary_Type": "ASSAULT"
+        },
+        {
+          "Latitude": 41.8763,
+          "Longitude": -87.63,
+          "Primary_Type": "BURGLARY"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        -87.6324,
+        -87.6229
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Latitude"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Primary_Type"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Longitude",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Latitude",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Primary Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Longitude"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Latitude"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Primary_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "{'Type': datum.Primary_Type, 'Latitude': datum.Latitude, 'Longitude': datum.Longitude}"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Remove the datapoint where age is 28 and campaign is 4.
+[#OP1 op=remove_datapoint; category=admin]

@@ -1,0 +1,2 @@
+Remove the datapoint for 'May' in the 'Southwest' region with precipitation value 2.6.
+[#OP1 op=remove_datapoint; category=January]

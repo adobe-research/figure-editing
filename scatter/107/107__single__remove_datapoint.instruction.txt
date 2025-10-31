@@ -1,0 +1,2 @@
+Remove the datapoint with PetalLength 4.7 and PetalWidth 1.4.
+[#OP1 op=remove_datapoint; category=setosa]

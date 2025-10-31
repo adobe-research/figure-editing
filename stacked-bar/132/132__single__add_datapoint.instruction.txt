@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2022, quarter Q1, with a price of 600.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2019; value=480.0]

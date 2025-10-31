@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Entertainment' and series 'Neutral'.
+[#OP1 op=remove_datapoint; category=Technology]

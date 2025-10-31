@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Renewables' series in the year 2015.
+[#OP1 op=remove_datapoint; category=2010]

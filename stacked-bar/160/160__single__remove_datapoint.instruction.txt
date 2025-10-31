@@ -1,0 +1,2 @@
+Remove the datapoint with category '2018 Q4' and series 'Close'.
+[#OP1 op=remove_datapoint; category=2018 Q2]

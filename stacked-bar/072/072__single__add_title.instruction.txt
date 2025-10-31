@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'S&P 500 Sector Performance by Quarter'.
+[#OP1 op=add_title; title_text=Edited Chart]

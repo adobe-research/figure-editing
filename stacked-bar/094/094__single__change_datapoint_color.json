@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing item counts by category and condition.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "condition": "New",
+          "count": 120
+        },
+        {
+          "category": "Electronics",
+          "condition": "Used",
+          "count": 80
+        },
+        {
+          "category": "Electronics",
+          "condition": "Refurbished",
+          "count": 40
+        },
+        {
+          "category": "Fashion",
+          "condition": "New",
+          "count": 150
+        },
+        {
+          "category": "Fashion",
+          "condition": "Used",
+          "count": 60
+        },
+        {
+          "category": "Fashion",
+          "condition": "Refurbished",
+          "count": 30
+        },
+        {
+          "category": "Home Goods",
+          "condition": "New",
+          "count": 200
+        },
+        {
+          "category": "Home Goods",
+          "condition": "Used",
+          "count": 70
+        },
+        {
+          "category": "Home Goods",
+          "condition": "Refurbished",
+          "count": 50
+        },
+        {
+          "category": "Toys",
+          "condition": "New",
+          "count": 100
+        },
+        {
+          "category": "Toys",
+          "condition": "Used",
+          "count": 40
+        },
+        {
+          "category": "Toys",
+          "condition": "Refurbished",
+          "count": 20
+        },
+        {
+          "category": "Books",
+          "condition": "New",
+          "count": 180
+        },
+        {
+          "category": "Books",
+          "condition": "Used",
+          "count": 90
+        },
+        {
+          "category": "Books",
+          "condition": "Refurbished",
+          "count": 10
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "condition"
+          },
+          "field": "count"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "lightblue",
+        "orange",
+        "green"
+      ],
+      "domain": [
+        "New",
+        "Used",
+        "Refurbished"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Count"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Condition",
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "condition"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Books'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

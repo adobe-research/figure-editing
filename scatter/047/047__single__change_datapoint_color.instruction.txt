@@ -1,0 +1,2 @@
+Change the color of datapoints representing 'Electronics' to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Textiles; new_color=#9467bd]

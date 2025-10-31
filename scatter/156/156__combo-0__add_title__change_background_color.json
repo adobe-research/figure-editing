@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing severity vs. temperature with weather condition as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Severity": 2,
+          "Temperature(F)": 45.0,
+          "Weather_Condition": "Rain"
+        },
+        {
+          "Severity": 3,
+          "Temperature(F)": 32.5,
+          "Weather_Condition": "Snow"
+        },
+        {
+          "Severity": 1,
+          "Temperature(F)": 75.8,
+          "Weather_Condition": "Clear"
+        },
+        {
+          "Severity": 4,
+          "Temperature(F)": 28.3,
+          "Weather_Condition": "Fog"
+        },
+        {
+          "Severity": 2,
+          "Temperature(F)": 60.2,
+          "Weather_Condition": "Cloudy"
+        },
+        {
+          "Severity": 3,
+          "Temperature(F)": 50.8,
+          "Weather_Condition": "Rain"
+        },
+        {
+          "Severity": 1,
+          "Temperature(F)": 85.0,
+          "Weather_Condition": "Clear"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        28.3,
+        85.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Severity"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Weather_Condition"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Temperature (F)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Severity"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Condition"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Temperature(F)"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Severity"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Weather_Condition"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

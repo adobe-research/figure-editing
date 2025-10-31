@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing review length vs. sentiment score with genre as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Review_Length": 120,
+          "Sentiment_Score": 0.8,
+          "Genre": "Drama"
+        },
+        {
+          "Review_Length": 200,
+          "Sentiment_Score": 0.5,
+          "Genre": "Comedy"
+        },
+        {
+          "Review_Length": 150,
+          "Sentiment_Score": 0.9,
+          "Genre": "Action"
+        },
+        {
+          "Review_Length": 180,
+          "Sentiment_Score": 0.4,
+          "Genre": "Horror"
+        },
+        {
+          "Review_Length": 220,
+          "Sentiment_Score": 0.7,
+          "Genre": "Romance"
+        },
+        {
+          "Review_Length": 140,
+          "Sentiment_Score": 0.6,
+          "Genre": "Drama"
+        },
+        {
+          "Review_Length": 170,
+          "Sentiment_Score": 0.3,
+          "Genre": "Comedy"
+        },
+        {
+          "Review_Length": 190,
+          "Sentiment_Score": 0.8,
+          "Genre": "Action"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        120,
+        140,
+        150,
+        170,
+        180,
+        190,
+        200,
+        220
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Sentiment_Score"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Genre"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Review Length (words)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Sentiment Score",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Review_Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Sentiment_Score"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Genre"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "{'Genre': datum.Genre, 'Review Length': datum.Review_Length, 'Sentiment Score': datum.Sentiment_Score}"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

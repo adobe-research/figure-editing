@@ -1,0 +1,2 @@
+Remove the datapoint for Oceania with type 'Deaths' and cases 2000.
+[#OP1 op=remove_datapoint; category=Asia]

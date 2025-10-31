@@ -1,0 +1,4 @@
+Change the color of 'Sunny' datapoints to '#FFD700', increase the text size of axis labels to 14, and add a title 'Weather Conditions by Month'.
+[#OP1 op=change_datapoint_color; target_category=March; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=March; new_color=#d62728]
+[#OP3 op=add_title; title_text=Edited Chart]

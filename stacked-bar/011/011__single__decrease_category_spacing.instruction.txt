@@ -1,0 +1,2 @@
+Decrease the spacing between categories in the stacked bar chart by reducing the padding in the x-scale to 0.8.
+[#OP1 op=decrease_category_spacing; scale=auto; new_padding=0.70]

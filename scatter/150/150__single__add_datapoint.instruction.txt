@@ -1,0 +1,2 @@
+Add a new datapoint with Trade_Value 130000, Quantity 550, and Region 'Antarctica' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=110000.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with math_score 75, reading_score 80, and gender 'male'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=female; value=75.0]

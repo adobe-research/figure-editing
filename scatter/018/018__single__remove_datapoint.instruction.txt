@@ -1,0 +1,2 @@
+Remove the datapoint where Feature_1 is 1.3 and Feature_2 is 1.0.
+[#OP1 op=remove_datapoint; category=A]

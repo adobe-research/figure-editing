@@ -1,0 +1,2 @@
+Change the datapoint colors to a new set of colors: '#2ca02c' for 'Sincere' and '#d62728' for 'Insincere'.
+[#OP1 op=change_datapoint_color; target_category=Sincere; new_color=#9467bd]
