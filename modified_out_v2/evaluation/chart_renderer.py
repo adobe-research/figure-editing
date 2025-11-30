@@ -9,7 +9,7 @@ import numpy as np
 # CONFIGURATION
 # =====================
 class Config:
-    INPUT_BASE = "/sensei-fs-3/users/lli1/results"
+    INPUT_BASE = ""
     OUTPUT_SUBDIR = "ChartEdit"
     TASK_TYPES = ["bar", "line", "pie"]
 
