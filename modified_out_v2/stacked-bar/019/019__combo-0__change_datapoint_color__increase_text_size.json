@@ -1,0 +1,210 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing demand categories and sub-series in the Avito Demand Prediction dataset.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "series": "High Demand",
+          "value": 120,
+          "fill": "#FF5733"
+        },
+        {
+          "category": "Electronics",
+          "series": "Medium Demand",
+          "value": 80
+        },
+        {
+          "category": "Electronics",
+          "series": "Low Demand",
+          "value": 50
+        },
+        {
+          "category": "Furniture",
+          "series": "High Demand",
+          "value": 100
+        },
+        {
+          "category": "Furniture",
+          "series": "Medium Demand",
+          "value": 70
+        },
+        {
+          "category": "Furniture",
+          "series": "Low Demand",
+          "value": 40
+        },
+        {
+          "category": "Vehicles",
+          "series": "High Demand",
+          "value": 150
+        },
+        {
+          "category": "Vehicles",
+          "series": "Medium Demand",
+          "value": 90
+        },
+        {
+          "category": "Vehicles",
+          "series": "Low Demand",
+          "value": 60
+        },
+        {
+          "category": "Real Estate",
+          "series": "High Demand",
+          "value": 200
+        },
+        {
+          "category": "Real Estate",
+          "series": "Medium Demand",
+          "value": 120
+        },
+        {
+          "category": "Real Estate",
+          "series": "Low Demand",
+          "value": 80
+        },
+        {
+          "category": "Jobs",
+          "series": "High Demand",
+          "value": 180
+        },
+        {
+          "category": "Jobs",
+          "series": "Medium Demand",
+          "value": 110
+        },
+        {
+          "category": "Jobs",
+          "series": "Low Demand",
+          "value": 70
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Demand Level",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['category']==='Electronics'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

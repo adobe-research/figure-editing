@@ -1,0 +1,2 @@
+Remove the datapoint for 'Energy' in 'Q3' with a value of 85.
+[#OP1 op=remove_datapoint; category=Healthcare]

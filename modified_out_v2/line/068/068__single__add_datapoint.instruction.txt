@@ -1,0 +1,2 @@
+Add a new datapoint for the subject 'Reading' with a year of 2018 and a score of 490.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Math; value=2009.0]

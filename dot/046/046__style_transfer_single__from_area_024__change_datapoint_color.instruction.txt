@@ -1,2 +1,0 @@
-Match the datapoint color #2ca02c used in the reference chart.
-[#OP1 op=change_datapoint_color; target_category=Urban; new_color=#2ca02c]

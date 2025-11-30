@@ -1,0 +1,2 @@
+Add a new datapoint for the group 'Age 50-59' with values min=65, q1=75, median=85, q3=95, max=105.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Age 20-29; value=57.5]

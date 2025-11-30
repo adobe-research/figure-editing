@@ -1,0 +1,2 @@
+Change the color of the datapoints representing temperature to a new color '#e41a1c'.
+[#OP1 op=change_datapoint_color; target_category=2010; new_color=#2ca02c]

@@ -1,0 +1,2 @@
+Add a new datapoint with ClickTime 2.5, DeviceID 90678, and AppCategory 'Education'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Education; value=2.3]

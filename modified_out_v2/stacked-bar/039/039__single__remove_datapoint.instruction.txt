@@ -1,0 +1,2 @@
+Remove the datapoint with category '2000s' and series 'Global'.
+[#OP1 op=remove_datapoint; category=1920s]

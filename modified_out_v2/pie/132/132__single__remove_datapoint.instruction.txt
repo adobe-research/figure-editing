@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Large Claims' category.
+[#OP1 op=remove_datapoint; category=Small Claims]

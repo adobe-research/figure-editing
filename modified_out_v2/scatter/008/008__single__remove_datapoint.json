@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot visualizing age and balance with job categories as color.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "age": 25,
+          "balance": 1500,
+          "job": "admin."
+        },
+        {
+          "age": 34,
+          "balance": 2400,
+          "job": "technician"
+        },
+        {
+          "age": 45,
+          "balance": 1200,
+          "job": "blue-collar"
+        },
+        {
+          "age": 29,
+          "balance": 3100,
+          "job": "entrepreneur"
+        },
+        {
+          "age": 38,
+          "balance": 2200,
+          "job": "management"
+        },
+        {
+          "age": 50,
+          "balance": 1800,
+          "job": "retired"
+        },
+        {
+          "age": 41,
+          "balance": 2700,
+          "job": "self-employed"
+        },
+        {
+          "age": 33,
+          "balance": 1600,
+          "job": "services"
+        },
+        {
+          "age": 47,
+          "balance": 2000,
+          "job": "unemployed"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        25,
+        28,
+        29,
+        33,
+        34,
+        38,
+        41,
+        45,
+        47,
+        50
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "balance"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "job"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Balance",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Job Category"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "balance"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "job"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

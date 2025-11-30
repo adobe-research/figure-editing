@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the frequency of chest pain types in the UCI Heart Disease Dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "chest_pain_type": "Typical Angina",
+          "frequency": 50
+        },
+        {
+          "chest_pain_type": "Atypical Angina",
+          "frequency": 30
+        },
+        {
+          "chest_pain_type": "Non-Anginal Pain",
+          "frequency": 80
+        },
+        {
+          "chest_pain_type": "Asymptomatic",
+          "frequency": 120
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "chest_pain_type"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "frequency"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Chest Pain Type",
+      "labelFontSize": 14
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Frequency",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "chest_pain_type"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "frequency"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['chest_pain_type']==='Typical Angina'",
+              "value": "#2ca02c"
+            },
+            {
+              "test": "datum['chest_pain_type']==='Non-Anginal Pain'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "fill": [
+            {
+              "test": "datum['chest_pain_type']==='Typical Angina'",
+              "value": "#2ca02c"
+            },
+            {
+              "test": "datum['chest_pain_type']==='Non-Anginal Pain'",
+              "value": "#ff7f0e"
+            },
+            {
+              "test": "datum.chest_pain_type === 'Typical Angina'",
+              "value": "green"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  }
+}

@@ -1,0 +1,2 @@
+Remove the datapoint for 'Africa' in the 'Residential' series with a value of 200.
+[#OP1 op=remove_datapoint; category=Europe]

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing crime categories and their counts.",
+  "width": 400,
+  "height": 300,
+  "padding": 10,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Theft",
+          "Count": 120
+        },
+        {
+          "Category": "Assault",
+          "Count": 85
+        },
+        {
+          "Category": "Burglary",
+          "Count": 60
+        },
+        {
+          "Category": "Robbery",
+          "Count": 95
+        },
+        {
+          "Category": "Fraud",
+          "Count": 40
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Crime Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Count"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

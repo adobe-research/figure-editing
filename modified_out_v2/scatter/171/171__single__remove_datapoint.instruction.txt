@@ -1,0 +1,2 @@
+Remove the datapoint with Transaction_Amount 95.3 and Account_Balance 2700.25.
+[#OP1 op=remove_datapoint; category=Segment_C]

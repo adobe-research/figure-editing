@@ -1,0 +1,2 @@
+Remove the datapoint with WordCount 75 and CharacterCount 450.
+[#OP1 op=remove_datapoint; category=Insincere]

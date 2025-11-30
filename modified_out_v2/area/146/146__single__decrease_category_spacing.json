@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing CO2 emissions from various sources over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 2,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "coal": 8000,
+          "oil": 7000,
+          "gas": 6000
+        },
+        {
+          "year": 2005,
+          "coal": 8500,
+          "oil": 7200,
+          "gas": 6500
+        },
+        {
+          "year": 2010,
+          "coal": 9000,
+          "oil": 7500,
+          "gas": 7000
+        },
+        {
+          "year": 2015,
+          "coal": 8700,
+          "oil": 7100,
+          "gas": 6800
+        },
+        {
+          "year": 2020,
+          "coal": 8300,
+          "oil": 6900,
+          "gas": 6700
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "fields": [
+          {
+            "data": "table",
+            "field": "coal"
+          },
+          {
+            "data": "table",
+            "field": "oil"
+          },
+          {
+            "data": "table",
+            "field": "gas"
+          }
+        ]
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "coal",
+        "oil",
+        "gas"
+      ],
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "CO2 Emissions (MtCO2)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "coal"
+          }
+        },
+        "update": {}
+      },
+      "sort": {
+        "field": "year",
+        "order": "ascending"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Legend",
+      "orient": "right"
+    }
+  ]
+}

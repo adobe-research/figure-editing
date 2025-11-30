@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Education loans' with an amount of 600.
+[#OP1 op=remove_datapoint; category=Revolving loans]

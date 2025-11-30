@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories from the UCI: Forest Fires Dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "forest_fires",
+      "values": [
+        {
+          "month": "January",
+          "burned_area": 0.0
+        },
+        {
+          "month": "February",
+          "burned_area": 2.3
+        },
+        {
+          "month": "March",
+          "burned_area": 0.0
+        },
+        {
+          "month": "April",
+          "burned_area": 5.6
+        },
+        {
+          "month": "May",
+          "burned_area": 0.0
+        },
+        {
+          "month": "June",
+          "burned_area": 3.4
+        },
+        {
+          "month": "July",
+          "burned_area": 7.8
+        },
+        {
+          "month": "August",
+          "burned_area": 12.3
+        },
+        {
+          "month": "September",
+          "burned_area": 0.4
+        },
+        {
+          "month": "October",
+          "burned_area": 1.2
+        },
+        {
+          "month": "November",
+          "burned_area": 0.0
+        },
+        {
+          "month": "December",
+          "burned_area": 0.0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "forest_fires",
+        "field": "month"
+      },
+      "range": "width",
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "forest_fires",
+        "field": "burned_area"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Month"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Burned Area (ha)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "forest_fires"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "burned_area"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "tooltip": {
+            "signal": "datum.month + ': ' + datum.burned_area + ' ha'"
+          }
+        }
+      }
+    }
+  ]
+}

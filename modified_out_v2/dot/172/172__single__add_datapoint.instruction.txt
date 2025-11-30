@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Neutral on Policy X' and Value 50.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Neutral on Policy X; value=45.0]

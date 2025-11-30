@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2013 with production 470 for the 'Renewables' source.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Hydropower; value=2011.0]

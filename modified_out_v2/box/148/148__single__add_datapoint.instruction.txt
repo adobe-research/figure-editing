@@ -1,0 +1,2 @@
+Add a new datapoint with the condition 'Mild Stroke' and values min=45, q1=58, median=68, q3=78, max=88.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Mild Stroke; value=45.0]

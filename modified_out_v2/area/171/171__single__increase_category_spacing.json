@@ -1,0 +1,164 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy consumption trends by source over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "energyData",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Solar",
+          "consumption": 5
+        },
+        {
+          "year": 2001,
+          "source": "Solar",
+          "consumption": 7
+        },
+        {
+          "year": 2002,
+          "source": "Solar",
+          "consumption": 10
+        },
+        {
+          "year": 2000,
+          "source": "Wind",
+          "consumption": 15
+        },
+        {
+          "year": 2001,
+          "source": "Wind",
+          "consumption": 18
+        },
+        {
+          "year": 2002,
+          "source": "Wind",
+          "consumption": 22
+        },
+        {
+          "year": 2000,
+          "source": "Hydro",
+          "consumption": 30
+        },
+        {
+          "year": 2001,
+          "source": "Hydro",
+          "consumption": 28
+        },
+        {
+          "year": 2002,
+          "source": "Hydro",
+          "consumption": 25
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Solar' || datum['source']=='Wind'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002
+      ],
+      "padding": 0.9
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "energyData",
+        "field": "consumption"
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "energyData",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Consumption (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "energyData",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "consumption"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {}
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ]
+}

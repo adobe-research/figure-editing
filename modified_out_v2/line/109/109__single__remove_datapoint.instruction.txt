@@ -1,0 +1,2 @@
+Remove the datapoint for the age group '60-69' and series 'Cholesterol'.
+[#OP1 op=remove_datapoint; category=30-39]

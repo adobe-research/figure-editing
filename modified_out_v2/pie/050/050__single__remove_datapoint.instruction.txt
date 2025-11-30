@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Species-B'.
+[#OP1 op=remove_datapoint; category=Species-A]

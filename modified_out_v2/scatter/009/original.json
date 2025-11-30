@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing transaction amount versus time with fraud status as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Time": 100,
+          "Amount": 50.0,
+          "Fraud": "No"
+        },
+        {
+          "Time": 200,
+          "Amount": 120.5,
+          "Fraud": "Yes"
+        },
+        {
+          "Time": 300,
+          "Amount": 75.3,
+          "Fraud": "No"
+        },
+        {
+          "Time": 400,
+          "Amount": 200.0,
+          "Fraud": "Yes"
+        },
+        {
+          "Time": 500,
+          "Amount": 90.7,
+          "Fraud": "No"
+        },
+        {
+          "Time": 600,
+          "Amount": 150.2,
+          "Fraud": "Yes"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        100.0,
+        600.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Amount"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Fraud"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Time (seconds)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Amount ($)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Fraud Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Time"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Amount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Fraud"
+          },
+          "size": {
+            "value": 100
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

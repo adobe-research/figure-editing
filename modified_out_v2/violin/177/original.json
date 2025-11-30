@@ -1,0 +1,339 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of credit amount for different income categories.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "credit_data",
+      "values": [
+        {
+          "Income Category": "Low",
+          "Credit Amount": 5000
+        },
+        {
+          "Income Category": "Low",
+          "Credit Amount": 5200
+        },
+        {
+          "Income Category": "Low",
+          "Credit Amount": 5500
+        },
+        {
+          "Income Category": "Low",
+          "Credit Amount": 5800
+        },
+        {
+          "Income Category": "Low",
+          "Credit Amount": 6000
+        },
+        {
+          "Income Category": "Medium",
+          "Credit Amount": 15000
+        },
+        {
+          "Income Category": "Medium",
+          "Credit Amount": 15500
+        },
+        {
+          "Income Category": "Medium",
+          "Credit Amount": 16000
+        },
+        {
+          "Income Category": "Medium",
+          "Credit Amount": 16500
+        },
+        {
+          "Income Category": "Medium",
+          "Credit Amount": 17000
+        },
+        {
+          "Income Category": "High",
+          "Credit Amount": 25000
+        },
+        {
+          "Income Category": "High",
+          "Credit Amount": 26000
+        },
+        {
+          "Income Category": "High",
+          "Credit Amount": 27000
+        },
+        {
+          "Income Category": "High",
+          "Credit Amount": 28000
+        },
+        {
+          "Income Category": "High",
+          "Credit Amount": 29000
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Income Category'] != null && datum['Credit Amount'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Credit Amount",
+          "groupby": [
+            "Income Category"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [0, 50000]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Income Category"
+          ],
+          "fields": [
+            "Credit Amount",
+            "Credit Amount",
+            "Credit Amount"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "credit_data",
+        "field": "Income Category"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "credit_data",
+        "field": "Credit Amount"
+      },
+      "domainMin": 0,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "credit_data",
+        "field": "Income Category"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Income Category"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Income Category",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Income Category'] === parent['Income Category']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Income Category"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

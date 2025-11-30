@@ -1,0 +1,2 @@
+Change the color of the datapoints representing 'Price' to '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=2023-01-03; new_color=#d62728]

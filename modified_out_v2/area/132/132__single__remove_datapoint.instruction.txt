@@ -1,0 +1,2 @@
+Remove the datapoint for Region B on 2023-04-01 with a demand of 230.
+[#OP1 op=remove_datapoint; category=2023-01-01]

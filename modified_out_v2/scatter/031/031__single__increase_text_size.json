@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing Loan Amount vs Applicant Income, colored by Loan Status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "ApplicantIncome": 5000,
+          "LoanAmount": 120,
+          "LoanStatus": "Approved"
+        },
+        {
+          "ApplicantIncome": 3000,
+          "LoanAmount": 100,
+          "LoanStatus": "Rejected"
+        },
+        {
+          "ApplicantIncome": 4000,
+          "LoanAmount": 140,
+          "LoanStatus": "Approved"
+        },
+        {
+          "ApplicantIncome": 2500,
+          "LoanAmount": 80,
+          "LoanStatus": "Rejected"
+        },
+        {
+          "ApplicantIncome": 6000,
+          "LoanAmount": 200,
+          "LoanStatus": "Approved"
+        },
+        {
+          "ApplicantIncome": 3200,
+          "LoanAmount": 90,
+          "LoanStatus": "Rejected"
+        },
+        {
+          "ApplicantIncome": 4500,
+          "LoanAmount": 150,
+          "LoanStatus": "Approved"
+        },
+        {
+          "ApplicantIncome": 2800,
+          "LoanAmount": 110,
+          "LoanStatus": "Rejected"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        2500.0,
+        6000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "LoanAmount"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "LoanStatus"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Applicant Income",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Loan Amount",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Loan Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "ApplicantIncome"
+          },
+          "y": {
+            "scale": "y",
+            "field": "LoanAmount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "LoanStatus"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

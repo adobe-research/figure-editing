@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing energy production by source in the US.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "source": "Coal",
+          "production": 1000
+        },
+        {
+          "source": "Natural Gas",
+          "production": 1200
+        },
+        {
+          "source": "Nuclear",
+          "production": 800
+        },
+        {
+          "source": "Hydroelectric",
+          "production": 500
+        },
+        {
+          "source": "Solar",
+          "production": 300
+        },
+        {
+          "source": "Wind",
+          "production": 700
+        },
+        {
+          "source": "Other",
+          "production": 200
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "source"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "production"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Energy Source"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Production (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "source"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "production"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "forestgreen"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['source']==='Coal'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

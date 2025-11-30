@@ -1,0 +1,2 @@
+Add a new datapoint for the 'summary' dataset with Category 'Value' and values min=3, q1=4, median=5, q3=6, max=7.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Ambience; value=2.0]

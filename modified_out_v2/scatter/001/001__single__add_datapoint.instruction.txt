@@ -1,0 +1,2 @@
+Add a new datapoint with trip_distance 3.5, trip_duration 800, and payment_type 'Credit Card'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cash; value=2.5]

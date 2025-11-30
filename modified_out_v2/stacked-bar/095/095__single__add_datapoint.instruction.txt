@@ -1,0 +1,2 @@
+Add a new datapoint for the 1940s decade, region 'Africa', with a temperature anomaly of -0.05.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1880s; value=-0.17]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Carrier A' with a delay of 55 minutes on '2023-05-01'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01-01; value=35.0]

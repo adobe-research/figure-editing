@@ -1,0 +1,2 @@
+Remove the datapoint for 'Customer' in '2023-04'.
+[#OP1 op=remove_datapoint; category=2023-02]

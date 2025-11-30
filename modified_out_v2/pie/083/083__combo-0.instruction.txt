@@ -1,0 +1,3 @@
+Change the color of the 'Freedom' datapoint to '#FF5733' and add a title 'World Happiness Factors'.
+[#OP1 op=change_datapoint_color; target_category=Social Support; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Decrease the text size of the axis titles.
+[#OP1 op=decrease_text_size; decrease_text_size axes.titleFontSize=10; axis_label_size=8]

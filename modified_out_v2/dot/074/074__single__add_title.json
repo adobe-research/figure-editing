@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing energy consumption by category.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Coal",
+          "Consumption": 1200
+        },
+        {
+          "Category": "Natural Gas",
+          "Consumption": 950
+        },
+        {
+          "Category": "Oil",
+          "Consumption": 1100
+        },
+        {
+          "Category": "Renewables",
+          "Consumption": 800
+        },
+        {
+          "Category": "Nuclear",
+          "Consumption": 700
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Consumption"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Energy Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Energy Consumption (in TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Consumption"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      }
+    }
+  ]
+}

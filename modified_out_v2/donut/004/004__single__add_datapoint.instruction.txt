@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Food Truck' with a value of 50 to the donut chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Buffet; value=60.0]

@@ -1,0 +1,2 @@
+Change the color of the 'Electronics' department datapoints to a new color 'orange'.
+[#OP1 op=change_datapoint_color; target_category=Store 2; new_color=#2ca02c]

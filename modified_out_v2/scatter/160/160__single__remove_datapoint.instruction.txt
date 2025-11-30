@@ -1,0 +1,2 @@
+Remove the datapoint where PointsPerGame is 15.2 and ReboundsPerGame is 12.5.
+[#OP1 op=remove_datapoint; category=Center]

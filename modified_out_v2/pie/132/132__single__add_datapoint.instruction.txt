@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Extra Large Claims' and value 250 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Extra Large Claims; value=1500.0]

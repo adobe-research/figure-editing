@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing GDP growth over years for multiple regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 7.2
+        },
+        {
+          "year": 2001,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 6.5
+        },
+        {
+          "year": 2002,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 7.8
+        },
+        {
+          "year": 2000,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 3.1
+        },
+        {
+          "year": 2001,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 2.5
+        },
+        {
+          "year": 2002,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 3.7
+        },
+        {
+          "year": 2000,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.4
+        },
+        {
+          "year": 2001,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.1
+        },
+        {
+          "year": 2002,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.8
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['region']=='East Asia & Pacific' || datum['region']=='Europe & Central Asia'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2001,
+        2002
+      ],
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "gdp_growth"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "GDP Growth (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "gdp_growth"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}

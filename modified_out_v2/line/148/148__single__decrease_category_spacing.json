@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing FAO Food Price Index trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-01",
+          "price_index": 95.1,
+          "category": "Cereals"
+        },
+        {
+          "date": "2020-02",
+          "price_index": 96.3,
+          "category": "Cereals"
+        },
+        {
+          "date": "2020-03",
+          "price_index": 97.5,
+          "category": "Cereals"
+        },
+        {
+          "date": "2020-01",
+          "price_index": 110.2,
+          "category": "Meat"
+        },
+        {
+          "date": "2020-02",
+          "price_index": 108.5,
+          "category": "Meat"
+        },
+        {
+          "date": "2020-03",
+          "price_index": 107.8,
+          "category": "Meat"
+        },
+        {
+          "date": "2020-01",
+          "price_index": 98.6,
+          "category": "Dairy"
+        },
+        {
+          "date": "2020-02",
+          "price_index": 99.1,
+          "category": "Dairy"
+        },
+        {
+          "date": "2020-03",
+          "price_index": 99.8,
+          "category": "Dairy"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "padding": 0.7000000000000001,
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "price_index"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Price Index"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "price_index"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "category"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

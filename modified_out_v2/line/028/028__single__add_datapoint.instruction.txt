@@ -1,0 +1,2 @@
+Add a new datapoint for 'Airline A' with a delay of 25 in '2023-04'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=16.5]

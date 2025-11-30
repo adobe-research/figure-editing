@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Shell Length: 0.7-0.8' and amount 45.
+[#OP1 op=remove_datapoint; category=Shell Length: 0.2-0.3]

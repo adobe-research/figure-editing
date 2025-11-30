@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing daily climate metrics in Delhi.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "day": "Monday",
+          "metric": "Temperature",
+          "value": 35
+        },
+        {
+          "day": "Monday",
+          "metric": "Humidity",
+          "value": 60
+        },
+        {
+          "day": "Monday",
+          "metric": "Wind Speed",
+          "value": 12
+        },
+        {
+          "day": "Tuesday",
+          "metric": "Temperature",
+          "value": 38
+        },
+        {
+          "day": "Tuesday",
+          "metric": "Humidity",
+          "value": 55
+        },
+        {
+          "day": "Tuesday",
+          "metric": "Wind Speed",
+          "value": 15
+        },
+        {
+          "day": "Wednesday",
+          "metric": "Temperature",
+          "value": 36
+        },
+        {
+          "day": "Wednesday",
+          "metric": "Humidity",
+          "value": 65
+        },
+        {
+          "day": "Wednesday",
+          "metric": "Wind Speed",
+          "value": 10
+        },
+        {
+          "day": "Thursday",
+          "metric": "Temperature",
+          "value": 34
+        },
+        {
+          "day": "Thursday",
+          "metric": "Humidity",
+          "value": 70
+        },
+        {
+          "day": "Thursday",
+          "metric": "Wind Speed",
+          "value": 8
+        },
+        {
+          "day": "Friday",
+          "metric": "Temperature",
+          "value": 37
+        },
+        {
+          "day": "Friday",
+          "metric": "Humidity",
+          "value": 50
+        },
+        {
+          "day": "Friday",
+          "metric": "Wind Speed",
+          "value": 14
+        },
+        {
+          "day": "Saturday",
+          "metric": "Temperature",
+          "value": 40
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "day"
+          ],
+          "sort": {
+            "field": "metric"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "day"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "metric"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Day of the Week"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Climate Metric",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "day"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "metric"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

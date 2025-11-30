@@ -1,0 +1,2 @@
+Add a new datapoint with TransactionValue1 as 140.0, TransactionValue2 as 95.0, and CustomerSegment as 'D'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=120.5]

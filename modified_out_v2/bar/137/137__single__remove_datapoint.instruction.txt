@@ -1,0 +1,2 @@
+Remove the datapoint with diagnosis 'Benign' and mean_radius 12.3.
+[#OP1 op=remove_datapoint; category=Malignant]

@@ -1,0 +1,2 @@
+Remove the datapoint with Subject 'Math' and Score 74.
+[#OP1 op=remove_datapoint; category=Math]

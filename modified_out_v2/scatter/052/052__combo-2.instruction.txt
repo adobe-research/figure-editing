@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Cash' payment type to green, increase the text size of axis labels to 14, and add a title 'Trip Analysis Scatter Plot' with size 16.
+[#OP1 op=change_datapoint_color; target_category=Credit Card; new_color=#2ca02c]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

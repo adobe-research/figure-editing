@@ -1,0 +1,2 @@
+Change the color for 'Positive' sentiment datapoints to '#e41a1c'.
+[#OP1 op=change_datapoint_color; target_category=Neutral; new_color=#d62728]

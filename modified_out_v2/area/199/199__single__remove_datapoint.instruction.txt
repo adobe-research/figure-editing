@@ -1,0 +1,2 @@
+Remove the datapoint for Solar production in March 2022.
+[#OP1 op=remove_datapoint; category=2022-01]

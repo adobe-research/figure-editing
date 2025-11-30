@@ -1,0 +1,2 @@
+Add a new datapoint with Subject 'English' and Grade 89.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=English; value=85.0]

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing yeast dataset statistics.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "ProteinContent": 0.54,
+          "EnzymeActivity": 0.65,
+          "YeastType": "Type A"
+        },
+        {
+          "ProteinContent": 0.62,
+          "EnzymeActivity": 0.72,
+          "YeastType": "Type B"
+        },
+        {
+          "ProteinContent": 0.48,
+          "EnzymeActivity": 0.58,
+          "YeastType": "Type C"
+        },
+        {
+          "ProteinContent": 0.7,
+          "EnzymeActivity": 0.8,
+          "YeastType": "Type A"
+        },
+        {
+          "ProteinContent": 0.55,
+          "EnzymeActivity": 0.67,
+          "YeastType": "Type B"
+        },
+        {
+          "ProteinContent": 0.6,
+          "EnzymeActivity": 0.75,
+          "YeastType": "Type C"
+        },
+        {
+          "ProteinContent": 0.5,
+          "EnzymeActivity": 0.6,
+          "YeastType": "Type A"
+        },
+        {
+          "ProteinContent": 0.65,
+          "EnzymeActivity": 0.78,
+          "YeastType": "Type B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": [
+        0.48,
+        0.7
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "EnzymeActivity"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "YeastType"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Protein Content",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Enzyme Activity",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Yeast Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "ProteinContent"
+          },
+          "y": {
+            "scale": "y",
+            "field": "EnzymeActivity"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "YeastType"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

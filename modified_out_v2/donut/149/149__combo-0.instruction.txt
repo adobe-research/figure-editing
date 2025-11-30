@@ -1,0 +1,3 @@
+Change the color of the 'Drama' datapoint to '#FF5733' and add a title 'Netflix Content Genres'.
+[#OP1 op=change_datapoint_color; target_category=Action; new_color=#9467bd]
+[#OP2 op=add_title; title_text=Edited Chart]

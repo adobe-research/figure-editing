@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing average monthly temperatures over a year.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "temperature": -5.3
+        },
+        {
+          "month": "Feb",
+          "temperature": -3.2
+        },
+        {
+          "month": "Mar",
+          "temperature": 2.1
+        },
+        {
+          "month": "Apr",
+          "temperature": 8.7
+        },
+        {
+          "month": "May",
+          "temperature": 14.2
+        },
+        {
+          "month": "Jun",
+          "temperature": 19.1
+        },
+        {
+          "month": "Jul",
+          "temperature": 22.3
+        },
+        {
+          "month": "Aug",
+          "temperature": 21.8
+        },
+        {
+          "month": "Sep",
+          "temperature": 16.5
+        },
+        {
+          "month": "Oct",
+          "temperature": 10.1
+        },
+        {
+          "month": "Nov",
+          "temperature": 3.6
+        },
+        {
+          "month": "Dec",
+          "temperature": -2.7
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot depicting Quora question statistics.",
+  "width": 400,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "WordCount": 120,
+          "CharacterCount": 800,
+          "Category": "Insincere"
+        },
+        {
+          "WordCount": 85,
+          "CharacterCount": 550,
+          "Category": "Sincere"
+        },
+        {
+          "WordCount": 150,
+          "CharacterCount": 1000,
+          "Category": "Insincere"
+        },
+        {
+          "WordCount": 95,
+          "CharacterCount": 700,
+          "Category": "Sincere"
+        },
+        {
+          "WordCount": 130,
+          "CharacterCount": 850,
+          "Category": "Insincere"
+        },
+        {
+          "WordCount": 75,
+          "CharacterCount": 450,
+          "Category": "Sincere"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        75,
+        85,
+        95,
+        120,
+        130,
+        150
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "CharacterCount"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Word Count",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Character Count",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "scale": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "WordCount"
+          },
+          "y": {
+            "scale": "y",
+            "field": "CharacterCount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

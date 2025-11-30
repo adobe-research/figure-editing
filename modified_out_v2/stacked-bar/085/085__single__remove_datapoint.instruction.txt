@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Transportation', series 'Coal', and value 50.
+[#OP1 op=remove_datapoint; category=Transportation]

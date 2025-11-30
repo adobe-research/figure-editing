@@ -1,0 +1,2 @@
+Change the color of the 'Action' category datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Adventure; new_color=#9467bd]

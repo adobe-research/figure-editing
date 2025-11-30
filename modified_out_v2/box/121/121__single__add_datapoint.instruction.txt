@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Teenagers' customer group with min=5, q1=15, median=25, q3=35, and max=50.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Senior Citizens; value=12.5]

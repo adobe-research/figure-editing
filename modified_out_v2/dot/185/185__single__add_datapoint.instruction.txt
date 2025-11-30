@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Moderate Risk' and Value 0.75 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High Risk; value=0.65]

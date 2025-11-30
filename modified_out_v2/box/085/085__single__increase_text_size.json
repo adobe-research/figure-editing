@@ -1,0 +1,226 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Box plot with precomputed five-number summaries.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    },
+    "axis": {
+      "labelFontSize": 12
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    }
+  ],
+  "data": [
+    {
+      "name": "summary",
+      "values": [
+        {
+          "Country": "United States",
+          "min": 5000,
+          "q1": 15000,
+          "median": 30000,
+          "q3": 45000,
+          "max": 60000
+        },
+        {
+          "Country": "China",
+          "min": 2000,
+          "q1": 8000,
+          "median": 18000,
+          "q3": 30000,
+          "max": 45000
+        },
+        {
+          "Country": "India",
+          "min": 1000,
+          "q1": 4000,
+          "median": 10000,
+          "q3": 20000,
+          "max": 35000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "summary",
+        "field": "Country"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": [
+        1000,
+        60000
+      ],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "summary",
+          "name": "countries",
+          "groupby": "Country"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Country",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "from": {
+            "data": "countries"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 1
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "min"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "max"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "countries"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "steelblue"
+              },
+              "cornerRadius": {
+                "value": 4
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "countries"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "aliceblue"
+              },
+              "width": {
+                "value": 2
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              }
+            }
+          },
+          "clip": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with species 'versicolor' and sepal_width 2.7.
+[#OP1 op=remove_datapoint; category=virginica]

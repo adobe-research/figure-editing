@@ -1,0 +1,2 @@
+Add a new datapoint for November 1, 2023, with a price of 380.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=340.0]

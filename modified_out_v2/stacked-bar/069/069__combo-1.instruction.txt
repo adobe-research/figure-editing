@@ -1,0 +1,3 @@
+Change the color of the 'Casual Users' series to '#FF5733' and increase the text size of axis labels to 14.
+[#OP1 op=increase_text_size; axis_label_size=16]
+[#OP2 op=increase_text_size; axis_label_size=16]

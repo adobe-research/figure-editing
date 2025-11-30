@@ -1,2 +1,0 @@
-Change the color of the datapoints to new colors not used in the original spec.
-[#OP1 op=change_datapoint_color; target_category=Education; new_color=#9467bd]

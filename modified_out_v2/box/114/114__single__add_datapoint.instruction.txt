@@ -1,0 +1,2 @@
+Add a new datapoint for the species 'new_species' with min=4.5, q1=5.2, median=5.7, q3=6.1, and max=6.8.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=new_species; value=4.7]

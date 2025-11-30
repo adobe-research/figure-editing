@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart of FAO Food Price Index trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2022-01",
+          "index": 135.7,
+          "category": "Cereals"
+        },
+        {
+          "month": "2022-02",
+          "index": 140.6,
+          "category": "Cereals"
+        },
+        {
+          "month": "2022-03",
+          "index": 159.7,
+          "category": "Cereals"
+        },
+        {
+          "month": "2022-01",
+          "index": 120.5,
+          "category": "Dairy"
+        },
+        {
+          "month": "2022-02",
+          "index": 123.4,
+          "category": "Dairy"
+        },
+        {
+          "month": "2022-03",
+          "index": 128.6,
+          "category": "Dairy"
+        },
+        {
+          "month": "2022-01",
+          "index": 115.2,
+          "category": "Meat"
+        },
+        {
+          "month": "2022-02",
+          "index": 117.8,
+          "category": "Meat"
+        },
+        {
+          "month": "2022-03",
+          "index": 121.3,
+          "category": "Meat"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "index"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#FF5733",
+        "#33FF57",
+        "#3357FF"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Food Price Index"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "index"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "category"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

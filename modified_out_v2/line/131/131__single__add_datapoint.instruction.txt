@@ -1,0 +1,2 @@
+Add a new datapoint with date '2020-05-08', cases 44000, and deaths 850 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-05-01; value=37000.0]

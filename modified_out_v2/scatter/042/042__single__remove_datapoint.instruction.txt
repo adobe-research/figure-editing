@@ -1,0 +1,2 @@
+Remove the datapoint where StudyTime is 6 and FinalGrade is 95.
+[#OP1 op=remove_datapoint; category=Female]

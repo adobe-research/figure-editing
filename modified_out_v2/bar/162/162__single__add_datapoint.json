@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average annual temperatures for different U.S. cities.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "city": "New York",
+          "temperature": 12.5
+        },
+        {
+          "city": "Los Angeles",
+          "temperature": 18.7
+        },
+        {
+          "city": "Chicago",
+          "temperature": 10.3
+        },
+        {
+          "city": "Houston",
+          "temperature": 20.1
+        },
+        {
+          "city": "Phoenix",
+          "temperature": 22.8
+        },
+        {
+          "city": "Philadelphia",
+          "temperature": 13.2
+        },
+        {
+          "city": "San Antonio",
+          "temperature": 21.3
+        },
+        {
+          "city": "San Diego",
+          "temperature": 17.5
+        },
+        {
+          "city": "Dallas",
+          "temperature": 19.6
+        },
+        {
+          "city": "San Jose",
+          "temperature": 15.8
+        },
+        {
+          "city": "Miami",
+          "temperature": 24.3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "city"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "City"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Annual Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "city"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "skyblue"
+          }
+        },
+        "update": {
+          "tooltip": {
+            "signal": "datum"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

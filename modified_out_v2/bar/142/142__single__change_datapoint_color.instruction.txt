@@ -1,0 +1,2 @@
+Change the color of the datapoints to 'darkgreen'.
+[#OP1 op=change_datapoint_color; target_category=Kylian Mbappé; new_color=#ff7f0e]

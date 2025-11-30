@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2025 with a population of 135000 for the age group '0-18'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=0-18; value=2015.0]

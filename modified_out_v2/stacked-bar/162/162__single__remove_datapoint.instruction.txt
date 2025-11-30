@@ -1,0 +1,2 @@
+Remove the datapoint for Ripple in the month of May.
+[#OP1 op=remove_datapoint; category=January]

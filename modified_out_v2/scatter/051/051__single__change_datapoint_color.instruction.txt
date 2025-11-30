@@ -1,0 +1,2 @@
+Change the color of datapoints for Category 'A' to a new color '#e377c2'.
+[#OP1 op=change_datapoint_color; target_category=B; new_color=#d62728]

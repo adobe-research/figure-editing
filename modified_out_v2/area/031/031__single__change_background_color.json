@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy consumption trends over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "coal": 200,
+          "natural_gas": 150,
+          "renewables": 50
+        },
+        {
+          "year": 2005,
+          "coal": 220,
+          "natural_gas": 180,
+          "renewables": 70
+        },
+        {
+          "year": 2010,
+          "coal": 210,
+          "natural_gas": 200,
+          "renewables": 100
+        },
+        {
+          "year": 2015,
+          "coal": 190,
+          "natural_gas": 250,
+          "renewables": 150
+        },
+        {
+          "year": 2020,
+          "coal": 170,
+          "natural_gas": 300,
+          "renewables": 200
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "fields": [
+          {
+            "data": "table",
+            "field": "coal"
+          },
+          {
+            "data": "table",
+            "field": "natural_gas"
+          },
+          {
+            "data": "table",
+            "field": "renewables"
+          }
+        ]
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "coal",
+        "natural_gas",
+        "renewables"
+      ],
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Consumption (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": {
+              "signal": "datum.value"
+            }
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": {
+              "signal": "datum.key"
+            }
+          }
+        },
+        "update": {}
+      },
+      "sort": {
+        "field": "year",
+        "order": "ascending"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Legend",
+      "orient": "right"
+    }
+  ]
+}

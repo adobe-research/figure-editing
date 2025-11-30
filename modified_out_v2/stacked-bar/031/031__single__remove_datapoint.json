@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing emissions by source for different countries.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "emissions",
+      "values": [
+        {
+          "country": "USA",
+          "source": "Coal",
+          "emissions": 5000
+        },
+        {
+          "country": "USA",
+          "source": "Oil",
+          "emissions": 3000
+        },
+        {
+          "country": "USA",
+          "source": "Gas",
+          "emissions": 2000
+        },
+        {
+          "country": "China",
+          "source": "Coal",
+          "emissions": 7000
+        },
+        {
+          "country": "China",
+          "source": "Oil",
+          "emissions": 4000
+        },
+        {
+          "country": "China",
+          "source": "Gas",
+          "emissions": 1500
+        },
+        {
+          "country": "India",
+          "source": "Coal",
+          "emissions": 6000
+        },
+        {
+          "country": "India",
+          "source": "Oil",
+          "emissions": 2500
+        },
+        {
+          "country": "India",
+          "source": "Gas",
+          "emissions": 1000
+        },
+        {
+          "country": "Germany",
+          "source": "Coal",
+          "emissions": 2000
+        },
+        {
+          "country": "Germany",
+          "source": "Oil",
+          "emissions": 1500
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "country"
+          ],
+          "sort": {
+            "field": "source"
+          },
+          "field": "emissions"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "emissions",
+        "field": "country"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "emissions",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "emissions",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Country"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Emissions (MtCO2)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "emissions"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "country"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "source"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

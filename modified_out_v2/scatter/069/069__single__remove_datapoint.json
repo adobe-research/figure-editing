@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing relationships between two numeric variables with an optional categorical series.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Feature1": 1.5,
+          "Feature2": 200.4,
+          "Category": "A"
+        },
+        {
+          "Feature1": 2.3,
+          "Feature2": 300.1,
+          "Category": "B"
+        },
+        {
+          "Feature1": 3.7,
+          "Feature2": 150.8,
+          "Category": "A"
+        },
+        {
+          "Feature1": 4.1,
+          "Feature2": 220.0,
+          "Category": "C"
+        },
+        {
+          "Feature1": 2.8,
+          "Feature2": 180.5,
+          "Category": "B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.5,
+        4.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Feature2"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Feature 1"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Feature 2"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Feature1"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Feature2"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

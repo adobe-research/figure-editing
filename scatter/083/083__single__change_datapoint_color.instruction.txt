@@ -1,2 +1,0 @@
-Change the datapoint color for churn status 'Yes' to a new color '#ff7f0e'.
-[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#2ca02c]

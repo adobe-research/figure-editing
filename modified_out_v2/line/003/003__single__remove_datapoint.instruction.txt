@@ -1,0 +1,2 @@
+Remove the datapoint for 'Hydropower' in the year 2011 with production value 1250.
+[#OP1 op=remove_datapoint; category=Nuclear]

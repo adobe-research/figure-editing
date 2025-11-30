@@ -1,0 +1,2 @@
+Add a new datapoint for the species 'Iris-new' with a count of 30 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Iris-new; value=50.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with Age 28, MonthlyIncome 3700, and CreditStatus 'Good'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bad; value=34.0]

@@ -1,2 +1,0 @@
-Remove the datapoint with Category 'Chest Pain Type 3' and Value 160.
-[#OP1 op=remove_datapoint; category=Chest Pain Type 1]

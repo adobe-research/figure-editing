@@ -1,0 +1,2 @@
+Remove the datapoint for the 'United' series at the 'DFW' category.
+[#OP1 op=remove_datapoint; category=JFK]

@@ -1,0 +1,2 @@
+Increase the text size of the labels displaying sales values to 16.
+[#OP1 op=increase_text_size; axis_label_size=12]

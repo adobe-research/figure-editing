@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing transaction categories and their corresponding values.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "TransactionCategory": "Online Purchase",
+          "Amount": 250.75
+        },
+        {
+          "TransactionCategory": "ATM Withdrawal",
+          "Amount": 100.0
+        },
+        {
+          "TransactionCategory": "Groceries",
+          "Amount": 75.5
+        },
+        {
+          "TransactionCategory": "Travel",
+          "Amount": 500.0
+        },
+        {
+          "TransactionCategory": "Utilities",
+          "Amount": 120.25
+        },
+        {
+          "TransactionCategory": "Entertainment",
+          "Amount": 65.0
+        },
+        {
+          "TransactionCategory": "Healthcare",
+          "Amount": 200.8
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "TransactionCategory"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Amount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Category",
+      "labelAngle": -45
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Amount ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "TransactionCategory"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Amount"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

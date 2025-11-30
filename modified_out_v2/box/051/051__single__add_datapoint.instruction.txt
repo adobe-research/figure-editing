@@ -1,0 +1,2 @@
+Add a new datapoint for the player 'Jackie Robinson' with min=18, q1=28, median=38, q3=48, and max=58.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Babe Ruth; value=13.5]

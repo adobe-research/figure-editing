@@ -1,0 +1,185 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing survey trends over time.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "category": "Support for Policy A",
+          "value": 45
+        },
+        {
+          "year": 2016,
+          "category": "Support for Policy A",
+          "value": 50
+        },
+        {
+          "year": 2017,
+          "category": "Support for Policy A",
+          "value": 55
+        },
+        {
+          "year": 2018,
+          "category": "Support for Policy A",
+          "value": 60
+        },
+        {
+          "year": 2019,
+          "category": "Support for Policy A",
+          "value": 65
+        },
+        {
+          "year": 2015,
+          "category": "Support for Policy B",
+          "value": 40
+        },
+        {
+          "year": 2016,
+          "category": "Support for Policy B",
+          "value": 42
+        },
+        {
+          "year": 2017,
+          "category": "Support for Policy B",
+          "value": 45
+        },
+        {
+          "year": 2018,
+          "category": "Support for Policy B",
+          "value": 47
+        },
+        {
+          "year": 2019,
+          "category": "Support for Policy B",
+          "value": 50
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Support (%)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "facet",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "category"
+              },
+              "tooltip": {
+                "signal": "datum.category + ': ' + datum.value + '%'"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

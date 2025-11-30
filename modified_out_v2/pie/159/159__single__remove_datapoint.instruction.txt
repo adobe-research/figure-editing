@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'In-Person' category.
+[#OP1 op=remove_datapoint; category=Direct Mail]

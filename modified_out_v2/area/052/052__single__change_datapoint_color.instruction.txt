@@ -1,0 +1,2 @@
+Change the datapoint color for the age group '16-24' to 'purple'.
+[#OP1 op=change_datapoint_color; target_category=16-24; new_color=#ff7f0e]

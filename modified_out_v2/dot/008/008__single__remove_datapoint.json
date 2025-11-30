@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories as individual points.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Books",
+          "Value": 45
+        },
+        {
+          "Category": "Movies",
+          "Value": 78
+        },
+        {
+          "Category": "Music",
+          "Value": 52
+        },
+        {
+          "Category": "Podcasts",
+          "Value": 63
+        },
+        {
+          "Category": "Video Games",
+          "Value": 89
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

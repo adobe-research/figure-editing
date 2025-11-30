@@ -1,2 +1,0 @@
-Remove the datapoint with category 'May' and series 'Volume'.
-[#OP1 op=remove_datapoint; category=May]

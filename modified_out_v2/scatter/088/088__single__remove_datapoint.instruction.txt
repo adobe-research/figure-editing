@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 29 and Height is 185.
+[#OP1 op=remove_datapoint; category=Gymnastics]

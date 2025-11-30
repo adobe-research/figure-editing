@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Writing' subject.
+[#OP1 op=remove_datapoint; category=Reading]

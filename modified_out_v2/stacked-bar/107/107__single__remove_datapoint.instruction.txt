@@ -1,0 +1,2 @@
+Remove the datapoint for the '2019' category and 'Agriculture' series.
+[#OP1 op=remove_datapoint; category=2015]

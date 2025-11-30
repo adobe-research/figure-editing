@@ -1,0 +1,2 @@
+Add a new datapoint with Age 30, Fare 15.5, and Survived 'No' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=27.0]

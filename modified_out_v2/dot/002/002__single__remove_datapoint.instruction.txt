@@ -1,0 +1,2 @@
+Remove the datapoint for 'India' with GDP per capita of 2100.
+[#OP1 op=remove_datapoint; category=United States]

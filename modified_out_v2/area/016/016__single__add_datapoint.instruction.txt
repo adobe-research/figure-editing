@@ -1,0 +1,2 @@
+Add a new datapoint for 'precipitation' in 'weather' data with 'month' as 'ExtraMonth' and value as 80.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=90.0]

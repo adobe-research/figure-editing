@@ -1,0 +1,2 @@
+Remove the datapoint for 'Renewables' in the year 2001 with a consumption value of 170.
+[#OP1 op=remove_datapoint; category=Natural Gas]

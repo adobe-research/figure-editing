@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Solana' and series 'Volume (USD)'.
+[#OP1 op=remove_datapoint; category=Bitcoin]

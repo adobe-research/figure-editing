@@ -1,0 +1,4 @@
+Change the color of the datapoint for 'Exchange B' in 'March' to '#FF5733', increase the text size of axis labels to 14, and add a title 'Bitcoin Trading Volumes by Month and Exchange'.
+[#OP1 op=change_datapoint_color; target_category=May; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

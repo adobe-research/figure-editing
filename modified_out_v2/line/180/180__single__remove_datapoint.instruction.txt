@@ -1,0 +1,2 @@
+Remove the datapoint for Carrier B on 2023-03-01 with a delay of 20 minutes.
+[#OP1 op=remove_datapoint; category=2023-01-01]

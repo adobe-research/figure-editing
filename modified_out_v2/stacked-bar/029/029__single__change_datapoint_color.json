@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing energy consumption by type across regions.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "region": "North America",
+          "type": "Coal",
+          "value": 120
+        },
+        {
+          "region": "North America",
+          "type": "Oil",
+          "value": 200
+        },
+        {
+          "region": "North America",
+          "type": "Natural Gas",
+          "value": 150
+        },
+        {
+          "region": "Europe",
+          "type": "Coal",
+          "value": 80
+        },
+        {
+          "region": "Europe",
+          "type": "Oil",
+          "value": 140
+        },
+        {
+          "region": "Europe",
+          "type": "Natural Gas",
+          "value": 100
+        },
+        {
+          "region": "Asia",
+          "type": "Coal",
+          "value": 300
+        },
+        {
+          "region": "Asia",
+          "type": "Oil",
+          "value": 250
+        },
+        {
+          "region": "Asia",
+          "type": "Natural Gas",
+          "value": 180
+        },
+        {
+          "region": "Africa",
+          "type": "Coal",
+          "value": 70
+        },
+        {
+          "region": "Africa",
+          "type": "Oil",
+          "value": 90
+        },
+        {
+          "region": "Africa",
+          "type": "Natural Gas",
+          "value": 60
+        },
+        {
+          "region": "South America",
+          "type": "Coal",
+          "value": 100
+        },
+        {
+          "region": "South America",
+          "type": "Oil",
+          "value": 120
+        },
+        {
+          "region": "South America",
+          "type": "Natural Gas",
+          "value": 80
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "region"
+          ],
+          "sort": {
+            "field": "type"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "purple",
+        "orange",
+        "green"
+      ],
+      "domain": [
+        "Coal",
+        "Oil",
+        "Natural Gas"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Region"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (in TWh)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Energy Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "region"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "type"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['region']==='Africa'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

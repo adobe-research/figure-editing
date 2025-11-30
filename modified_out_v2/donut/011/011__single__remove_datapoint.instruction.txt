@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Pharmacy' and value 10000 from the 'sales' dataset.
+[#OP1 op=remove_datapoint; category=Clothing]

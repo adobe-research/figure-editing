@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing player ratings for different FIFA 19 player positions.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Position": "Forward",
+          "Rating": 89
+        },
+        {
+          "Position": "Forward",
+          "Rating": 85
+        },
+        {
+          "Position": "Midfielder",
+          "Rating": 87
+        },
+        {
+          "Position": "Midfielder",
+          "Rating": 83
+        },
+        {
+          "Position": "Defender",
+          "Rating": 86
+        },
+        {
+          "Position": "Defender",
+          "Rating": 80
+        },
+        {
+          "Position": "Goalkeeper",
+          "Rating": 91
+        },
+        {
+          "Position": "Goalkeeper",
+          "Rating": 88
+        },
+        {
+          "Position": "Forward",
+          "Rating": 92
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Position"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Position"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,2 +1,0 @@
-Add a title to the chart that reads 'Stacked Bar Chart of Food Price Index by Region'.
-[#OP1 op=add_title; title_text=Edited Chart]

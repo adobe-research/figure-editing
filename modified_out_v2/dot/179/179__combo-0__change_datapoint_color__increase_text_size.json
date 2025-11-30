@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing review ratings for product categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "category": "Electronics",
+          "value": 4.5
+        },
+        {
+          "category": "Books",
+          "value": 4.7
+        },
+        {
+          "category": "Clothing",
+          "value": 4.2
+        },
+        {
+          "category": "Home & Kitchen",
+          "value": 4.6
+        },
+        {
+          "category": "Toys",
+          "value": 4.3
+        },
+        {
+          "category": "Beauty",
+          "value": 4.8
+        },
+        {
+          "category": "Sports",
+          "value": 4.4
+        },
+        {
+          "category": "Automotive",
+          "value": 4.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Books"
+      ],
+      "range": [
+        "red"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Product Categories",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Average Rating",
+      "grid": true,
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "field": "category",
+            "scale": "color"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

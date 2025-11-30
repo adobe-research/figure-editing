@@ -1,0 +1,2 @@
+Remove the datapoint for Store 4 in the Electronics department.
+[#OP1 op=remove_datapoint; category=Store 3]

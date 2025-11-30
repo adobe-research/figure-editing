@@ -1,0 +1,334 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing distributions of BMI across age groups.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "nhanes_data",
+      "values": [
+        {
+          "Age Group": "20-29",
+          "BMI": 23.5
+        },
+        {
+          "Age Group": "20-29",
+          "BMI": 24.1
+        },
+        {
+          "Age Group": "20-29",
+          "BMI": 22.8
+        },
+        {
+          "Age Group": "20-29",
+          "BMI": 25.3
+        },
+        {
+          "Age Group": "30-39",
+          "BMI": 27.4
+        },
+        {
+          "Age Group": "30-39",
+          "BMI": 28.2
+        },
+        {
+          "Age Group": "30-39",
+          "BMI": 26.7
+        },
+        {
+          "Age Group": "30-39",
+          "BMI": 29.1
+        },
+        {
+          "Age Group": "40-49",
+          "BMI": 30.5
+        },
+        {
+          "Age Group": "40-49",
+          "BMI": 31.2
+        },
+        {
+          "Age Group": "40-49",
+          "BMI": 29.8
+        },
+        {
+          "Age Group": "40-49",
+          "BMI": 32.3
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Age Group'] != null && datum.BMI != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "nhanes_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "BMI",
+          "groupby": [
+            "Age Group"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [15, 40]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "nhanes_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Age Group"
+          ],
+          "fields": [
+            "BMI",
+            "BMI",
+            "BMI"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "nhanes_data",
+        "field": "Age Group"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "nhanes_data",
+        "field": "BMI"
+      },
+      "domainMin": 15,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "nhanes_data",
+        "field": "Age Group"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Age Group"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Age Group",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Age Group'] === parent['Age Group']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Age Group"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

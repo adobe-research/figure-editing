@@ -1,0 +1,2 @@
+Add a title 'Category Distribution in Retailrocket' to the chart.
+[#OP1 op=add_title; title_text=Edited Chart]

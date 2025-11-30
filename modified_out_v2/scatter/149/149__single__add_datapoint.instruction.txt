@@ -1,0 +1,2 @@
+Add a new datapoint with GDP Growth of 3.0, Inflation Rate of 2.5, and Region as 'Antarctica'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=2.5]

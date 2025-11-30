@@ -1,0 +1,2 @@
+Remove the datapoint where GDP is 25.67 and UnemploymentRate is 4.2.
+[#OP1 op=remove_datapoint; category=Northeast]

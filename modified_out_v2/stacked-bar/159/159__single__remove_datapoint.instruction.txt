@@ -1,0 +1,2 @@
+Remove the datapoint where category is 'Toys' and platform is 'Desktop'.
+[#OP1 op=remove_datapoint; category=Home Appliances]

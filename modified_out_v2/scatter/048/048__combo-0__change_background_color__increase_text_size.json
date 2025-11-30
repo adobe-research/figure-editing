@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot illustrating relationships between economic indicators.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Unemployment_Rate": 3.8,
+          "Inflation_Rate": 2.1,
+          "Region": "Northeast"
+        },
+        {
+          "Unemployment_Rate": 4.5,
+          "Inflation_Rate": 1.8,
+          "Region": "Midwest"
+        },
+        {
+          "Unemployment_Rate": 5.2,
+          "Inflation_Rate": 2.5,
+          "Region": "South"
+        },
+        {
+          "Unemployment_Rate": 3.2,
+          "Inflation_Rate": 1.9,
+          "Region": "West"
+        },
+        {
+          "Unemployment_Rate": 4.0,
+          "Inflation_Rate": 2.3,
+          "Region": "Northeast"
+        },
+        {
+          "Unemployment_Rate": 4.8,
+          "Inflation_Rate": 2.0,
+          "Region": "Midwest"
+        },
+        {
+          "Unemployment_Rate": 5.5,
+          "Inflation_Rate": 2.7,
+          "Region": "South"
+        },
+        {
+          "Unemployment_Rate": 3.6,
+          "Inflation_Rate": 2.2,
+          "Region": "West"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        3.2,
+        5.5
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Inflation_Rate"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Unemployment Rate (%)",
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Inflation Rate (%)",
+      "labelFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Unemployment_Rate"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Inflation_Rate"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 14
+    }
+  }
+}

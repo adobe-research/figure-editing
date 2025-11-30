@@ -1,0 +1,2 @@
+Change the datapoint color for 'Corn' to a new color '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=2015; new_color=#d62728]

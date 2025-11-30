@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing transaction types and their frequencies in credit card fraud detection.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "transaction_type": "POS",
+          "frequency": 120
+        },
+        {
+          "transaction_type": "Online",
+          "frequency": 95
+        },
+        {
+          "transaction_type": "ATM",
+          "frequency": 80
+        },
+        {
+          "transaction_type": "Mobile",
+          "frequency": 65
+        },
+        {
+          "transaction_type": "Direct Debit",
+          "frequency": 50
+        },
+        {
+          "transaction_type": "Wire Transfer",
+          "frequency": 40
+        },
+        {
+          "transaction_type": "Check",
+          "frequency": 25
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "transaction_type"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "frequency"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Transaction Type"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Frequency"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "transaction_type"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "frequency"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['transaction_type']==='Mobile'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

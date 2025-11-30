@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing traffic accidents with severity and temperature.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Severity": 2,
+          "Temperature(F)": 45.0,
+          "Humidity(%)": 85
+        },
+        {
+          "Severity": 3,
+          "Temperature(F)": 60.0,
+          "Humidity(%)": 70
+        },
+        {
+          "Severity": 4,
+          "Temperature(F)": 32.0,
+          "Humidity(%)": 90
+        },
+        {
+          "Severity": 1,
+          "Temperature(F)": 75.0,
+          "Humidity(%)": 50
+        },
+        {
+          "Severity": 3,
+          "Temperature(F)": 55.0,
+          "Humidity(%)": 80
+        },
+        {
+          "Severity": 2,
+          "Temperature(F)": 40.0,
+          "Humidity(%)": 95
+        },
+        {
+          "Severity": 4,
+          "Temperature(F)": 30.0,
+          "Humidity(%)": 100
+        },
+        {
+          "Severity": 1,
+          "Temperature(F)": 80.0,
+          "Humidity(%)": 45
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "round": true,
+      "domain": [
+        30,
+        32,
+        40,
+        45,
+        55,
+        60,
+        75,
+        80
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Humidity(%)"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Severity"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Temperature (F)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Humidity (%)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Severity",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Temperature(F)"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Humidity(%)"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Severity"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

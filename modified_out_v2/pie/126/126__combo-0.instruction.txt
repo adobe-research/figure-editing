@@ -1,0 +1,3 @@
+Change the color of the 'Food' category to '#FF5733' and add a title 'Yelp Review Categories'.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=add_title; title_text=Edited Chart]

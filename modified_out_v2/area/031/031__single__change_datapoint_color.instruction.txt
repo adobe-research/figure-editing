@@ -1,0 +1,2 @@
+Change the color of the datapoints for 'coal' to a new color '#d62728'.
+[#OP1 op=change_datapoint_color; target_category=2000; new_color=#9467bd]

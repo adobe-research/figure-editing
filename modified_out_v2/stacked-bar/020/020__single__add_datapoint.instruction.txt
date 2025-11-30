@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2016 with type 'Opening' and price 70.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2011; value=45.0]

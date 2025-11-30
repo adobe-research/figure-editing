@@ -1,0 +1,2 @@
+Add a new datapoint for 'Category F' with a transaction amount of 1100.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Category A; value=1250.0]

@@ -1,0 +1,2 @@
+Remove the datapoint for Airline Y in the year 2017 with 160 routes.
+[#OP1 op=remove_datapoint; category=Airline X]

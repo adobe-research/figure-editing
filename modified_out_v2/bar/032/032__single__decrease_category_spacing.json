@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of accidents by state.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "state": "California",
+          "accidents": 120000
+        },
+        {
+          "state": "Texas",
+          "accidents": 95000
+        },
+        {
+          "state": "Florida",
+          "accidents": 87000
+        },
+        {
+          "state": "New York",
+          "accidents": 65000
+        },
+        {
+          "state": "Pennsylvania",
+          "accidents": 58000
+        },
+        {
+          "state": "Illinois",
+          "accidents": 54000
+        },
+        {
+          "state": "Ohio",
+          "accidents": 50000
+        },
+        {
+          "state": "Georgia",
+          "accidents": 47000
+        },
+        {
+          "state": "North Carolina",
+          "accidents": 45000
+        },
+        {
+          "state": "Michigan",
+          "accidents": 42000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "state"
+      },
+      "range": "width",
+      "padding": 0.0,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "accidents"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "State"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Accidents"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "state"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "accidents"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "state",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "accidents",
+            "offset": -5
+          },
+          "text": {
+            "field": "accidents"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint for 'Kawhi Leonard' with a Points value of 19.2.
+[#OP1 op=remove_datapoint; category=LeBron James]

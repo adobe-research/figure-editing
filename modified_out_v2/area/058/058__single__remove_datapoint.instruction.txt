@@ -1,0 +1,2 @@
+Remove the datapoint where year is 2005, source is 'Oil', and consumption is 1600.
+[#OP1 op=remove_datapoint; category=Oil]

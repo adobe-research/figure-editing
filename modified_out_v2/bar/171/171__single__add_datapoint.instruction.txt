@@ -1,0 +1,2 @@
+Add a new datapoint for the industry 'Energy' with a GDP contribution of 380 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=350.0]

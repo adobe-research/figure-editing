@@ -1,0 +1,2 @@
+Add a new datapoint with StoreType 'E' and Sales 2900.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=A; value=2900.0]

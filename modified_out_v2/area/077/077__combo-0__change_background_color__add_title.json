@@ -1,0 +1,158 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing Netflix stock price trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "linear",
+          "monotone",
+          "step",
+          "step-before",
+          "step-after",
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "natural"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "price": 300
+        },
+        {
+          "date": "2023-02-01",
+          "price": 320
+        },
+        {
+          "date": "2023-03-01",
+          "price": 310
+        },
+        {
+          "date": "2023-04-01",
+          "price": 330
+        },
+        {
+          "date": "2023-05-01",
+          "price": 340
+        },
+        {
+          "date": "2023-06-01",
+          "price": 350
+        },
+        {
+          "date": "2023-07-01",
+          "price": 360
+        },
+        {
+          "date": "2023-08-01",
+          "price": 370
+        },
+        {
+          "date": "2023-09-01",
+          "price": 380
+        },
+        {
+          "date": "2023-10-01",
+          "price": 390
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "price"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Stock Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightgreen"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart"
+  }
+}

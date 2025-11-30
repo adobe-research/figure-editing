@@ -1,2 +1,0 @@
-Remove the datapoint where 'Attack_Type' is 'Hijacking'.
-[#OP1 op=remove_datapoint; category=Bombing/Explosion]

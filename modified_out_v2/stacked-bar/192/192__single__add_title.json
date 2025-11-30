@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing climate data categories and sub-series.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "anchor": "start",
+    "fontSize": 16,
+    "fontWeight": "bold"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Precipitation",
+          "series": "January",
+          "value": 120
+        },
+        {
+          "category": "Precipitation",
+          "series": "February",
+          "value": 95
+        },
+        {
+          "category": "Precipitation",
+          "series": "March",
+          "value": 140
+        },
+        {
+          "category": "Temperature",
+          "series": "January",
+          "value": 15
+        },
+        {
+          "category": "Temperature",
+          "series": "February",
+          "value": 18
+        },
+        {
+          "category": "Temperature",
+          "series": "March",
+          "value": 20
+        },
+        {
+          "category": "Wind Speed",
+          "series": "January",
+          "value": 25
+        },
+        {
+          "category": "Wind Speed",
+          "series": "February",
+          "value": 30
+        },
+        {
+          "category": "Wind Speed",
+          "series": "March",
+          "value": 28
+        },
+        {
+          "category": "Humidity",
+          "series": "January",
+          "value": 85
+        },
+        {
+          "category": "Humidity",
+          "series": "February",
+          "value": 78
+        },
+        {
+          "category": "Humidity",
+          "series": "March",
+          "value": 90
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Climate Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Values"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Months",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

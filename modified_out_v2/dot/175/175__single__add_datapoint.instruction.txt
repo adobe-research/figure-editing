@@ -1,0 +1,2 @@
+Add a new datapoint for 'Fourth' passenger class with a survival rate of 50%.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Crew; value=50.0]

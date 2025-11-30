@@ -1,0 +1,192 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Netflix stock price breakdown by quarter and year.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2019",
+          "quarter": "Q1",
+          "price": 350
+        },
+        {
+          "year": "2019",
+          "quarter": "Q2",
+          "price": 370
+        },
+        {
+          "year": "2019",
+          "quarter": "Q3",
+          "price": 390
+        },
+        {
+          "year": "2019",
+          "quarter": "Q4",
+          "price": 400
+        },
+        {
+          "year": "2020",
+          "quarter": "Q1",
+          "price": 380
+        },
+        {
+          "year": "2020",
+          "quarter": "Q2",
+          "price": 450
+        },
+        {
+          "year": "2020",
+          "quarter": "Q3",
+          "price": 480
+        },
+        {
+          "year": "2020",
+          "quarter": "Q4",
+          "price": 500
+        },
+        {
+          "year": "2021",
+          "quarter": "Q1",
+          "price": 520
+        },
+        {
+          "year": "2021",
+          "quarter": "Q2",
+          "price": 540
+        },
+        {
+          "year": "2021",
+          "quarter": "Q3",
+          "price": 560
+        },
+        {
+          "year": "2021",
+          "quarter": "Q4",
+          "price": 580
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "quarter"
+          },
+          "field": "price"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "lightblue",
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "quarter"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Stock Price"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Quarter",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "quarter"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['year']==='2019'",
+              "value": "#d62728"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

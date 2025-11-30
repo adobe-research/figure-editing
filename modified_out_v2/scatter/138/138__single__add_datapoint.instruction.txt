@@ -1,0 +1,2 @@
+Add a new datapoint with OverallRating 90, Potential 95, and Position 'Forward'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=80.0]

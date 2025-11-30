@@ -1,0 +1,218 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing survey responses over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "survey_data",
+      "values": [
+        {
+          "year": 2015,
+          "positive": 45,
+          "neutral": 30,
+          "negative": 25
+        },
+        {
+          "year": 2016,
+          "positive": 50,
+          "neutral": 28,
+          "negative": 22
+        },
+        {
+          "year": 2017,
+          "positive": 52,
+          "neutral": 26,
+          "negative": 22
+        },
+        {
+          "year": 2018,
+          "positive": 48,
+          "neutral": 29,
+          "negative": 23
+        },
+        {
+          "year": 2019,
+          "positive": 55,
+          "neutral": 25,
+          "negative": 20
+        },
+        {
+          "year": 2020,
+          "positive": 58,
+          "neutral": 24,
+          "negative": 18
+        },
+        {
+          "year": 2021,
+          "positive": 60,
+          "neutral": 22,
+          "negative": 18
+        }
+      ],
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "survey_data",
+        "field": "value"
+      }
+    },
+    {
+      "name": "yscale_neutral",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "survey_data",
+        "field": "neutral"
+      }
+    },
+    {
+      "name": "yscale_negative",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "survey_data",
+        "field": "negative"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Positive Responses",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "positive"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "#4CAF50"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale_neutral",
+            "field": "neutral"
+          },
+          "y2": {
+            "scale": "yscale_neutral",
+            "value": 0
+          },
+          "fill": {
+            "value": "#FFC107"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "area",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale_negative",
+            "field": "negative"
+          },
+          "y2": {
+            "scale": "yscale_negative",
+            "value": 0
+          },
+          "fill": {
+            "value": "#F44336"
+          }
+        },
+        "update": {}
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

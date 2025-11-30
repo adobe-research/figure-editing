@@ -1,2 +1,0 @@
-Remove the datapoint for the 'Canadian' group from the chart.
-[#OP1 op=remove_datapoint; category=Rosa]

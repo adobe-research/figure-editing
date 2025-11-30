@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing temperature trends over months in Seattle.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "temperature": 5.2
+        },
+        {
+          "month": "Feb",
+          "temperature": 6.1
+        },
+        {
+          "month": "Mar",
+          "temperature": 8.4
+        },
+        {
+          "month": "Apr",
+          "temperature": 10.7
+        },
+        {
+          "month": "May",
+          "temperature": 14.2
+        },
+        {
+          "month": "Jun",
+          "temperature": 17.5
+        },
+        {
+          "month": "Aug",
+          "temperature": 19.8
+        },
+        {
+          "month": "Sep",
+          "temperature": 16.3
+        },
+        {
+          "month": "Oct",
+          "temperature": 11.7
+        },
+        {
+          "month": "Nov",
+          "temperature": 7.6
+        },
+        {
+          "month": "Dec",
+          "temperature": 5.4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "temperature"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing review counts for different categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Restaurants",
+          "ReviewCount": 120
+        },
+        {
+          "Category": "Shopping",
+          "ReviewCount": 85
+        },
+        {
+          "Category": "Nightlife",
+          "ReviewCount": 95
+        },
+        {
+          "Category": "Health & Medical",
+          "ReviewCount": 75
+        },
+        {
+          "Category": "Home Services",
+          "ReviewCount": 60
+        },
+        {
+          "Category": "Beauty & Spas",
+          "ReviewCount": 50
+        },
+        {
+          "Category": "Automotive",
+          "ReviewCount": 40
+        },
+        {
+          "Category": "Education",
+          "ReviewCount": 30
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "ReviewCount"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Review Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "ReviewCount"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with Distance 2000 and Routes 50 from the chart.
+[#OP1 op=remove_datapoint; category=Africa]

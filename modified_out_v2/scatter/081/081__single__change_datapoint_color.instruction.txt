@@ -1,0 +1,2 @@
+Change the datapoint color for 'Good' credit status to '#2ca02c' and 'Bad' credit status to '#d62728'.
+[#OP1 op=change_datapoint_color; target_category=Bad; new_color=#9467bd]

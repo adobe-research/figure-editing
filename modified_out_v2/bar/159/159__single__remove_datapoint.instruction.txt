@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Other' energy source.
+[#OP1 op=remove_datapoint; category=Coal]

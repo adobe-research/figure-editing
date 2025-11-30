@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'PURCHASE' transaction type.
+[#OP1 op=remove_datapoint; category=DEBIT]

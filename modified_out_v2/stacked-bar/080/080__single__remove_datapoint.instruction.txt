@@ -1,0 +1,2 @@
+Remove the datapoint with category '2010s' and series 'Precipitation'.
+[#OP1 op=remove_datapoint; category=1970s]

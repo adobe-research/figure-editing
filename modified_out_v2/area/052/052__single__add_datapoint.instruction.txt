@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2025, age group '16-24', with an unemployment rate of 12.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=16-24; value=2015.0]

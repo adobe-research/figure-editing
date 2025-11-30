@@ -1,0 +1,2 @@
+Add a new datapoint with Severity 3, Traffic_Delay_Minutes 18.6, and State 'NV'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CA; value=3.0]

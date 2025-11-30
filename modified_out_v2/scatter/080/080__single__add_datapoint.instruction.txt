@@ -1,0 +1,2 @@
+Add a new datapoint with AMT_INCOME_TOTAL of 300000, AMT_CREDIT of 150000, and TARGET as 'No Default'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Default; value=360000.0]

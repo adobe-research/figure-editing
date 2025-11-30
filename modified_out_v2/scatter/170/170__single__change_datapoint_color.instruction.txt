@@ -1,0 +1,2 @@
+Change the datapoint color for 'Vehicle_Damage' status 'Yes' to '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#d62728]

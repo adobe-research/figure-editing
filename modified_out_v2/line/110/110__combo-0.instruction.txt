@@ -1,0 +1,3 @@
+Change the color of the 'Cereal' series to '#FF5733' and add a title 'FAO Food Price Index (2020)'.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=add_title; title_text=Edited Chart]

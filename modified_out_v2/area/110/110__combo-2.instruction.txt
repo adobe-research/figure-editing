@@ -1,0 +1,4 @@
+Change the color of the 'corn' datapoints, add a title to the chart, and increase the text size of axis labels.
+[#OP1 op=change_datapoint_color; target_category=2015; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=16]

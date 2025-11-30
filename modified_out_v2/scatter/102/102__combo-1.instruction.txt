@@ -1,0 +1,3 @@
+Change the background color to lightgray and add a new datapoint with category 'D', X_Value 5.2, and Y_Value 3.8 at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_datapoint; position=end; category=New 1; series=A; value=5.0]

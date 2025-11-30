@@ -1,2 +1,0 @@
-Add a title to the scatter plot with the text 'Player Statistics'.
-[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Change the color of the datapoint for 'Species-A' to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Species-C; new_color=#ff7f0e]

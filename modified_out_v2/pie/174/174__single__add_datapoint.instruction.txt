@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Associate's' education level with a count of 75 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Associate's; value=87.5]

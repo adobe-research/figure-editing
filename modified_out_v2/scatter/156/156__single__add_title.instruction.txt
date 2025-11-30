@@ -1,0 +1,2 @@
+Add a title to the scatter plot with the text 'Severity vs Temperature by Weather Condition'.
+[#OP1 op=add_title; title_text=Edited Chart]

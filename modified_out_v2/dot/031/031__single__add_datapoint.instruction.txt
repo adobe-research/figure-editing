@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Music' and Rating 4.8.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Education; value=4.35]

@@ -1,0 +1,2 @@
+Add a new datapoint with GDP 20000, Employment Rate 93.8, and Region 'Central' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central; value=20000.0]

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing question length vs. word count with insincerity classification.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Question_Length": 120,
+          "Word_Count": 20,
+          "Insincere": "Yes"
+        },
+        {
+          "Question_Length": 85,
+          "Word_Count": 15,
+          "Insincere": "No"
+        },
+        {
+          "Question_Length": 200,
+          "Word_Count": 30,
+          "Insincere": "Yes"
+        },
+        {
+          "Question_Length": 60,
+          "Word_Count": 10,
+          "Insincere": "No"
+        },
+        {
+          "Question_Length": 150,
+          "Word_Count": 25,
+          "Insincere": "Yes"
+        },
+        {
+          "Question_Length": 95,
+          "Word_Count": 18,
+          "Insincere": "No"
+        },
+        {
+          "Question_Length": 180,
+          "Word_Count": 22,
+          "Insincere": "No"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        60,
+        85,
+        95,
+        120,
+        150,
+        180,
+        200
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Word_Count"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Insincere"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Question Length (characters)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Word Count"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Insincere",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Question_Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Word_Count"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Insincere"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

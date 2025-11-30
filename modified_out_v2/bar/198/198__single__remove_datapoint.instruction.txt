@@ -1,0 +1,2 @@
+Remove the datapoint for the state 'Michigan' with 420 accidents.
+[#OP1 op=remove_datapoint; category=Texas]

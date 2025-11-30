@@ -1,0 +1,2 @@
+Add a new datapoint with Area 15.50, Perimeter 14.70, and Category 'Kama'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Canadian; value=14.785]

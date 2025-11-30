@@ -1,0 +1,2 @@
+Add a new datapoint with Income 55000, Credit_Amount 180000, and Loan_Status 'Approved'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Approved; value=47500.0]

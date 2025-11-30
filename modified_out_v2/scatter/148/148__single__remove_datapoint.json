@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot for the UCI Yeast Dataset showing protein localization sites.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "mcg": 0.58,
+          "gvh": 0.48,
+          "class": "CYT"
+        },
+        {
+          "mcg": 0.22,
+          "gvh": 0.33,
+          "class": "NUC"
+        },
+        {
+          "mcg": 0.76,
+          "gvh": 0.55,
+          "class": "MIT"
+        },
+        {
+          "mcg": 0.44,
+          "gvh": 0.38,
+          "class": "CYT"
+        },
+        {
+          "mcg": 0.65,
+          "gvh": 0.49,
+          "class": "MIT"
+        },
+        {
+          "mcg": 0.39,
+          "gvh": 0.41,
+          "class": "CYT"
+        },
+        {
+          "mcg": 0.5,
+          "gvh": 0.45,
+          "class": "NUC"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.22,
+        0.76
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "gvh"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "class"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "mcg (McGeoch's method for signal sequence recognition)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "gvh (von Heijne's method for signal sequence recognition)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Localization Site",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "mcg"
+          },
+          "y": {
+            "scale": "y",
+            "field": "gvh"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "class"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "{'mcg': datum.mcg, 'gvh': datum.gvh, 'class': datum.class}"
+          }
+        }
+      }
+    }
+  ]
+}

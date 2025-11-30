@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing GDP per capita for selected countries.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "United States",
+          "gdp_per_capita": 65112
+        },
+        {
+          "country": "China",
+          "gdp_per_capita": 10410
+        },
+        {
+          "country": "Germany",
+          "gdp_per_capita": 48196
+        },
+        {
+          "country": "India",
+          "gdp_per_capita": 2181
+        },
+        {
+          "country": "Brazil",
+          "gdp_per_capita": 8763
+        },
+        {
+          "country": "United Kingdom",
+          "gdp_per_capita": 46695
+        },
+        {
+          "country": "Japan",
+          "gdp_per_capita": 40113
+        },
+        {
+          "country": "Canada",
+          "gdp_per_capita": 52325
+        },
+        {
+          "country": "Australia",
+          "gdp_per_capita": 55205
+        },
+        {
+          "country": "Russia",
+          "gdp_per_capita": 11656
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "gdp_per_capita"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Country",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "GDP per Capita (USD)",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "gdp_per_capita"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "gdp_per_capita",
+            "offset": -5
+          },
+          "text": {
+            "field": "gdp_per_capita",
+            "type": "quantitative"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

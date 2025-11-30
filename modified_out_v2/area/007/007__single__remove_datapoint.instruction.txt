@@ -1,0 +1,2 @@
+Remove the datapoint for Spain on 2020-01-28.
+[#OP1 op=remove_datapoint; category=2020-01-24]

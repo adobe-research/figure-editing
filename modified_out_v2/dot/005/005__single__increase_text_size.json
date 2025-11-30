@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing survey responses for different categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "survey_data",
+      "values": [
+        {
+          "category": "Social Media Usage",
+          "value": 65
+        },
+        {
+          "category": "Online News Consumption",
+          "value": 72
+        },
+        {
+          "category": "Streaming Services",
+          "value": 55
+        },
+        {
+          "category": "E-commerce Participation",
+          "value": 48
+        },
+        {
+          "category": "Podcast Listening",
+          "value": 35
+        },
+        {
+          "category": "Video Conferencing",
+          "value": 50
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": [
+        35,
+        48,
+        50,
+        55,
+        65,
+        72
+      ],
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "band",
+      "domain": {
+        "data": "survey_data",
+        "field": "category"
+      },
+      "range": "height",
+      "padding": 0.2
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Percentage (%)",
+      "grid": true,
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Categories",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "survey_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "value"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

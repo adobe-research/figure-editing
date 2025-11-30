@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A donut chart showing category proportions for store departments.",
+  "width": 300,
+  "height": 300,
+  "autosize": "pad",
+  "signals": [
+    {
+      "name": "innerRadius",
+      "value": 80
+    },
+    {
+      "name": "outerRadius",
+      "update": "width / 2"
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "value": 400
+        },
+        {
+          "category": "Clothing",
+          "value": 300
+        },
+        {
+          "category": "Home & Kitchen",
+          "value": 450
+        },
+        {
+          "category": "Toys",
+          "value": 250
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "outerRadius"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Department",
+      "orient": "right"
+    }
+  ]
+}

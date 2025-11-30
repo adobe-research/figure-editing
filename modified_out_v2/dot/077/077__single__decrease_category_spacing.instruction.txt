@@ -1,0 +1,2 @@
+Decrease the category spacing by reducing the padding in the y-scale from 0.3 to 0.1.
+[#OP1 op=decrease_category_spacing; scale=auto; new_padding=0.00]

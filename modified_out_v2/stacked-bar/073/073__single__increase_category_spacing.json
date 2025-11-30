@@ -1,0 +1,196 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart for university rankings by region and category.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "University A",
+          "series": "Teaching",
+          "value": 85
+        },
+        {
+          "category": "University A",
+          "series": "Research",
+          "value": 90
+        },
+        {
+          "category": "University A",
+          "series": "Citations",
+          "value": 78
+        },
+        {
+          "category": "University B",
+          "series": "Teaching",
+          "value": 70
+        },
+        {
+          "category": "University B",
+          "series": "Research",
+          "value": 88
+        },
+        {
+          "category": "University B",
+          "series": "Citations",
+          "value": 82
+        },
+        {
+          "category": "University C",
+          "series": "Teaching",
+          "value": 60
+        },
+        {
+          "category": "University C",
+          "series": "Research",
+          "value": 75
+        },
+        {
+          "category": "University C",
+          "series": "Citations",
+          "value": 68
+        },
+        {
+          "category": "University D",
+          "series": "Teaching",
+          "value": 92
+        },
+        {
+          "category": "University D",
+          "series": "Research",
+          "value": 95
+        },
+        {
+          "category": "University D",
+          "series": "Citations",
+          "value": 88
+        },
+        {
+          "category": "University E",
+          "series": "Teaching",
+          "value": 80
+        },
+        {
+          "category": "University E",
+          "series": "Research",
+          "value": 85
+        },
+        {
+          "category": "University E",
+          "series": "Citations",
+          "value": 76
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.4
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "University"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Score"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Criteria",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

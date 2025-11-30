@@ -1,0 +1,2 @@
+Add a new datapoint for Store A with a demand of 150 on 2023-05-01.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Store A; value=150.0]

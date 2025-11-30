@@ -1,0 +1,2 @@
+Remove the datapoint with Kernel_Length 5.4 and Kernel_Width 3.4.
+[#OP1 op=remove_datapoint; category=Rosa]

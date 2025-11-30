@@ -1,0 +1,2 @@
+Remove the datapoint for 'Casual' users on '2023-08-03'.
+[#OP1 op=remove_datapoint; category=2023-08-04]

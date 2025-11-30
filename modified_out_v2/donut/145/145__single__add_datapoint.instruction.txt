@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Trust in Government' with a value of 12 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Freedom; value=17.5]

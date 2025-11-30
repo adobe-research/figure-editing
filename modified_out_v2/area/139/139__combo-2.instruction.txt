@@ -1,0 +1,4 @@
+Change the color of Series B datapoints to green, add a title 'Quarterly Trends', and increase the text size of axis labels to 14.
+[#OP1 op=change_datapoint_color; target_category=2020-Q2; new_color=#2ca02c]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=16]

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing item demand across categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Item A",
+          "value": 120
+        },
+        {
+          "category": "Item B",
+          "value": 150
+        },
+        {
+          "category": "Item C",
+          "value": 90
+        },
+        {
+          "category": "Item D",
+          "value": 200
+        },
+        {
+          "category": "Item E",
+          "value": 170
+        },
+        {
+          "category": "Item F",
+          "value": 130
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Item A",
+        "Item B",
+        "Item C",
+        "Item D",
+        "Item E",
+        "Item F"
+      ],
+      "range": [
+        "#4682b4",
+        "#ff6347",
+        "#4682b4",
+        "#4682b4",
+        "#4682b4",
+        "#4682b4"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Category",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Demand Value",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "field": "category",
+            "scale": "color"
+          }
+        },
+        "update": {
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

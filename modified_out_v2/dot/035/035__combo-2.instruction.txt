@@ -1,0 +1,4 @@
+Change the background color to lightgray, increase the text size of axis labels to 12, and add a new datapoint for category 'Gaming' with a value of 160 at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=increase_text_size; axis_label_size=14]
+[#OP3 op=add_datapoint; position=end; category=New 1; series=Beauty Products; value=145.0]

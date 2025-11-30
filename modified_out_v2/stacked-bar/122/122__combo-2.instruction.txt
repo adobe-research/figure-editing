@@ -1,0 +1,4 @@
+Change the color of the 'Used' series to '#FF5733', increase the text size of axis labels to 14, and add a new datapoint with category 'Toys', series 'New', and value 75 at the end.
+[#OP1 op=change_datapoint_color; target_category=Home Goods; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_datapoint; position=end; category=New 1; series=Books; value=80.0]

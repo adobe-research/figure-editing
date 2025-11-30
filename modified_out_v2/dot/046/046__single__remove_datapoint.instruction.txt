@@ -1,0 +1,2 @@
+Remove the datapoint with Property_Type 'Rural' and Loan_Amount 85000.
+[#OP1 op=remove_datapoint; category=Rural]

@@ -1,0 +1,2 @@
+Remove the datapoint for the month of 'June' with a fire count of 30.
+[#OP1 op=remove_datapoint; category=April]

@@ -1,0 +1,4 @@
+Change the color of the 'Movies' category to '#FF5733', add a title 'Netflix Content Distribution', and increase the text size of the legend title to 14.
+[#OP1 op=increase_text_size; axis_label_size=12]
+[#OP2 op=add_title; title_text=Edited Chart]
+[#OP3 op=increase_text_size; axis_label_size=12]

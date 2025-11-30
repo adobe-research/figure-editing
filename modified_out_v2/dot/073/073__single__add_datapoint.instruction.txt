@@ -1,0 +1,2 @@
+Add a new datapoint for 'Savings Rate (%)' with a value of 7.5 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Consumer Spending (Trillions); value=6.375]

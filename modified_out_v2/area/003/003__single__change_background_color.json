@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy consumption by sector over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "sector": "Residential",
+          "consumption": 20
+        },
+        {
+          "year": 2000,
+          "sector": "Commercial",
+          "consumption": 15
+        },
+        {
+          "year": 2000,
+          "sector": "Industrial",
+          "consumption": 30
+        },
+        {
+          "year": 2000,
+          "sector": "Transportation",
+          "consumption": 25
+        },
+        {
+          "year": 2010,
+          "sector": "Residential",
+          "consumption": 25
+        },
+        {
+          "year": 2010,
+          "sector": "Commercial",
+          "consumption": 20
+        },
+        {
+          "year": 2010,
+          "sector": "Industrial",
+          "consumption": 35
+        },
+        {
+          "year": 2010,
+          "sector": "Transportation",
+          "consumption": 30
+        },
+        {
+          "year": 2020,
+          "sector": "Residential",
+          "consumption": 30
+        },
+        {
+          "year": 2020,
+          "sector": "Commercial",
+          "consumption": 25
+        },
+        {
+          "year": 2020,
+          "sector": "Industrial",
+          "consumption": 40
+        },
+        {
+          "year": 2020,
+          "sector": "Transportation",
+          "consumption": 35
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['sector']=='Residential' || datum['sector']=='Commercial'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2010,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "consumption"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "sector"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Consumption (Quadrillion BTU)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "sector"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "consumption"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "sector"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right"
+    }
+  ]
+}

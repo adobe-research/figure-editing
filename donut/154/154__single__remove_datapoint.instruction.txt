@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Lifestyle' and value 100.
-[#OP1 op=remove_datapoint; category=Education]

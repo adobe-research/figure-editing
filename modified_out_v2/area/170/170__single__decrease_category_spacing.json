@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy consumption trends by energy type over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "energy_data",
+      "values": [
+        {
+          "year": 2000,
+          "type": "Coal",
+          "consumption": 500
+        },
+        {
+          "year": 2000,
+          "type": "Oil",
+          "consumption": 700
+        },
+        {
+          "year": 2000,
+          "type": "Gas",
+          "consumption": 400
+        },
+        {
+          "year": 2005,
+          "type": "Coal",
+          "consumption": 550
+        },
+        {
+          "year": 2005,
+          "type": "Oil",
+          "consumption": 750
+        },
+        {
+          "year": 2005,
+          "type": "Gas",
+          "consumption": 450
+        },
+        {
+          "year": 2010,
+          "type": "Coal",
+          "consumption": 600
+        },
+        {
+          "year": 2010,
+          "type": "Oil",
+          "consumption": 800
+        },
+        {
+          "year": 2010,
+          "type": "Gas",
+          "consumption": 500
+        },
+        {
+          "year": 2015,
+          "type": "Coal",
+          "consumption": 650
+        },
+        {
+          "year": 2015,
+          "type": "Oil",
+          "consumption": 850
+        },
+        {
+          "year": 2015,
+          "type": "Gas",
+          "consumption": 550
+        },
+        {
+          "year": 2020,
+          "type": "Coal",
+          "consumption": 700
+        },
+        {
+          "year": 2020,
+          "type": "Oil",
+          "consumption": 900
+        },
+        {
+          "year": 2020,
+          "type": "Gas",
+          "consumption": 600
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['type']=='Coal' || datum['type']=='Oil'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "energy_data",
+        "field": "consumption"
+      },
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "energy_data",
+        "field": "type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Consumption (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "energy_data",
+          "name": "series_facet",
+          "groupby": "type"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "consumption"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "type"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Type",
+      "orient": "right"
+    }
+  ]
+}

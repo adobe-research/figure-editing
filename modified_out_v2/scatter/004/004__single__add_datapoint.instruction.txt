@@ -1,0 +1,2 @@
+Add a new datapoint with Alcohol 13.4, Color Intensity 6.5, and Wine Class 'Class 2'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Class 1; value=13.2]

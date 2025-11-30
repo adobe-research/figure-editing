@@ -1,2 +1,0 @@
-Remove the datapoint with the campaign outcome 'Cancelled'.
-[#OP1 op=remove_datapoint; category=Failure]

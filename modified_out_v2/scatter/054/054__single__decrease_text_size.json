@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of FIFA player statistics showing Passing vs Dribbling, colored by Position.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Passing": 85,
+          "Dribbling": 92,
+          "Position": "Forward"
+        },
+        {
+          "Passing": 78,
+          "Dribbling": 88,
+          "Position": "Midfielder"
+        },
+        {
+          "Passing": 72,
+          "Dribbling": 84,
+          "Position": "Defender"
+        },
+        {
+          "Passing": 90,
+          "Dribbling": 95,
+          "Position": "Forward"
+        },
+        {
+          "Passing": 65,
+          "Dribbling": 70,
+          "Position": "Goalkeeper"
+        },
+        {
+          "Passing": 80,
+          "Dribbling": 89,
+          "Position": "Midfielder"
+        },
+        {
+          "Passing": 60,
+          "Dribbling": 75,
+          "Position": "Defender"
+        },
+        {
+          "Passing": 88,
+          "Dribbling": 91,
+          "Position": "Forward"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        60,
+        65,
+        72,
+        78,
+        80,
+        85,
+        88,
+        90
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Dribbling"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Passing",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Dribbling",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Passing"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Dribbling"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

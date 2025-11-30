@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of routes for various airports.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "airport": "Hartsfield-Jackson",
+          "routes": 225
+        },
+        {
+          "airport": "Los Angeles Intl",
+          "routes": 190
+        },
+        {
+          "airport": "Chicago O'Hare",
+          "routes": 210
+        },
+        {
+          "airport": "Dallas/Fort Worth",
+          "routes": 175
+        },
+        {
+          "airport": "Denver Intl",
+          "routes": 160
+        },
+        {
+          "airport": "John F. Kennedy",
+          "routes": 140
+        },
+        {
+          "airport": "San Francisco Intl",
+          "routes": 130
+        },
+        {
+          "airport": "Seattle-Tacoma",
+          "routes": 120
+        },
+        {
+          "airport": "Las Vegas McCarran",
+          "routes": 115
+        },
+        {
+          "airport": "Orlando Intl",
+          "routes": 110
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "airport"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "routes"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Airport",
+      "labelFontSize": 16,
+      "titleFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Routes",
+      "labelFontSize": 16,
+      "titleFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "airport"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "routes"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

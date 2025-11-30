@@ -1,0 +1,3 @@
+Change the color of datapoints in the 'Gaming' category to '#8a2be2' and add a title 'Click Time vs Device ID Analysis'.
+[#OP1 op=change_datapoint_color; target_category=Shopping; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

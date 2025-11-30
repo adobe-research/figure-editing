@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing trip durations for different taxi vendor categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Vendor": "Vendor A",
+          "TripDuration": 120
+        },
+        {
+          "Vendor": "Vendor A",
+          "TripDuration": 240
+        },
+        {
+          "Vendor": "Vendor A",
+          "TripDuration": 180
+        },
+        {
+          "Vendor": "Vendor B",
+          "TripDuration": 300
+        },
+        {
+          "Vendor": "Vendor B",
+          "TripDuration": 150
+        },
+        {
+          "Vendor": "Vendor B",
+          "TripDuration": 200
+        },
+        {
+          "Vendor": "Vendor C",
+          "TripDuration": 400
+        },
+        {
+          "Vendor": "Vendor C",
+          "TripDuration": 270
+        },
+        {
+          "Vendor": "Vendor C",
+          "TripDuration": 350
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Vendor"
+      },
+      "range": "width",
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "TripDuration"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Vendor"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (seconds)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Vendor"
+          },
+          "y": {
+            "scale": "y",
+            "field": "TripDuration"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

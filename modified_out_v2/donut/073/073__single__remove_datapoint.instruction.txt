@@ -1,0 +1,2 @@
+Remove the datapoint with category 'No Change' and value 50.
+[#OP1 op=remove_datapoint; category=Gain]

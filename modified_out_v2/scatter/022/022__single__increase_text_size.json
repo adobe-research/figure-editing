@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot showing crime incidents with arrest rates and crime index.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Crime_Index": 75,
+          "Arrest_Rate": 0.45,
+          "Primary_Type": "Theft"
+        },
+        {
+          "Crime_Index": 120,
+          "Arrest_Rate": 0.3,
+          "Primary_Type": "Assault"
+        },
+        {
+          "Crime_Index": 90,
+          "Arrest_Rate": 0.55,
+          "Primary_Type": "Burglary"
+        },
+        {
+          "Crime_Index": 150,
+          "Arrest_Rate": 0.2,
+          "Primary_Type": "Robbery"
+        },
+        {
+          "Crime_Index": 60,
+          "Arrest_Rate": 0.65,
+          "Primary_Type": "Fraud"
+        },
+        {
+          "Crime_Index": 110,
+          "Arrest_Rate": 0.4,
+          "Primary_Type": "Battery"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "round": true,
+      "domain": [
+        60,
+        75,
+        90,
+        110,
+        120,
+        150
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Arrest_Rate"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Primary_Type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#8c564b"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Crime Index",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Arrest Rate",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "scale": "color",
+      "title": "Primary Type",
+      "symbolType": "circle"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Crime_Index"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Arrest_Rate"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Primary_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

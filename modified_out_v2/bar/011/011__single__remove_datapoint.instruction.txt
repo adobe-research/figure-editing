@@ -1,0 +1,2 @@
+Remove the datapoint with genre 'Racing' and sales 18.3.
+[#OP1 op=remove_datapoint; category=Role-Playing]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'SO2' category.
+[#OP1 op=remove_datapoint; category=O3]

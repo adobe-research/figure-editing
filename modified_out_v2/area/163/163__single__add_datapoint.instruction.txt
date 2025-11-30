@@ -1,0 +1,2 @@
+Add a new datapoint for January 6, 2023 with Bitcoin price 17100 and Ethereum price 1340.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=16950.0]

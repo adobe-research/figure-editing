@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing review ratings for different product categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Electronics",
+          "Rating": 4.5
+        },
+        {
+          "Category": "Books",
+          "Rating": 4.7
+        },
+        {
+          "Category": "Clothing",
+          "Rating": 4.2
+        },
+        {
+          "Category": "Home & Kitchen",
+          "Rating": 4.6
+        },
+        {
+          "Category": "Toys",
+          "Rating": 4.3
+        },
+        {
+          "Category": "Beauty",
+          "Rating": 4.8
+        },
+        {
+          "Category": "Sports",
+          "Rating": 4.4
+        },
+        {
+          "Category": "Automotive",
+          "Rating": 4.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Product Category",
+      "labelAngle": -45
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Average Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Other' and value 3 from the chart.
-[#OP1 op=remove_datapoint; category=White]

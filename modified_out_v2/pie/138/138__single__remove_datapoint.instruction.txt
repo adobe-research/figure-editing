@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Store Type D' with a value of 15000.
+[#OP1 op=remove_datapoint; category=Store Type A]

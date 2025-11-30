@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Hydro' with a consumption value of 600.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Coal; value=875.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with StrokeRisk 'Very High' and values min=200, q1=220, median=240, q3=260, max=280.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High; value=125.0]

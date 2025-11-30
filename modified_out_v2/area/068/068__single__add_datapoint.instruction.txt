@@ -1,0 +1,2 @@
+Add a new datapoint for 'North America' with 300 cases in '2020-04'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-01; value=300.0]

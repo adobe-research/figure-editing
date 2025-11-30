@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Specialty' store type.
+[#OP1 op=remove_datapoint; category=Drugstore]

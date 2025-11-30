@@ -1,0 +1,2 @@
+Add a new datapoint with Overall_Rating 92, Potential 95, and Preferred_Foot 'Left'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Left; value=82.0]

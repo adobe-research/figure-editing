@@ -1,0 +1,2 @@
+Add a new datapoint for player 'Kawhi Leonard' with 23 points at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Giannis Antetokounmpo; value=27.0]

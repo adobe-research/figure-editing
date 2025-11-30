@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Finance' category.
+[#OP1 op=remove_datapoint; category=Books & Reference]

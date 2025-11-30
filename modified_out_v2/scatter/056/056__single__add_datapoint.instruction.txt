@@ -1,0 +1,2 @@
+Add a new datapoint with sepal_length 5.5, sepal_width 3.8, and species 'setosa'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=setosa; value=5.8]

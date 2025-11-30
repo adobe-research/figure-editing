@@ -1,0 +1,2 @@
+Remove the datapoint for the 'Cement' series in the year 2020.
+[#OP1 op=remove_datapoint; category=2010]

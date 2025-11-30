@@ -1,0 +1,2 @@
+Remove the datapoint for Store A in week 3 with sales value 22000.
+[#OP1 op=remove_datapoint; category=Store B]

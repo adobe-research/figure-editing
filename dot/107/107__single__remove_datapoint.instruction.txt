@@ -1,2 +1,0 @@
-Remove the datapoint with Category 'NOx (ppb)' and Value 16.
-[#OP1 op=remove_datapoint; category=O3 (µg/m^3)]

@@ -1,0 +1,2 @@
+Remove the datapoint for 'March' with series 'Sunny Days' and value 5.
+[#OP1 op=remove_datapoint; category=January]

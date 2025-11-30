@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Liver Diseases' with a mortality rate of 22.8.
+[#OP1 op=remove_datapoint; category=Cardiovascular Diseases]

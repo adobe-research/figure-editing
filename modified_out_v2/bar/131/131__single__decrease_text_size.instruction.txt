@@ -1,0 +1,2 @@
+Decrease the text size for the tooltip frequency labels to 10.
+[#OP1 op=decrease_text_size; axis_label_size=8]

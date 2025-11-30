@@ -1,0 +1,2 @@
+Add a new datapoint for 'California Institute of Technology' with series 'Teaching' and value 89.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=California Institute of Technology; value=95.0]

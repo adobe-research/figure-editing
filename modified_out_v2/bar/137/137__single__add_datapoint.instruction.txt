@@ -1,0 +1,2 @@
+Add a new datapoint with diagnosis 'Intermediate' and mean_radius 15.0 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Benign; value=15.0]

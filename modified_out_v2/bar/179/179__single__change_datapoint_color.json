@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing average cost for different cuisines in Zomato dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "cuisine": "Italian",
+          "avg_cost": 1200
+        },
+        {
+          "cuisine": "Chinese",
+          "avg_cost": 800
+        },
+        {
+          "cuisine": "North Indian",
+          "avg_cost": 1000
+        },
+        {
+          "cuisine": "South Indian",
+          "avg_cost": 700
+        },
+        {
+          "cuisine": "Mexican",
+          "avg_cost": 950
+        },
+        {
+          "cuisine": "Japanese",
+          "avg_cost": 1500
+        },
+        {
+          "cuisine": "Thai",
+          "avg_cost": 1100
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "cuisine"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "avg_cost"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Cuisine"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Cost (INR)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "cuisine"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "avg_cost"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "forestgreen"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['cuisine']==='Mexican'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

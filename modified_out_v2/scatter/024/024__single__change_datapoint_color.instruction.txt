@@ -1,0 +1,2 @@
+Change the datapoint color for the 'Region' scale to a new set of colors.
+[#OP1 op=change_datapoint_color; target_category=Northeast; new_color=#bcbd22]

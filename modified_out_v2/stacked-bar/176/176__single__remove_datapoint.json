@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing weekly sales by department across different stores.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Store 1",
+          "series": "Dept A",
+          "value": 12000
+        },
+        {
+          "category": "Store 1",
+          "series": "Dept B",
+          "value": 8000
+        },
+        {
+          "category": "Store 1",
+          "series": "Dept C",
+          "value": 5000
+        },
+        {
+          "category": "Store 2",
+          "series": "Dept A",
+          "value": 15000
+        },
+        {
+          "category": "Store 2",
+          "series": "Dept B",
+          "value": 7000
+        },
+        {
+          "category": "Store 2",
+          "series": "Dept C",
+          "value": 4000
+        },
+        {
+          "category": "Store 3",
+          "series": "Dept A",
+          "value": 10000
+        },
+        {
+          "category": "Store 3",
+          "series": "Dept B",
+          "value": 9000
+        },
+        {
+          "category": "Store 3",
+          "series": "Dept C",
+          "value": 6000
+        },
+        {
+          "category": "Store 4",
+          "series": "Dept A",
+          "value": 13000
+        },
+        {
+          "category": "Store 4",
+          "series": "Dept B",
+          "value": 11000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Stores"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Weekly Sales ($)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Departments",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

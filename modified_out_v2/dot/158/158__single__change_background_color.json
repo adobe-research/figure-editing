@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing temperature anomalies for various years.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Year": 2000,
+          "Temperature_Anomaly": 0.42
+        },
+        {
+          "Year": 2005,
+          "Temperature_Anomaly": 0.54
+        },
+        {
+          "Year": 2010,
+          "Temperature_Anomaly": 0.62
+        },
+        {
+          "Year": 2015,
+          "Temperature_Anomaly": 0.87
+        },
+        {
+          "Year": 2020,
+          "Temperature_Anomaly": 1.02
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Temperature_Anomaly"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Year"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Temperature_Anomaly"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

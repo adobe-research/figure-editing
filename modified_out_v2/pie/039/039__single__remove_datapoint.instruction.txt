@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Low Price' and value 280.
+[#OP1 op=remove_datapoint; category=Close Price]

@@ -1,0 +1,3 @@
+Change the background color to light gray and add a new datapoint for a Basketball player with height 195 cm and weight 90 kg at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_datapoint; position=end; category=New 1; series=Athletics; value=180.0]

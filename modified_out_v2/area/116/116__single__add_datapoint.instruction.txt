@@ -1,0 +1,2 @@
+Add a new datapoint for the month 'Mid-Jan' with a temperature of -3.0 and series 'Average'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Apr; value=8.0]

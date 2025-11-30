@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Supermarket Type 3' with sales value 100000.
+[#OP1 op=remove_datapoint; category=Supermarket Type 1]

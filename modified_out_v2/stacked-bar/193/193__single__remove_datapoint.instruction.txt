@@ -1,0 +1,2 @@
+Remove the datapoint for 'South America' in the 'Summer' series with a value of 0.6.
+[#OP1 op=remove_datapoint; category=Africa]

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A donut chart showing proportions of product categories in the Instacart Market Basket dataset.",
+  "width": 300,
+  "height": 300,
+  "autosize": "pad",
+  "signals": [
+    {
+      "name": "innerRadius",
+      "value": 80
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Bakery",
+          "value": 120
+        },
+        {
+          "category": "Produce",
+          "value": 300
+        },
+        {
+          "category": "Meat & Seafood",
+          "value": 150
+        },
+        {
+          "category": "Beverages",
+          "value": 90
+        },
+        {
+          "category": "Snacks",
+          "value": 180
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "value",
+          "startAngle": 0,
+          "endAngle": 6.28318
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Product Categories",
+      "orient": "right"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "background": "#fff5e6"
+}

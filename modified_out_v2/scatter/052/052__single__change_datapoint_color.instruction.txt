@@ -1,0 +1,2 @@
+Change the color of datapoints for 'Credit Card' payment type to '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=Credit Card; new_color=#d62728]

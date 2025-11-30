@@ -1,0 +1,2 @@
+Remove the datapoint for 'Neighborhood E' with series '1950-2000' and value 260000.
+[#OP1 op=remove_datapoint; category=Neighborhood A]

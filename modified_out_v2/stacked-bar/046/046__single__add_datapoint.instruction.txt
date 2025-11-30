@@ -1,0 +1,2 @@
+Add a new datapoint for 'Frontier Airlines' with series 'Weather Delay' and value 140.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=American Airlines; value=100.0]

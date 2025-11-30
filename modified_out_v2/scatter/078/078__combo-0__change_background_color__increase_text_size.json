@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing click counts and app installations with device type as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "clicks": 120,
+          "installs": 30,
+          "device_type": "Mobile"
+        },
+        {
+          "clicks": 200,
+          "installs": 50,
+          "device_type": "Desktop"
+        },
+        {
+          "clicks": 80,
+          "installs": 20,
+          "device_type": "Tablet"
+        },
+        {
+          "clicks": 150,
+          "installs": 40,
+          "device_type": "Mobile"
+        },
+        {
+          "clicks": 300,
+          "installs": 100,
+          "device_type": "Desktop"
+        },
+        {
+          "clicks": 100,
+          "installs": 25,
+          "device_type": "Tablet"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        80.0,
+        300.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "installs"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "device_type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Clicks",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Installs",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Device Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "clicks"
+          },
+          "y": {
+            "scale": "y",
+            "field": "installs"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "device_type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

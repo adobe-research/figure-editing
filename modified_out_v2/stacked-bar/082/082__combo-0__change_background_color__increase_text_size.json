@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing crop production by type across different states.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "California",
+          "series": "Corn",
+          "value": 120
+        },
+        {
+          "category": "California",
+          "series": "Wheat",
+          "value": 80
+        },
+        {
+          "category": "California",
+          "series": "Soybeans",
+          "value": 50
+        },
+        {
+          "category": "Texas",
+          "series": "Corn",
+          "value": 90
+        },
+        {
+          "category": "Texas",
+          "series": "Wheat",
+          "value": 60
+        },
+        {
+          "category": "Texas",
+          "series": "Soybeans",
+          "value": 40
+        },
+        {
+          "category": "Iowa",
+          "series": "Corn",
+          "value": 150
+        },
+        {
+          "category": "Iowa",
+          "series": "Wheat",
+          "value": 70
+        },
+        {
+          "category": "Iowa",
+          "series": "Soybeans",
+          "value": 100
+        },
+        {
+          "category": "Nebraska",
+          "series": "Corn",
+          "value": 130
+        },
+        {
+          "category": "Nebraska",
+          "series": "Wheat",
+          "value": 90
+        },
+        {
+          "category": "Nebraska",
+          "series": "Soybeans",
+          "value": 60
+        },
+        {
+          "category": "Kansas",
+          "series": "Corn",
+          "value": 110
+        },
+        {
+          "category": "Kansas",
+          "series": "Wheat",
+          "value": 95
+        },
+        {
+          "category": "Kansas",
+          "series": "Soybeans",
+          "value": 80
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "State",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Crop Production (in tons)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Crop Type",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

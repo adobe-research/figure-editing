@@ -1,0 +1,2 @@
+Change the color of the 'Coal' series datapoints to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Residential; new_color=#ff7f0e]

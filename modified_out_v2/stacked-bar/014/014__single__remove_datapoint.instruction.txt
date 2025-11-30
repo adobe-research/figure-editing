@@ -1,0 +1,2 @@
+Remove the datapoint for 'May' with condition 'Overcast' and 6 days.
+[#OP1 op=remove_datapoint; category=February]

@@ -1,0 +1,2 @@
+Add a new datapoint with Complaint_Count 110, Resolution_Time 40, and Complaint_Type 'Water Leak'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Heat/Hot Water; value=115.0]

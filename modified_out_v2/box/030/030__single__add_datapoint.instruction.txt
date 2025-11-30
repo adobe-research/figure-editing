@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Very High Income' category with min=5000, q1=6000, median=7000, q3=8000, and max=9000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High Income; value=3000.0]

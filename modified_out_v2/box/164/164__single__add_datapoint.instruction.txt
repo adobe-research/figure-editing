@@ -1,0 +1,2 @@
+Add a new datapoint for the player 'Willie Mays' with min=3, q1=13, median=23, q3=33, and max=43.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Babe Ruth; value=4.0]

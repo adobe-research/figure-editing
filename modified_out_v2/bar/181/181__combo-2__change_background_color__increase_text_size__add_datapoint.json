@@ -1,0 +1,165 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of apps by category on Google Play Store.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Education",
+          "apps_count": 1200
+        },
+        {
+          "category": "Entertainment",
+          "apps_count": 850
+        },
+        {
+          "category": "Health & Fitness",
+          "apps_count": 700
+        },
+        {
+          "category": "Lifestyle",
+          "apps_count": 650
+        },
+        {
+          "category": "Business",
+          "apps_count": 950
+        },
+        {
+          "category": "Games",
+          "apps_count": 1500
+        },
+        {
+          "category": "Productivity",
+          "apps_count": 800
+        },
+        {
+          "category": "Finance",
+          "apps_count": 400
+        },
+        {
+          "category": "Travel & Local",
+          "apps_count": 600
+        },
+        {
+          "category": "Shopping",
+          "apps_count": 500
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "apps_count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Category",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Apps",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "apps_count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "teal"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "apps_count",
+            "offset": -5
+          },
+          "text": {
+            "field": "apps_count"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

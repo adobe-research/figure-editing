@@ -1,0 +1,2 @@
+Add a new datapoint for 'Chardonnay' with min=11.5, q1=12.5, median=13.5, q3=14.5, and max=15.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cabernet; value=11.9]

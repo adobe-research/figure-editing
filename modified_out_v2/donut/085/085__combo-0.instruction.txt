@@ -1,0 +1,3 @@
+Change the color of the 'Games' category to a new color and add a title to the chart.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=add_title; title_text=Edited Chart]

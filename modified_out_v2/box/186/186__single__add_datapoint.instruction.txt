@@ -1,0 +1,2 @@
+Add a new datapoint for the variety 'Dolcetto' with min=1.0, q1=1.7, median=2.2, q3=2.8, and max=3.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Barbera; value=1.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with ResponseTime 2.0, ResolutionTime 3.5, and ComplaintType 'Air Quality'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Air Quality; value=2.1]

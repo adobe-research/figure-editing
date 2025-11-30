@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing cholesterol levels for different age groups.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "AgeGroup": "30-39",
+          "Cholesterol": 210
+        },
+        {
+          "AgeGroup": "30-39",
+          "Cholesterol": 190
+        },
+        {
+          "AgeGroup": "40-49",
+          "Cholesterol": 220
+        },
+        {
+          "AgeGroup": "40-49",
+          "Cholesterol": 230
+        },
+        {
+          "AgeGroup": "50-59",
+          "Cholesterol": 250
+        },
+        {
+          "AgeGroup": "50-59",
+          "Cholesterol": 240
+        },
+        {
+          "AgeGroup": "60-69",
+          "Cholesterol": 260
+        },
+        {
+          "AgeGroup": "60-69",
+          "Cholesterol": 270
+        },
+        {
+          "AgeGroup": "70-79",
+          "Cholesterol": 280
+        },
+        {
+          "AgeGroup": "70-79",
+          "Cholesterol": 290
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "AgeGroup"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Cholesterol"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age Group"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Cholesterol Level (mg/dL)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "AgeGroup",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "y",
+            "field": "Cholesterol"
+          },
+          "size": {
+            "value": 50
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "stroke": {
+            "value": "steelblue"
+          },
+          "fill": {
+            "value": "lightblue"
+          },
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

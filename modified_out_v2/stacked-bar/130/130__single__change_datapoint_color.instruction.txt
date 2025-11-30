@@ -1,0 +1,2 @@
+Change the color of the 'On-Time' series to a new color 'lightblue'.
+[#OP1 op=change_datapoint_color; target_category=JetBlue; new_color=#ff7f0e]

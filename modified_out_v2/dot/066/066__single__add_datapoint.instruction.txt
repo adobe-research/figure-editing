@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Silent Ischemia' and Value 180 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Chest Pain Type A; value=140.0]

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing GDP growth vs inflation rate with region categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP_Growth": 2.5,
+          "Inflation_Rate": 1.8,
+          "Region": "North America"
+        },
+        {
+          "GDP_Growth": 1.7,
+          "Inflation_Rate": 2.3,
+          "Region": "Europe"
+        },
+        {
+          "GDP_Growth": 4.1,
+          "Inflation_Rate": 3.2,
+          "Region": "Asia"
+        },
+        {
+          "GDP_Growth": 3.8,
+          "Inflation_Rate": 2.7,
+          "Region": "South America"
+        },
+        {
+          "GDP_Growth": 2.2,
+          "Inflation_Rate": 1.5,
+          "Region": "Oceania"
+        },
+        {
+          "GDP_Growth": 1.9,
+          "Inflation_Rate": 2.0,
+          "Region": "Africa"
+        },
+        {
+          "GDP_Growth": 3.0,
+          "Inflation_Rate": 2.5,
+          "Region": "Antarctica"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1.7,
+        4.1
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Inflation_Rate"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#8c564b"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP Growth (%)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Inflation Rate (%)"
+    }
+  ],
+  "legends": [
+    {
+      "scale": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "GDP_Growth"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Inflation_Rate"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

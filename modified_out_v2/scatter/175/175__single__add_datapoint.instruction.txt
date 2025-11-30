@@ -1,0 +1,2 @@
+Add a new datapoint representing a borough with resolution time of 20.0 hours and request volume of 600.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bronx; value=13.9]

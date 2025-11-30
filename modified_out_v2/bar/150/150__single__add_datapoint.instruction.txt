@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Mexican' and area 16.2 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Canadian; value=15.05]

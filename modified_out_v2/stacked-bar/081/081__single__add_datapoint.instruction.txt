@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020 and series 'Africa' with a value of 0.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1880; value=0.2]

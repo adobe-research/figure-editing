@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing average demand for different store categories.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "demand": 1200
+        },
+        {
+          "category": "Furniture",
+          "demand": 950
+        },
+        {
+          "category": "Clothing",
+          "demand": 1100
+        },
+        {
+          "category": "Toys",
+          "demand": 800
+        },
+        {
+          "category": "Groceries",
+          "demand": 1500
+        },
+        {
+          "category": "Books",
+          "demand": 700
+        },
+        {
+          "category": "Footwear",
+          "demand": 1050
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Store Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Demand"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "demand"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "forestgreen"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['category']==='Footwear'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

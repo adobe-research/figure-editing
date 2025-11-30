@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing values for categories in Santander Customer Transaction dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Transaction A",
+          "Value": 120.5
+        },
+        {
+          "Category": "Transaction B",
+          "Value": 98.3
+        },
+        {
+          "Category": "Transaction C",
+          "Value": 150.2
+        },
+        {
+          "Category": "Transaction D",
+          "Value": 110.7
+        },
+        {
+          "Category": "Transaction E",
+          "Value": 135.4
+        },
+        {
+          "Category": "Transaction F",
+          "Value": 102.9
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#ff6347"
+          },
+          "stroke": {
+            "value": "#000"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

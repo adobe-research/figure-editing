@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Unknown' and value 109 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Did Not Survive; value=342.0]

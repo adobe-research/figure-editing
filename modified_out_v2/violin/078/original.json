@@ -1,0 +1,308 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of glucose levels by diabetes status.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 2"
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "diabetes_data",
+      "values": [
+        {
+          "DiabetesStatus": "Positive",
+          "GlucoseLevel": 148
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "GlucoseLevel": 183
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "GlucoseLevel": 137
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "GlucoseLevel": 171
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "GlucoseLevel": 155
+        },
+        {
+          "DiabetesStatus": "Positive",
+          "GlucoseLevel": 179
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "GlucoseLevel": 89
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "GlucoseLevel": 85
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "GlucoseLevel": 78
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "GlucoseLevel": 92
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "GlucoseLevel": 88
+        },
+        {
+          "DiabetesStatus": "Negative",
+          "GlucoseLevel": 94
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "diabetes_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "GlucoseLevel",
+          "groupby": [
+            "DiabetesStatus"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "diabetes_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "DiabetesStatus"
+          ],
+          "fields": [
+            "GlucoseLevel",
+            "GlucoseLevel",
+            "GlucoseLevel"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "diabetes_data",
+        "field": "DiabetesStatus"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "diabetes_data",
+        "field": "GlucoseLevel"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "diabetes_data",
+        "field": "DiabetesStatus"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Glucose Level"
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "title": "Diabetes Status"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "DiabetesStatus"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "DiabetesStatus",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.DiabetesStatus === parent.DiabetesStatus"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "DiabetesStatus"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

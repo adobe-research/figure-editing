@@ -1,0 +1,2 @@
+Remove the datapoint for the month '2022-07' with an average delay of 25.
+[#OP1 op=remove_datapoint; category=2022-09]

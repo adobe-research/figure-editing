@@ -1,0 +1,2 @@
+Remove the datapoint with category '1.2-1.4' and value 15.
+[#OP1 op=remove_datapoint; category=0.2-0.4]

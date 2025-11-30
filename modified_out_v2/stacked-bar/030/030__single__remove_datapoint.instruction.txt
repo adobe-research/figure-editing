@@ -1,0 +1,2 @@
+Remove the datapoint where the region is 'West' and the source is 'Coal'.
+[#OP1 op=remove_datapoint; category=South]

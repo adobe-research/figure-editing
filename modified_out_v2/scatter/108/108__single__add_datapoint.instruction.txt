@@ -1,0 +1,2 @@
+Add a new datapoint with 28.4 points, 7.8 assists, and position 'Guard' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Center; value=22.5]

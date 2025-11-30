@@ -1,0 +1,2 @@
+Remove the datapoint where trip_distance is 2.0 and trip_duration is 500.
+[#OP1 op=remove_datapoint; category=Credit Card]

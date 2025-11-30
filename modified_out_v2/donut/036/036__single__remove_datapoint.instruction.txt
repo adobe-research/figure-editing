@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Former Smokers' and value 80.
+[#OP1 op=remove_datapoint; category=Non-Smokers]

@@ -1,0 +1,2 @@
+Remove the datapoint for University B in the year 2020 with a score of 91.
+[#OP1 op=remove_datapoint; category=University C]

@@ -1,0 +1,4 @@
+Change the color of the 'Drama' datapoint to green, increase the text size of axis labels to 14, and add a title 'Movie and TV Show Genres'.
+[#OP1 op=change_datapoint_color; target_category=Sci-Fi; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

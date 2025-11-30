@@ -1,0 +1,2 @@
+Add a new datapoint with Trade_Volume 1800, Trade_Value 7500, and Product_Category 'Pharmaceuticals'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=1350.0]

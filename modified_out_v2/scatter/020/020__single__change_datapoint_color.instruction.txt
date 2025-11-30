@@ -1,0 +1,2 @@
+Change the color of datapoints representing 'Manhattan' to a new color '#9467bd'.
+[#OP1 op=change_datapoint_color; target_category=Brooklyn; new_color=#8c564b]

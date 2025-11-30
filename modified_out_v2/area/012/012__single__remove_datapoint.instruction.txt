@@ -1,0 +1,2 @@
+Remove the datapoint for 'Country B' on '2023-01-02'.
+[#OP1 op=remove_datapoint; category=2023-01-03]

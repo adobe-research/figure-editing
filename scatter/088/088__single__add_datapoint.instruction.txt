@@ -1,2 +1,0 @@
-Add a new datapoint with Age 24, Height 165, and Sport 'Cycling' to the scatter plot.
-[#OP1 op=add_datapoint; position=end; category=New 1; series=Athletics; value=24.5]

@@ -1,0 +1,2 @@
+Change the datapoint color for the 'region' field to use a new color palette.
+[#OP1 op=change_datapoint_color; target_category=Africa; new_color=#ff7f0e]

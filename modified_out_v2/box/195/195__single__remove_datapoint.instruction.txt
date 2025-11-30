@@ -1,0 +1,2 @@
+Remove the datapoint for 'Transaction Type C' from the chart.
+[#OP1 op=remove_datapoint; category=Transaction Type A]

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between attack type and number of fatalities, colored by region.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "AttackType": "Bombing/Explosion",
+          "Fatalities": 50,
+          "Region": "Middle East & North Africa"
+        },
+        {
+          "AttackType": "Armed Assault",
+          "Fatalities": 30,
+          "Region": "South Asia"
+        },
+        {
+          "AttackType": "Assassination",
+          "Fatalities": 5,
+          "Region": "Europe"
+        },
+        {
+          "AttackType": "Hijacking",
+          "Fatalities": 15,
+          "Region": "Sub-Saharan Africa"
+        },
+        {
+          "AttackType": "Barricade Incident",
+          "Fatalities": 10,
+          "Region": "North America"
+        },
+        {
+          "AttackType": "Bombing/Explosion",
+          "Fatalities": 70,
+          "Region": "South America"
+        },
+        {
+          "AttackType": "Armed Assault",
+          "Fatalities": 40,
+          "Region": "East Asia"
+        },
+        {
+          "AttackType": "Hijacking",
+          "Fatalities": 20,
+          "Region": "Central Asia"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        5,
+        10,
+        15,
+        20,
+        30,
+        40,
+        50,
+        70
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "AttackType"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Number of Fatalities",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Attack Type",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Fatalities"
+          },
+          "y": {
+            "scale": "y",
+            "field": "AttackType"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

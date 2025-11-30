@@ -1,0 +1,2 @@
+Change the datapoint color palette to use new colors for match types.
+[#OP1 op=change_datapoint_color; target_category=World Cup; new_color=#d62728]

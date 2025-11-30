@@ -1,2 +1,0 @@
-Remove the datapoint for Nebraska's Wheat production of 70.
-[#OP1 op=remove_datapoint; category=Illinois]

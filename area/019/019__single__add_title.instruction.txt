@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'Monthly Average Flight Delays by Airline'.
-[#OP1 op=add_title; title_text=Edited Chart]

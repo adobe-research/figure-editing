@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of Wine characteristics showing Alcohol vs Color Intensity, categorized by Wine Class.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Alcohol": 13.2,
+          "Color_Intensity": 4.5,
+          "Wine_Class": "Class 1"
+        },
+        {
+          "Alcohol": 12.8,
+          "Color_Intensity": 5.2,
+          "Wine_Class": "Class 2"
+        },
+        {
+          "Alcohol": 13.5,
+          "Color_Intensity": 6.1,
+          "Wine_Class": "Class 3"
+        },
+        {
+          "Alcohol": 12.9,
+          "Color_Intensity": 4.8,
+          "Wine_Class": "Class 1"
+        },
+        {
+          "Alcohol": 13.1,
+          "Color_Intensity": 5.9,
+          "Wine_Class": "Class 2"
+        },
+        {
+          "Alcohol": 13.7,
+          "Color_Intensity": 7.2,
+          "Wine_Class": "Class 3"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": [
+        12.8,
+        13.7
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Color_Intensity"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Wine_Class"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Alcohol (%)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Color Intensity"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Wine Class"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Alcohol"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Color_Intensity"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Wine_Class"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

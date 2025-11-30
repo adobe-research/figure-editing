@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing average cost for different cuisines.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Cuisine": "Italian",
+          "Average_Cost": 1500
+        },
+        {
+          "Cuisine": "Chinese",
+          "Average_Cost": 1200
+        },
+        {
+          "Cuisine": "Indian",
+          "Average_Cost": 800
+        },
+        {
+          "Cuisine": "Mexican",
+          "Average_Cost": 1000
+        },
+        {
+          "Cuisine": "Japanese",
+          "Average_Cost": 2000
+        },
+        {
+          "Cuisine": "Thai",
+          "Average_Cost": 1300
+        },
+        {
+          "Cuisine": "French",
+          "Average_Cost": 2500
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Cuisine"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Average_Cost"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Cuisine",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Average Cost (in INR)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Cuisine"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Average_Cost"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#1f77b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

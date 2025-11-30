@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Follow-Up' and value 300 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Accepted; value=456.0]

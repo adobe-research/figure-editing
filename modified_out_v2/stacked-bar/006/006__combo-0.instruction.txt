@@ -1,0 +1,3 @@
+Change the color of the 'Deaths' datapoints to '#FF5733' and increase the category spacing to 0.4.
+[#OP1 op=change_datapoint_color; target_category=Asia; new_color=#ff7f0e]
+[#OP2 op=increase_category_spacing; scale=auto; new_padding=0.50]

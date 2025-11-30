@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Stock Price Changes by Sector and Quarter'.
+[#OP1 op=add_title; title_text=Edited Chart]

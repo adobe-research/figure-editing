@@ -1,2 +1,0 @@
-Remove the datapoint with Neighborhood 'Queens' and Price 95.
-[#OP1 op=remove_datapoint; category=Bronx]

@@ -1,0 +1,2 @@
+Remove the datapoint for the genre 'Sci-Fi' with a count of 200.
+[#OP1 op=remove_datapoint; category=Thriller]

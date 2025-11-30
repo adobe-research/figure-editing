@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing trade volume and trade value with different categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trade_Volume": 1500,
+          "Trade_Value": 20000,
+          "Category": "Electronics"
+        },
+        {
+          "Trade_Volume": 2500,
+          "Trade_Value": 35000,
+          "Category": "Automobiles"
+        },
+        {
+          "Trade_Volume": 3000,
+          "Trade_Value": 50000,
+          "Category": "Machinery"
+        },
+        {
+          "Trade_Volume": 1200,
+          "Trade_Value": 15000,
+          "Category": "Agriculture"
+        },
+        {
+          "Trade_Volume": 2700,
+          "Trade_Value": 42000,
+          "Category": "Pharmaceuticals"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        1200.0,
+        3000.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Trade_Value"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trade Volume (in units)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trade Value (in USD)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Trade_Volume"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trade_Value"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

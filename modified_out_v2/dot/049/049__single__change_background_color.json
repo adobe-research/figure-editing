@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories as individual points.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Diagnosis": "Malignant",
+          "Mean_Radius": 17.1
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean_Radius": 12.3
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean_Radius": 20.2
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean_Radius": 13.5
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean_Radius": 15.8
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean_Radius": 11.7
+        },
+        {
+          "Diagnosis": "Malignant",
+          "Mean_Radius": 18.4
+        },
+        {
+          "Diagnosis": "Benign",
+          "Mean_Radius": 14.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Diagnosis"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Mean_Radius"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Diagnosis",
+      "labelAngle": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Mean Radius"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Diagnosis"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Mean_Radius"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

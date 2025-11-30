@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing player statistics by position.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Position": "Forward",
+          "Goals": 25
+        },
+        {
+          "Position": "Midfielder",
+          "Goals": 10
+        },
+        {
+          "Position": "Defender",
+          "Goals": 5
+        },
+        {
+          "Position": "Goalkeeper",
+          "Goals": 0
+        },
+        {
+          "Position": "Forward",
+          "Goals": 30
+        },
+        {
+          "Position": "Midfielder",
+          "Goals": 15
+        },
+        {
+          "Position": "Defender",
+          "Goals": 8
+        },
+        {
+          "Position": "Goalkeeper",
+          "Goals": 1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": "width",
+      "padding": 0.9
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Goals"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Position"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Goals Scored"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Position"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Goals"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

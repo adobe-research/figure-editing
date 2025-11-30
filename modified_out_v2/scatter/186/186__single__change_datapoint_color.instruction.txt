@@ -1,0 +1,2 @@
+Change the datapoint color for 'Churn' status to new colors.
+[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#ff7f0e]

@@ -1,0 +1,2 @@
+Add a new datapoint with price 220, reviews 50, and neighborhood group 'Staten Island'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bronx; value=150.0]

@@ -1,2 +1,0 @@
-Add a new datapoint for January 8, 2023, with a temperature of 19°C and humidity of 55%.
-[#OP1 op=add_datapoint; position=end; category=New 1; value=16.0]

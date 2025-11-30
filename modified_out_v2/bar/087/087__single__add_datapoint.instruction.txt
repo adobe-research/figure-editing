@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Transportation' industry with an average wage of 1100 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Construction; value=1250.0]

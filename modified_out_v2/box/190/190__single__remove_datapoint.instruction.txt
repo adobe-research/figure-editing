@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Respiratory Diseases' from the chart.
+[#OP1 op=remove_datapoint; category=Cardiovascular Diseases]

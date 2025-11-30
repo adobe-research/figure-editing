@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing daily COVID-19 cases for multiple countries.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-07-01",
+          "cases": 1250,
+          "country": "USA"
+        },
+        {
+          "date": "2023-07-01",
+          "cases": 850,
+          "country": "India"
+        },
+        {
+          "date": "2023-07-01",
+          "cases": 400,
+          "country": "Brazil"
+        },
+        {
+          "date": "2023-07-02",
+          "cases": 1300,
+          "country": "USA"
+        },
+        {
+          "date": "2023-07-02",
+          "cases": 900,
+          "country": "India"
+        },
+        {
+          "date": "2023-07-02",
+          "cases": 420,
+          "country": "Brazil"
+        },
+        {
+          "date": "2023-07-03",
+          "cases": 1400,
+          "country": "USA"
+        },
+        {
+          "date": "2023-07-03",
+          "cases": 950,
+          "country": "India"
+        },
+        {
+          "date": "2023-07-03",
+          "cases": 450,
+          "country": "Brazil"
+        },
+        {
+          "date": "2023-07-04",
+          "cases": 1500,
+          "country": "USA"
+        },
+        {
+          "date": "2023-07-04",
+          "cases": 980,
+          "country": "India"
+        },
+        {
+          "date": "2023-07-04",
+          "cases": 470,
+          "country": "Brazil"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "cases"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Daily Cases",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Country",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "cases"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "country"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Housing Starts' and Value 1.5 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Consumer Price Index; value=4.2]

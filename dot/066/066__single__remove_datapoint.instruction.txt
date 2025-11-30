@@ -1,2 +1,0 @@
-Remove the datapoint with Category 'Exercise Induced Angina' and Value 100.
-[#OP1 op=remove_datapoint; category=Chest Pain Type D]

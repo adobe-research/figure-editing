@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories from Pew Research Center Surveys.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Social Media Usage",
+          "Value": 68
+        },
+        {
+          "Category": "Online News Consumption",
+          "Value": 55
+        },
+        {
+          "Category": "Streaming Services",
+          "Value": 72
+        },
+        {
+          "Category": "Smartphone Ownership",
+          "Value": 85
+        },
+        {
+          "Category": "E-Book Reading",
+          "Value": 27
+        },
+        {
+          "Category": "Podcast Listening",
+          "Value": 22
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category",
+      "labelAngle": -45
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Percentage (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

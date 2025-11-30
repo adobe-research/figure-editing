@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing crime counts by type in Chicago.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "crime_data",
+      "values": [
+        {
+          "Crime_Type": "Theft",
+          "Count": 120
+        },
+        {
+          "Crime_Type": "Assault",
+          "Count": 85
+        },
+        {
+          "Crime_Type": "Burglary",
+          "Count": 60
+        },
+        {
+          "Crime_Type": "Robbery",
+          "Count": 45
+        },
+        {
+          "Crime_Type": "Homicide",
+          "Count": 15
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "crime_data",
+        "field": "Crime_Type"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "crime_data",
+        "field": "Count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Crime Type"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "crime_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Crime_Type"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Count"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

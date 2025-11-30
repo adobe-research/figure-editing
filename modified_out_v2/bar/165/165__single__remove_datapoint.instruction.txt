@@ -1,0 +1,2 @@
+Remove the datapoint for 'Devin Booker' from the chart.
+[#OP1 op=remove_datapoint; category=Stephen Curry]

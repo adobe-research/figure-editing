@@ -1,0 +1,2 @@
+Add a new datapoint with Position 'CF' and Overall 88 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CAM; value=87.0]

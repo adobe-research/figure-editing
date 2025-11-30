@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing demand trends over time for different categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "Jan",
+          "category": "Electronics",
+          "demand": 120
+        },
+        {
+          "month": "Feb",
+          "category": "Electronics",
+          "demand": 150
+        },
+        {
+          "month": "Mar",
+          "category": "Electronics",
+          "demand": 170
+        },
+        {
+          "month": "Jan",
+          "category": "Furniture",
+          "demand": 80
+        },
+        {
+          "month": "Feb",
+          "category": "Furniture",
+          "demand": 95
+        },
+        {
+          "month": "Mar",
+          "category": "Furniture",
+          "demand": 110
+        },
+        {
+          "month": "Jan",
+          "category": "Clothing",
+          "demand": 200
+        },
+        {
+          "month": "Feb",
+          "category": "Clothing",
+          "demand": 220
+        },
+        {
+          "month": "Mar",
+          "category": "Clothing",
+          "demand": 250
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['category']=='Electronics' || datum['category']=='Furniture'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange",
+        "green"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Demand",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "facet",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "demand"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "category"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ]
+}

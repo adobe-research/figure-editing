@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Age Group 3' from the dataset.
+[#OP1 op=remove_datapoint; category=Age Group 2]

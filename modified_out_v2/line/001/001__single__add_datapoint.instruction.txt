@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2005 with a value of 4.5 under the 'GDP Growth' indicator.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=GDP Growth; value=2002.0]

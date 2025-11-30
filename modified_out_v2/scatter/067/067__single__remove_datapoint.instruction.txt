@@ -1,0 +1,2 @@
+Remove the datapoint where Claim_Severity is 1500 and Policy_Age is 2.
+[#OP1 op=remove_datapoint; category=3-5 years]

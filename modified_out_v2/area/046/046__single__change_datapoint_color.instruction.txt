@@ -1,0 +1,2 @@
+Change the datapoint color for the 'Teaching' metric to 'green'.
+[#OP1 op=change_datapoint_color; target_category=Research; new_color=#ff7f0e]

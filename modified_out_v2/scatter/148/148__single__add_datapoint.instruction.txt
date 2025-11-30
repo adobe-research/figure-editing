@@ -1,0 +1,2 @@
+Add a new datapoint with mcg=0.6, gvh=0.5, and class='EXC' to the scatter plot.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CYT; value=0.5]

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing demand prediction by category and platform.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "platform": "Mobile",
+          "value": 120
+        },
+        {
+          "category": "Electronics",
+          "platform": "Desktop",
+          "value": 80
+        },
+        {
+          "category": "Fashion",
+          "platform": "Mobile",
+          "value": 150
+        },
+        {
+          "category": "Fashion",
+          "platform": "Desktop",
+          "value": 100
+        },
+        {
+          "category": "Home Appliances",
+          "platform": "Mobile",
+          "value": 90
+        },
+        {
+          "category": "Home Appliances",
+          "platform": "Desktop",
+          "value": 60
+        },
+        {
+          "category": "Books",
+          "platform": "Mobile",
+          "value": 110
+        },
+        {
+          "category": "Books",
+          "platform": "Desktop",
+          "value": 70
+        },
+        {
+          "category": "Toys",
+          "platform": "Mobile",
+          "value": 130
+        },
+        {
+          "category": "Toys",
+          "platform": "Desktop",
+          "value": 85
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "platform"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "platform"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Platform",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "platform"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

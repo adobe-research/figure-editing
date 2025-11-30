@@ -1,0 +1,2 @@
+Remove the datapoint with Alcohol value 12.7 and Malic_Acid value 2.5.
+[#OP1 op=remove_datapoint; category=A]

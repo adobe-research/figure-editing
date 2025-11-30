@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Opposition to Policy Y' and Value 22.
+[#OP1 op=remove_datapoint; category=Opposition to Policy X]

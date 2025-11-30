@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Freelance' and value 500 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Federal-gov; value=1116.0]

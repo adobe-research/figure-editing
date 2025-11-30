@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing points for player statistics in NBA Player Stats dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart"
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Player": "LeBron James",
+          "Points": 27.1
+        },
+        {
+          "Player": "Kevin Durant",
+          "Points": 27.3
+        },
+        {
+          "Player": "Stephen Curry",
+          "Points": 24.3
+        },
+        {
+          "Player": "James Harden",
+          "Points": 25.0
+        },
+        {
+          "Player": "Kawhi Leonard",
+          "Points": 19.2
+        },
+        {
+          "Player": "Giannis Antetokounmpo",
+          "Points": 22.0
+        },
+        {
+          "Player": "Luka Doncic",
+          "Points": 27.6
+        },
+        {
+          "Player": "Nikola Jokic",
+          "Points": 20.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Player"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Points"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Player"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Points per Game"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Player"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Points"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

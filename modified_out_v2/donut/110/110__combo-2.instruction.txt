@@ -1,0 +1,4 @@
+Change the color of the 'Beverages' datapoint to '#FF5733', increase the text size of the legend title to 14, and add a title 'Instacart Product Distribution' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Beverages; new_color=#9467bd]
+[#OP2 op=increase_text_size; axis_label_size=12]
+[#OP3 op=add_title; title_text=Edited Chart]

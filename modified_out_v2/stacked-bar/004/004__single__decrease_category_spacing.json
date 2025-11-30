@@ -1,0 +1,196 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing GDP contributions by sector for various countries.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "USA",
+          "series": "Agriculture",
+          "value": 500
+        },
+        {
+          "category": "USA",
+          "series": "Manufacturing",
+          "value": 1200
+        },
+        {
+          "category": "USA",
+          "series": "Services",
+          "value": 3000
+        },
+        {
+          "category": "China",
+          "series": "Agriculture",
+          "value": 800
+        },
+        {
+          "category": "China",
+          "series": "Manufacturing",
+          "value": 2500
+        },
+        {
+          "category": "China",
+          "series": "Services",
+          "value": 1800
+        },
+        {
+          "category": "India",
+          "series": "Agriculture",
+          "value": 700
+        },
+        {
+          "category": "India",
+          "series": "Manufacturing",
+          "value": 900
+        },
+        {
+          "category": "India",
+          "series": "Services",
+          "value": 1500
+        },
+        {
+          "category": "Germany",
+          "series": "Agriculture",
+          "value": 300
+        },
+        {
+          "category": "Germany",
+          "series": "Manufacturing",
+          "value": 1800
+        },
+        {
+          "category": "Germany",
+          "series": "Services",
+          "value": 2400
+        },
+        {
+          "category": "Brazil",
+          "series": "Agriculture",
+          "value": 600
+        },
+        {
+          "category": "Brazil",
+          "series": "Manufacturing",
+          "value": 1000
+        },
+        {
+          "category": "Brazil",
+          "series": "Services",
+          "value": 1200
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Country"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "GDP Contribution (in billion USD)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sector",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 0.8
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

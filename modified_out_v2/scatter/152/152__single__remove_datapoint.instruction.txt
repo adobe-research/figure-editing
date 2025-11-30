@@ -1,0 +1,2 @@
+Remove the datapoint where Points_Per_Game is 27.8 and Rebounds_Per_Game is 6.3.
+[#OP1 op=remove_datapoint; category=Forward]

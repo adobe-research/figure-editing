@@ -1,0 +1,2 @@
+Add a new datapoint with Math_Score 85, Reading_Score 82, and Study_Time 'Medium'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High; value=80.0]

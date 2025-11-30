@@ -1,0 +1,211 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart for Bitcoin historical data.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "January",
+          "series": "Open",
+          "value": 32000
+        },
+        {
+          "category": "January",
+          "series": "Close",
+          "value": 33000
+        },
+        {
+          "category": "January",
+          "series": "High",
+          "value": 34000
+        },
+        {
+          "category": "February",
+          "series": "Open",
+          "value": 35000
+        },
+        {
+          "category": "February",
+          "series": "Close",
+          "value": 36000
+        },
+        {
+          "category": "February",
+          "series": "High",
+          "value": 37000
+        },
+        {
+          "category": "March",
+          "series": "Open",
+          "value": 40000
+        },
+        {
+          "category": "March",
+          "series": "Close",
+          "value": 41000
+        },
+        {
+          "category": "March",
+          "series": "High",
+          "value": 42000
+        },
+        {
+          "category": "April",
+          "series": "Open",
+          "value": 45000
+        },
+        {
+          "category": "April",
+          "series": "Close",
+          "value": 46000
+        },
+        {
+          "category": "April",
+          "series": "High",
+          "value": 47000
+        },
+        {
+          "category": "May",
+          "series": "Open",
+          "value": 48000
+        },
+        {
+          "category": "May",
+          "series": "Close",
+          "value": 49000
+        },
+        {
+          "category": "May",
+          "series": "High",
+          "value": 50000
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#FF5733",
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Bitcoin Value (USD)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Remove the datapoint for 'South America' with the series 'Coal' and value 70.
+[#OP1 op=remove_datapoint; category=Asia]

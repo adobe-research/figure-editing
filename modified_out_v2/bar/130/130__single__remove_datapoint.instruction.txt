@@ -1,0 +1,2 @@
+Remove the datapoint for 'Gold Loan' with an approval count of 60.
+[#OP1 op=remove_datapoint; category=Vehicle Loan]

@@ -1,0 +1,2 @@
+Remove the datapoint with ProteinContent 0.55 and EnzymeActivity 0.67.
+[#OP1 op=remove_datapoint; category=Type A]

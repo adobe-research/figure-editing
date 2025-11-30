@@ -1,0 +1,2 @@
+Add a new datapoint for the feature 'Area Mean' with specified five-number summary values.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Area Mean; value=26.75]

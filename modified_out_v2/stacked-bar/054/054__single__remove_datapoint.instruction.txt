@@ -1,0 +1,2 @@
+Remove the datapoint for Indiana producing Soybeans with a production value of 200.
+[#OP1 op=remove_datapoint; category=Illinois]

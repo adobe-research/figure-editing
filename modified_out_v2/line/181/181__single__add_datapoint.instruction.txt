@@ -1,0 +1,2 @@
+Add a new datapoint for the 'West' region with a demand of 140 on '2023-05-02'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East; value=137.5]

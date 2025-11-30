@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing transaction amount vs. transaction time, colored by fraud status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "TransactionTime": 120,
+          "TransactionAmount": 50.75,
+          "FraudStatus": "No"
+        },
+        {
+          "TransactionTime": 300,
+          "TransactionAmount": 200.0,
+          "FraudStatus": "Yes"
+        },
+        {
+          "TransactionTime": 450,
+          "TransactionAmount": 35.5,
+          "FraudStatus": "No"
+        },
+        {
+          "TransactionTime": 600,
+          "TransactionAmount": 500.0,
+          "FraudStatus": "Yes"
+        },
+        {
+          "TransactionTime": 750,
+          "TransactionAmount": 80.0,
+          "FraudStatus": "No"
+        },
+        {
+          "TransactionTime": 900,
+          "TransactionAmount": 150.0,
+          "FraudStatus": "Yes"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": [
+        120.0,
+        900.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "TransactionAmount"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "FraudStatus"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Transaction Time (seconds)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Transaction Amount ($)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Fraud Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "TransactionTime"
+          },
+          "y": {
+            "scale": "y",
+            "field": "TransactionAmount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "FraudStatus"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

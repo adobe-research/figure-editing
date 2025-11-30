@@ -1,0 +1,216 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing weather conditions by month in Seattle.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "condition": "Rainy",
+          "days": 20
+        },
+        {
+          "month": "January",
+          "condition": "Sunny",
+          "days": 5
+        },
+        {
+          "month": "January",
+          "condition": "Cloudy",
+          "days": 6
+        },
+        {
+          "month": "February",
+          "condition": "Rainy",
+          "days": 15
+        },
+        {
+          "month": "February",
+          "condition": "Sunny",
+          "days": 8
+        },
+        {
+          "month": "February",
+          "condition": "Cloudy",
+          "days": 5
+        },
+        {
+          "month": "March",
+          "condition": "Rainy",
+          "days": 18
+        },
+        {
+          "month": "March",
+          "condition": "Sunny",
+          "days": 7
+        },
+        {
+          "month": "March",
+          "condition": "Cloudy",
+          "days": 6
+        },
+        {
+          "month": "April",
+          "condition": "Rainy",
+          "days": 12
+        },
+        {
+          "month": "April",
+          "condition": "Sunny",
+          "days": 10
+        },
+        {
+          "month": "April",
+          "condition": "Cloudy",
+          "days": 8
+        },
+        {
+          "month": "May",
+          "condition": "Rainy",
+          "days": 10
+        },
+        {
+          "month": "May",
+          "condition": "Sunny",
+          "days": 15
+        },
+        {
+          "month": "May",
+          "condition": "Cloudy",
+          "days": 6
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "condition"
+          },
+          "field": "days"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "condition"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month",
+      "labelFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Days",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Weather Condition",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "condition",
+            "value": {
+              "signal": "datum.condition === 'Sunny' ? '#FFD700' : scale('color', datum.condition)"
+            }
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['month']==='January'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

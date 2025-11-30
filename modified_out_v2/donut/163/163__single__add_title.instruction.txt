@@ -1,0 +1,2 @@
+Add a title to the donut chart with the text 'Netflix Stock Price Categories'.
+[#OP1 op=add_title; title_text=Edited Chart]

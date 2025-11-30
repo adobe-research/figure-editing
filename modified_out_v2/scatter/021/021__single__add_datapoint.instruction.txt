@@ -1,0 +1,2 @@
+Add a new datapoint with Complaint_Duration of 6, Resolution_Time of 2, and Complaint_Type of 'Electricity'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Electricity; value=7.0]

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing sales trends over weeks for different departments.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "linear",
+          "basis",
+          "cardinal",
+          "monotone",
+          "step",
+          "step-before",
+          "step-after"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "sales_data",
+      "values": [
+        {
+          "week": 1,
+          "department": "Electronics",
+          "sales": 1200
+        },
+        {
+          "week": 2,
+          "department": "Electronics",
+          "sales": 1300
+        },
+        {
+          "week": 3,
+          "department": "Electronics",
+          "sales": 1250
+        },
+        {
+          "week": 4,
+          "department": "Electronics",
+          "sales": 1400
+        },
+        {
+          "week": 1,
+          "department": "Furniture",
+          "sales": 800
+        },
+        {
+          "week": 2,
+          "department": "Furniture",
+          "sales": 850
+        },
+        {
+          "week": 3,
+          "department": "Furniture",
+          "sales": 900
+        },
+        {
+          "week": 4,
+          "department": "Furniture",
+          "sales": 950
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "sales_data",
+        "field": "sales"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "sales_data",
+        "field": "department"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Week",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Sales",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted_data",
+          "data": "sales_data",
+          "groupby": "department"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "faceted_data"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "week"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "sales"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "department"
+              }
+            },
+            "update": {
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Department",
+      "orient": "right"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "background": "#f0f8ff"
+}

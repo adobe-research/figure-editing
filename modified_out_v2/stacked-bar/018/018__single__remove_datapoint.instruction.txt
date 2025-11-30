@@ -1,0 +1,2 @@
+Remove the datapoint where airline is 'Southwest' and delay_type is 'NAS'.
+[#OP1 op=remove_datapoint; category=American]

@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Hazardous' and value 2.
-[#OP1 op=remove_datapoint; category=Very Unhealthy]

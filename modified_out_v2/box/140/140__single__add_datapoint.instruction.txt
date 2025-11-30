@@ -1,0 +1,2 @@
+Add a new datapoint for the region 'Sub-Saharan Africa' with values min=1200, q1=3200, median=5200, q3=7200, max=9200.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East Asia & Pacific; value=1350.0]

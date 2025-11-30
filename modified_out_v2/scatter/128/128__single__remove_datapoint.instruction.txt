@@ -1,0 +1,2 @@
+Remove the datapoint representing South Asia with GDP per Capita of 800 and Life Expectancy of 55.
+[#OP1 op=remove_datapoint; category=Oceania]

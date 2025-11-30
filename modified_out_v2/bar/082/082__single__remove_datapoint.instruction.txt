@@ -1,0 +1,2 @@
+Remove the datapoint for 'Frank Robinson' with 586 home runs.
+[#OP1 op=remove_datapoint; category=Ken Griffey Jr.]

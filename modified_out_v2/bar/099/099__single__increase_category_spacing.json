@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Bar chart showing average ratings of app categories in the Google Play Store.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Social",
+          "average_rating": 4.5
+        },
+        {
+          "category": "Productivity",
+          "average_rating": 4.2
+        },
+        {
+          "category": "Games",
+          "average_rating": 4.1
+        },
+        {
+          "category": "Education",
+          "average_rating": 4.3
+        },
+        {
+          "category": "Health & Fitness",
+          "average_rating": 4.4
+        },
+        {
+          "category": "Finance",
+          "average_rating": 4.0
+        },
+        {
+          "category": "Entertainment",
+          "average_rating": 4.2
+        },
+        {
+          "category": "Lifestyle",
+          "average_rating": 4.3
+        },
+        {
+          "category": "Shopping",
+          "average_rating": 4.1
+        },
+        {
+          "category": "Travel & Local",
+          "average_rating": 4.0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "average_rating"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "App Category"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "average_rating"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

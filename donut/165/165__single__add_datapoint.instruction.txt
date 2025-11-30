@@ -1,2 +1,0 @@
-Add a new datapoint with category 'Volume' and value 280 to the dataset.
-[#OP1 op=add_datapoint; position=end; category=New 1; series=Close; value=310.0]

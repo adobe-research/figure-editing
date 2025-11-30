@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing energy production trends by source over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2015,
+          "production": 400,
+          "source": "Coal"
+        },
+        {
+          "year": 2015,
+          "production": 300,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2015,
+          "production": 150,
+          "source": "Solar"
+        },
+        {
+          "year": 2016,
+          "production": 380,
+          "source": "Coal"
+        },
+        {
+          "year": 2016,
+          "production": 320,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2016,
+          "production": 200,
+          "source": "Solar"
+        },
+        {
+          "year": 2017,
+          "production": 360,
+          "source": "Coal"
+        },
+        {
+          "year": 2017,
+          "production": 340,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2017,
+          "production": 250,
+          "source": "Solar"
+        },
+        {
+          "year": 2018,
+          "production": 340,
+          "source": "Coal"
+        },
+        {
+          "year": 2018,
+          "production": 360,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2018,
+          "production": 300,
+          "source": "Solar"
+        },
+        {
+          "year": 2019,
+          "production": 320,
+          "source": "Coal"
+        },
+        {
+          "year": 2019,
+          "production": 380,
+          "source": "Natural Gas"
+        },
+        {
+          "year": 2019,
+          "production": 350,
+          "source": "Solar"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "labelFontSize": 16,
+      "tickSize": 12,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Production (TWh)",
+      "labelFontSize": 16,
+      "tickSize": 12,
+      "titleFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Energy Source",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "production"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "source"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

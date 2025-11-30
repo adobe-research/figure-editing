@@ -1,0 +1,2 @@
+Remove the datapoint for the Energy sector in the Asia region with revenue 50.
+[#OP1 op=remove_datapoint; category=Financials]

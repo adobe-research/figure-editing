@@ -1,0 +1,2 @@
+Add a new datapoint with GDP 26.5, UnemploymentRate 3.9, and Region 'Southwest'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Midwest; value=22.87]

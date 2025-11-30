@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Wishlist' with a value of 600 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Added to Cart; value=800.0]

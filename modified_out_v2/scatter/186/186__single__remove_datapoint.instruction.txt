@@ -1,0 +1,2 @@
+Remove the datapoint where tenure is 8 and MonthlyCharges is 75.25.
+[#OP1 op=remove_datapoint; category=No]

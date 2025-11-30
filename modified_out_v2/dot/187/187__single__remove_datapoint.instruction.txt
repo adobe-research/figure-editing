@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Group F' with value 180.
+[#OP1 op=remove_datapoint; category=Group E]

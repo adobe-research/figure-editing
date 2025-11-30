@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing average airline delay minutes over months for two airlines.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "airline": "Airline A",
+          "delay": 12
+        },
+        {
+          "month": "January",
+          "airline": "Airline B",
+          "delay": 15
+        },
+        {
+          "month": "February",
+          "airline": "Airline A",
+          "delay": 10
+        },
+        {
+          "month": "February",
+          "airline": "Airline B",
+          "delay": 18
+        },
+        {
+          "month": "March",
+          "airline": "Airline A",
+          "delay": 14
+        },
+        {
+          "month": "March",
+          "airline": "Airline B",
+          "delay": 20
+        },
+        {
+          "month": "April",
+          "airline": "Airline A",
+          "delay": 9
+        },
+        {
+          "month": "April",
+          "airline": "Airline B",
+          "delay": 16
+        },
+        {
+          "month": "May",
+          "airline": "Airline A",
+          "delay": 11
+        },
+        {
+          "month": "May",
+          "airline": "Airline B",
+          "delay": 14
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.9
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "delay"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "airline"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Average Delay (minutes)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "airline"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "delay"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "airline"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Airline",
+      "orient": "right"
+    }
+  ]
+}

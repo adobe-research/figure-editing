@@ -1,0 +1,2 @@
+Add a new datapoint for June with condition 'Rainy' and 14 days.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=9.0]

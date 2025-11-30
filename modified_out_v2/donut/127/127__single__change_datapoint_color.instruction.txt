@@ -1,0 +1,2 @@
+Change the color of the 'Beverages' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Household Items; new_color=#ff7f0e]

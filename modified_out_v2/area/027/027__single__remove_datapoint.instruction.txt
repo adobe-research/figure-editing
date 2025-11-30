@@ -1,0 +1,2 @@
+Remove the datapoint for Series B with date '2020-Q4' and value 140.
+[#OP1 op=remove_datapoint; category=2020-Q1]

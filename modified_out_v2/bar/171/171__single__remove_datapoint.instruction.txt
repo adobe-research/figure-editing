@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Transportation' industry.
+[#OP1 op=remove_datapoint; category=Retail]

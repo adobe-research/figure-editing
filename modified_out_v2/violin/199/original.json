@@ -1,0 +1,346 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of Revolving Utilization for different Income Groups.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "credit_data",
+      "values": [
+        {
+          "Income Group": "Low Income",
+          "Revolving Utilization": 0.15
+        },
+        {
+          "Income Group": "Low Income",
+          "Revolving Utilization": 0.18
+        },
+        {
+          "Income Group": "Low Income",
+          "Revolving Utilization": 0.22
+        },
+        {
+          "Income Group": "Low Income",
+          "Revolving Utilization": 0.25
+        },
+        {
+          "Income Group": "Low Income",
+          "Revolving Utilization": 0.3
+        },
+        {
+          "Income Group": "Middle Income",
+          "Revolving Utilization": 0.1
+        },
+        {
+          "Income Group": "Middle Income",
+          "Revolving Utilization": 0.12
+        },
+        {
+          "Income Group": "Middle Income",
+          "Revolving Utilization": 0.14
+        },
+        {
+          "Income Group": "Middle Income",
+          "Revolving Utilization": 0.16
+        },
+        {
+          "Income Group": "Middle Income",
+          "Revolving Utilization": 0.18
+        },
+        {
+          "Income Group": "High Income",
+          "Revolving Utilization": 0.05
+        },
+        {
+          "Income Group": "High Income",
+          "Revolving Utilization": 0.07
+        },
+        {
+          "Income Group": "High Income",
+          "Revolving Utilization": 0.09
+        },
+        {
+          "Income Group": "High Income",
+          "Revolving Utilization": 0.11
+        },
+        {
+          "Income Group": "High Income",
+          "Revolving Utilization": 0.13
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Income Group'] != null && datum['Revolving Utilization'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Revolving Utilization",
+          "groupby": [
+            "Income Group"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [0, 1]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Income Group"
+          ],
+          "fields": [
+            "Revolving Utilization",
+            "Revolving Utilization",
+            "Revolving Utilization"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "credit_data",
+        "field": "Income Group"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "credit_data",
+        "field": "Revolving Utilization"
+      },
+      "domainMin": 0,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "credit_data",
+        "field": "Income Group"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Income Group"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Income Group",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Income Group'] === parent['Income Group']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Income Group"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

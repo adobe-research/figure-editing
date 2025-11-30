@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Unknown' diagnosis with min=5.0, q1=7.0, median=9.0, q3=11.0, and max=13.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Benign; value=6.0]

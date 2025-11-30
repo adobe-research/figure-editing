@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Seed-Type-C' and value 20.
-[#OP1 op=remove_datapoint; category=Seed-Type-B]

@@ -1,0 +1,2 @@
+Change the color of the datapoints to 'steelblue' for normal state and 'lightsteelblue' for hover state.
+[#OP1 op=change_datapoint_color; target_category=Breakfast Items; new_color=#ff7f0e]

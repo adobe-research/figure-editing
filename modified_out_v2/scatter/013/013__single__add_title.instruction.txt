@@ -1,0 +1,2 @@
+Add a title to the scatter plot with the text 'IMDB Ratings vs Word Count by Sentiment'.
+[#OP1 op=add_title; title_text=Edited Chart]

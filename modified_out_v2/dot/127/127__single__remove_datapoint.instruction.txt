@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'DebtRatio' and Value 0.6.
+[#OP1 op=remove_datapoint; category=RevolvingUtilization]

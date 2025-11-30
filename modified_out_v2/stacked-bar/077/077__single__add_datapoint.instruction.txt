@@ -1,0 +1,2 @@
+Add a new datapoint for the month of June with type 'Spot' and volume 250000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=120000.0]

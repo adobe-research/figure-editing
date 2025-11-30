@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Malignant' category.
+[#OP1 op=remove_datapoint; category=Benign]

@@ -1,0 +1,2 @@
+Add a new datapoint for the subject 'Music' with a score of 90.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Art; value=88.0]

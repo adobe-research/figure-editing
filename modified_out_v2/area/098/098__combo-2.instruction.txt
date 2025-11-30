@@ -1,0 +1,4 @@
+Change the color of datapoints for 'Item A' to green, increase the text size of axis labels to 14, and add a title 'Monthly Demand Analysis'.
+[#OP1 op=change_datapoint_color; target_category=2021-06; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=2021-07; new_color=#ff7f0e]
+[#OP3 op=add_title; title_text=Edited Chart]

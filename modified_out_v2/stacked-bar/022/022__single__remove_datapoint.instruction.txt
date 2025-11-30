@@ -1,0 +1,2 @@
+Remove the datapoint for 'Ripple' in the 'January' category.
+[#OP1 op=remove_datapoint; category=March]

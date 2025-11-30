@@ -1,0 +1,174 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart showing accident counts over time for different states.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01",
+          "count": 120,
+          "state": "California"
+        },
+        {
+          "date": "2021-02",
+          "count": 150,
+          "state": "California"
+        },
+        {
+          "date": "2021-03",
+          "count": 170,
+          "state": "California"
+        },
+        {
+          "date": "2021-01",
+          "count": 80,
+          "state": "Texas"
+        },
+        {
+          "date": "2021-02",
+          "count": 90,
+          "state": "Texas"
+        },
+        {
+          "date": "2021-03",
+          "count": 110,
+          "state": "Texas"
+        },
+        {
+          "date": "2021-01",
+          "count": 60,
+          "state": "Florida"
+        },
+        {
+          "date": "2021-02",
+          "count": 70,
+          "state": "Florida"
+        },
+        {
+          "date": "2021-03",
+          "count": 85,
+          "state": "Florida"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "state"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "labelFontSize": 16,
+      "tickSize": 10,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Accident Count",
+      "labelFontSize": 16,
+      "tickSize": 10,
+      "titleFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "State",
+      "orient": "right"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "state"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "count"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "state"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing GDP growth rates for different regions over years.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 5.2
+        },
+        {
+          "year": 2000,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 3.0
+        },
+        {
+          "year": 2000,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.5
+        },
+        {
+          "year": 2005,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 7.1
+        },
+        {
+          "year": 2005,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 4.0
+        },
+        {
+          "year": 2005,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 5.0
+        },
+        {
+          "year": 2010,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 9.5
+        },
+        {
+          "year": 2010,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 4.8
+        },
+        {
+          "year": 2010,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 4.7
+        },
+        {
+          "year": 2015,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 6.8
+        },
+        {
+          "year": 2015,
+          "region": "Europe & Central Asia",
+          "gdp_growth": 2.7
+        },
+        {
+          "year": 2015,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": 3.2
+        },
+        {
+          "year": 2020,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 2.3
+        },
+        {
+          "year": 2020,
+          "region": "Europe & Central Asia",
+          "gdp_growth": -1.8
+        },
+        {
+          "year": 2020,
+          "region": "Sub-Saharan Africa",
+          "gdp_growth": -2.1
+        },
+        {
+          "year": 2025,
+          "region": "East Asia & Pacific",
+          "gdp_growth": 3.5
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['region']=='East Asia & Pacific' || datum['region']=='Europe & Central Asia'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2025
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "gdp_growth"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "GDP Growth (%)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "region"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "gdp_growth"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "region"
+              },
+              "interpolate": {
+                "value": "monotone"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ]
+}

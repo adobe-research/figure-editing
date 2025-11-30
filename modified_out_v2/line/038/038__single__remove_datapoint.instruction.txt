@@ -1,0 +1,2 @@
+Remove the datapoint for year 2019 with response 'Neutral' and percentage 22.
+[#OP1 op=remove_datapoint; category=Neutral]

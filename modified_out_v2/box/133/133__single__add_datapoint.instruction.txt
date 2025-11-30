@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Identity Hate' with min=3, q1=15, median=25, q3=35, and max=45.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Identity Hate; value=6.5]

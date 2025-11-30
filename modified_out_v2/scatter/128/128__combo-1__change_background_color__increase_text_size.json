@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing GDP per capita versus life expectancy, colored by region.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP_per_Capita": 45000,
+          "Life_Expectancy": 81,
+          "Region": "Europe"
+        },
+        {
+          "GDP_per_Capita": 1200,
+          "Life_Expectancy": 60,
+          "Region": "Sub-Saharan Africa"
+        },
+        {
+          "GDP_per_Capita": 15000,
+          "Life_Expectancy": 75,
+          "Region": "East Asia"
+        },
+        {
+          "GDP_per_Capita": 40000,
+          "Life_Expectancy": 80,
+          "Region": "North America"
+        },
+        {
+          "GDP_per_Capita": 10000,
+          "Life_Expectancy": 70,
+          "Region": "South America"
+        },
+        {
+          "GDP_per_Capita": 800,
+          "Life_Expectancy": 55,
+          "Region": "South Asia"
+        },
+        {
+          "GDP_per_Capita": 30000,
+          "Life_Expectancy": 78,
+          "Region": "Oceania"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        800.0,
+        45000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Life_Expectancy"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP per Capita (USD)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Life Expectancy (years)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "GDP_per_Capita"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Life_Expectancy"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

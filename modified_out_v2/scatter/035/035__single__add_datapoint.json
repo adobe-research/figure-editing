@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing goals scored vs goals conceded in international football matches.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Goals_Scored": 3,
+          "Goals_Conceded": 1,
+          "Match_Type": "Friendly"
+        },
+        {
+          "Goals_Scored": 2,
+          "Goals_Conceded": 2,
+          "Match_Type": "World Cup"
+        },
+        {
+          "Goals_Scored": 1,
+          "Goals_Conceded": 0,
+          "Match_Type": "Qualifier"
+        },
+        {
+          "Goals_Scored": 4,
+          "Goals_Conceded": 3,
+          "Match_Type": "Friendly"
+        },
+        {
+          "Goals_Scored": 0,
+          "Goals_Conceded": 1,
+          "Match_Type": "World Cup"
+        },
+        {
+          "Goals_Scored": 2,
+          "Goals_Conceded": 1,
+          "Match_Type": "Qualifier"
+        },
+        {
+          "Goals_Scored": 5,
+          "Goals_Conceded": 2,
+          "Match_Type": "Friendly"
+        },
+        {
+          "Goals_Scored": 1,
+          "Goals_Conceded": 3,
+          "Match_Type": "World Cup"
+        },
+        {
+          "Goals_Scored": 3,
+          "Goals_Conceded": 4,
+          "Match_Type": "Qualifier"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Goals_Conceded"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Match_Type"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Goals Scored"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Goals Conceded"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Match Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Goals_Scored"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Goals_Conceded"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Match_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

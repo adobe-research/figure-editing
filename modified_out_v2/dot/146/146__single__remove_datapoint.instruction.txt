@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Shells' and Value 14.5.
+[#OP1 op=remove_datapoint; category=Pulp]

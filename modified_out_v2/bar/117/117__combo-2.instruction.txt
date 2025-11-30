@@ -1,0 +1,4 @@
+Change the color of the 'Supermarket Type 1' bar to orange, increase the text size of axis labels to 14, and add a title 'Average Sales by Store Type' with size 16.
+[#OP1 op=change_datapoint_color; target_category=Supermarket Type 2; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Supermarket Type 2; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

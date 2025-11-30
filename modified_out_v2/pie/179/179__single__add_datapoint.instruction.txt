@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Email' and value 1500 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cellular; value=1350.0]

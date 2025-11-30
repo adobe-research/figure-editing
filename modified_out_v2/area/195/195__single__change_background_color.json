@@ -1,0 +1,199 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing numeric series over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2020-Q1",
+          "series": "A",
+          "value": 120
+        },
+        {
+          "date": "2020-Q2",
+          "series": "A",
+          "value": 150
+        },
+        {
+          "date": "2020-Q3",
+          "series": "A",
+          "value": 170
+        },
+        {
+          "date": "2020-Q4",
+          "series": "A",
+          "value": 200
+        },
+        {
+          "date": "2021-Q1",
+          "series": "A",
+          "value": 180
+        },
+        {
+          "date": "2021-Q2",
+          "series": "A",
+          "value": 210
+        },
+        {
+          "date": "2021-Q3",
+          "series": "A",
+          "value": 230
+        },
+        {
+          "date": "2021-Q4",
+          "series": "A",
+          "value": 250
+        },
+        {
+          "date": "2020-Q1",
+          "series": "B",
+          "value": 80
+        },
+        {
+          "date": "2020-Q2",
+          "series": "B",
+          "value": 100
+        },
+        {
+          "date": "2020-Q3",
+          "series": "B",
+          "value": 120
+        },
+        {
+          "date": "2020-Q4",
+          "series": "B",
+          "value": 140
+        },
+        {
+          "date": "2021-Q1",
+          "series": "B",
+          "value": 160
+        },
+        {
+          "date": "2021-Q2",
+          "series": "B",
+          "value": 180
+        },
+        {
+          "date": "2021-Q3",
+          "series": "B",
+          "value": 200
+        },
+        {
+          "date": "2021-Q4",
+          "series": "B",
+          "value": 220
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Quarter"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "facet",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "value"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "series"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint for Italy on 2020-01-24 with 1 case.
+[#OP1 op=remove_datapoint; category=2020-01-24]

@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the genre 'Music' with IMDb rating 7.5.
+[#OP1 op=remove_datapoint; category=Adventure]

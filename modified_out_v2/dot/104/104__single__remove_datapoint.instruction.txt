@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Feature D' with a value of 80.2.
+[#OP1 op=remove_datapoint; category=Feature A]

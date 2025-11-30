@@ -1,0 +1,334 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of cholesterol levels across different chest pain types.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 4"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "heart_data",
+      "values": [
+        {
+          "Chest Pain Type": "Typical Angina",
+          "Cholesterol": 230
+        },
+        {
+          "Chest Pain Type": "Typical Angina",
+          "Cholesterol": 250
+        },
+        {
+          "Chest Pain Type": "Typical Angina",
+          "Cholesterol": 240
+        },
+        {
+          "Chest Pain Type": "Atypical Angina",
+          "Cholesterol": 210
+        },
+        {
+          "Chest Pain Type": "Atypical Angina",
+          "Cholesterol": 220
+        },
+        {
+          "Chest Pain Type": "Atypical Angina",
+          "Cholesterol": 200
+        },
+        {
+          "Chest Pain Type": "Non-Anginal Pain",
+          "Cholesterol": 260
+        },
+        {
+          "Chest Pain Type": "Non-Anginal Pain",
+          "Cholesterol": 270
+        },
+        {
+          "Chest Pain Type": "Non-Anginal Pain",
+          "Cholesterol": 280
+        },
+        {
+          "Chest Pain Type": "Asymptomatic",
+          "Cholesterol": 190
+        },
+        {
+          "Chest Pain Type": "Asymptomatic",
+          "Cholesterol": 200
+        },
+        {
+          "Chest Pain Type": "Asymptomatic",
+          "Cholesterol": 210
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['Chest Pain Type'] != null && datum['Cholesterol'] != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "heart_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Cholesterol",
+          "groupby": [
+            "Chest Pain Type"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [150, 300]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "heart_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Chest Pain Type"
+          ],
+          "fields": [
+            "Cholesterol",
+            "Cholesterol",
+            "Cholesterol"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "heart_data",
+        "field": "Chest Pain Type"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "heart_data",
+        "field": "Cholesterol"
+      },
+      "domainMin": 150,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "heart_data",
+        "field": "Chest Pain Type"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Chest Pain Type"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Chest Pain Type",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Chest Pain Type'] === parent['Chest Pain Type']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Chest Pain Type"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

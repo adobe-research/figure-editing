@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Cuisine": "Italian",
+          "Rating": 4.5
+        },
+        {
+          "Cuisine": "Chinese",
+          "Rating": 4.2
+        },
+        {
+          "Cuisine": "Indian",
+          "Rating": 4.8
+        },
+        {
+          "Cuisine": "Mexican",
+          "Rating": 4.0
+        },
+        {
+          "Cuisine": "Thai",
+          "Rating": 4.3
+        },
+        {
+          "Cuisine": "Japanese",
+          "Rating": 4.7
+        },
+        {
+          "Cuisine": "French",
+          "Rating": 4.6
+        },
+        {
+          "Cuisine": "Greek",
+          "Rating": 4.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "Cuisine"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Cuisine",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Rating",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Cuisine",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

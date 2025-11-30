@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing GDP per capita for various countries.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "country": "United States",
+          "gdp_per_capita": 65279
+        },
+        {
+          "country": "Germany",
+          "gdp_per_capita": 52316
+        },
+        {
+          "country": "Japan",
+          "gdp_per_capita": 41423
+        },
+        {
+          "country": "India",
+          "gdp_per_capita": 2197
+        },
+        {
+          "country": "Brazil",
+          "gdp_per_capita": 8923
+        },
+        {
+          "country": "China",
+          "gdp_per_capita": 12356
+        },
+        {
+          "country": "South Africa",
+          "gdp_per_capita": 5860
+        },
+        {
+          "country": "Canada",
+          "gdp_per_capita": 46780
+        },
+        {
+          "country": "Australia",
+          "gdp_per_capita": 60392
+        },
+        {
+          "country": "Russia",
+          "gdp_per_capita": 12408
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "country"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "gdp_per_capita"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Country"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "GDP Per Capita (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "country"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "gdp_per_capita"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.country",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.gdp_per_capita",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.gdp_per_capita"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

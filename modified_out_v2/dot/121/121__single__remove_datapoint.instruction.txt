@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Housing Starts' category.
+[#OP1 op=remove_datapoint; category=Inflation Rate]

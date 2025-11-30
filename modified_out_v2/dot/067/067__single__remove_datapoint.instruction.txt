@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the job 'Student' with a balance of 300.
+[#OP1 op=remove_datapoint; category=Retired]

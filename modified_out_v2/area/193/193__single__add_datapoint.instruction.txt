@@ -1,0 +1,2 @@
+Add a new datapoint for '2020-08' with 'cereal' value 130 and 'meat' value 135 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2020-01; value=112.5]

@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing energy consumption trends over years for multiple energy types.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2010,
+          "consumption": 1200,
+          "type": "Coal"
+        },
+        {
+          "year": 2011,
+          "consumption": 1250,
+          "type": "Coal"
+        },
+        {
+          "year": 2012,
+          "consumption": 1300,
+          "type": "Coal"
+        },
+        {
+          "year": 2010,
+          "consumption": 800,
+          "type": "Oil"
+        },
+        {
+          "year": 2011,
+          "consumption": 850,
+          "type": "Oil"
+        },
+        {
+          "year": 2012,
+          "consumption": 900,
+          "type": "Oil"
+        },
+        {
+          "year": 2010,
+          "consumption": 500,
+          "type": "Natural Gas"
+        },
+        {
+          "year": 2011,
+          "consumption": 550,
+          "type": "Natural Gas"
+        },
+        {
+          "year": 2012,
+          "consumption": 600,
+          "type": "Natural Gas"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "consumption"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Energy Consumption (in TWh)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Energy Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "consumption"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

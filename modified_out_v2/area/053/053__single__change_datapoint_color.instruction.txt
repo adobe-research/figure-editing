@@ -1,0 +1,2 @@
+Change the color of the datapoints in the area chart to blue.
+[#OP1 op=change_datapoint_color; target_category=2010; new_color=#ff7f0e]

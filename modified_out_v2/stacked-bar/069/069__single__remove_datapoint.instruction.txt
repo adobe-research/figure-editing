@@ -1,0 +1,2 @@
+Remove the datapoint for 'Winter' and 'Casual Users' with a value of 2100.
+[#OP1 op=remove_datapoint; category=Winter]

@@ -1,0 +1,2 @@
+Add a new datapoint for '2021-01' with a count of 1000 and season 'Spring' to the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-01; value=2500.0]

@@ -1,0 +1,2 @@
+Add a new datapoint for 'Japan' with a GDP per capita of 40200.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Brazil; value=10410.0]

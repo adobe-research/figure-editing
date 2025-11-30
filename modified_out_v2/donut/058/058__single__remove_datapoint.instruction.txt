@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the condition 'Other' with a count of 60.
+[#OP1 op=remove_datapoint; category=High Cholesterol]

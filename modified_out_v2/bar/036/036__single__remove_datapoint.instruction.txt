@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Water Leak' and count 30.
+[#OP1 op=remove_datapoint; category=Noise Complaint]

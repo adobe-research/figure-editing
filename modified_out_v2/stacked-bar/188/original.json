@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing Netflix stock metrics by year and series.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2015",
+          "metric": "Closing Price",
+          "value": 120
+        },
+        {
+          "year": "2015",
+          "metric": "Opening Price",
+          "value": 115
+        },
+        {
+          "year": "2016",
+          "metric": "Closing Price",
+          "value": 140
+        },
+        {
+          "year": "2016",
+          "metric": "Opening Price",
+          "value": 135
+        },
+        {
+          "year": "2017",
+          "metric": "Closing Price",
+          "value": 180
+        },
+        {
+          "year": "2017",
+          "metric": "Opening Price",
+          "value": 175
+        },
+        {
+          "year": "2018",
+          "metric": "Closing Price",
+          "value": 250
+        },
+        {
+          "year": "2018",
+          "metric": "Opening Price",
+          "value": 240
+        },
+        {
+          "year": "2019",
+          "metric": "Closing Price",
+          "value": 320
+        },
+        {
+          "year": "2019",
+          "metric": "Opening Price",
+          "value": 310
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "metric"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "metric"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Metric",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "metric"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint where Shell_Weight is 0.4 and Diameter is 0.3.
+[#OP1 op=remove_datapoint; category=Female]

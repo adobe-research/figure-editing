@@ -1,0 +1,2 @@
+Remove the datapoint for Station B on 2021-06-03 with a count of 130.
+[#OP1 op=remove_datapoint; category=2021-06-02]

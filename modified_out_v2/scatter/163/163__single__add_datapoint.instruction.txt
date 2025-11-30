@@ -1,0 +1,2 @@
+Add a new datapoint with Transaction_Time 350, Transaction_Amount 45.0, and Fraud_Status 'Fraud'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Fraud; value=250.0]

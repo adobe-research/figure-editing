@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Technology' industry with min=350, q1=550, median=800, q3=950, and max=1200.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture; value=275.0]

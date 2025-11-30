@@ -1,0 +1,4 @@
+Change the datapoint color for the 'USA' series to '#FF5733', increase the text size for axis labels to 14, and add a title 'COVID-19 Cases Over Time'.
+[#OP1 op=change_datapoint_color; target_category=2020-03-01; new_color=#2ca02c]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

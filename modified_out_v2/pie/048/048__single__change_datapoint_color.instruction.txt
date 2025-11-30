@@ -1,0 +1,2 @@
+Change the color of the 'Private' category datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=State-gov; new_color=#e377c2]

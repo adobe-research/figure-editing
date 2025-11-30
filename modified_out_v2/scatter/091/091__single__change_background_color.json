@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing Abalone measurements.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Length": 0.455,
+          "Diameter": 0.365,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.35,
+          "Diameter": 0.265,
+          "Sex": "F"
+        },
+        {
+          "Length": 0.53,
+          "Diameter": 0.42,
+          "Sex": "I"
+        },
+        {
+          "Length": 0.44,
+          "Diameter": 0.365,
+          "Sex": "M"
+        },
+        {
+          "Length": 0.33,
+          "Diameter": 0.255,
+          "Sex": "F"
+        },
+        {
+          "Length": 0.37,
+          "Diameter": 0.295,
+          "Sex": "I"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.33,
+        0.53
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Diameter"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Sex"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Length"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Diameter"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Length"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Diameter"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Sex"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

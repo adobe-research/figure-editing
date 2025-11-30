@@ -1,1 +1,0 @@
-color change not verifiable as new literal color

@@ -1,0 +1,2 @@
+Change the datapoint color for 'Preferred_Foot' categories to new colors.
+[#OP1 op=change_datapoint_color; target_category=Right; new_color=#9467bd]

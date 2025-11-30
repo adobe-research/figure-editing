@@ -1,0 +1,3 @@
+Change the background color to light gray and add a new datapoint with Review_Length 250, Helpfulness_Score 0.8, and Rating 4 at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_datapoint; position=end; category=New 1; value=180.0]

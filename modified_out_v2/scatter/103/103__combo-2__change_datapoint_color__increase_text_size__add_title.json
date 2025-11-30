@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot showing NYC taxi trip duration vs distance, categorized by vendor.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trip_Distance": 1.3,
+          "Trip_Duration": 450,
+          "Vendor": "Vendor A"
+        },
+        {
+          "Trip_Distance": 2.7,
+          "Trip_Duration": 890,
+          "Vendor": "Vendor B"
+        },
+        {
+          "Trip_Distance": 0.9,
+          "Trip_Duration": 320,
+          "Vendor": "Vendor A"
+        },
+        {
+          "Trip_Distance": 3.4,
+          "Trip_Duration": 1200,
+          "Vendor": "Vendor B"
+        },
+        {
+          "Trip_Distance": 5.0,
+          "Trip_Duration": 2100,
+          "Vendor": "Vendor A"
+        },
+        {
+          "Trip_Distance": 1.8,
+          "Trip_Duration": 670,
+          "Vendor": "Vendor B"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.9,
+        5.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trip_Duration"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Vendor"
+      },
+      "range": [
+        "#00ff00",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trip Distance (miles)",
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (seconds)",
+      "labelFontSize": 16
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Vendor",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Trip_Distance"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trip_Duration"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Vendor"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

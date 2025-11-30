@@ -1,2 +1,0 @@
-Add a title 'US Economic Data Breakdown' to the pie chart.
-[#OP1 op=add_title; title_text=Edited Chart]

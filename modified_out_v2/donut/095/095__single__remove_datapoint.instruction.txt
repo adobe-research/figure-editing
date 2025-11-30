@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'TV Shows'.
+[#OP1 op=remove_datapoint; category=Movies]

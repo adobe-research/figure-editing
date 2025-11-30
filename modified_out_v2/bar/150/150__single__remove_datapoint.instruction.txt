@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Canadian' and area 13.7.
+[#OP1 op=remove_datapoint; category=Kama]

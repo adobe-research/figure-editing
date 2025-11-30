@@ -1,0 +1,2 @@
+Remove the datapoint where trip_distance is 0.9 and trip_duration is 300.
+[#OP1 op=remove_datapoint; category=Cash]

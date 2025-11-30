@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Staten Island'.
+[#OP1 op=remove_datapoint; category=Queens]

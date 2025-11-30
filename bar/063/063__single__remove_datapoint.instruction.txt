@@ -1,2 +1,0 @@
-Remove the datapoint with education level 'Doctorate' and average hours worked 45.
-[#OP1 op=remove_datapoint; category=Masters]

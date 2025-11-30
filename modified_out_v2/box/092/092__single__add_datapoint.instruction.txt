@@ -1,0 +1,2 @@
+Add a new datapoint for the group 'Gestational Diabetes' with min=110, q1=140, median=170, q3=200, and max=250.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Diabetes; value=95.0]

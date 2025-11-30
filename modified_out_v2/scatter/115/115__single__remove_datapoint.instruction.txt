@@ -1,0 +1,2 @@
+Remove the datapoint with Review_Length 140 and Sentiment_Score 0.6.
+[#OP1 op=remove_datapoint; category=Romance]

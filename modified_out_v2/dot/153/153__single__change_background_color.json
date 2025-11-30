@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing mortality rates for different disease categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Disease": "Cardiovascular diseases",
+          "MortalityRate": 235.4
+        },
+        {
+          "Disease": "Respiratory diseases",
+          "MortalityRate": 87.2
+        },
+        {
+          "Disease": "Cancers",
+          "MortalityRate": 192.3
+        },
+        {
+          "Disease": "Diabetes",
+          "MortalityRate": 45.1
+        },
+        {
+          "Disease": "Infectious diseases",
+          "MortalityRate": 67.8
+        },
+        {
+          "Disease": "Digestive diseases",
+          "MortalityRate": 32.4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        32.4,
+        235.4
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Disease"
+      },
+      "range": "height",
+      "padding": 0.2
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Mortality Rate (per 100,000 population)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Disease Categories"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "MortalityRate"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Disease"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

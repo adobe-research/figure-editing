@@ -1,0 +1,2 @@
+Add a new datapoint for the genre 'Fighting' with global sales of 18.4 million at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Action; value=19.7]

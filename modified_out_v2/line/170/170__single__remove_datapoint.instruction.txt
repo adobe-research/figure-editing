@@ -1,0 +1,2 @@
+Remove the datapoint for Canada in the year 2018 with a happiness score of 6.8.
+[#OP1 op=remove_datapoint; category=Norway]

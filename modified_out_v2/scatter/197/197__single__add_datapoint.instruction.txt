@@ -1,0 +1,2 @@
+Add a new datapoint with Temperature 30.5, Rain 0.5, and Region 'Central'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Central; value=27.0]

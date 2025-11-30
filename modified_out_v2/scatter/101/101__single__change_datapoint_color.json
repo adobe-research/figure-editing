@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing player statistics from Baseball Reference.",
+  "width": 300,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Batting_Average": 0.32,
+          "Home_Runs": 45,
+          "Team": "Yankees"
+        },
+        {
+          "Batting_Average": 0.28,
+          "Home_Runs": 30,
+          "Team": "Red Sox"
+        },
+        {
+          "Batting_Average": 0.305,
+          "Home_Runs": 25,
+          "Team": "Dodgers"
+        },
+        {
+          "Batting_Average": 0.29,
+          "Home_Runs": 40,
+          "Team": "Giants"
+        },
+        {
+          "Batting_Average": 0.275,
+          "Home_Runs": 35,
+          "Team": "Cubs"
+        },
+        {
+          "Batting_Average": 0.31,
+          "Home_Runs": 50,
+          "Team": "Astros"
+        },
+        {
+          "Batting_Average": 0.265,
+          "Home_Runs": 20,
+          "Team": "Mets"
+        },
+        {
+          "Batting_Average": 0.3,
+          "Home_Runs": 28,
+          "Team": "Cardinals"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.265,
+        0.32
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Home_Runs"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Team"
+      },
+      "range": [
+        "#17becf",
+        "#bcbd22",
+        "#9edae5",
+        "#dbdb8d",
+        "#c5b0d5",
+        "#ff9896",
+        "#c49c94",
+        "#f7b6d2"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Batting Average"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Home Runs"
+    }
+  ],
+  "legends": [
+    {
+      "scale": "color",
+      "title": "Team"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Batting_Average"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Home_Runs"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Team"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

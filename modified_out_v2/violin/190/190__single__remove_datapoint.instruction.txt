@@ -1,0 +1,2 @@
+Remove the datapoint with 'Age Group' as '25-34' and 'BMI' as 28.3.
+[#OP1 op=remove_datapoint; category=18-24]

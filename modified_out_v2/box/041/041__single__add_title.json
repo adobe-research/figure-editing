@@ -1,0 +1,223 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Box plot with precomputed five-number summaries.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "summary",
+      "values": [
+        {
+          "Group": "Male",
+          "min": 2.0,
+          "q1": 2.5,
+          "median": 3.0,
+          "q3": 3.5,
+          "max": 4.0
+        },
+        {
+          "Group": "Female",
+          "min": 1.5,
+          "q1": 2.0,
+          "median": 2.5,
+          "q3": 3.0,
+          "max": 3.5
+        },
+        {
+          "Group": "Infant",
+          "min": 0.5,
+          "q1": 1.0,
+          "median": 1.5,
+          "q3": 2.0,
+          "max": 2.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "summary",
+        "field": "Group"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": [
+        0.5,
+        4.0
+      ],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "summary",
+          "name": "groups",
+          "groupby": "Group"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Group",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "rule",
+          "from": {
+            "data": "groups"
+          },
+          "encode": {
+            "enter": {
+              "stroke": {
+                "value": "black"
+              },
+              "y": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "min"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "max"
+              },
+              "y": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "groups"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "steelblue"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "signal": "plotWidth / 2"
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              }
+            }
+          },
+          "clip": true
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "groups"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            },
+            "update": {
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "value": 2
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "width": {
+                "value": 2
+              }
+            }
+          },
+          "clip": true
+        }
+      ]
+    }
+  ]
+}

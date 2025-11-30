@@ -1,0 +1,2 @@
+Add a new datapoint with Latitude 41.8825, Longitude -87.6250, and Primary_Type 'ARSON'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=ARSON; value=41.882]

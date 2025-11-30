@@ -1,2 +1,0 @@
-Remove the datapoint representing the 'Puzzle' genre with sales of 10.
-[#OP1 op=remove_datapoint; category=Shooter]

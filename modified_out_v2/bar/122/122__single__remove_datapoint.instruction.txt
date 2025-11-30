@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Model D' with 80 trips.
+[#OP1 op=remove_datapoint; category=Model G]

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy consumption trends by source.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Coal",
+          "consumption": 1200
+        },
+        {
+          "year": 2000,
+          "source": "Oil",
+          "consumption": 1500
+        },
+        {
+          "year": 2000,
+          "source": "Natural Gas",
+          "consumption": 1000
+        },
+        {
+          "year": 2005,
+          "source": "Coal",
+          "consumption": 1300
+        },
+        {
+          "year": 2005,
+          "source": "Oil",
+          "consumption": 1600
+        },
+        {
+          "year": 2005,
+          "source": "Natural Gas",
+          "consumption": 1100
+        },
+        {
+          "year": 2010,
+          "source": "Coal",
+          "consumption": 1400
+        },
+        {
+          "year": 2010,
+          "source": "Oil",
+          "consumption": 1700
+        },
+        {
+          "year": 2010,
+          "source": "Natural Gas",
+          "consumption": 1200
+        },
+        {
+          "year": 2015,
+          "source": "Coal",
+          "consumption": 1350
+        },
+        {
+          "year": 2015,
+          "source": "Oil",
+          "consumption": 1650
+        },
+        {
+          "year": 2015,
+          "source": "Natural Gas",
+          "consumption": 1250
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Coal' || datum['source']=='Oil'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2005,
+        2010,
+        2015
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "consumption"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "source"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Consumption (TWh)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ]
+}

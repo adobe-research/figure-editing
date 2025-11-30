@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing review scores for different genres.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Genre": "Action",
+          "ReviewScore": 8.5
+        },
+        {
+          "Genre": "Comedy",
+          "ReviewScore": 7.2
+        },
+        {
+          "Genre": "Drama",
+          "ReviewScore": 9.1
+        },
+        {
+          "Genre": "Romance",
+          "ReviewScore": 7.5
+        },
+        {
+          "Genre": "Sci-Fi",
+          "ReviewScore": 8.9
+        },
+        {
+          "Genre": "Documentary",
+          "ReviewScore": 9.3
+        },
+        {
+          "Genre": "Fantasy",
+          "ReviewScore": 8.0
+        },
+        {
+          "Genre": "Thriller",
+          "ReviewScore": 7.8
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Genre"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "ReviewScore"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Genre"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Review Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "ReviewScore"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing incidents by attack type and their respective counts.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "AttackType": "Bombing/Explosion",
+          "Count": 150
+        },
+        {
+          "AttackType": "Armed Assault",
+          "Count": 120
+        },
+        {
+          "AttackType": "Assassination",
+          "Count": 45
+        },
+        {
+          "AttackType": "Hijacking",
+          "Count": 30
+        },
+        {
+          "AttackType": "Hostage Taking (Barricade Incident)",
+          "Count": 25
+        },
+        {
+          "AttackType": "Hostage Taking (Kidnapping)",
+          "Count": 60
+        },
+        {
+          "AttackType": "Facility/Infrastructure Attack",
+          "Count": 90
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "AttackType"
+      },
+      "range": "width",
+      "padding": 0.5
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Count"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Attack Type",
+      "labelAngle": -45,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Incidents",
+      "labelFontSize": 8
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "AttackType"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Count"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

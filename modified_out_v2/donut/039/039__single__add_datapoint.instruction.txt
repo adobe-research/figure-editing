@@ -1,0 +1,2 @@
+Add a new datapoint for 'Food Truck' with a value of 15 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cafe; value=20.0]

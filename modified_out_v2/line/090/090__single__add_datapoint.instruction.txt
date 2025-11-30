@@ -1,0 +1,2 @@
+Add a new datapoint for April 2021 with an average duration of 17.3 minutes and a passenger count of 3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2021-01; value=17.3]

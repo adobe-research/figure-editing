@@ -1,0 +1,2 @@
+Add a new datapoint with Trip_Distance 4.2, Trip_Duration 1500, and Vendor 'Vendor A'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Vendor A; value=2.7]

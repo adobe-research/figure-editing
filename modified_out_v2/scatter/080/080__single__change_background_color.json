@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing income versus credit amount with target classification.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "AMT_INCOME_TOTAL": 270000,
+          "AMT_CREDIT": 135000,
+          "TARGET": "No Default"
+        },
+        {
+          "AMT_INCOME_TOTAL": 540000,
+          "AMT_CREDIT": 450000,
+          "TARGET": "Default"
+        },
+        {
+          "AMT_INCOME_TOTAL": 180000,
+          "AMT_CREDIT": 90000,
+          "TARGET": "No Default"
+        },
+        {
+          "AMT_INCOME_TOTAL": 360000,
+          "AMT_CREDIT": 180000,
+          "TARGET": "Default"
+        },
+        {
+          "AMT_INCOME_TOTAL": 450000,
+          "AMT_CREDIT": 225000,
+          "TARGET": "No Default"
+        },
+        {
+          "AMT_INCOME_TOTAL": 720000,
+          "AMT_CREDIT": 540000,
+          "TARGET": "Default"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        180000.0,
+        720000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "AMT_CREDIT"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "TARGET"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Income Total",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Credit Amount",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Default Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "AMT_INCOME_TOTAL"
+          },
+          "y": {
+            "scale": "y",
+            "field": "AMT_CREDIT"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "TARGET"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

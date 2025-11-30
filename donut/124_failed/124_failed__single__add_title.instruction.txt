@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'Donut Chart Example'.
-[#OP1 op=add_title; title_text=Edited Chart]

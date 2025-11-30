@@ -1,2 +1,0 @@
-Remove the datapoint where category is 'South' and series is 'Product C'.
-[#OP1 op=remove_datapoint; category=North]

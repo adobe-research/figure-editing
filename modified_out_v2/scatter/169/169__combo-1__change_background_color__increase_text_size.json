@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of toxic comment classification scores.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "toxicity_score": 0.85,
+          "severe_toxicity_score": 0.45,
+          "category": "toxic"
+        },
+        {
+          "toxicity_score": 0.3,
+          "severe_toxicity_score": 0.1,
+          "category": "non-toxic"
+        },
+        {
+          "toxicity_score": 0.7,
+          "severe_toxicity_score": 0.5,
+          "category": "toxic"
+        },
+        {
+          "toxicity_score": 0.2,
+          "severe_toxicity_score": 0.05,
+          "category": "non-toxic"
+        },
+        {
+          "toxicity_score": 0.95,
+          "severe_toxicity_score": 0.8,
+          "category": "toxic"
+        },
+        {
+          "toxicity_score": 0.4,
+          "severe_toxicity_score": 0.15,
+          "category": "non-toxic"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.2,
+        0.95
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "severe_toxicity_score"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "category"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Toxicity Score",
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Severe Toxicity Score",
+      "labelFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "toxicity_score"
+          },
+          "y": {
+            "scale": "y",
+            "field": "severe_toxicity_score"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 14
+    }
+  }
+}

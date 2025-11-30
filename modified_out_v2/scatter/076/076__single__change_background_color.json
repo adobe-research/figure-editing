@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between attack type and number of casualties in the Global Terrorism Database.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Attack_Type": "Bombing/Explosion",
+          "Casualties": 50,
+          "Region": "South Asia"
+        },
+        {
+          "Attack_Type": "Armed Assault",
+          "Casualties": 20,
+          "Region": "Middle East & North Africa"
+        },
+        {
+          "Attack_Type": "Hijacking",
+          "Casualties": 15,
+          "Region": "Sub-Saharan Africa"
+        },
+        {
+          "Attack_Type": "Assassination",
+          "Casualties": 10,
+          "Region": "South America"
+        },
+        {
+          "Attack_Type": "Hostage Taking",
+          "Casualties": 30,
+          "Region": "Southeast Asia"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Attack_Type"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Casualties"
+      },
+      "nice": true,
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Attack Type"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Casualties"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Attack_Type"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Casualties"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

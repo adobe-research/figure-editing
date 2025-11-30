@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the job 'housemaid'.
+[#OP1 op=remove_datapoint; category=self-employed]

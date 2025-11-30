@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot showing age vs balance with marital status as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 25,
+          "Balance": 1200,
+          "Marital": "Single"
+        },
+        {
+          "Age": 40,
+          "Balance": 2500,
+          "Marital": "Married"
+        },
+        {
+          "Age": 35,
+          "Balance": 1800,
+          "Marital": "Divorced"
+        },
+        {
+          "Age": 50,
+          "Balance": 3000,
+          "Marital": "Married"
+        },
+        {
+          "Age": 28,
+          "Balance": 1400,
+          "Marital": "Single"
+        },
+        {
+          "Age": 45,
+          "Balance": 2200,
+          "Marital": "Divorced"
+        },
+        {
+          "Age": 33,
+          "Balance": 1700,
+          "Marital": "Single"
+        },
+        {
+          "Age": 55,
+          "Balance": 3200,
+          "Marital": "Married"
+        },
+        {
+          "Age": 38,
+          "Balance": 2000,
+          "Marital": "Divorced"
+        },
+        {
+          "Age": 30,
+          "Balance": 1500,
+          "Marital": "Single"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        25,
+        28,
+        30,
+        33,
+        35,
+        38,
+        40,
+        45,
+        50,
+        55
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Balance"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Marital"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Balance",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Marital Status"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Balance"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Marital"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

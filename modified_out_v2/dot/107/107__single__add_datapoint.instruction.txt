@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'PM2.5 (µg/m^3)' and Value 35 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CO (mg/m^3); value=17.0]

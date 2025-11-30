@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot depicting age vs. height of Olympic athletes, colored by sport.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Age": 23,
+          "Height": 180,
+          "Sport": "Basketball"
+        },
+        {
+          "Age": 27,
+          "Height": 170,
+          "Sport": "Swimming"
+        },
+        {
+          "Age": 21,
+          "Height": 160,
+          "Sport": "Gymnastics"
+        },
+        {
+          "Age": 25,
+          "Height": 175,
+          "Sport": "Athletics"
+        },
+        {
+          "Age": 29,
+          "Height": 185,
+          "Sport": "Rowing"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        21,
+        23,
+        25,
+        27,
+        29
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "source",
+        "field": "Height"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Sport"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Age"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Height (cm)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Sport"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Age"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Height"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Sport"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

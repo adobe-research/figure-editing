@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'App Share' with min=20, q1=60, median=100, q3=140, and max=180.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=App Click; value=35.0]

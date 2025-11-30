@@ -1,0 +1,4 @@
+Change the background color to light gray, increase the text size of axis labels to 14, and add a new data point for year 2022, quarter Q1 with a price of 600 at the end.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_datapoint; position=end; category=New 1; series=2019; value=480.0]

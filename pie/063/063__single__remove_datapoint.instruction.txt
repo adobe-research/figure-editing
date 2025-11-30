@@ -1,2 +1,0 @@
-Remove the datapoint with cause 'Miscellaneous' and count 15.
-[#OP1 op=remove_datapoint; category=Campfire]

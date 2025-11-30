@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing PISA scores for different countries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "Country": "Finland",
+          "Score": 520
+        },
+        {
+          "Country": "Japan",
+          "Score": 530
+        },
+        {
+          "Country": "South Korea",
+          "Score": 540
+        },
+        {
+          "Country": "Canada",
+          "Score": 510
+        },
+        {
+          "Country": "Germany",
+          "Score": 500
+        },
+        {
+          "Country": "United States",
+          "Score": 480
+        },
+        {
+          "Country": "France",
+          "Score": 490
+        },
+        {
+          "Country": "Italy",
+          "Score": 470
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": [
+        470,
+        480,
+        490,
+        500,
+        510,
+        520,
+        530,
+        540
+      ],
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "Country"
+      },
+      "range": "height",
+      "padding": 0.2
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "PISA Score",
+      "grid": true
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Country",
+      "grid": false
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Score"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Country"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "#ff6347"
+          },
+          "stroke": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

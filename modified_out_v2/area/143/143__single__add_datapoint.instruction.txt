@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2030 with source 'Renewables' and consumption 15.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Fossil Fuels; value=2010.0]

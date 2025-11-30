@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'Loan Analysis Scatter Plot'.
-[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Scatter plot of trade values vs quantities with region as color.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Trade_Value": 120000,
+          "Quantity": 500,
+          "Region": "Europe"
+        },
+        {
+          "Trade_Value": 95000,
+          "Quantity": 450,
+          "Region": "Asia"
+        },
+        {
+          "Trade_Value": 78000,
+          "Quantity": 300,
+          "Region": "Africa"
+        },
+        {
+          "Trade_Value": 150000,
+          "Quantity": 600,
+          "Region": "North America"
+        },
+        {
+          "Trade_Value": 110000,
+          "Quantity": 520,
+          "Region": "South America"
+        },
+        {
+          "Trade_Value": 87000,
+          "Quantity": 350,
+          "Region": "Oceania"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        78000.0,
+        150000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Quantity"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Trade Value (in USD)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Quantity"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Trade_Value"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Quantity"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

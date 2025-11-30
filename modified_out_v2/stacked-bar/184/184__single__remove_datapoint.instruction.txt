@@ -1,0 +1,2 @@
+Remove the datapoint for University D with series Citation and value 55.
+[#OP1 op=remove_datapoint; category=University B]

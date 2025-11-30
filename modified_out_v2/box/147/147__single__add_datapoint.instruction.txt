@@ -1,0 +1,2 @@
+Add a new datapoint for the group 'Severely Diabetic' with values min=80, q1=100, median=130, q3=150, max=180.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Diabetic; value=65.0]

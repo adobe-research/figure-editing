@@ -1,0 +1,366 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of income for different loan repayment statuses.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "loans",
+      "values": [
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 25000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 27000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 29000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 31000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 33000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 35000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 37000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 39000
+        },
+        {
+          "Repayment Status": "Fully Paid",
+          "Income": 41000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 20000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 22000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 24000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 26000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 28000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 30000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 32000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 34000
+        },
+        {
+          "Repayment Status": "Charged Off",
+          "Income": 36000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 18000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 20000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 22000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 24000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 26000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 28000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 30000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 32000
+        },
+        {
+          "Repayment Status": "Late",
+          "Income": 34000
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "loans",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Income",
+          "groupby": [
+            "Repayment Status"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "loans",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Repayment Status"
+          ],
+          "fields": [
+            "Income",
+            "Income",
+            "Income"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "loans",
+        "field": "Repayment Status"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "loans",
+        "field": "Income"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "loans",
+        "field": "Repayment Status"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale"
+    },
+    {
+      "orient": "left",
+      "scale": "layout"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Repayment Status"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Repayment Status",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Repayment Status'] === parent['Repayment Status']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Repayment Status"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Change the color of the 'Drama' category datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Comedy; new_color=#d62728]

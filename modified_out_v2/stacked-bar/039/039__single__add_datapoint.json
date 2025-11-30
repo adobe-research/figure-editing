@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing global temperature anomalies by region.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "1880s",
+          "series": "Northern Hemisphere",
+          "value": 0.12
+        },
+        {
+          "category": "1880s",
+          "series": "Southern Hemisphere",
+          "value": 0.08
+        },
+        {
+          "category": "1880s",
+          "series": "Global",
+          "value": 0.1
+        },
+        {
+          "category": "1920s",
+          "series": "Northern Hemisphere",
+          "value": 0.25
+        },
+        {
+          "category": "1920s",
+          "series": "Southern Hemisphere",
+          "value": 0.15
+        },
+        {
+          "category": "1920s",
+          "series": "Global",
+          "value": 0.2
+        },
+        {
+          "category": "1960s",
+          "series": "Northern Hemisphere",
+          "value": 0.35
+        },
+        {
+          "category": "1960s",
+          "series": "Southern Hemisphere",
+          "value": 0.25
+        },
+        {
+          "category": "1960s",
+          "series": "Global",
+          "value": 0.3
+        },
+        {
+          "category": "1980s",
+          "series": "Northern Hemisphere",
+          "value": 0.55
+        },
+        {
+          "category": "1980s",
+          "series": "Southern Hemisphere",
+          "value": 0.4
+        },
+        {
+          "category": "1980s",
+          "series": "Global",
+          "value": 0.48
+        },
+        {
+          "category": "2000s",
+          "series": "Northern Hemisphere",
+          "value": 0.75
+        },
+        {
+          "category": "2000s",
+          "series": "Southern Hemisphere",
+          "value": 0.6
+        },
+        {
+          "category": "2000s",
+          "series": "Global",
+          "value": 0.68
+        },
+        {
+          "category": "2010s",
+          "series": "Northern Hemisphere",
+          "value": 0.85
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Decade"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

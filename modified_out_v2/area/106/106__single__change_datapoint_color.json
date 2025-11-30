@@ -1,0 +1,141 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing Bitcoin closing prices over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01-01",
+          "close": 29374
+        },
+        {
+          "date": "2021-02-01",
+          "close": 33537
+        },
+        {
+          "date": "2021-03-01",
+          "close": 49631
+        },
+        {
+          "date": "2021-04-01",
+          "close": 58963
+        },
+        {
+          "date": "2021-05-01",
+          "close": 57739
+        },
+        {
+          "date": "2021-06-01",
+          "close": 36684
+        },
+        {
+          "date": "2021-07-01",
+          "close": 33572
+        },
+        {
+          "date": "2021-08-01",
+          "close": 48123
+        },
+        {
+          "date": "2021-09-01",
+          "close": 45189
+        },
+        {
+          "date": "2021-10-01",
+          "close": 61003
+        },
+        {
+          "date": "2021-11-01",
+          "close": 57200
+        },
+        {
+          "date": "2021-12-01",
+          "close": 46200
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "close"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "format": "%b %Y",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Closing Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "close"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

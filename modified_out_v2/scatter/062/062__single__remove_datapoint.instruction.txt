@@ -1,0 +1,2 @@
+Remove the datapoint with Review_Length 95 and Rating 3.5.
+[#OP1 op=remove_datapoint; category=Beauty]

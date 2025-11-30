@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for trade categories.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Machinery",
+          "Trade_Value": 1200
+        },
+        {
+          "Category": "Electronics",
+          "Trade_Value": 950
+        },
+        {
+          "Category": "Textiles",
+          "Trade_Value": 700
+        },
+        {
+          "Category": "Agricultural Products",
+          "Trade_Value": 400
+        },
+        {
+          "Category": "Metals",
+          "Trade_Value": 850
+        },
+        {
+          "Category": "Chemicals",
+          "Trade_Value": 600
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trade_Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Trade Categories"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Trade Value (in millions)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Trade_Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

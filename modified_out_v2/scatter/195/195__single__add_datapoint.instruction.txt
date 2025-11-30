@@ -1,0 +1,2 @@
+Add a new datapoint with Kernel_Length 5.9, Kernel_Width 3.7, and Variety 'Kama'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Canadian; value=5.8]

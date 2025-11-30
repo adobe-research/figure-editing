@@ -1,0 +1,2 @@
+Remove the datapoint for 'Carrier E' with series 'Security Delay' and value 6.
+[#OP1 op=remove_datapoint; category=Carrier E]

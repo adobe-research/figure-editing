@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Game",
+          "Rating": 4.5
+        },
+        {
+          "Category": "Productivity",
+          "Rating": 4.2
+        },
+        {
+          "Category": "Health",
+          "Rating": 4.7
+        },
+        {
+          "Category": "Finance",
+          "Rating": 4.1
+        },
+        {
+          "Category": "Education",
+          "Rating": 4.6
+        },
+        {
+          "Category": "Entertainment",
+          "Rating": 4.3
+        },
+        {
+          "Category": "Social",
+          "Rating": 4.4
+        },
+        {
+          "Category": "Travel",
+          "Rating": 4.2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

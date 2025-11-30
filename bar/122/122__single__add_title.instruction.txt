@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'Bike Model Trip Counts'.
-[#OP1 op=add_title; title_text=Edited Chart]

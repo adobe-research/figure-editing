@@ -1,0 +1,2 @@
+Remove the datapoint where Age is 40 and Fare is 27.9.
+[#OP1 op=remove_datapoint; category=No]

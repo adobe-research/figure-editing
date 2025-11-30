@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Generosity' and value 0.4.
-[#OP1 op=remove_datapoint; category=Freedom to Make Life Choices]

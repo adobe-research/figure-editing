@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing demand trends over time for different stores.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "dx": 10,
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "store": "Store A",
+          "demand": 120
+        },
+        {
+          "date": "2023-01-01",
+          "store": "Store B",
+          "demand": 150
+        },
+        {
+          "date": "2023-01-02",
+          "store": "Store A",
+          "demand": 180
+        },
+        {
+          "date": "2023-01-02",
+          "store": "Store B",
+          "demand": 200
+        },
+        {
+          "date": "2023-01-03",
+          "store": "Store A",
+          "demand": 160
+        },
+        {
+          "date": "2023-01-03",
+          "store": "Store B",
+          "demand": 210
+        },
+        {
+          "date": "2023-01-04",
+          "store": "Store A",
+          "demand": 190
+        },
+        {
+          "date": "2023-01-04",
+          "store": "Store B",
+          "demand": 230
+        },
+        {
+          "date": "2023-01-05",
+          "store": "Store A",
+          "demand": 170
+        },
+        {
+          "date": "2023-01-05",
+          "store": "Store B",
+          "demand": 220
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "store"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Demand"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "store"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "demand"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "store"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Store",
+      "orient": "right"
+    }
+  ]
+}

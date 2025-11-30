@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Energy Consumption' and value 2.7 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Consumer Spending; value=2.5]

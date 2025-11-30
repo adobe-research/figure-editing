@@ -1,0 +1,2 @@
+Add a new datapoint with Buying=7.0, Safety=7.5, and Class='Excellent'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Acceptable; value=5.5]

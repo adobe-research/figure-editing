@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between income and credit amount, categorized by loan status.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Income": 50000,
+          "Credit_Amount": 200000,
+          "Loan_Status": "Approved"
+        },
+        {
+          "Income": 30000,
+          "Credit_Amount": 120000,
+          "Loan_Status": "Rejected"
+        },
+        {
+          "Income": 45000,
+          "Credit_Amount": 150000,
+          "Loan_Status": "Approved"
+        },
+        {
+          "Income": 70000,
+          "Credit_Amount": 250000,
+          "Loan_Status": "Approved"
+        },
+        {
+          "Income": 25000,
+          "Credit_Amount": 100000,
+          "Loan_Status": "Rejected"
+        },
+        {
+          "Income": 60000,
+          "Credit_Amount": 220000,
+          "Loan_Status": "Approved"
+        },
+        {
+          "Income": 40000,
+          "Credit_Amount": 130000,
+          "Loan_Status": "Rejected"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        25000.0,
+        70000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Credit_Amount"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Loan_Status"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Income",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Credit Amount",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Loan Status",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Income"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Credit_Amount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Loan_Status"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

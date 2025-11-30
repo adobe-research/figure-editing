@@ -1,0 +1,2 @@
+Change the color of the datapoints representing the 'Northern' hemisphere to a new color 'steelblue'.
+[#OP1 op=change_datapoint_color; target_category=January; new_color=#ff7f0e]

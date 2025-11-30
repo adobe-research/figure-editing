@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Science' and value 500.
+[#OP1 op=remove_datapoint; category=Reading]

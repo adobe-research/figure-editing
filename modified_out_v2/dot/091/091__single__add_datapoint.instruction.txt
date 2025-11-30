@@ -1,0 +1,2 @@
+Add a new datapoint for 'Social Media' with a response rate of 35.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Direct Mail; value=32.5]

@@ -1,0 +1,2 @@
+Add a new datapoint for the job category 'Freelancer' with a conversion rate of 11.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Blue-Collar; value=10.5]

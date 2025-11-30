@@ -1,0 +1,2 @@
+Remove the datapoint for the neighborhood 'Bushwick'.
+[#OP1 op=remove_datapoint; category=Greenpoint]

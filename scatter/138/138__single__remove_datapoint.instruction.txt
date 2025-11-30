@@ -1,2 +1,0 @@
-Remove the datapoint where 'OverallRating' is 70 and 'Potential' is 75.
-[#OP1 op=remove_datapoint; category=Midfielder]

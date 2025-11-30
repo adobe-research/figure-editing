@@ -1,0 +1,2 @@
+Increase the spacing between categories in the stacked bar chart by adjusting the paddingInner value to 0.3.
+[#OP1 op=increase_category_spacing; scale=auto; new_padding=0.20]

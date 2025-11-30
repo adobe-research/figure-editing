@@ -1,0 +1,2 @@
+Add a new datapoint with Age 60, Balance 3500, and Marital status 'Single'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Divorced; value=38.0]

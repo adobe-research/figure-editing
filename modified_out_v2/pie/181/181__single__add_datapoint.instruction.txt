@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Critical Disease' with a value of 90 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Critical Disease; value=90.0]

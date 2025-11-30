@@ -1,0 +1,2 @@
+Remove the datapoint with Position 'Defender' and Rating 80.
+[#OP1 op=remove_datapoint; category=Goalkeeper]

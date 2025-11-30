@@ -1,0 +1,2 @@
+Add a new datapoint for the sector 'Healthcare' with a GDP value of 280 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Agriculture, Forestry, Fishing; value=300.0]

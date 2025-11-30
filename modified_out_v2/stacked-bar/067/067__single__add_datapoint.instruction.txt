@@ -1,0 +1,2 @@
+Add a new datapoint for the 1950s decade with series 'Africa' and value 0.04.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1900s; value=-0.06]

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing Airbnb prices for different neighborhoods in NYC.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16,
+    "fontWeight": "bold",
+    "dy": -10
+  },
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Neighborhood": "Manhattan",
+          "Price": 150
+        },
+        {
+          "Neighborhood": "Brooklyn",
+          "Price": 120
+        },
+        {
+          "Neighborhood": "Queens",
+          "Price": 90
+        },
+        {
+          "Neighborhood": "Bronx",
+          "Price": 80
+        },
+        {
+          "Neighborhood": "Staten Island",
+          "Price": 70
+        },
+        {
+          "Neighborhood": "Manhattan",
+          "Price": 200
+        },
+        {
+          "Neighborhood": "Brooklyn",
+          "Price": 110
+        },
+        {
+          "Neighborhood": "Queens",
+          "Price": 95
+        },
+        {
+          "Neighborhood": "Bronx",
+          "Price": 85
+        },
+        {
+          "Neighborhood": "Staten Island",
+          "Price": 75
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Neighborhood"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Price"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Neighborhood"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Price (USD)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Neighborhood"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Price"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

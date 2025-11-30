@@ -1,0 +1,2 @@
+Change the color of the 'Unemployed' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Not in Labor Force; new_color=#ff7f0e]

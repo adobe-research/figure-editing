@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Canadian' and value 35 from the pie chart.
-[#OP1 op=remove_datapoint; category=Kama]

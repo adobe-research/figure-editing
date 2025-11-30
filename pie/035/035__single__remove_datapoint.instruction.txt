@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Defense Budget' and value 10.
-[#OP1 op=remove_datapoint; category=Social Welfare]

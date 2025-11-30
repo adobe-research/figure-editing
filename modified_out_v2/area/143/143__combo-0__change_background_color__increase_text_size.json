@@ -1,0 +1,186 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing energy consumption by source over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "energyData",
+      "values": [
+        {
+          "year": 2000,
+          "source": "Renewables",
+          "consumption": 5.2
+        },
+        {
+          "year": 2000,
+          "source": "Fossil Fuels",
+          "consumption": 78.1
+        },
+        {
+          "year": 2000,
+          "source": "Nuclear",
+          "consumption": 16.7
+        },
+        {
+          "year": 2010,
+          "source": "Renewables",
+          "consumption": 8.9
+        },
+        {
+          "year": 2010,
+          "source": "Fossil Fuels",
+          "consumption": 74.5
+        },
+        {
+          "year": 2010,
+          "source": "Nuclear",
+          "consumption": 16.6
+        },
+        {
+          "year": 2020,
+          "source": "Renewables",
+          "consumption": 12.5
+        },
+        {
+          "year": 2020,
+          "source": "Fossil Fuels",
+          "consumption": 67.3
+        },
+        {
+          "year": 2020,
+          "source": "Nuclear",
+          "consumption": 20.2
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Renewables' || datum['source']=='Fossil Fuels'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2010,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "energyData",
+        "field": "consumption"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "energyData",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "labelFontSize": 16,
+      "titleFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Consumption (Quadrillion BTU)",
+      "labelFontSize": 16,
+      "titleFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "energyData",
+          "name": "series_facet",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "consumption"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "year",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

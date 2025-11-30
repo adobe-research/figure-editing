@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Geothermal' and amount 200 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Coal; value=500.0]

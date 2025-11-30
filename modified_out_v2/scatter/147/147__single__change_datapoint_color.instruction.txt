@@ -1,0 +1,2 @@
+Change the datapoint color for the 'Month' scale to use a new set of colors.
+[#OP1 op=change_datapoint_color; target_category=Aug; new_color=#d62728]

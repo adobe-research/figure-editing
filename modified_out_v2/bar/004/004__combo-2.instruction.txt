@@ -1,0 +1,4 @@
+Change the color of the datapoint for 'Retail Trade' to green, increase the text size for axis labels to 14, and add a title 'Weekly Hours by Industry' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Construction; new_color=#ff7f0e]
+[#OP2 op=change_datapoint_color; target_category=Manufacturing; new_color=#2ca02c]
+[#OP3 op=add_title; title_text=Edited Chart]

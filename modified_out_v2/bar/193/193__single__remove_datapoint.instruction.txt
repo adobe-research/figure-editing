@@ -1,0 +1,2 @@
+Remove the datapoint for the category 'Convertible' with claims value 200.
+[#OP1 op=remove_datapoint; category=Truck]

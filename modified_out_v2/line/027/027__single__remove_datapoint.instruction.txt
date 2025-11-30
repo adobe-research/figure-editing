@@ -1,0 +1,2 @@
+Remove the datapoint for University C in the year 2018 with rank 5.
+[#OP1 op=remove_datapoint; category=University C]

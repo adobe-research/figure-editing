@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Class 2' and Alcohol level 13.7.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Class 1; value=13.0]

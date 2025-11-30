@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between complaint duration and resolution time, colored by complaint type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Complaint_Duration": 5,
+          "Resolution_Time": 2,
+          "Complaint_Type": "Noise"
+        },
+        {
+          "Complaint_Duration": 8,
+          "Resolution_Time": 3,
+          "Complaint_Type": "Water Leak"
+        },
+        {
+          "Complaint_Duration": 12,
+          "Resolution_Time": 6,
+          "Complaint_Type": "Heat"
+        },
+        {
+          "Complaint_Duration": 4,
+          "Resolution_Time": 1,
+          "Complaint_Type": "Road Repair"
+        },
+        {
+          "Complaint_Duration": 10,
+          "Resolution_Time": 4,
+          "Complaint_Type": "Street Light"
+        },
+        {
+          "Complaint_Duration": 7,
+          "Resolution_Time": 3,
+          "Complaint_Type": "Garbage"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Resolution_Time"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Complaint_Type"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Complaint Duration (days)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Resolution Time (days)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Complaint Type"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Complaint_Duration"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Resolution_Time"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Complaint_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of monthly charges for different customer contract types.",
+  "width": 500,
+  "padding": 5,
+  "config": {
+    "axisBand": {
+      "bandPosition": 1,
+      "tickExtra": true,
+      "tickOffset": 0
+    }
+  },
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "trim",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "customers",
+      "values": [
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 29.85
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 56.95
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 73.45
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 104.8
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 84.5
+        },
+        {
+          "Contract": "Month-to-month",
+          "MonthlyCharges": 95.25
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 69.3
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 89.1
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 99.3
+        },
+        {
+          "Contract": "One year",
+          "MonthlyCharges": 59.9
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 49.95
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 64.95
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 89.85
+        },
+        {
+          "Contract": "Two year",
+          "MonthlyCharges": 74.95
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Contract != null && datum.MonthlyCharges != null"
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "customers",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "MonthlyCharges",
+          "groupby": [
+            "Contract"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          },
+          "extent": {
+            "signal": "trim ? null : [0, 150]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "customers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Contract"
+          ],
+          "fields": [
+            "MonthlyCharges",
+            "MonthlyCharges",
+            "MonthlyCharges"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "customers",
+        "field": "Contract"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "round": true,
+      "domain": {
+        "data": "customers",
+        "field": "MonthlyCharges"
+      },
+      "domainMin": 0,
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "customers",
+        "field": "Contract"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "tickCount": 5,
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Contract"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Contract",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum.Contract === parent.Contract"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Contract"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

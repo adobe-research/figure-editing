@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories in international football results.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Brazil",
+          "Goals": 5
+        },
+        {
+          "Country": "Germany",
+          "Goals": 4
+        },
+        {
+          "Country": "Argentina",
+          "Goals": 3
+        },
+        {
+          "Country": "France",
+          "Goals": 4
+        },
+        {
+          "Country": "Italy",
+          "Goals": 2
+        },
+        {
+          "Country": "Spain",
+          "Goals": 3
+        },
+        {
+          "Country": "England",
+          "Goals": 1
+        },
+        {
+          "Country": "Netherlands",
+          "Goals": 2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Goals"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Goals Scored"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Goals"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

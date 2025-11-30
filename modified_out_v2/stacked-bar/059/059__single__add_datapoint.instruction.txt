@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2030 with series 'Coal' and value 7.2.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1990; value=3.8]

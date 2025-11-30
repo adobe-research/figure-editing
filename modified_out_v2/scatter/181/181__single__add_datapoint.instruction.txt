@@ -1,0 +1,2 @@
+Add a new datapoint with Click_Time 1.8, IP_Count 400, and Device_Type 'Laptop'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Desktop; value=1.5]

@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'Pie Chart Example'.
-[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Remove the datapoint with ClickTime 3.0 and DeviceID 80578.
+[#OP1 op=remove_datapoint; category=Shopping]

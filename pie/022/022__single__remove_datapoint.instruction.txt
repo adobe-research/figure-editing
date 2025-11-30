@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Cart Additions' and value 400.
-[#OP1 op=remove_datapoint; category=Product Views]

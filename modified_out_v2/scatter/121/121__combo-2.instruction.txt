@@ -1,0 +1,4 @@
+Change the color of datapoints for the 'Urban' category to '#e41a1c', increase the text size of axis labels to 14, and add a title 'Air Quality Scatter Plot' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Industrial; new_color=#d62728]
+[#OP2 op=change_datapoint_color; target_category=Industrial; new_color=#d62728]
+[#OP3 op=add_title; title_text=Edited Chart]

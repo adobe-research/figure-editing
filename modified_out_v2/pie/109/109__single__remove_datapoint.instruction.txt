@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Generosity' and value 0.2.
+[#OP1 op=remove_datapoint; category=Social Support]

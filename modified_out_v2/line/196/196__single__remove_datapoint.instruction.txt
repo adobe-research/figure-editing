@@ -1,0 +1,2 @@
+Remove the datapoint for Methane emissions in the year 2000.
+[#OP1 op=remove_datapoint; category=CO2]

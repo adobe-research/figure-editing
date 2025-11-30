@@ -1,0 +1,2 @@
+Remove the datapoint with Word_Count 22 and Sentiment_Score 0.4.
+[#OP1 op=remove_datapoint; category=Sincere]

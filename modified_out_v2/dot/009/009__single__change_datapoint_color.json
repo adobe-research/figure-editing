@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing monthly charges for customer churn categories.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Churn": "Yes",
+          "MonthlyCharges": 70.35
+        },
+        {
+          "Churn": "No",
+          "MonthlyCharges": 29.85
+        },
+        {
+          "Churn": "Yes",
+          "MonthlyCharges": 89.1
+        },
+        {
+          "Churn": "No",
+          "MonthlyCharges": 56.95
+        },
+        {
+          "Churn": "Yes",
+          "MonthlyCharges": 98.55
+        },
+        {
+          "Churn": "No",
+          "MonthlyCharges": 45.0
+        },
+        {
+          "Churn": "Yes",
+          "MonthlyCharges": 74.95
+        },
+        {
+          "Churn": "No",
+          "MonthlyCharges": 25.3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Churn"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "MonthlyCharges"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Churn"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Monthly Charges ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Churn"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyCharges"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

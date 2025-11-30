@@ -1,0 +1,2 @@
+Remove the datapoint for 'April' in the 'Asia' region.
+[#OP1 op=remove_datapoint; category=January]

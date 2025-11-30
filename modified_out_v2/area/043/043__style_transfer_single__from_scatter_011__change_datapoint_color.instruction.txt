@@ -1,0 +1,2 @@
+Match the datapoint color #9467bd used in the reference chart.
+[#OP1 op=change_datapoint_color; target_category=Store 2; new_color=#9467bd]

@@ -1,0 +1,2 @@
+Remove the datapoint where TransactionValue1 is 100.0 and TransactionValue2 is 70.0.
+[#OP1 op=remove_datapoint; category=B]

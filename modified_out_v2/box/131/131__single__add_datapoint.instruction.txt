@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Cleanliness' category with specified five-number summary values.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Ambience; value=1.25]

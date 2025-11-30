@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2020 with wheat production of 570 and corn production of 400.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=2015.0]

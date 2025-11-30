@@ -1,0 +1,2 @@
+Remove the datapoint where 'AttackType' is 'Hijacking' and 'Fatalities' is 15.
+[#OP1 op=remove_datapoint; category=Assassination]

@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'Distribution of Toxic Comment Types'.
-[#OP1 op=add_title; title_text=Edited Chart]

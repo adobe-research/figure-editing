@@ -1,0 +1,2 @@
+Remove the datapoint for 'Technology' and 'Women' with value 15.
+[#OP1 op=remove_datapoint; category=Agriculture]

@@ -1,0 +1,2 @@
+Change the color of datapoints representing 'Casual' users to a new color 'lightblue'.
+[#OP1 op=change_datapoint_color; target_category=Spring; new_color=#ff7f0e]

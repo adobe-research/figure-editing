@@ -1,0 +1,2 @@
+Add a new datapoint for the category 'Solana' with series 'Volume (SOL)' and value 120.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bitcoin; value=500.0]

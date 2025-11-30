@@ -1,0 +1,2 @@
+Remove the datapoint where 'Goals_Scored' is 1 and 'Goals_Conceded' is 3.
+[#OP1 op=remove_datapoint; category=Qualifier]

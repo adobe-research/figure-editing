@@ -1,0 +1,2 @@
+Add a new datapoint with Temperature 26.5, Humidity 25, and Month 'Oct'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Aug; value=25.1]

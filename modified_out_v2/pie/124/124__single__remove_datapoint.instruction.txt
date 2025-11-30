@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Bakery' and value 30 from the pie chart.
+[#OP1 op=remove_datapoint; category=Snacks]

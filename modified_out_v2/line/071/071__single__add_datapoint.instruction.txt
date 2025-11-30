@@ -1,0 +1,2 @@
+Add a new datapoint for the 'BMI' series at year 2009 with a value of 28.5.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=BMI; value=2007.0]

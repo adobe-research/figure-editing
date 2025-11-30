@@ -1,0 +1,2 @@
+Change the color of the 'Generosity' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Social Support; new_color=#d62728]

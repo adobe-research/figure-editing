@@ -1,0 +1,3 @@
+Change the color of the 'Toys' category to '#ff5733' and add a title 'Category Demand Distribution' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Home Goods; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

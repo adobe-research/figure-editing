@@ -1,0 +1,2 @@
+Add a new datapoint for the borough 'Manhattan' with date '2022-04' and average price 155.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2022-01; value=127.5]

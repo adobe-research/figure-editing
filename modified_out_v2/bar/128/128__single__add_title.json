@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the distribution of loan purposes in the Home Credit Default Risk dataset.",
+  "width": 400,
+  "height": 250,
+  "padding": 5,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Cash loans",
+          "amount": 3500
+        },
+        {
+          "category": "Revolving loans",
+          "amount": 1200
+        },
+        {
+          "category": "Business loans",
+          "amount": 800
+        },
+        {
+          "category": "Education loans",
+          "amount": 600
+        },
+        {
+          "category": "Car loans",
+          "amount": 950
+        },
+        {
+          "category": "Mortgage loans",
+          "amount": 1800
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "amount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Loan Purpose"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Loans"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "amount"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,1 +1,0 @@
-Change the color of the slice in the red circle to #e377c2.

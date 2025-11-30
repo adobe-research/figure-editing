@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Not Subscribed' and value 650.
+[#OP1 op=remove_datapoint; category=Subscribed]

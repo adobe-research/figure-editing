@@ -1,0 +1,190 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing distribution of series across categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Politics",
+          "series": "Democrats",
+          "value": 45
+        },
+        {
+          "category": "Politics",
+          "series": "Republicans",
+          "value": 40
+        },
+        {
+          "category": "Politics",
+          "series": "Independents",
+          "value": 15
+        },
+        {
+          "category": "Economy",
+          "series": "Democrats",
+          "value": 50
+        },
+        {
+          "category": "Economy",
+          "series": "Republicans",
+          "value": 35
+        },
+        {
+          "category": "Economy",
+          "series": "Independents",
+          "value": 15
+        },
+        {
+          "category": "Healthcare",
+          "series": "Democrats",
+          "value": 60
+        },
+        {
+          "category": "Healthcare",
+          "series": "Republicans",
+          "value": 30
+        },
+        {
+          "category": "Healthcare",
+          "series": "Independents",
+          "value": 10
+        },
+        {
+          "category": "Education",
+          "series": "Democrats",
+          "value": 55
+        },
+        {
+          "category": "Education",
+          "series": "Republicans",
+          "value": 35
+        },
+        {
+          "category": "Education",
+          "series": "Independents",
+          "value": 10
+        },
+        {
+          "category": "Environment",
+          "series": "Democrats",
+          "value": 70
+        },
+        {
+          "category": "Environment",
+          "series": "Republicans",
+          "value": 20
+        },
+        {
+          "category": "Environment",
+          "series": "Independents",
+          "value": 10
+        },
+        {
+          "category": "Technology",
+          "series": "Democrats",
+          "value": 65
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "value",
+            "offset": 0
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

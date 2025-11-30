@@ -1,0 +1,2 @@
+Change the color of the 'Agree' series datapoints to a new color '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Online Privacy Concerns; new_color=#2ca02c]

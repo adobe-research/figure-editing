@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Misc' and amount 12.3.
-[#OP1 op=remove_datapoint; category=Sports]

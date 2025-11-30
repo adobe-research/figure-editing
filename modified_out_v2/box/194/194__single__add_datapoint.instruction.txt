@@ -1,0 +1,2 @@
+Add a new datapoint for the city 'Tokyo' with min=25, q1=40, median=60, q3=85, and max=120.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Beijing; value=30.0]

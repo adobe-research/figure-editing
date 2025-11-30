@@ -1,0 +1,2 @@
+Remove the datapoint for the month of 'December' with a price of 560.
+[#OP1 op=remove_datapoint; category=January]

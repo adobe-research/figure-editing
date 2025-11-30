@@ -1,0 +1,2 @@
+Change the color of datapoints representing 'Fraud' status to '#ff7f0e'.
+[#OP1 op=change_datapoint_color; target_category=Fraud; new_color=#2ca02c]

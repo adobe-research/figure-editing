@@ -1,0 +1,2 @@
+Change the color of the 'Shooter' genre datapoint to a new color 'purple'.
+[#OP1 op=change_datapoint_color; target_category=Platform; new_color=#9467bd]

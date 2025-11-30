@@ -1,0 +1,3 @@
+Change the background color to light gray and increase the text size for axis labels to improve readability.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=increase_text_size; axis_label_size=16]

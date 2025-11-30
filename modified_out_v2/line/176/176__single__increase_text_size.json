@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Line chart of Austin Bikeshare trips over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "trips",
+      "values": [
+        {
+          "date": "2023-06-01",
+          "trips": 120,
+          "type": "Casual"
+        },
+        {
+          "date": "2023-06-01",
+          "trips": 180,
+          "type": "Registered"
+        },
+        {
+          "date": "2023-06-02",
+          "trips": 140,
+          "type": "Casual"
+        },
+        {
+          "date": "2023-06-02",
+          "trips": 200,
+          "type": "Registered"
+        },
+        {
+          "date": "2023-06-03",
+          "trips": 160,
+          "type": "Casual"
+        },
+        {
+          "date": "2023-06-03",
+          "trips": 220,
+          "type": "Registered"
+        },
+        {
+          "date": "2023-06-04",
+          "trips": 100,
+          "type": "Casual"
+        },
+        {
+          "date": "2023-06-04",
+          "trips": 190,
+          "type": "Registered"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "trips",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "trips",
+        "field": "trips"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "trips",
+        "field": "type"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Number of Trips",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "User Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "trips",
+          "groupby": "type"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "trips"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "type"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

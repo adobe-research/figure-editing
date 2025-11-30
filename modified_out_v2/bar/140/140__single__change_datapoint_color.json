@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A basic bar chart showing the points scored by NBA players.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "player": "LeBron James",
+          "points": 27
+        },
+        {
+          "player": "Kevin Durant",
+          "points": 29
+        },
+        {
+          "player": "Stephen Curry",
+          "points": 32
+        },
+        {
+          "player": "Giannis Antetokounmpo",
+          "points": 28
+        },
+        {
+          "player": "James Harden",
+          "points": 26
+        },
+        {
+          "player": "Luka Doncic",
+          "points": 30
+        },
+        {
+          "player": "Kawhi Leonard",
+          "points": 24
+        },
+        {
+          "player": "Anthony Davis",
+          "points": 23
+        },
+        {
+          "player": "Damian Lillard",
+          "points": 25
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "player"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "points"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Player"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Points"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "player"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "points"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "crimson"
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum['player']==='Giannis Antetokounmpo'",
+              "value": "#ff7f0e"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    }
+  ]
+}

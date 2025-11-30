@@ -1,0 +1,2 @@
+Add a new datapoint for the job type 'entrepreneur' with a count of 120 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=admin.; value=230.0]

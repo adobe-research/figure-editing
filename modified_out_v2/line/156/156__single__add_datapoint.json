@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing average temperature and precipitation over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "climate_data",
+      "values": [
+        {
+          "year": 2010,
+          "temperature": 14.5,
+          "precipitation": 120
+        },
+        {
+          "year": 2011,
+          "temperature": 14.8,
+          "precipitation": 115
+        },
+        {
+          "year": 2012,
+          "temperature": 15.2,
+          "precipitation": 125
+        },
+        {
+          "year": 2013,
+          "temperature": 14.9,
+          "precipitation": 130
+        },
+        {
+          "year": 2014,
+          "temperature": 15.3,
+          "precipitation": 140
+        },
+        {
+          "year": 2015,
+          "temperature": 15.6,
+          "precipitation": 135
+        },
+        {
+          "year": 2016,
+          "temperature": 15.8,
+          "precipitation": 145
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "climate_data",
+        "fields": [
+          "temperature",
+          "precipitation"
+        ]
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Temperature",
+        "Precipitation"
+      ],
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Values"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Metric",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "climate_data",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "climate_data"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "temperature"
+              },
+              "stroke": {
+                "scale": "color",
+                "value": "Temperature"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

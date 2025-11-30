@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing OECD PISA Scores over years for different subjects.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2000,
+          "score": 500,
+          "subject": "Math"
+        },
+        {
+          "year": 2003,
+          "score": 520,
+          "subject": "Math"
+        },
+        {
+          "year": 2006,
+          "score": 530,
+          "subject": "Math"
+        },
+        {
+          "year": 2009,
+          "score": 540,
+          "subject": "Math"
+        },
+        {
+          "year": 2012,
+          "score": 550,
+          "subject": "Math"
+        },
+        {
+          "year": 2000,
+          "score": 480,
+          "subject": "Reading"
+        },
+        {
+          "year": 2003,
+          "score": 490,
+          "subject": "Reading"
+        },
+        {
+          "year": 2006,
+          "score": 500,
+          "subject": "Reading"
+        },
+        {
+          "year": 2009,
+          "score": 510,
+          "subject": "Reading"
+        },
+        {
+          "year": 2012,
+          "score": 520,
+          "subject": "Reading"
+        },
+        {
+          "year": 2000,
+          "score": 470,
+          "subject": "Science"
+        },
+        {
+          "year": 2003,
+          "score": 480,
+          "subject": "Science"
+        },
+        {
+          "year": 2006,
+          "score": 490,
+          "subject": "Science"
+        },
+        {
+          "year": 2009,
+          "score": 500,
+          "subject": "Science"
+        },
+        {
+          "year": 2012,
+          "score": 510,
+          "subject": "Science"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2000,
+        2003,
+        2006,
+        2009,
+        2012
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "subject"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "PISA Score"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Subject",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "subject"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "score"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "subject"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "strokeOpacity": {
+                "value": 1
+              }
+            },
+            "hover": {
+              "strokeOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing the trend of teaching and research scores over years for universities.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": 2011,
+          "metric": "Teaching",
+          "score": 45
+        },
+        {
+          "year": 2011,
+          "metric": "Research",
+          "score": 50
+        },
+        {
+          "year": 2012,
+          "metric": "Teaching",
+          "score": 48
+        },
+        {
+          "year": 2012,
+          "metric": "Research",
+          "score": 52
+        },
+        {
+          "year": 2013,
+          "metric": "Teaching",
+          "score": 50
+        },
+        {
+          "year": 2013,
+          "metric": "Research",
+          "score": 54
+        },
+        {
+          "year": 2014,
+          "metric": "Teaching",
+          "score": 53
+        },
+        {
+          "year": 2014,
+          "metric": "Research",
+          "score": 56
+        },
+        {
+          "year": 2015,
+          "metric": "Teaching",
+          "score": 55
+        },
+        {
+          "year": 2015,
+          "metric": "Research",
+          "score": 60
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ]
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "score"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "metric"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Score"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "metric"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "score"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "metric"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Metric",
+      "orient": "right"
+    }
+  ]
+}

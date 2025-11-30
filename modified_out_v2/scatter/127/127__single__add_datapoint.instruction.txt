@@ -1,0 +1,2 @@
+Add a new datapoint with 35 casualties, a success rate of 0.88, and the region 'Oceania'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=25.0]

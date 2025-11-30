@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the number of orders for top product categories in the Instacart Market Basket dataset.",
+  "width": 400,
+  "height": 250,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Fresh Vegetables",
+          "orders": 1200
+        },
+        {
+          "category": "Beverages",
+          "orders": 950
+        },
+        {
+          "category": "Snacks",
+          "orders": 870
+        },
+        {
+          "category": "Dairy Products",
+          "orders": 1050
+        },
+        {
+          "category": "Frozen Foods",
+          "orders": 800
+        },
+        {
+          "category": "Bakery Items",
+          "orders": 620
+        },
+        {
+          "category": "Canned Goods",
+          "orders": 700
+        },
+        {
+          "category": "Condiments",
+          "orders": 540
+        },
+        {
+          "category": "Meat & Seafood",
+          "orders": 480
+        },
+        {
+          "category": "Breakfast Items",
+          "orders": 660
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.30000000000000004,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "orders"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Product Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Orders"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "orders"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "darkorange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.orders",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.orders"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

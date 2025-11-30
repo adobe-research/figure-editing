@@ -1,2 +1,0 @@
-Remove the datapoint for Germany's Gas emissions.
-[#OP1 op=remove_datapoint; category=USA]

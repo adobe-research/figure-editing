@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Striker' position with min=55, q1=65, median=72, q3=77, and max=88.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Defender; value=58.0]

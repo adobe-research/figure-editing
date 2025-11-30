@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing bike rentals over time, segmented by season.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2021-01",
+          "count": 1200,
+          "season": "Winter"
+        },
+        {
+          "date": "2021-02",
+          "count": 1500,
+          "season": "Winter"
+        },
+        {
+          "date": "2021-03",
+          "count": 2000,
+          "season": "Spring"
+        },
+        {
+          "date": "2021-04",
+          "count": 2500,
+          "season": "Spring"
+        },
+        {
+          "date": "2021-05",
+          "count": 3000,
+          "season": "Spring"
+        },
+        {
+          "date": "2021-06",
+          "count": 3500,
+          "season": "Summer"
+        },
+        {
+          "date": "2021-07",
+          "count": 4000,
+          "season": "Summer"
+        },
+        {
+          "date": "2021-08",
+          "count": 4200,
+          "season": "Summer"
+        },
+        {
+          "date": "2021-09",
+          "count": 2800,
+          "season": "Fall"
+        },
+        {
+          "date": "2021-10",
+          "count": 2600,
+          "season": "Fall"
+        },
+        {
+          "date": "2021-11",
+          "count": 2200,
+          "season": "Fall"
+        },
+        {
+          "date": "2021-12",
+          "count": 1800,
+          "season": "Winter"
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['season']=='Winter' || datum['season']=='Spring'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "count"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "season"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Bike Rentals",
+      "labelFontSize": 14,
+      "titleFontSize": 16,
+      "tickSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "series_facet",
+          "groupby": "season"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series_facet"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "count"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "season"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Season",
+      "orient": "right"
+    }
+  ]
+}

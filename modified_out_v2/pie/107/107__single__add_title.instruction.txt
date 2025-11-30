@@ -1,0 +1,2 @@
+Add a title 'Video Game Sales by Genre' to the pie chart.
+[#OP1 op=add_title; title_text=Edited Chart]

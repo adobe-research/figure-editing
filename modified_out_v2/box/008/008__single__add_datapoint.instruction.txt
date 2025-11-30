@@ -1,0 +1,2 @@
+Add a new datapoint for the pollutant 'O3' with min=12, q1=22, median=32, q3=42, and max=60.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=NO2; value=9.0]

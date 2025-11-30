@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing demand categories and sub-series.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "series": "High Demand",
+          "value": 120
+        },
+        {
+          "category": "Electronics",
+          "series": "Medium Demand",
+          "value": 80
+        },
+        {
+          "category": "Electronics",
+          "series": "Low Demand",
+          "value": 30
+        },
+        {
+          "category": "Furniture",
+          "series": "High Demand",
+          "value": 90
+        },
+        {
+          "category": "Furniture",
+          "series": "Medium Demand",
+          "value": 70
+        },
+        {
+          "category": "Furniture",
+          "series": "Low Demand",
+          "value": 40
+        },
+        {
+          "category": "Clothing",
+          "series": "High Demand",
+          "value": 150
+        },
+        {
+          "category": "Clothing",
+          "series": "Medium Demand",
+          "value": 100
+        },
+        {
+          "category": "Clothing",
+          "series": "Low Demand",
+          "value": 50
+        },
+        {
+          "category": "Toys",
+          "series": "High Demand",
+          "value": 60
+        },
+        {
+          "category": "Toys",
+          "series": "Medium Demand",
+          "value": 40
+        },
+        {
+          "category": "Toys",
+          "series": "Low Demand",
+          "value": 20
+        },
+        {
+          "category": "Books",
+          "series": "High Demand",
+          "value": 80
+        },
+        {
+          "category": "Books",
+          "series": "Medium Demand",
+          "value": 60
+        },
+        {
+          "category": "Books",
+          "series": "Low Demand",
+          "value": 30
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand Value"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Demand Series",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Region Code' and Value 7.2.
+[#OP1 op=remove_datapoint; category=Annual Premium]

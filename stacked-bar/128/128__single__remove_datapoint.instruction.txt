@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Energy' and series 'Revenue 2021'.
-[#OP1 op=remove_datapoint; category=Financials]

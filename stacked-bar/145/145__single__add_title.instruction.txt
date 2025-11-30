@@ -1,2 +1,0 @@
-Add a title to the chart with the text 'FAO Food Price Index (2015-2017)'.
-[#OP1 op=add_title; title_text=Edited Chart]

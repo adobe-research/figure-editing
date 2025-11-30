@@ -1,0 +1,2 @@
+Add a title to the chart with the text 'Monthly Trends for Series A, B, and C'.
+[#OP1 op=add_title; title_text=Edited Chart]

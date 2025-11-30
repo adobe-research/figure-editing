@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Africa' and series 'Transportation'.
+[#OP1 op=remove_datapoint; category=North America]

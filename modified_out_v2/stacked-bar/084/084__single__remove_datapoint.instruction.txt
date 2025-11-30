@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Streaming Services' and series '65+'.
+[#OP1 op=remove_datapoint; category=News Consumption]

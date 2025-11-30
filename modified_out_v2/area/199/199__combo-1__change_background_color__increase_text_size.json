@@ -1,0 +1,194 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing monthly energy production by source.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "energy",
+      "values": [
+        {
+          "month": "2022-01",
+          "source": "Solar",
+          "production": 15
+        },
+        {
+          "month": "2022-01",
+          "source": "Wind",
+          "production": 25
+        },
+        {
+          "month": "2022-01",
+          "source": "Hydro",
+          "production": 30
+        },
+        {
+          "month": "2022-02",
+          "source": "Solar",
+          "production": 18
+        },
+        {
+          "month": "2022-02",
+          "source": "Wind",
+          "production": 22
+        },
+        {
+          "month": "2022-02",
+          "source": "Hydro",
+          "production": 28
+        },
+        {
+          "month": "2022-03",
+          "source": "Solar",
+          "production": 20
+        },
+        {
+          "month": "2022-03",
+          "source": "Wind",
+          "production": 24
+        },
+        {
+          "month": "2022-03",
+          "source": "Hydro",
+          "production": 32
+        },
+        {
+          "month": "2022-04",
+          "source": "Solar",
+          "production": 25
+        },
+        {
+          "month": "2022-04",
+          "source": "Wind",
+          "production": 30
+        },
+        {
+          "month": "2022-04",
+          "source": "Hydro",
+          "production": 35
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['source']=='Solar' || datum['source']=='Wind'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "energy",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "energy",
+        "field": "production"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ],
+      "domain": {
+        "data": "energy",
+        "field": "source"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "labelFontSize": 16,
+      "titleFontSize": 16
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Energy Production (GWh)",
+      "labelFontSize": 16,
+      "titleFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "energy",
+          "groupby": "source"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "month"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "production"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "source"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.7
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Source",
+      "orient": "right"
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

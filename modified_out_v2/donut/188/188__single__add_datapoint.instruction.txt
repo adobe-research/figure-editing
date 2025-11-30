@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Promotion 6' and value 9000 to the 'sales' dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Promotion 1; value=7500.0]

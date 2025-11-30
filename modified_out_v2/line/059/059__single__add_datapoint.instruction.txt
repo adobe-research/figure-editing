@@ -1,0 +1,2 @@
+Add a new datapoint for '2023-05-06' with a count of 140 and weather 'Clear' at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-05-01; value=130.0]

@@ -1,0 +1,2 @@
+Add a new datapoint with Vehicle_Age 2.8, Annual_Premium 48000, and Vehicle_Damage 'Yes'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=2.5]

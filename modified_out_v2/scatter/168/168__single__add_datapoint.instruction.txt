@@ -1,0 +1,2 @@
+Add a new datapoint with QuestionLength 110, WordCount 22, and QuestionType 'Neutral'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Insincere; value=110.0]

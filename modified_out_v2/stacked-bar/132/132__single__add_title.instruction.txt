@@ -1,0 +1,2 @@
+Add a title to the chart that reads 'Netflix Stock Price by Quarter and Year'.
+[#OP1 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint for the 'East Asia & Pacific' region with min=2, q1=4, median=8, q3=14, and max=22.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=East Asia & Pacific; value=0.5]

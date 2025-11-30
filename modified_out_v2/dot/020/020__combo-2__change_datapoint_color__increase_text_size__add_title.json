@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing claim frequencies for different vehicle types.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Vehicle_Type": "Sedan",
+          "Claim_Frequency": 0.12
+        },
+        {
+          "Vehicle_Type": "SUV",
+          "Claim_Frequency": 0.08
+        },
+        {
+          "Vehicle_Type": "Truck",
+          "Claim_Frequency": 0.15
+        },
+        {
+          "Vehicle_Type": "Motorcycle",
+          "Claim_Frequency": 0.25
+        },
+        {
+          "Vehicle_Type": "Coupe",
+          "Claim_Frequency": 0.1
+        },
+        {
+          "Vehicle_Type": "Van",
+          "Claim_Frequency": 0.07
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Vehicle_Type"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Claim_Frequency"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Vehicle Type",
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Claim Frequency",
+      "format": ".0%",
+      "labelFontSize": 14
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Vehicle_Type"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Claim_Frequency"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "field": "Vehicle_Type",
+            "scale": "color"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        },
+        "update": {
+          "fill": [
+            {
+              "test": "datum.Vehicle_Type === 'Motorcycle'",
+              "value": "red"
+            },
+            {
+              "value": "steelblue"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  }
+}

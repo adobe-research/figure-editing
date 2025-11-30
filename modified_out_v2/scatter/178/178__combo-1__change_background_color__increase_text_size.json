@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot of US Economic Indicators showing GDP vs Inflation, colored by Region.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP": 21000,
+          "Inflation": 2.5,
+          "Region": "North America"
+        },
+        {
+          "GDP": 18000,
+          "Inflation": 1.8,
+          "Region": "Europe"
+        },
+        {
+          "GDP": 15000,
+          "Inflation": 3.2,
+          "Region": "Asia"
+        },
+        {
+          "GDP": 12000,
+          "Inflation": 4.0,
+          "Region": "Africa"
+        },
+        {
+          "GDP": 25000,
+          "Inflation": 2.0,
+          "Region": "Oceania"
+        },
+        {
+          "GDP": 16000,
+          "Inflation": 3.5,
+          "Region": "South America"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        12000.0,
+        25000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Inflation"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#8c564b"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP (in billion USD)",
+      "labelFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Inflation (%)",
+      "labelFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "GDP"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Inflation"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing population by age group.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "age_group": "Under 5",
+          "population": 2000000
+        },
+        {
+          "age_group": "5-9",
+          "population": 2100000
+        },
+        {
+          "age_group": "10-14",
+          "population": 2200000
+        },
+        {
+          "age_group": "15-19",
+          "population": 2300000
+        },
+        {
+          "age_group": "20-24",
+          "population": 2400000
+        },
+        {
+          "age_group": "25-29",
+          "population": 2500000
+        },
+        {
+          "age_group": "30-34",
+          "population": 2600000
+        },
+        {
+          "age_group": "35-39",
+          "population": 2700000
+        },
+        {
+          "age_group": "40-44",
+          "population": 2800000
+        },
+        {
+          "age_group": "45-49",
+          "population": 2900000
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "age_group"
+      },
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "population"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Age Group"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Population"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "age_group"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "population"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new color palette using shades of green and blue.
+[#OP1 op=change_datapoint_color; target_category=1980s; new_color=#ff7f0e]

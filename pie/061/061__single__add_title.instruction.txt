@@ -1,2 +1,0 @@
-Add a title to the pie chart with the text 'Yeast Dataset Category Distribution'.
-[#OP1 op=add_title; title_text=Edited Chart]

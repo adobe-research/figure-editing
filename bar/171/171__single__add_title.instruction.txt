@@ -1,2 +1,0 @@
-Add a title to the chart that reads 'GDP Contributions by Industry'.
-[#OP1 op=add_title; title_text=Edited Chart]

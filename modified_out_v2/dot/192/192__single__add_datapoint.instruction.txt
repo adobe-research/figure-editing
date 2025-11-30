@@ -1,0 +1,2 @@
+Add a new datapoint with Cuisine 'Japanese' and Rating 4.3.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Chinese; value=4.3]

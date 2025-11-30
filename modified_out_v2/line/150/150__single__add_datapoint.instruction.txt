@@ -1,0 +1,2 @@
+Add a new datapoint for 'Airline X' with month '2023-04' and routes 135.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2023-01; value=105.0]

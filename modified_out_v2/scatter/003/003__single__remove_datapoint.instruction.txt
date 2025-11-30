@@ -1,0 +1,2 @@
+Remove the datapoint where Overall is 92 and Potential is 94.
+[#OP1 op=remove_datapoint; category=Forward]

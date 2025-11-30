@@ -1,0 +1,175 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing weekly sales for different departments.",
+  "width": 500,
+  "height": 300,
+  "padding": 10,
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 20,
+    "anchor": "start"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "department": "Electronics",
+          "weekly_sales": 120000
+        },
+        {
+          "department": "Clothing",
+          "weekly_sales": 95000
+        },
+        {
+          "department": "Groceries",
+          "weekly_sales": 150000
+        },
+        {
+          "department": "Home Decor",
+          "weekly_sales": 67000
+        },
+        {
+          "department": "Toys",
+          "weekly_sales": 43000
+        },
+        {
+          "department": "Furniture",
+          "weekly_sales": 89000
+        },
+        {
+          "department": "Automotive",
+          "weekly_sales": 76000
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:pointerover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:pointerout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "department"
+      },
+      "range": "width",
+      "padding": 0.1,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "weekly_sales"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Department"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Weekly Sales ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "department"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "weekly_sales"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.department",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.weekly_sales",
+            "offset": -5
+          },
+          "text": {
+            "signal": "tooltip.weekly_sales"
+          },
+          "fillOpacity": [
+            {
+              "test": "datum === tooltip",
+              "value": 0
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

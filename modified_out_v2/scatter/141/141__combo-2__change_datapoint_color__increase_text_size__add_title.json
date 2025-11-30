@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing car evaluation metrics.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Buying": 5.0,
+          "Safety": 7.5,
+          "Class": "Acceptable"
+        },
+        {
+          "Buying": 6.2,
+          "Safety": 6.0,
+          "Class": "Good"
+        },
+        {
+          "Buying": 4.3,
+          "Safety": 8.1,
+          "Class": "Unacceptable"
+        },
+        {
+          "Buying": 7.8,
+          "Safety": 7.0,
+          "Class": "Good"
+        },
+        {
+          "Buying": 5.5,
+          "Safety": 5.5,
+          "Class": "Acceptable"
+        },
+        {
+          "Buying": 3.9,
+          "Safety": 6.8,
+          "Class": "Unacceptable"
+        },
+        {
+          "Buying": 6.5,
+          "Safety": 8.0,
+          "Class": "Good"
+        },
+        {
+          "Buying": 4.8,
+          "Safety": 6.2,
+          "Class": "Acceptable"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        3.9,
+        7.8
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Safety"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Class"
+      },
+      "range": [
+        "#1f77b4",
+        "#e41a1c",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Buying Score",
+      "labelFontSize": 14,
+      "tickSize": 10,
+      "titleFontSize": 14
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Safety Score",
+      "labelFontSize": 14,
+      "tickSize": 10,
+      "titleFontSize": 14
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Car Class"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Buying"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Safety"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Class"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 100
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  }
+}

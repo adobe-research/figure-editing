@@ -1,2 +1,0 @@
-Remove the datapoint for Africa's Residential sector with emissions value 700.
-[#OP1 op=remove_datapoint; category=Europe]

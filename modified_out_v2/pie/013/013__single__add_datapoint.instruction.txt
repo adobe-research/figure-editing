@@ -1,0 +1,2 @@
+Add a new datapoint representing 'Questions resolved' with a value of 3000 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Questions flagged as insincere; value=3750.0]

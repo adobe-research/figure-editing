@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Spam' and value 90 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Identity Hate; value=90.0]

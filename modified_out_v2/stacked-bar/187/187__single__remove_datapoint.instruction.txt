@@ -1,0 +1,2 @@
+Remove the datapoint for category 'Toys' and series 'Weekend' with value 65.
+[#OP1 op=remove_datapoint; category=Books]

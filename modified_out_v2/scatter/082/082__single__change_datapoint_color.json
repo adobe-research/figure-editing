@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing Loan Amount vs Applicant Income, colored by Loan Status.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "ApplicantIncome": 2500,
+          "LoanAmount": 120,
+          "Loan_Status": "Y"
+        },
+        {
+          "ApplicantIncome": 4000,
+          "LoanAmount": 150,
+          "Loan_Status": "N"
+        },
+        {
+          "ApplicantIncome": 3000,
+          "LoanAmount": 100,
+          "Loan_Status": "Y"
+        },
+        {
+          "ApplicantIncome": 6000,
+          "LoanAmount": 200,
+          "Loan_Status": "Y"
+        },
+        {
+          "ApplicantIncome": 3200,
+          "LoanAmount": 130,
+          "Loan_Status": "N"
+        },
+        {
+          "ApplicantIncome": 4500,
+          "LoanAmount": 170,
+          "Loan_Status": "Y"
+        },
+        {
+          "ApplicantIncome": 2800,
+          "LoanAmount": 110,
+          "Loan_Status": "N"
+        },
+        {
+          "ApplicantIncome": 5000,
+          "LoanAmount": 190,
+          "Loan_Status": "Y"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        2500.0,
+        6000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "LoanAmount"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Loan_Status"
+      },
+      "range": [
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Applicant Income"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Loan Amount"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "ApplicantIncome"
+          },
+          "y": {
+            "scale": "y",
+            "field": "LoanAmount"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Loan_Status"
+          },
+          "size": {
+            "value": 100
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

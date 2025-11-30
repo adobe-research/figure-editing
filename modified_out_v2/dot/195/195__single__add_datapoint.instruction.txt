@@ -1,0 +1,2 @@
+Add a new datapoint for the neighborhood 'Harlem' with a price of 130.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bronx; value=95.0]

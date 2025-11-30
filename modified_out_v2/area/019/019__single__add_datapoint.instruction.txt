@@ -1,0 +1,2 @@
+Add a new datapoint for 'Airline A' in May with an average delay of 9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=16.0]

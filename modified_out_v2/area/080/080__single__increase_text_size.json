@@ -1,0 +1,158 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Area chart showing unemployment rate trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2023-01",
+          "series": "Unemployment Rate",
+          "value": 3.5
+        },
+        {
+          "month": "2023-02",
+          "series": "Unemployment Rate",
+          "value": 3.6
+        },
+        {
+          "month": "2023-03",
+          "series": "Unemployment Rate",
+          "value": 3.4
+        },
+        {
+          "month": "2023-04",
+          "series": "Unemployment Rate",
+          "value": 3.3
+        },
+        {
+          "month": "2023-05",
+          "series": "Unemployment Rate",
+          "value": 3.4
+        },
+        {
+          "month": "2023-06",
+          "series": "Unemployment Rate",
+          "value": 3.5
+        },
+        {
+          "month": "2023-07",
+          "series": "Unemployment Rate",
+          "value": 3.6
+        },
+        {
+          "month": "2023-08",
+          "series": "Unemployment Rate",
+          "value": 3.7
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Month",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Unemployment Rate (%)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "month"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "update": {
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "fillOpacity": {
+            "value": 0.8
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

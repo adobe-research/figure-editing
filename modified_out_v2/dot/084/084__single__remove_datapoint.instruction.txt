@@ -1,0 +1,2 @@
+Remove the datapoint for the category 'Retail' with a value of 1400.
+[#OP1 op=remove_datapoint; category=Construction]

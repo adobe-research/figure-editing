@@ -1,0 +1,3 @@
+Change the color of the 'Snacks' category to '#FF5733' and add a title 'Instacart Category Distribution' with size 18.
+[#OP1 op=change_datapoint_color; target_category=Household Items; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

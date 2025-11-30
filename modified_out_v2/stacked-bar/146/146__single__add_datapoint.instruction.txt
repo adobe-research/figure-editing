@@ -1,0 +1,2 @@
+Add a new datapoint for 'Oceania' with series 'Confirmed' and value 40000 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Africa; value=55000.0]

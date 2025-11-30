@@ -1,0 +1,2 @@
+Add a new datapoint for the year 2025 with a value of 37.2 to the 'CO2 Emissions' series.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=CO2 Emissions; value=2010.0]

@@ -1,0 +1,3 @@
+Change the color of datapoints for Station 'A' to '#e377c2' and add a title 'Air Quality Scatter Plot'.
+[#OP1 op=change_datapoint_color; target_category=A; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

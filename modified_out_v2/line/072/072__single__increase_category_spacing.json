@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing FAO Food Price Index over time for multiple series.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "2020-01",
+          "index": 95.1,
+          "category": "Cereal"
+        },
+        {
+          "month": "2020-01",
+          "index": 85.3,
+          "category": "Dairy"
+        },
+        {
+          "month": "2020-02",
+          "index": 96.4,
+          "category": "Cereal"
+        },
+        {
+          "month": "2020-02",
+          "index": 87.5,
+          "category": "Dairy"
+        },
+        {
+          "month": "2020-03",
+          "index": 93.8,
+          "category": "Cereal"
+        },
+        {
+          "month": "2020-03",
+          "index": 82.7,
+          "category": "Dairy"
+        },
+        {
+          "month": "2020-04",
+          "index": 91.5,
+          "category": "Cereal"
+        },
+        {
+          "month": "2020-04",
+          "index": 80.9,
+          "category": "Dairy"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": {
+        "step": 30
+      },
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "index"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Food Price Index"
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "month"
+              },
+              "y": {
+                "scale": "y",
+                "field": "index"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "category"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

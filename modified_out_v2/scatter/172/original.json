@@ -1,0 +1,150 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing relationships between two numeric fields with an optional categorical series.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Feature_1": 0.15,
+          "Feature_2": 0.75,
+          "Category": "Group A"
+        },
+        {
+          "Feature_1": 0.25,
+          "Feature_2": 0.85,
+          "Category": "Group B"
+        },
+        {
+          "Feature_1": 0.35,
+          "Feature_2": 0.65,
+          "Category": "Group A"
+        },
+        {
+          "Feature_1": 0.45,
+          "Feature_2": 0.95,
+          "Category": "Group C"
+        },
+        {
+          "Feature_1": 0.55,
+          "Feature_2": 0.55,
+          "Category": "Group B"
+        },
+        {
+          "Feature_1": 0.65,
+          "Feature_2": 0.45,
+          "Category": "Group A"
+        },
+        {
+          "Feature_1": 0.75,
+          "Feature_2": 0.35,
+          "Category": "Group C"
+        },
+        {
+          "Feature_1": 0.85,
+          "Feature_2": 0.25,
+          "Category": "Group B"
+        },
+        {
+          "Feature_1": 0.95,
+          "Feature_2": 0.15,
+          "Category": "Group A"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        0.15,
+        0.95
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Feature_2"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Feature 1",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Feature 2",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Feature_1"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Feature_2"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Category"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "tooltip": {
+            "signal": "datum"
+          }
+        }
+      }
+    }
+  ]
+}

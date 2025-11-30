@@ -1,2 +1,0 @@
-Remove the datapoint with Category 'Class 3' and Alcohol 12.2.
-[#OP1 op=remove_datapoint; category=Class 2]

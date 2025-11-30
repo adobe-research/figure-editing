@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing values for categories as individual points.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Mean Radius",
+          "Value": 17.99
+        },
+        {
+          "Category": "Mean Texture",
+          "Value": 10.38
+        },
+        {
+          "Category": "Mean Perimeter",
+          "Value": 122.8
+        },
+        {
+          "Category": "Mean Area",
+          "Value": 1001.0
+        },
+        {
+          "Category": "Mean Smoothness",
+          "Value": 0.1184
+        },
+        {
+          "Category": "Mean Compactness",
+          "Value": 0.2776
+        },
+        {
+          "Category": "Mean Concavity",
+          "Value": 0.3001
+        },
+        {
+          "Category": "Mean Symmetry",
+          "Value": 0.2419
+        },
+        {
+          "Category": "Mean Fractal Dimension",
+          "Value": 0.07871
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category",
+      "labelAngle": -45,
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "tooltip": {
+            "signal": "datum.Category + ': ' + datum.Value"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

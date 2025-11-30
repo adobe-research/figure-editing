@@ -1,0 +1,3 @@
+Add a title to the chart and increase the text size of axis labels to improve readability.
+[#OP1 op=add_title; title_text=Seattle Weather: Precipitation and Temperature Trends; title_size=18]
+[#OP2 op=increase_text_size; axis_label_size=14; tick_size=12; title_size=16]

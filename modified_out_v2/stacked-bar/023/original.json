@@ -1,0 +1,201 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing employment distribution across industries by year.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "year": "2016",
+          "industry": "Manufacturing",
+          "employment": 25
+        },
+        {
+          "year": "2016",
+          "industry": "Healthcare",
+          "employment": 30
+        },
+        {
+          "year": "2016",
+          "industry": "Retail",
+          "employment": 20
+        },
+        {
+          "year": "2016",
+          "industry": "Education",
+          "employment": 15
+        },
+        {
+          "year": "2017",
+          "industry": "Manufacturing",
+          "employment": 28
+        },
+        {
+          "year": "2017",
+          "industry": "Healthcare",
+          "employment": 32
+        },
+        {
+          "year": "2017",
+          "industry": "Retail",
+          "employment": 22
+        },
+        {
+          "year": "2017",
+          "industry": "Education",
+          "employment": 18
+        },
+        {
+          "year": "2018",
+          "industry": "Manufacturing",
+          "employment": 27
+        },
+        {
+          "year": "2018",
+          "industry": "Healthcare",
+          "employment": 35
+        },
+        {
+          "year": "2018",
+          "industry": "Retail",
+          "employment": 19
+        },
+        {
+          "year": "2018",
+          "industry": "Education",
+          "employment": 17
+        },
+        {
+          "year": "2019",
+          "industry": "Manufacturing",
+          "employment": 26
+        },
+        {
+          "year": "2019",
+          "industry": "Healthcare",
+          "employment": 34
+        },
+        {
+          "year": "2019",
+          "industry": "Retail",
+          "employment": 21
+        },
+        {
+          "year": "2019",
+          "industry": "Education",
+          "employment": 16
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "sort": {
+            "field": "industry"
+          },
+          "field": "employment"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "year"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "industry"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Employment (in millions)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Industry",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "industry"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "description": "A dot plot showing monthly charges for different customer types.",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "CustomerType": "Senior Citizen",
+          "MonthlyCharges": 89.1
+        },
+        {
+          "CustomerType": "Senior Citizen",
+          "MonthlyCharges": 74.8
+        },
+        {
+          "CustomerType": "Senior Citizen",
+          "MonthlyCharges": 102.5
+        },
+        {
+          "CustomerType": "Non-Senior Citizen",
+          "MonthlyCharges": 56.7
+        },
+        {
+          "CustomerType": "Non-Senior Citizen",
+          "MonthlyCharges": 70.2
+        },
+        {
+          "CustomerType": "Non-Senior Citizen",
+          "MonthlyCharges": 65.3
+        },
+        {
+          "CustomerType": "Non-Senior Citizen",
+          "MonthlyCharges": 80.4
+        },
+        {
+          "CustomerType": "Senior Citizen",
+          "MonthlyCharges": 95.6
+        },
+        {
+          "CustomerType": "Non-Senior Citizen",
+          "MonthlyCharges": 60.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "CustomerType"
+      },
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "MonthlyCharges"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Customer Type"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Monthly Charges ($)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "CustomerType"
+          },
+          "y": {
+            "scale": "y",
+            "field": "MonthlyCharges"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

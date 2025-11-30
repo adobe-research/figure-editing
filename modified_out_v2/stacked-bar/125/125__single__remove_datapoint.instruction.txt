@@ -1,0 +1,2 @@
+Remove the datapoint where season is 'Winter' and user_type is 'Casual'.
+[#OP1 op=remove_datapoint; category=Winter]

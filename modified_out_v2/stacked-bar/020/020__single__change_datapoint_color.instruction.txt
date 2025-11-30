@@ -1,0 +1,2 @@
+Change the color of the datapoints to a new palette with 'Opening' as '#FF5733' and 'Closing' as '#33FF57'.
+[#OP1 op=change_datapoint_color; target_category=2015; new_color=#ff7f0e]

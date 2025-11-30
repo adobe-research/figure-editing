@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing car evaluation metrics.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Buying": 1,
+          "Safety": 3,
+          "Evaluation": "Good"
+        },
+        {
+          "Buying": 2,
+          "Safety": 2,
+          "Evaluation": "Acceptable"
+        },
+        {
+          "Buying": 3,
+          "Safety": 1,
+          "Evaluation": "Unacceptable"
+        },
+        {
+          "Buying": 4,
+          "Safety": 3,
+          "Evaluation": "Good"
+        },
+        {
+          "Buying": 1,
+          "Safety": 2,
+          "Evaluation": "Acceptable"
+        },
+        {
+          "Buying": 2,
+          "Safety": 1,
+          "Evaluation": "Unacceptable"
+        },
+        {
+          "Buying": 3,
+          "Safety": 3,
+          "Evaluation": "Good"
+        },
+        {
+          "Buying": 4,
+          "Safety": 2,
+          "Evaluation": "Acceptable"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Safety"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Evaluation"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Buying Price"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Safety Level"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Evaluation",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Buying"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Safety"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Evaluation"
+          },
+          "size": {
+            "value": 100
+          }
+        }
+      }
+    }
+  ]
+}

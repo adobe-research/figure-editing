@@ -1,0 +1,2 @@
+Change the datapoint colors to new colors: green for 'No' and orange for 'Yes'.
+[#OP1 op=change_datapoint_color; target_category=Yes; new_color=#ff7f0e]

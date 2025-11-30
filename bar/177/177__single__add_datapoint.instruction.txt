@@ -1,2 +1,0 @@
-Add a new datapoint for the platform 'Mobile' with sales of 70 at the end of the dataset.
-[#OP1 op=add_datapoint; position=end; category=New 1; series=Mobile; value=65.0]

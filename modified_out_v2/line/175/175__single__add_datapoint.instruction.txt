@@ -1,0 +1,2 @@
+Add a new datapoint for 'Theft' on '2023-06-05' with a crime count of 150.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Assault; value=100.0]

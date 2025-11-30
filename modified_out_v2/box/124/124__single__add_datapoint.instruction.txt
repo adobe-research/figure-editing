@@ -1,0 +1,2 @@
+Add a new datapoint for the subject 'History' with min=25, q1=40, median=60, q3=75, and max=90.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=History; value=32.5]

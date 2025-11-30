@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing trends in BMI and Blood Pressure over age groups.",
+  "width": 500,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "age_group": "20-29",
+          "value": 24.5,
+          "series": "BMI"
+        },
+        {
+          "age_group": "30-39",
+          "value": 26.3,
+          "series": "BMI"
+        },
+        {
+          "age_group": "40-49",
+          "value": 27.8,
+          "series": "BMI"
+        },
+        {
+          "age_group": "50-59",
+          "value": 28.6,
+          "series": "BMI"
+        },
+        {
+          "age_group": "60-69",
+          "value": 29.1,
+          "series": "BMI"
+        },
+        {
+          "age_group": "20-29",
+          "value": 120,
+          "series": "Blood Pressure"
+        },
+        {
+          "age_group": "30-39",
+          "value": 125,
+          "series": "Blood Pressure"
+        },
+        {
+          "age_group": "40-49",
+          "value": 130,
+          "series": "Blood Pressure"
+        },
+        {
+          "age_group": "50-59",
+          "value": 135,
+          "series": "Blood Pressure"
+        },
+        {
+          "age_group": "60-69",
+          "value": 140,
+          "series": "Blood Pressure"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "age_group"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Age Group",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Value",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Series",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "series"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "age_group"
+              },
+              "y": {
+                "scale": "y",
+                "field": "value"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "series"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

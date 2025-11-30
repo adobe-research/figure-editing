@@ -1,0 +1,2 @@
+Change the datapoint color for the 'Female' category to a new color '#2ca02c'.
+[#OP1 op=change_datapoint_color; target_category=Male; new_color=#d62728]

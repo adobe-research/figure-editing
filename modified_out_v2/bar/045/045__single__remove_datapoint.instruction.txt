@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Default' and count 20.
+[#OP1 op=remove_datapoint; category=Very High Risk]

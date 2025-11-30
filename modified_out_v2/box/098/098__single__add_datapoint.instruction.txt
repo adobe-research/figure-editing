@@ -1,0 +1,2 @@
+Add a new datapoint for the '400m Men' event with min=43.03, q1=43.5, median=44.0, q3=44.5, and max=45.0.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=100m Men; value=31.11]

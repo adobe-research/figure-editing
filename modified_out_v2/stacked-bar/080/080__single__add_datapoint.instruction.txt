@@ -1,0 +1,2 @@
+Add a new datapoint for the 2020s category with series 'Temperature' and value 21.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=1960s; value=20.0]

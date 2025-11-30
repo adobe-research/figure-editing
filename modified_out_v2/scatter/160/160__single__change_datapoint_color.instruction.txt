@@ -1,0 +1,2 @@
+Change the color of datapoints for the 'Guard' position to '#d62728'.
+[#OP1 op=change_datapoint_color; target_category=Forward; new_color=#9467bd]

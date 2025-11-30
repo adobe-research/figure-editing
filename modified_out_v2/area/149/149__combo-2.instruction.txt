@@ -1,0 +1,4 @@
+Add a title to the chart, change the background color to lightgray, and increase the text size for axis labels to 14.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=change_background_color; new_bg=#fff5e6]
+[#OP3 op=change_background_color; new_bg=#f0f8ff]

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing price versus number of reviews for NYC Airbnb listings, colored by neighborhood group.",
+  "width": 400,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "price": 150,
+          "reviews": 45,
+          "neighborhood_group": "Manhattan"
+        },
+        {
+          "price": 75,
+          "reviews": 30,
+          "neighborhood_group": "Brooklyn"
+        },
+        {
+          "price": 200,
+          "reviews": 60,
+          "neighborhood_group": "Queens"
+        },
+        {
+          "price": 50,
+          "reviews": 25,
+          "neighborhood_group": "Bronx"
+        },
+        {
+          "price": 300,
+          "reviews": 85,
+          "neighborhood_group": "Manhattan"
+        },
+        {
+          "price": 120,
+          "reviews": 40,
+          "neighborhood_group": "Brooklyn"
+        },
+        {
+          "price": 180,
+          "reviews": 55,
+          "neighborhood_group": "Queens"
+        },
+        {
+          "price": 65,
+          "reviews": 20,
+          "neighborhood_group": "Bronx"
+        },
+        {
+          "price": 250,
+          "reviews": 70,
+          "neighborhood_group": "Manhattan"
+        },
+        {
+          "price": 100,
+          "reviews": 35,
+          "neighborhood_group": "Brooklyn"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": [
+        50.0,
+        300.0
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "reviews"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "neighborhood_group"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Price (USD)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Number of Reviews",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Neighborhood Group",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "name": "marks",
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "price"
+          },
+          "y": {
+            "scale": "y",
+            "field": "reviews"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "neighborhood_group"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "value": 50
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

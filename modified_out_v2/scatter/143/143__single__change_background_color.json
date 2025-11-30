@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing student performance metrics.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Math_Score": 65,
+          "Reading_Score": 72,
+          "Gender": "Male"
+        },
+        {
+          "Math_Score": 78,
+          "Reading_Score": 85,
+          "Gender": "Female"
+        },
+        {
+          "Math_Score": 50,
+          "Reading_Score": 55,
+          "Gender": "Male"
+        },
+        {
+          "Math_Score": 90,
+          "Reading_Score": 95,
+          "Gender": "Female"
+        },
+        {
+          "Math_Score": 82,
+          "Reading_Score": 88,
+          "Gender": "Male"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        50,
+        65,
+        78,
+        82,
+        90
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Reading_Score"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Gender"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Math Score"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Reading Score"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Gender",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Math_Score"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Reading_Score"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Gender"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

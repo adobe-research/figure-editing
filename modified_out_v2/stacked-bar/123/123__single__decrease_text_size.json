@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Stacked bar chart showing temperature anomalies by decade and region.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "1900s",
+          "series": "Northern Hemisphere",
+          "value": -0.2
+        },
+        {
+          "category": "1900s",
+          "series": "Southern Hemisphere",
+          "value": -0.1
+        },
+        {
+          "category": "1910s",
+          "series": "Northern Hemisphere",
+          "value": -0.3
+        },
+        {
+          "category": "1910s",
+          "series": "Southern Hemisphere",
+          "value": -0.2
+        },
+        {
+          "category": "1920s",
+          "series": "Northern Hemisphere",
+          "value": -0.1
+        },
+        {
+          "category": "1920s",
+          "series": "Southern Hemisphere",
+          "value": -0.05
+        },
+        {
+          "category": "1930s",
+          "series": "Northern Hemisphere",
+          "value": 0.1
+        },
+        {
+          "category": "1930s",
+          "series": "Southern Hemisphere",
+          "value": 0.05
+        },
+        {
+          "category": "1940s",
+          "series": "Northern Hemisphere",
+          "value": 0.2
+        },
+        {
+          "category": "1940s",
+          "series": "Southern Hemisphere",
+          "value": 0.1
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "series"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "series"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Decade",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)",
+      "titleFontSize": 10,
+      "labelFontSize": 8
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "series"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 8
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Remove the datapoint for the month '2020-07' with anomaly value 0.6.
+[#OP1 op=remove_datapoint; category=2020-12]

@@ -1,0 +1,2 @@
+Add a new datapoint for the month of June with metric 'Volume' and value 55000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=April; value=45000.0]

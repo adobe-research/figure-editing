@@ -1,0 +1,2 @@
+Add a new datapoint for Bitcoin with date '2023-01-04' and price 17000.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bitcoin; value=1275.0]

@@ -1,0 +1,2 @@
+Change the datapoint colors to a new range of ['#2ca02c', '#d62728'].
+[#OP1 op=change_datapoint_color; target_category=Denied; new_color=#9467bd]

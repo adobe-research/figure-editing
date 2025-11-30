@@ -1,2 +1,0 @@
-Remove the datapoint where GDP is 21000 and UnemploymentRate is 3.9.
-[#OP1 op=remove_datapoint; category=South]

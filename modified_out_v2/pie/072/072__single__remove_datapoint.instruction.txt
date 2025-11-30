@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Net Exports' and value 10.
+[#OP1 op=remove_datapoint; category=Government Expenditures]

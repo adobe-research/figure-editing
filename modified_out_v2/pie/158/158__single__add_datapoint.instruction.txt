@@ -1,0 +1,2 @@
+Add a new datapoint with outcome 'Pending' and count 2000 to the pie chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Not Subscribed; value=3561.5]

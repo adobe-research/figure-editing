@@ -1,0 +1,2 @@
+Add a new datapoint for the player 'Kylian Mbappe' with a rating of 91 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Cristiano Ronaldo; value=91.0]

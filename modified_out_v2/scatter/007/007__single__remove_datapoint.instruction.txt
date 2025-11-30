@@ -1,0 +1,2 @@
+Remove the datapoint with Latitude 35.689487 and Longitude 139.691711.
+[#OP1 op=remove_datapoint; category=Africa]

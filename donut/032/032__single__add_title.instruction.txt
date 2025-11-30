@@ -1,2 +1,0 @@
-Add a title to the donut chart with the text 'OECD PISA Score Distribution'.
-[#OP1 op=add_title; title_text=Edited Chart]

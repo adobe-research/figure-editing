@@ -1,0 +1,3 @@
+Change the color of the 'Snacks' category to '#FF5733' and add a title 'Store Item Demand Distribution' with size 18.
+[#OP1 op=add_title; title_text=Edited Chart]
+[#OP2 op=add_title; title_text=Edited Chart]

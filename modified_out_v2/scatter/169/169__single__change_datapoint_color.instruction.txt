@@ -1,0 +1,2 @@
+Change the color of datapoints representing the 'toxic' category to '#4daf4a'.
+[#OP1 op=change_datapoint_color; target_category=non-toxic; new_color=#ff7f0e]

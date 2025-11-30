@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing the relationship between number of fatalities and number of injuries in terrorism incidents, categorized by attack type.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Fatalities": 10,
+          "Injuries": 20,
+          "Attack_Type": "Bombing/Explosion"
+        },
+        {
+          "Fatalities": 5,
+          "Injuries": 15,
+          "Attack_Type": "Armed Assault"
+        },
+        {
+          "Fatalities": 2,
+          "Injuries": 8,
+          "Attack_Type": "Hijacking"
+        },
+        {
+          "Fatalities": 7,
+          "Injuries": 25,
+          "Attack_Type": "Hostage Taking"
+        },
+        {
+          "Fatalities": 15,
+          "Injuries": 30,
+          "Attack_Type": "Bombing/Explosion"
+        },
+        {
+          "Fatalities": 3,
+          "Injuries": 10,
+          "Attack_Type": "Armed Assault"
+        },
+        {
+          "Fatalities": 8,
+          "Injuries": 12,
+          "Attack_Type": "Hijacking"
+        },
+        {
+          "Fatalities": 4,
+          "Injuries": 18,
+          "Attack_Type": "Hostage Taking"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        15
+      ],
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Injuries"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Attack_Type"
+      },
+      "range": [
+        "#FF5733",
+        "#33FF57",
+        "#3357FF",
+        "#FF33A1"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Number of Fatalities",
+      "grid": true
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Number of Injuries",
+      "grid": true
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Attack Type",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Fatalities"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Injuries"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Attack_Type"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

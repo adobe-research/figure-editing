@@ -1,2 +1,0 @@
-Match the datapoint color #d62728 used in the reference chart.
-[#OP1 op=change_datapoint_color; target_category=Class 3; new_color=#d62728]

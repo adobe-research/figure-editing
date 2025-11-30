@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing student scores in different subjects.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Subject": "Math",
+          "Score": 78
+        },
+        {
+          "Subject": "Science",
+          "Score": 85
+        },
+        {
+          "Subject": "English",
+          "Score": 92
+        },
+        {
+          "Subject": "History",
+          "Score": 74
+        },
+        {
+          "Subject": "Geography",
+          "Score": 88
+        },
+        {
+          "Subject": "Art",
+          "Score": 95
+        },
+        {
+          "Subject": "Physical Education",
+          "Score": 81
+        },
+        {
+          "Subject": "Computer Science",
+          "Score": 89
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Subject"
+      },
+      "range": {
+        "step": 60
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Score"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Subjects"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Scores"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Subject"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Score"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#4682b4"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

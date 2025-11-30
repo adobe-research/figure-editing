@@ -1,2 +1,0 @@
-Add a title to the chart that reads 'Bitcoin Trading Volume by Type (Monthly)'.
-[#OP1 op=add_title; title_text=Edited Chart]

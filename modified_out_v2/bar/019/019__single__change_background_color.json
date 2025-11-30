@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A bar chart showing the most purchased product categories in the Instacart Market Basket dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Beverages",
+          "amount": 1200
+        },
+        {
+          "category": "Snacks",
+          "amount": 950
+        },
+        {
+          "category": "Dairy",
+          "amount": 870
+        },
+        {
+          "category": "Produce",
+          "amount": 1500
+        },
+        {
+          "category": "Bakery",
+          "amount": 740
+        },
+        {
+          "category": "Frozen Foods",
+          "amount": 620
+        },
+        {
+          "category": "Canned Goods",
+          "amount": 580
+        },
+        {
+          "category": "Meat & Seafood",
+          "amount": 690
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "domain": {
+        "data": "table",
+        "field": "amount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Product Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Number of Purchases"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "width": {
+            "scale": "xscale",
+            "band": 1
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "amount"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "orange"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "amount",
+            "offset": -5
+          },
+          "text": {
+            "field": "amount"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}

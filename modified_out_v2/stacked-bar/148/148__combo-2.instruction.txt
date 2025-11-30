@@ -1,0 +1,4 @@
+Change the color of the 'Electronics' category in 'Store 1' to '#FF5733', increase the text size of axis labels to 14, and add a title 'Sales Performance by Store and Department'.
+[#OP1 op=increase_text_size; axis_label_size=16]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

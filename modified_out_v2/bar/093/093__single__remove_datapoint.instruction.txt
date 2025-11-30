@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Neutral' and count 70.
+[#OP1 op=remove_datapoint; category=Disagree]

@@ -1,0 +1,2 @@
+Remove the datapoint for the city 'Denver' with an average temperature of 10.1.
+[#OP1 op=remove_datapoint; category=Miami]

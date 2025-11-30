@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A line chart showing cryptocurrency prices over time for multiple coins.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "prices",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "price": 16500,
+          "coin": "Bitcoin"
+        },
+        {
+          "date": "2023-01-01",
+          "price": 1200,
+          "coin": "Ethereum"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 17000,
+          "coin": "Bitcoin"
+        },
+        {
+          "date": "2023-02-01",
+          "price": 1300,
+          "coin": "Ethereum"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 18000,
+          "coin": "Bitcoin"
+        },
+        {
+          "date": "2023-03-01",
+          "price": 1400,
+          "coin": "Ethereum"
+        },
+        {
+          "date": "2023-04-01",
+          "price": 19000,
+          "coin": "Bitcoin"
+        },
+        {
+          "date": "2023-04-01",
+          "price": 1500,
+          "coin": "Ethereum"
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "prices",
+        "field": "date"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": false,
+      "domain": {
+        "data": "prices",
+        "field": "price"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "prices",
+        "field": "coin"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Date",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Price (USD)",
+      "titleFontSize": 16,
+      "labelFontSize": 12
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "title": "Cryptocurrency",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "prices",
+          "groupby": "coin"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "x",
+                "field": "date"
+              },
+              "y": {
+                "scale": "y",
+                "field": "price"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "coin"
+              },
+              "strokeWidth": {
+                "value": 2
+              }
+            },
+            "update": {
+              "defined": {
+                "signal": "isValid(datum) && isValid(datum['date'])"
+              }
+            }
+          },
+          "sort": {
+            "field": "date",
+            "order": "ascending"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Add a new datapoint with time 11, price 31, and sales_volume 280 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=6.0]

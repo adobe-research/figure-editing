@@ -1,0 +1,2 @@
+Remove the datapoint for 'Staten Island' with an average duration of 20.3.
+[#OP1 op=remove_datapoint; category=Queens]

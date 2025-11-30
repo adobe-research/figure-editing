@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories as individual points.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Glucose",
+          "Value": 85
+        },
+        {
+          "Category": "Glucose",
+          "Value": 90
+        },
+        {
+          "Category": "Glucose",
+          "Value": 78
+        },
+        {
+          "Category": "BloodPressure",
+          "Value": 72
+        },
+        {
+          "Category": "BloodPressure",
+          "Value": 80
+        },
+        {
+          "Category": "BloodPressure",
+          "Value": 85
+        },
+        {
+          "Category": "Insulin",
+          "Value": 115
+        },
+        {
+          "Category": "Insulin",
+          "Value": 130
+        },
+        {
+          "Category": "Insulin",
+          "Value": 140
+        },
+        {
+          "Category": "BMI",
+          "Value": 32.5
+        },
+        {
+          "Category": "BMI",
+          "Value": 28.7
+        },
+        {
+          "Category": "BMI",
+          "Value": 30.1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.7000000000000001
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Category"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

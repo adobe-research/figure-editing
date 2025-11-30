@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Very High Risk' and value 100.
+[#OP1 op=remove_datapoint; category=Low Risk]

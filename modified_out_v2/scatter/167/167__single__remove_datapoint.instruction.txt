@@ -1,0 +1,2 @@
+Remove the datapoint with Review_Length 90 and Sentiment_Score 0.5.
+[#OP1 op=remove_datapoint; category=Drama]

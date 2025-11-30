@@ -1,0 +1,3 @@
+Change the color of datapoints in category 'A' to '#e41a1c' and add a title 'Scatter Plot of Features'.
+[#OP1 op=change_datapoint_color; target_category=C; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

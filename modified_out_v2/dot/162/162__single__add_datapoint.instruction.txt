@@ -1,0 +1,2 @@
+Add a new datapoint for 'Oats' with a production value of 70.4.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Barley; value=80.3]

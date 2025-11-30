@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing economic indicators.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "GDP": 21000,
+          "UnemploymentRate": 3.5,
+          "Region": "North America"
+        },
+        {
+          "GDP": 15000,
+          "UnemploymentRate": 7.2,
+          "Region": "Europe"
+        },
+        {
+          "GDP": 18000,
+          "UnemploymentRate": 5.1,
+          "Region": "Asia"
+        },
+        {
+          "GDP": 12000,
+          "UnemploymentRate": 9.3,
+          "Region": "South America"
+        },
+        {
+          "GDP": 8000,
+          "UnemploymentRate": 11.0,
+          "Region": "Africa"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        8000.0,
+        21000.0
+      ],
+      "range": "width",
+      "nice": true,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "UnemploymentRate"
+      },
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Region"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "GDP (in billions)"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Unemployment Rate (%)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "GDP"
+          },
+          "y": {
+            "scale": "y",
+            "field": "UnemploymentRate"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Region"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          }
+        }
+      }
+    }
+  ]
+}

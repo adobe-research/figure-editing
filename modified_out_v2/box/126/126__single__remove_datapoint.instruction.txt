@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Writing Scores' category.
+[#OP1 op=remove_datapoint; category=Math Scores]

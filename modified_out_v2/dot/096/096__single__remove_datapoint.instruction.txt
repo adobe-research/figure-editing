@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the 'Automotive' category with a rating of 4.1.
+[#OP1 op=remove_datapoint; category=Sports]

@@ -1,0 +1,2 @@
+Remove the datapoint with Category 'Cholesterol' and Value 250.
+[#OP1 op=remove_datapoint; category=Cholesterol]

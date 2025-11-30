@@ -1,0 +1,2 @@
+Remove the datapoint for 'Sugar' in the year 2021 with a value of 75.
+[#OP1 op=remove_datapoint; category=Dairy]

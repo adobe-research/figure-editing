@@ -1,0 +1,2 @@
+Add a new datapoint for 'University F' in the 'Teaching' series with a value of 83.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=University A; value=82.5]

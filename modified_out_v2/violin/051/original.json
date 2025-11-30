@@ -1,0 +1,332 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A violin plot showing the distribution of credit scores for different income types.",
+  "width": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "plotWidth",
+      "value": 60
+    },
+    {
+      "name": "height",
+      "update": "(plotWidth + 10) * 3"
+    },
+    {
+      "name": "bandwidth",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "credit_data",
+      "values": [
+        {
+          "Income Type": "Working",
+          "Credit Score": 650
+        },
+        {
+          "Income Type": "Working",
+          "Credit Score": 700
+        },
+        {
+          "Income Type": "Working",
+          "Credit Score": 720
+        },
+        {
+          "Income Type": "Working",
+          "Credit Score": 750
+        },
+        {
+          "Income Type": "Working",
+          "Credit Score": 770
+        },
+        {
+          "Income Type": "Working",
+          "Credit Score": 800
+        },
+        {
+          "Income Type": "Pensioner",
+          "Credit Score": 600
+        },
+        {
+          "Income Type": "Pensioner",
+          "Credit Score": 620
+        },
+        {
+          "Income Type": "Pensioner",
+          "Credit Score": 640
+        },
+        {
+          "Income Type": "Pensioner",
+          "Credit Score": 660
+        },
+        {
+          "Income Type": "Pensioner",
+          "Credit Score": 680
+        },
+        {
+          "Income Type": "Pensioner",
+          "Credit Score": 700
+        },
+        {
+          "Income Type": "State Servant",
+          "Credit Score": 700
+        },
+        {
+          "Income Type": "State Servant",
+          "Credit Score": 720
+        },
+        {
+          "Income Type": "State Servant",
+          "Credit Score": 740
+        },
+        {
+          "Income Type": "State Servant",
+          "Credit Score": 760
+        },
+        {
+          "Income Type": "State Servant",
+          "Credit Score": 780
+        },
+        {
+          "Income Type": "State Servant",
+          "Credit Score": 800
+        }
+      ]
+    },
+    {
+      "name": "density",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "kde",
+          "field": "Credit Score",
+          "groupby": [
+            "Income Type"
+          ],
+          "bandwidth": {
+            "signal": "bandwidth"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "credit_data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Income Type"
+          ],
+          "fields": [
+            "Credit Score",
+            "Credit Score",
+            "Credit Score"
+          ],
+          "ops": [
+            "q1",
+            "median",
+            "q3"
+          ],
+          "as": [
+            "q1",
+            "median",
+            "q3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "layout",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "credit_data",
+        "field": "Income Type"
+      }
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "credit_data",
+        "field": "Credit Score"
+      },
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "hscale",
+      "type": "linear",
+      "range": [
+        0,
+        {
+          "signal": "plotWidth"
+        }
+      ],
+      "domain": {
+        "data": "density",
+        "field": "density"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "credit_data",
+        "field": "Income Type"
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "zindex": 1
+    },
+    {
+      "orient": "left",
+      "scale": "layout",
+      "zindex": 1
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "data": "density",
+          "name": "violin",
+          "groupby": "Income Type"
+        }
+      },
+      "encode": {
+        "enter": {
+          "yc": {
+            "scale": "layout",
+            "field": "Income Type",
+            "band": 0.5
+          },
+          "height": {
+            "signal": "plotWidth"
+          },
+          "width": {
+            "signal": "width"
+          }
+        }
+      },
+      "data": [
+        {
+          "name": "summary",
+          "source": "stats",
+          "transform": [
+            {
+              "type": "filter",
+              "expr": "datum['Income Type'] === parent['Income Type']"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "violin"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "scale": "color",
+                "field": {
+                  "parent": "Income Type"
+                }
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              },
+              "height": {
+                "scale": "hscale",
+                "field": "density"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "height": {
+                "value": 2
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "q1"
+              },
+              "x2": {
+                "scale": "xscale",
+                "field": "q3"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "summary"
+          },
+          "encode": {
+            "enter": {
+              "fill": {
+                "value": "black"
+              },
+              "width": {
+                "value": 2
+              },
+              "height": {
+                "value": 8
+              }
+            },
+            "update": {
+              "x": {
+                "scale": "xscale",
+                "field": "median"
+              },
+              "yc": {
+                "signal": "plotWidth / 2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

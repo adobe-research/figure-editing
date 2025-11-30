@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing happiness scores for different countries.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Country": "Finland",
+          "HappinessScore": 7.84
+        },
+        {
+          "Country": "Denmark",
+          "HappinessScore": 7.62
+        },
+        {
+          "Country": "Switzerland",
+          "HappinessScore": 7.57
+        },
+        {
+          "Country": "Iceland",
+          "HappinessScore": 7.55
+        },
+        {
+          "Country": "Netherlands",
+          "HappinessScore": 7.46
+        },
+        {
+          "Country": "Norway",
+          "HappinessScore": 7.39
+        },
+        {
+          "Country": "Sweden",
+          "HappinessScore": 7.36
+        },
+        {
+          "Country": "Luxembourg",
+          "HappinessScore": 7.32
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Country"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "HappinessScore"
+      },
+      "range": "height",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Country",
+      "labelAngle": -45,
+      "labelFontSize": 16
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Happiness Score",
+      "labelFontSize": 16
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Country"
+          },
+          "y": {
+            "scale": "y",
+            "field": "HappinessScore"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "tooltip": {
+            "signal": "datum.Country + ': ' + datum.HappinessScore"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFontSize": 16
+    }
+  }
+}

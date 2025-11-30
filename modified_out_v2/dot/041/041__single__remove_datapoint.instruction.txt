@@ -1,0 +1,2 @@
+Remove the datapoint for 'Russia' with GDP per Capita of 11500.
+[#OP1 op=remove_datapoint; category=Japan]

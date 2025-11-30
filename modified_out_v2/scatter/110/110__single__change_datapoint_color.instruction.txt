@@ -1,0 +1,2 @@
+Change the color of all datapoints to a new color, 'steelblue'.
+[#OP1 op=change_datapoint_color; target_category=technician; new_color=#ff7f0e]

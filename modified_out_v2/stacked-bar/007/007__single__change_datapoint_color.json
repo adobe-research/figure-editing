@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing item demand across stores and months.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "store": "Store A",
+          "month": "Jan",
+          "demand": 120
+        },
+        {
+          "store": "Store A",
+          "month": "Feb",
+          "demand": 150
+        },
+        {
+          "store": "Store A",
+          "month": "Mar",
+          "demand": 130
+        },
+        {
+          "store": "Store B",
+          "month": "Jan",
+          "demand": 100
+        },
+        {
+          "store": "Store B",
+          "month": "Feb",
+          "demand": 140
+        },
+        {
+          "store": "Store B",
+          "month": "Mar",
+          "demand": 110
+        },
+        {
+          "store": "Store C",
+          "month": "Jan",
+          "demand": 90
+        },
+        {
+          "store": "Store C",
+          "month": "Feb",
+          "demand": 120
+        },
+        {
+          "store": "Store C",
+          "month": "Mar",
+          "demand": 100
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "store"
+          },
+          "field": "demand"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "#4A90E2",
+        "#50E3C2",
+        "#B8E986"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "store"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Demand"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Store",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "store"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          },
+          "fill": [
+            {
+              "test": "datum['month']==='Feb'",
+              "value": "#ff7f0e"
+            }
+          ]
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

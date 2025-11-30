@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Trust in Government' and value 0.4 at the end of the data array.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Freedom to Make Life Choices; value=0.7]

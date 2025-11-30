@@ -1,0 +1,2 @@
+Remove the datapoint with GDP_per_Capita 5000 and Life_Expectancy 62.3 from the chart.
+[#OP1 op=remove_datapoint; category=Latin America]

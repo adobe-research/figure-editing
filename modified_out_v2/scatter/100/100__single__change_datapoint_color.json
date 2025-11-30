@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A scatter plot showing player statistics from Basketball Reference.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Points_Per_Game": 25.3,
+          "Assists_Per_Game": 5.1,
+          "Position": "Guard"
+        },
+        {
+          "Points_Per_Game": 30.1,
+          "Assists_Per_Game": 8.5,
+          "Position": "Forward"
+        },
+        {
+          "Points_Per_Game": 18.2,
+          "Assists_Per_Game": 2.3,
+          "Position": "Center"
+        },
+        {
+          "Points_Per_Game": 22.7,
+          "Assists_Per_Game": 6.8,
+          "Position": "Guard"
+        },
+        {
+          "Points_Per_Game": 15.9,
+          "Assists_Per_Game": 3.4,
+          "Position": "Forward"
+        },
+        {
+          "Points_Per_Game": 27.0,
+          "Assists_Per_Game": 9.1,
+          "Position": "Guard"
+        },
+        {
+          "Points_Per_Game": 19.5,
+          "Assists_Per_Game": 4.2,
+          "Position": "Center"
+        },
+        {
+          "Points_Per_Game": 23.8,
+          "Assists_Per_Game": 7.6,
+          "Position": "Forward"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": false,
+      "domain": [
+        15.9,
+        30.1
+      ],
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "round": true,
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "source",
+        "field": "Assists_Per_Game"
+      },
+      "range": "height"
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Position"
+      },
+      "range": [
+        "#e41a1c",
+        "#377eb8",
+        "#4daf4a"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "grid": true,
+      "domain": false,
+      "orient": "bottom",
+      "title": "Points Per Game"
+    },
+    {
+      "scale": "y",
+      "grid": true,
+      "domain": false,
+      "orient": "left",
+      "title": "Assists Per Game"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Position",
+      "orient": "right"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Points_Per_Game"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Assists_Per_Game"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "Position"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ]
+}

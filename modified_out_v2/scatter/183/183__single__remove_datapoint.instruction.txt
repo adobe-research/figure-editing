@@ -1,0 +1,2 @@
+Remove the datapoint where AMT_CREDIT is 800000 and DAYS_EMPLOYED is -4000.
+[#OP1 op=remove_datapoint; category=Default]

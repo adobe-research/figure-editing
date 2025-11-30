@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing trip durations for different bike types.",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "autosize": "pad",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Bike_Type": "Electric",
+          "Trip_Duration_Minutes": 15
+        },
+        {
+          "Bike_Type": "Electric",
+          "Trip_Duration_Minutes": 20
+        },
+        {
+          "Bike_Type": "Electric",
+          "Trip_Duration_Minutes": 25
+        },
+        {
+          "Bike_Type": "Standard",
+          "Trip_Duration_Minutes": 10
+        },
+        {
+          "Bike_Type": "Standard",
+          "Trip_Duration_Minutes": 12
+        },
+        {
+          "Bike_Type": "Standard",
+          "Trip_Duration_Minutes": 18
+        },
+        {
+          "Bike_Type": "Dockless",
+          "Trip_Duration_Minutes": 8
+        },
+        {
+          "Bike_Type": "Dockless",
+          "Trip_Duration_Minutes": 14
+        },
+        {
+          "Bike_Type": "Dockless",
+          "Trip_Duration_Minutes": 22
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Bike_Type"
+      },
+      "range": {
+        "step": 1.5
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Trip_Duration_Minutes"
+      },
+      "nice": true,
+      "range": "height"
+    },
+    {
+      "name": "jitter",
+      "type": "ordinal",
+      "domain": {
+        "data": "source",
+        "field": "Bike_Type"
+      },
+      "range": [
+        0,
+        0.5
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Bike Type"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Trip Duration (Minutes)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Bike_Type",
+            "offset": {
+              "scale": "jitter",
+              "field": "Bike_Type"
+            }
+          },
+          "y": {
+            "scale": "y",
+            "field": "Trip_Duration_Minutes"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      }
+    }
+  ]
+}

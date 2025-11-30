@@ -1,0 +1,2 @@
+Add a new datapoint for 'Chargeback' with min=15, q1=40, median=70, q3=110, and max=160.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Chargeback; value=17.5]

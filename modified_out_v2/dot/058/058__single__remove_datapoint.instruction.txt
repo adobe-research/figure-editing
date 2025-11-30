@@ -1,0 +1,2 @@
+Remove the datapoint with species 'virginica' and sepalLength 7.9.
+[#OP1 op=remove_datapoint; category=virginica]

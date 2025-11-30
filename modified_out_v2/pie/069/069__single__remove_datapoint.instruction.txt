@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Infectious Diseases' with a value of 10.
+[#OP1 op=remove_datapoint; category=Respiratory Diseases]

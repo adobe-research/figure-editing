@@ -1,0 +1,2 @@
+Change the color of the 'Online Store' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=Online Store; new_color=#d62728]

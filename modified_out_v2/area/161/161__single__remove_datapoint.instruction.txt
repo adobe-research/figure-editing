@@ -1,0 +1,2 @@
+Remove the datapoint with the date '2021-01-15' and price 497.98.
+[#OP1 op=remove_datapoint; category=2021-01-05]

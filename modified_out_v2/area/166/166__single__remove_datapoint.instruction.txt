@@ -1,0 +1,2 @@
+Remove the datapoint for Corn production in the year 2014.
+[#OP1 op=remove_datapoint; category=Corn]

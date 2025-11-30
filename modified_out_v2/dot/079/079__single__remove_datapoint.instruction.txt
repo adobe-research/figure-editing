@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to 'Oats' with a production value of 40.8.
+[#OP1 op=remove_datapoint; category=Corn]

@@ -1,0 +1,2 @@
+Add a new datapoint with Time=1600, Amount=400.0, and Fraud='Yes'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=No; value=690.0]

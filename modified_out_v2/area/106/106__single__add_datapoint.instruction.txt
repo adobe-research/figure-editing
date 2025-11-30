@@ -1,0 +1,2 @@
+Add a new datapoint for December 15, 2021, with a closing price of 48000.
+[#OP1 op=add_datapoint; position=end; category=New 1; value=48000.0]

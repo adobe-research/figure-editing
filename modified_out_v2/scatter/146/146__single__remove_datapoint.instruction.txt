@@ -1,0 +1,2 @@
+Remove the datapoint where age is 38 and balance is 1700.
+[#OP1 op=remove_datapoint; category=admin]

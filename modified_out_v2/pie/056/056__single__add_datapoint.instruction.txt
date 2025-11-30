@@ -1,0 +1,2 @@
+Add a new datapoint with category 'Tiny' and value 50 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Extra Large; value=150.0]

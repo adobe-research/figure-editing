@@ -1,0 +1,2 @@
+Add a new datapoint with age 60, hours worked per week 50, and education level 'Doctorate'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Bachelors; value=38.0]

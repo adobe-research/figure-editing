@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing values for categories as individual points along an axis.",
+  "width": 400,
+  "height": 200,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "App Install",
+          "value": 120
+        },
+        {
+          "category": "Click",
+          "value": 95
+        },
+        {
+          "category": "Conversion",
+          "value": 45
+        },
+        {
+          "category": "Ad View",
+          "value": 150
+        },
+        {
+          "category": "Purchase",
+          "value": 30
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "range": {
+        "step": 0.8
+      },
+      "padding": 0.0
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "category"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "value"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "tooltip": {
+            "signal": "{'Category': datum.category, 'Value': datum.value}"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

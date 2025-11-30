@@ -1,0 +1,2 @@
+Add a new datapoint for the month '2022-05', source 'Solar', and production value 28.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=2022-01; value=25.0]

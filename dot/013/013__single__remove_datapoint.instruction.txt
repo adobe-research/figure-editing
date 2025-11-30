@@ -1,2 +1,0 @@
-Remove the datapoint with Vendor 'Vendor C' and TripDuration 350.
-[#OP1 op=remove_datapoint; category=Vendor B]

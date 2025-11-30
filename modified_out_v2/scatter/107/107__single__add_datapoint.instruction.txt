@@ -1,0 +1,2 @@
+Add a new datapoint with PetalLength 3.5, PetalWidth 1.0, and Species 'setosa'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=setosa; value=4.5]

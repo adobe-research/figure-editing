@@ -1,2 +1,0 @@
-Remove the datapoint with category 'Unknown Outcome' and value 500.
-[#OP1 op=remove_datapoint; category=Subscribed]

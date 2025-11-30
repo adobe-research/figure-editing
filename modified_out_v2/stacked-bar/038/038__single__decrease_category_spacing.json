@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing item categories and condition ratings.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "category": "Electronics",
+          "condition": "New",
+          "value": 120
+        },
+        {
+          "category": "Electronics",
+          "condition": "Used - Like New",
+          "value": 90
+        },
+        {
+          "category": "Electronics",
+          "condition": "Used - Good",
+          "value": 50
+        },
+        {
+          "category": "Clothing",
+          "condition": "New",
+          "value": 150
+        },
+        {
+          "category": "Clothing",
+          "condition": "Used - Like New",
+          "value": 80
+        },
+        {
+          "category": "Clothing",
+          "condition": "Used - Good",
+          "value": 40
+        },
+        {
+          "category": "Furniture",
+          "condition": "New",
+          "value": 100
+        },
+        {
+          "category": "Furniture",
+          "condition": "Used - Like New",
+          "value": 70
+        },
+        {
+          "category": "Furniture",
+          "condition": "Used - Good",
+          "value": 30
+        },
+        {
+          "category": "Books",
+          "condition": "New",
+          "value": 200
+        },
+        {
+          "category": "Books",
+          "condition": "Used - Like New",
+          "value": 150
+        },
+        {
+          "category": "Books",
+          "condition": "Used - Good",
+          "value": 100
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "category"
+          ],
+          "sort": {
+            "field": "condition"
+          },
+          "field": "value"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "condition"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Item Categories"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Values"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Condition",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "category"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "condition"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Add a new datapoint for Italy on 2020-01-29 with 5 cases.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Italy; value=0.0]

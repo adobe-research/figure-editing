@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing average monthly temperatures by region.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "region": "North America",
+          "temperature": -5
+        },
+        {
+          "month": "January",
+          "region": "Europe",
+          "temperature": 2
+        },
+        {
+          "month": "January",
+          "region": "Asia",
+          "temperature": 0
+        },
+        {
+          "month": "February",
+          "region": "North America",
+          "temperature": -3
+        },
+        {
+          "month": "February",
+          "region": "Europe",
+          "temperature": 3
+        },
+        {
+          "month": "February",
+          "region": "Asia",
+          "temperature": 1
+        },
+        {
+          "month": "March",
+          "region": "North America",
+          "temperature": 2
+        },
+        {
+          "month": "March",
+          "region": "Europe",
+          "temperature": 7
+        },
+        {
+          "month": "March",
+          "region": "Asia",
+          "temperature": 5
+        },
+        {
+          "month": "April",
+          "region": "North America",
+          "temperature": 10
+        },
+        {
+          "month": "April",
+          "region": "Europe",
+          "temperature": 12
+        },
+        {
+          "month": "April",
+          "region": "Asia",
+          "temperature": 15
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "region"
+          },
+          "field": "temperature"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      },
+      "paddingInner": 0.2,
+      "padding": 0.0
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "region"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Region",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "region"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

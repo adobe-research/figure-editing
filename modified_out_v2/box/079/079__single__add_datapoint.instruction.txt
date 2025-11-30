@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Very High Risk' category with min=250, q1=350, median=450, q3=550, and max=650.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High Risk; value=175.0]

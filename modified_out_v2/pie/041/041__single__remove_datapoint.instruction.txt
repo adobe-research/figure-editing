@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Positive' and value 268 from the pie chart.
+[#OP1 op=remove_datapoint; category=Negative]

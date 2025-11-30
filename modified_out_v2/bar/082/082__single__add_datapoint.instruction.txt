@@ -1,0 +1,2 @@
+Add a new datapoint for player 'David Ortiz' with 541 home runs at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Albert Pujols; value=660.0]

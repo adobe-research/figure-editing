@@ -1,0 +1,2 @@
+Remove the datapoint for week 4 and department 'Clothing'.
+[#OP1 op=remove_datapoint; category=Electronics]

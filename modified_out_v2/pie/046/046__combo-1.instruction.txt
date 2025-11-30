@@ -1,0 +1,3 @@
+Change the color of the 'Petal Width' datapoint to '#ff5733' and add a title 'Iris Dataset Proportions' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Sepal Width; new_color=#d62728]
+[#OP2 op=add_title; title_text=Edited Chart]

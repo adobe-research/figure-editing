@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing review ratings for different movie genres.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Genre": "Action",
+          "Rating": 7.8
+        },
+        {
+          "Genre": "Drama",
+          "Rating": 8.5
+        },
+        {
+          "Genre": "Comedy",
+          "Rating": 6.9
+        },
+        {
+          "Genre": "Sci-Fi",
+          "Rating": 7.2
+        },
+        {
+          "Genre": "Romance",
+          "Rating": 6.8
+        },
+        {
+          "Genre": "Thriller",
+          "Rating": 7.5
+        },
+        {
+          "Genre": "Animation",
+          "Rating": 8.3
+        },
+        {
+          "Genre": "Documentary",
+          "Rating": 8.7
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "source",
+        "field": "Genre"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Rating"
+      },
+      "range": "height",
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Movie Genre"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Average Rating"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Genre"
+          },
+          "y": {
+            "scale": "y",
+            "field": "Rating"
+          },
+          "size": {
+            "value": 100
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

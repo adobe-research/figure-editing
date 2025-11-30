@@ -1,0 +1,3 @@
+Change the color of the 'Technician' category to '#FF5733' and add a title 'Job Categories Distribution' with size 20.
+[#OP1 op=change_datapoint_color; target_category=Blue-Collar; new_color=#ff7f0e]
+[#OP2 op=add_title; title_text=Edited Chart]

@@ -1,0 +1,2 @@
+Add a new datapoint with Buying_Price 3.8, Maintenance_Cost 2.8, and Safety 'Medium'.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=High; value=3.5]

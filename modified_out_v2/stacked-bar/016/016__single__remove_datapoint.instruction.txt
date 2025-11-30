@@ -1,0 +1,2 @@
+Remove the datapoint with category 'Energy' and series 'Q4'.
+[#OP1 op=remove_datapoint; category=Healthcare]

@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing precipitation and temperature trends over time.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "weather_data",
+      "values": [
+        {
+          "date": "2023-01-01",
+          "precipitation": 5.2,
+          "temperature": 45
+        },
+        {
+          "date": "2023-01-02",
+          "precipitation": 3.1,
+          "temperature": 48
+        },
+        {
+          "date": "2023-01-03",
+          "precipitation": 0.0,
+          "temperature": 50
+        },
+        {
+          "date": "2023-01-04",
+          "precipitation": 1.7,
+          "temperature": 46
+        },
+        {
+          "date": "2023-01-05",
+          "precipitation": 2.8,
+          "temperature": 44
+        },
+        {
+          "date": "2023-01-06",
+          "precipitation": 4.0,
+          "temperature": 47
+        },
+        {
+          "date": "2023-01-07",
+          "precipitation": 6.5,
+          "temperature": 42
+        },
+        {
+          "date": "2023-01-08",
+          "precipitation": 3.4,
+          "temperature": 43
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "toDate(datum['date'])"
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "precipitation",
+            "temperature"
+          ],
+          "as": [
+            "key",
+            "value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "range": "width",
+      "domain": {
+        "data": "weather_data",
+        "field": "date"
+      }
+    },
+    {
+      "name": "yscale_precipitation",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "weather_data",
+        "field": "precipitation"
+      },
+      "nice": true
+    },
+    {
+      "name": "yscale_temperature",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "weather_data",
+        "field": "temperature"
+      },
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_precipitation",
+      "title": "Precipitation (mm)"
+    },
+    {
+      "orient": "right",
+      "scale": "yscale_temperature",
+      "title": "Temperature (°F)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "weather_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale_precipitation",
+            "field": "precipitation"
+          },
+          "y2": {
+            "scale": "yscale_precipitation",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {}
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "weather_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "date"
+          },
+          "y": {
+            "scale": "yscale_temperature",
+            "field": "temperature"
+          },
+          "stroke": {
+            "value": "red"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "defined": {
+            "signal": "isValid(datum) && isValid(datum['date'])"
+          }
+        }
+      },
+      "sort": {
+        "field": "date",
+        "order": "ascending"
+      }
+    }
+  ]
+}

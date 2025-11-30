@@ -1,0 +1,2 @@
+Add a new datapoint for the 'Utilities' sector in the 'North America' region with a revenue of 75.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Energy; value=75.0]

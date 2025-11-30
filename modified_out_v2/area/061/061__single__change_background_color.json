@@ -1,0 +1,160 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing average monthly temperature anomalies over years.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "temperature_data",
+      "values": [
+        {
+          "year": 1880,
+          "temperature_anomaly": -0.12
+        },
+        {
+          "year": 1890,
+          "temperature_anomaly": -0.08
+        },
+        {
+          "year": 1900,
+          "temperature_anomaly": -0.1
+        },
+        {
+          "year": 1910,
+          "temperature_anomaly": -0.15
+        },
+        {
+          "year": 1920,
+          "temperature_anomaly": -0.05
+        },
+        {
+          "year": 1930,
+          "temperature_anomaly": 0.02
+        },
+        {
+          "year": 1940,
+          "temperature_anomaly": 0.04
+        },
+        {
+          "year": 1950,
+          "temperature_anomaly": -0.01
+        },
+        {
+          "year": 1960,
+          "temperature_anomaly": -0.02
+        },
+        {
+          "year": 1970,
+          "temperature_anomaly": -0.06
+        },
+        {
+          "year": 1980,
+          "temperature_anomaly": 0.1
+        },
+        {
+          "year": 1990,
+          "temperature_anomaly": 0.2
+        },
+        {
+          "year": 2000,
+          "temperature_anomaly": 0.3
+        },
+        {
+          "year": 2010,
+          "temperature_anomaly": 0.4
+        },
+        {
+          "year": 2020,
+          "temperature_anomaly": 0.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": [
+        1880,
+        1890,
+        1900,
+        1910,
+        1920,
+        1930,
+        1940,
+        1950,
+        1960,
+        1970,
+        1980,
+        1990,
+        2000,
+        2010,
+        2020
+      ],
+      "padding": 0.1
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {
+        "data": "temperature_data",
+        "field": "temperature_anomaly"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Year",
+      "tickCount": 10
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "from": {
+        "data": "temperature_data"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "year"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "temperature_anomaly"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "lightblue"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.7
+          }
+        }
+      }
+    }
+  ]
+}

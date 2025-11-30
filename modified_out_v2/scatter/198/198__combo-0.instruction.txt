@@ -1,0 +1,3 @@
+Change the background color to light gray and add a title 'Protein Localization Scatter Plot' with size 16.
+[#OP1 op=change_background_color; new_bg=#fff5e6]
+[#OP2 op=add_title; title_text=Edited Chart]

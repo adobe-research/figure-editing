@@ -1,0 +1,2 @@
+Add a new datapoint with Category 'Retail Sales' and Value 3.2 to the chart.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Consumer Confidence; value=2.5]

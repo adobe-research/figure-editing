@@ -1,0 +1,2 @@
+Add a new datapoint for the player 'Ted Williams' with min=0.22, q1=0.26, median=0.33, q3=0.36, and max=0.44.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Babe Ruth; value=0.215]

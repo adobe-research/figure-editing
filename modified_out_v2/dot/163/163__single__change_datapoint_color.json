@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Dot plot showing airport categories and their respective route counts.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "routes",
+      "values": [
+        {
+          "Airport": "JFK",
+          "RouteCount": 120
+        },
+        {
+          "Airport": "LAX",
+          "RouteCount": 150
+        },
+        {
+          "Airport": "ORD",
+          "RouteCount": 90
+        },
+        {
+          "Airport": "ATL",
+          "RouteCount": 200
+        },
+        {
+          "Airport": "DFW",
+          "RouteCount": 130
+        },
+        {
+          "Airport": "DEN",
+          "RouteCount": 110
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {
+        "data": "routes",
+        "field": "Airport"
+      },
+      "range": "width",
+      "padding": 0.1
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "routes",
+        "field": "RouteCount"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "title": "Airport"
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "title": "Route Count"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "routes"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Airport"
+          },
+          "y": {
+            "scale": "y",
+            "field": "RouteCount"
+          },
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "orange"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "Airport"
+          },
+          "y": {
+            "scale": "y",
+            "field": "RouteCount"
+          }
+        }
+      }
+    }
+  ]
+}

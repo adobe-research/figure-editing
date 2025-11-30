@@ -1,0 +1,2 @@
+Remove the datapoint for Florida in the year 2011 with a population of 3100000.
+[#OP1 op=remove_datapoint; category=Texas]

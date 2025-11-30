@@ -1,0 +1,2 @@
+Remove the datapoint for Region B on 2020-03-04 with 50 cases.
+[#OP1 op=remove_datapoint; category=2020-03-02]

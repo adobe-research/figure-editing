@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A stacked bar chart showing monthly temperature anomalies by hemisphere.",
+  "width": 600,
+  "height": 300,
+  "padding": 5,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "month": "January",
+          "hemisphere": "Northern",
+          "anomaly": 0.25
+        },
+        {
+          "month": "January",
+          "hemisphere": "Southern",
+          "anomaly": 0.15
+        },
+        {
+          "month": "February",
+          "hemisphere": "Northern",
+          "anomaly": 0.3
+        },
+        {
+          "month": "February",
+          "hemisphere": "Southern",
+          "anomaly": 0.2
+        },
+        {
+          "month": "March",
+          "hemisphere": "Northern",
+          "anomaly": 0.35
+        },
+        {
+          "month": "March",
+          "hemisphere": "Southern",
+          "anomaly": 0.25
+        },
+        {
+          "month": "April",
+          "hemisphere": "Northern",
+          "anomaly": 0.4
+        },
+        {
+          "month": "April",
+          "hemisphere": "Southern",
+          "anomaly": 0.3
+        },
+        {
+          "month": "May",
+          "hemisphere": "Northern",
+          "anomaly": 0.45
+        },
+        {
+          "month": "May",
+          "hemisphere": "Southern",
+          "anomaly": 0.35
+        }
+      ],
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "month"
+          ],
+          "sort": {
+            "field": "hemisphere"
+          },
+          "field": "anomaly"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "month"
+      }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "y1"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "table",
+        "field": "hemisphere"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Month"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Temperature Anomaly (°C)"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Hemisphere",
+      "orient": "right",
+      "symbolType": "square"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "month"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "y": {
+            "scale": "y",
+            "field": "y0"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "hemisphere"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

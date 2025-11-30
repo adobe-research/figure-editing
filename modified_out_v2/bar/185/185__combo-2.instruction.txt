@@ -1,0 +1,4 @@
+Change the color of the datapoint for 'Queens', increase the text size for axis labels, and add a title to the chart.
+[#OP1 op=change_datapoint_color; target_category=Bronx; new_color=#ff7f0e]
+[#OP2 op=increase_text_size; axis_label_size=16]
+[#OP3 op=add_title; title_text=Edited Chart]

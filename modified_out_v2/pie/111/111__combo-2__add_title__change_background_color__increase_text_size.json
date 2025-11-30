@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A pie chart showing video game sales by genre.",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "background": "#f0f8ff",
+  "title": {
+    "text": "Edited Chart",
+    "fontSize": 18
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "genre": "Role-Playing",
+          "sales": 120
+        },
+        {
+          "genre": "Shooter",
+          "sales": 200
+        },
+        {
+          "genre": "Fighting",
+          "sales": 80
+        },
+        {
+          "genre": "Simulation",
+          "sales": 150
+        },
+        {
+          "genre": "Platformer",
+          "sales": 90
+        },
+        {
+          "genre": "Puzzle",
+          "sales": 60
+        }
+      ],
+      "transform": [
+        {
+          "type": "pie",
+          "field": "sales",
+          "sort": false
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "genre"
+      },
+      "range": {
+        "scheme": "category20"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "genre"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Genre",
+      "titleFontSize": 16,
+      "labelFontSize": 14,
+      "orient": "right",
+      "symbolType": "circle"
+    }
+  ]
+}

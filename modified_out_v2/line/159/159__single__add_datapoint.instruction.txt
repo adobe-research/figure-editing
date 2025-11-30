@@ -1,0 +1,2 @@
+Add a new datapoint for Apple with date '2023-01-04' and price 155.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Amazon; value=279.0]

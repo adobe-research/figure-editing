@@ -1,2 +1,0 @@
-Make this bar chart use the same category spacing (padding=0.20) as the reference chart.
-[#OP1 op=increase_category_spacing; scale=auto; new_padding=0.20]

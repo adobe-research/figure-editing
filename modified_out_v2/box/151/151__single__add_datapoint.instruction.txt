@@ -1,0 +1,2 @@
+Add a new datapoint for the team 'France' with min=1, q1=2, median=4, q3=5, and max=9.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Argentina; value=0.0]

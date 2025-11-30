@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "A dot plot showing values for categories in the Kaggle: Quora Insincere Questions dataset.",
+  "width": 400,
+  "height": 300,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "#fff5e6",
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {
+          "Category": "Politics",
+          "Value": 120
+        },
+        {
+          "Category": "Religion",
+          "Value": 95
+        },
+        {
+          "Category": "Technology",
+          "Value": 130
+        },
+        {
+          "Category": "Education",
+          "Value": 110
+        },
+        {
+          "Category": "Health",
+          "Value": 85
+        },
+        {
+          "Category": "Science",
+          "Value": 100
+        },
+        {
+          "Category": "Entertainment",
+          "Value": 90
+        },
+        {
+          "Category": "Business",
+          "Value": 125
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "source",
+        "field": "Category"
+      },
+      "range": "width",
+      "padding": 0.2
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Value"
+      },
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "bottom",
+      "title": "Category"
+    },
+    {
+      "scale": "yscale",
+      "orient": "left",
+      "title": "Value"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "Category",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Value"
+          },
+          "size": {
+            "value": 100
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "steelblue"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

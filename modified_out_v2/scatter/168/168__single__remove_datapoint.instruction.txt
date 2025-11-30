@@ -1,0 +1,2 @@
+Remove the datapoint where QuestionLength is 160 and WordCount is 30.
+[#OP1 op=remove_datapoint; category=Sincere]

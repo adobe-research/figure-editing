@@ -1,0 +1,2 @@
+Add a new datapoint for the player 'Giannis Antetokounmpo' with min=10, q1=15, median=20, q3=25, and max=30.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Giannis Antetokounmpo; value=16.5]

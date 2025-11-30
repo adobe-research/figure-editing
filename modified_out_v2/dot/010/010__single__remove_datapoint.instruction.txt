@@ -1,0 +1,2 @@
+Remove the datapoint corresponding to the category 'Oranges'.
+[#OP1 op=remove_datapoint; category=Apples]

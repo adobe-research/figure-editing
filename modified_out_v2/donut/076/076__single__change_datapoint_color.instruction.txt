@@ -1,0 +1,2 @@
+Change the color of the 'Diabetes' datapoint to '#FF5733'.
+[#OP1 op=change_datapoint_color; target_category=High Cholesterol; new_color=#ff7f0e]

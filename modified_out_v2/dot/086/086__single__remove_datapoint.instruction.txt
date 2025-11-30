@@ -1,0 +1,2 @@
+Remove the datapoint for 'Brazil' with GDP_Per_Capita of 8695.
+[#OP1 op=remove_datapoint; category=Germany]

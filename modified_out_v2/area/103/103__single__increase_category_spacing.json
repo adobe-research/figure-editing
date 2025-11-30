@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "An area chart showing demand trends over time for multiple categories.",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "date": "2023-01",
+          "category": "Electronics",
+          "demand": 120
+        },
+        {
+          "date": "2023-01",
+          "category": "Fashion",
+          "demand": 85
+        },
+        {
+          "date": "2023-02",
+          "category": "Electronics",
+          "demand": 150
+        },
+        {
+          "date": "2023-02",
+          "category": "Fashion",
+          "demand": 95
+        },
+        {
+          "date": "2023-03",
+          "category": "Electronics",
+          "demand": 170
+        },
+        {
+          "date": "2023-03",
+          "category": "Fashion",
+          "demand": 110
+        },
+        {
+          "date": "2023-04",
+          "category": "Electronics",
+          "demand": 140
+        },
+        {
+          "date": "2023-04",
+          "category": "Fashion",
+          "demand": 125
+        },
+        {
+          "date": "2023-05",
+          "category": "Electronics",
+          "demand": 160
+        },
+        {
+          "date": "2023-05",
+          "category": "Fashion",
+          "demand": 130
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {
+        "data": "table",
+        "field": "date"
+      },
+      "padding": 0.2
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {
+        "data": "table",
+        "field": "demand"
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": [
+        "steelblue",
+        "orange"
+      ],
+      "domain": {
+        "data": "table",
+        "field": "category"
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": "Date"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Demand"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "category"
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {
+            "data": "series"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "scale": "xscale",
+                "field": "date"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "demand"
+              },
+              "y2": {
+                "scale": "yscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "category"
+              }
+            },
+            "update": {
+              "fillOpacity": {
+                "value": 0.8
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.5
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "right"
+    }
+  ]
+}

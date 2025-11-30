@@ -1,0 +1,2 @@
+Add a new datapoint with category 'No Result' and value 100 at the end of the dataset.
+[#OP1 op=add_datapoint; position=end; category=New 1; series=Away Win; value=275.0]
