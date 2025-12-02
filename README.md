@@ -4,6 +4,7 @@
 ![Data](https://img.shields.io/badge/Dataset-30k%2B_Samples-blue.svg)
 ![Task](https://img.shields.io/badge/Task-Structured_Editing-green.svg)
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
+[![Paper](https://img.shields.io/badge/ArXiv-2512.00752-b31b1b.svg)](https://arxiv.org/abs/2512.00752)
 
 ## 📖 Introduction
 
@@ -153,5 +154,13 @@ This project is licensed under the **Adobe Research License**. The material is a
 If you use **FigEdit** in your research, please cite our paper:
 
 ```bibtex
-
+@misc{li2025chartsimageschallengesscientific,
+      title={Charts Are Not Images: On the Challenges of Scientific Chart Editing}, 
+      author={Shawn Li and Ryan Rossi and Sungchul Kim and Sunav Choudhary and Franck Dernoncourt and Puneet Mathur and Zhengzhong Tu and Yue Zhao},
+      year={2025},
+      eprint={2512.00752},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.00752}, 
+}
 ```
