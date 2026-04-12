@@ -151,7 +151,7 @@ This project is licensed under the **Adobe Research License**. The material is a
 
 ## 📚 Citation
 
-If you use **FigEdit** in your research, please cite our ICLR 2026 paper:
+If you use **FigEdit** in your research, please cite [our ICLR 2026 paper](https://arxiv.org/pdf/2512.00752):
 
 ```bibtex
 @misc{li2025chartsimageschallengesscientific,
